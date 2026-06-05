@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Insertion Spike (THROWAWAY)",
+  "version": "0.0.1",
+  "description": "Phase 0 spike — proves reliable rich-text caret insertion in Gmail + LinkedIn. Not production.",
+  "permissions": ["activeTab"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://www.linkedin.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "commands": {
+    "open-picker": {
+      "suggested_key": { "default": "Ctrl+J", "mac": "Command+J" },
+      "description": "Open the template picker at the caret"
+    }
+  }
+}
