@@ -1,0 +1,47 @@
+body.pop {
+  width: 300px; margin: 0; padding: 14px;
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: #111;
+}
+.pophead { font-weight: 700; font-size: 15px; }
+.pophint { color: #666; font-size: 12px; margin: 4px 0 10px; }
+
+.psearch {
+  width: 100%; box-sizing: border-box; padding: 8px 10px; font-size: 13px;
+  border: 1px solid #d6dade; border-radius: 8px; outline: none; margin-bottom: 8px;
+}
+.psearch:focus { border-color: #2563eb; }
+
+.plist { list-style: none; margin: 0 0 10px; padding: 0; max-height: 260px; overflow: auto; }
+.plist .pempty { color: #999; font-size: 13px; padding: 10px 4px; }
+.prow {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  border-radius: 8px; cursor: pointer;
+}
+.prow:hover { background: #f2f4f7; }
+.pstar { width: 12px; color: #f5a623; font-size: 13px; }
+.ptitle { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.btn { border: 1px solid #d3d8e0; background: #fff; color: #1f2430; border-radius: 8px; padding: 9px 14px; font-size: 14px; cursor: pointer; }
+.btn:hover { background: #f1f3f7; }
+.btn.primary { background: #2563eb; border-color: #2563eb; color: #fff; }
+.btn.primary:hover { background: #1d4ed8; }
+.btn.wide { width: 100%; }
+.popfoot { display: flex; gap: 8px; }
+.popfoot .btn { flex: 1; }
+[data-theme="dark"] .btn { background: #2a3140; border-color: #3a4252; color: #e6e8ee; }
+[data-theme="dark"] .btn:hover { background: #333b4d; }
+[data-theme="dark"] .btn.primary { background: #2563eb; color: #fff; }
+.popstatus { color: #16a34a; font-size: 12px; text-align: center; margin-top: 8px; min-height: 16px; }
+
+[data-theme="dark"] body.pop { background: #1b1f29; color: #e6e8ee; }
+[data-theme="dark"] .pophint { color: #9aa3b2; }
+[data-theme="dark"] .psearch { background: #232838; border-color: #3a4252; color: #e6e8ee; }
+[data-theme="dark"] .psearch:focus { border-color: #3b82f6; }
+[data-theme="dark"] .plist .pempty { color: #6b7280; }
+[data-theme="dark"] .prow:hover { background: #232838; }
+[data-theme="dark"] .ptitle { color: #e6e8ee; }
+.popcoffee { display: block; text-align: center; margin-top: 6px; font-size: 12px; color: #8a92a3; text-decoration: none; }
+.popcoffee:hover { color: #2563eb; }
+[data-theme="dark"] .popstatus { color: #34d399; }
+[data-theme="dark"] .popcoffee { color: #7e8799; }
+[data-theme="dark"] .popcoffee:hover { color: #7eb0ff; }

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Welcome — Canned Responses</title>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="logo" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h1>You're all set 🎉</h1>
+      <p class="sub">Canned Responses is ready in <b>Gmail</b> &amp; <b>LinkedIn</b>. Here's the one thing to remember:</p>
+    </header>
+
+    <section class="tip">
+      <div class="kbd"><kbd id="hkbox">Alt + A</kbd></div>
+      <p>Press it in any compose box → <b>search</b> a template → <b>Enter</b> to insert it right at your cursor.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card"><div class="ci">⌨️</div><h3>Two ways to insert</h3>
+        <p>The <b class="hkfill">Alt+A</b> picker, or type <code>;shortcut</code> + <b>Tab</b> to expand instantly.</p></div>
+      <div class="card"><div class="ci">📑</div><h3>Save in one click</h3>
+        <p>Select text in an email → click <b>Save as template</b> (or right-click → save).</p></div>
+      <div class="card"><div class="ci">📋</div><h3>Copy whole emails</h3>
+        <p>Open an email → <b>Copy</b> (next to Reply/Forward) → paste anywhere, styling kept.</p></div>
+      <div class="card"><div class="ci">⭐</div><h3>Organize</h3>
+        <p>Favorite, search, reorder, variables like <code>{first_name}</code>, export &amp; import.</p></div>
+    </section>
+
+    <section class="starters">
+      <h2>Your starter templates</h2>
+      <ul id="list" class="list"></ul>
+    </section>
+
+    <section class="theme">
+      <span class="tlabel">Theme</span>
+      <div class="seg" id="themeSeg">
+        <button type="button" data-theme-val="system">System</button>
+        <button type="button" data-theme-val="light">Light</button>
+        <button type="button" data-theme-val="dark">Dark</button>
+      </div>
+      <p class="thint">Applies to the picker, popup &amp; manager.</p>
+    </section>
+
+    <div class="cta">
+      <a class="btn primary" href="https://mail.google.com/" target="_blank" rel="noopener">Open Gmail →</a>
+      <button class="btn" id="manage">Manage templates</button>
+    </div>
+    <p class="foot">Local-first · no account · your templates never leave your device.</p>
+  </main>
+
+  <script src="../../core/sanitize.js"></script>
+  <script src="../../core/model.js"></script>
+  <script src="../../core/store.js"></script>
+  <script src="welcome.js"></script>
+</body>
+</html>

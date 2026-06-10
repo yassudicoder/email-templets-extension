@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gmail-templates-and-canned.netlify.app/sitemap.xml

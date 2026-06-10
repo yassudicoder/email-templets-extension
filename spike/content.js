@@ -13,6 +13,10 @@
   if (window.__INSERTION_SPIKE__) return;
   window.__INSERTION_SPIKE__ = true;
 
+  // Debug switch — logs the inserted anchor's HTML at t=0 and t=600ms so we can
+  // see whether OUR insertion is correct and Gmail rewrites it afterward.
+  const DEBUG = true;
+
   // ----- The three hardcoded templates ------------------------------------
   const TEMPLATES = [
     {
@@ -114,16 +118,33 @@
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // Let the host editor know an insertion is about to happen (best-effort;
-    // synthetic events are untrusted so they don't perform the edit themselves).
-    el.dispatchEvent(new InputEvent("beforeinput", {
-      bubbles: true, cancelable: true, inputType: "insertFromPaste"
-    }));
-
     range.deleteContents();
     const frag = buildFragment(html, doc);
+    // Live references survive insertNode() (it MOVES the nodes into the DOM),
+    // so we can inspect the same anchor before and after Gmail reacts.
+    const insertedAnchor = frag.querySelector ? frag.querySelector("a[href]") : null;
     const lastNode = frag.lastChild;
     range.insertNode(frag);
+
+    if (DEBUG) {
+      const desc = (n) => n
+        ? `<${n.tagName.toLowerCase()} class="${(n.className || "").toString().slice(0, 40)}" `
+          + `role="${(n.getAttribute && n.getAttribute("role")) || ""}" `
+          + `aria="${(n.getAttribute && n.getAttribute("aria-label")) || ""}" CE=${n.isContentEditable}>`
+        : String(n);
+      console.log("[spike] === insertion target ===");
+      console.log("[spike] frame      :", location.href);
+      console.log("[spike] target el  :", desc(el));
+      console.log("[spike] target text:", (el.textContent || "").replace(/\s+/g, " ").slice(0, 90));
+      if (insertedAnchor) console.log("[spike] our anchor @t0:", insertedAnchor.outerHTML);
+      setTimeout(() => {
+        console.log("[spike] --- 600ms later ---");
+        console.log("[spike] our anchor still inside target?", el.contains(insertedAnchor),
+          "| connected:", !!(insertedAnchor && insertedAnchor.isConnected));
+        console.log("[spike] ALL <a> in target now:",
+          Array.from(el.querySelectorAll("a")).map((a) => a.outerHTML));
+      }, 600);
+    }
 
     // Collapse caret immediately AFTER the inserted content.
     if (lastNode) {
@@ -134,10 +155,12 @@
       sel.addRange(after);
     }
 
-    // CRITICAL: fire input so Gmail/LinkedIn's own model picks up the DOM change,
-    // otherwise the text can look present but get dropped on Send.
+    // Benign input signal — NOT "insertFromPaste". Gmail/LinkedIn sync their
+    // editor model from a MutationObserver, so the DOM mutation above is what
+    // they read; we previously sent insertFromPaste, which tripped Gmail's
+    // paste/link-fixup pipeline and rewrote the anchor's visible text.
     el.dispatchEvent(new InputEvent("input", {
-      bubbles: true, cancelable: false, inputType: "insertFromPaste"
+      bubbles: true, cancelable: false, inputType: "insertText"
     }));
   }
 
@@ -345,10 +368,12 @@
   }
 
   // ----- Triggers ----------------------------------------------------------
-  // Route 1: direct keydown (synchronous caret capture; overrides Chrome's Ctrl+J).
+  // Route 1 (primary): direct keydown. Uses Alt+J — NOT a browser-reserved
+  // shortcut, so the page can fully intercept it (Ctrl+J = Downloads is a
+  // browser accelerator that page JS cannot cancel). e.code is layout-proof.
   window.addEventListener("keydown", (e) => {
-    const hotkey = (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey &&
-                   (e.key === "j" || e.key === "J");
+    const hotkey = e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey &&
+                   e.code === "KeyJ";
     if (!hotkey) return;
     e.preventDefault();
     e.stopPropagation();

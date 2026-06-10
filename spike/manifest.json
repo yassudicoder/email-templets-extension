@@ -24,7 +24,7 @@
   ],
   "commands": {
     "open-picker": {
-      "suggested_key": { "default": "Ctrl+J", "mac": "Command+J" },
+      "suggested_key": { "default": "Alt+J", "mac": "Alt+J" },
       "description": "Open the template picker at the caret"
     }
   }

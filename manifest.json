@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "Email Templates & Canned Responses for Gmail & LinkedIn",
+  "version": "0.2.0",
+  "description": "Keyboard-first email templates with reliable rich-text insertion in Gmail & LinkedIn. Local-first, no account.",
+  "permissions": ["storage", "contextMenus"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://www.linkedin.com/*"
+      ],
+      "js": [
+        "core/sanitize.js",
+        "core/model.js",
+        "core/theme.js",
+        "core/store.js",
+        "core/entitlements.js",
+        "core/inserter.js",
+        "content/surfaces/gmail.js",
+        "content/surfaces/linkedin.js",
+        "content/picker.js",
+        "content/manager.js",
+        "content/expander.js",
+        "content/content.js",
+        "content/capture.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "ui/popup/popup.html",
+    "default_title": "Canned Responses",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "options_ui": {
+    "page": "ui/options/options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "open-picker": {
+      "suggested_key": { "default": "Alt+A", "mac": "Alt+A" },
+      "description": "Open the template picker at the caret"
+    }
+  }
+}

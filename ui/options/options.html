@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canned Responses — Templates</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Canned Responses</div>
+    <div class="meta">
+      <span class="hkwrap">Theme:
+        <select id="themeSel" class="tsel" title="Light / Dark / System">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </span>
+      <span class="hkwrap">Shortcut: <button id="hotkeyBtn" class="hkpill" title="Click, then press your shortcut">Alt+A</button></span>
+      <button id="exportBtn" class="btn ghost sm" title="Download a backup of all templates">Export</button>
+      <button id="importBtn" class="btn ghost sm" title="Import templates from a backup file">Import</button>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+      <span id="count" class="count"></span>
+    </div>
+  </header>
+
+  <div id="backupNudge" class="nudge" hidden>
+    <span class="nicon">💾</span>
+    <span class="nmsg">You have <b id="nudgeCount"></b> templates. Back them up so a reinstall can't lose them.</span>
+    <span class="ngrow"></span>
+    <label class="nweekly"><input type="checkbox" id="nudgeWeekly"> Remind me weekly</label>
+    <button id="nudgeExport" class="btn primary sm">Export backup</button>
+    <button id="nudgeDismiss" class="x" title="Dismiss">&times;</button>
+  </div>
+
+  <main class="layout">
+    <!-- Search + New spans the sidebar and the card list (grid area: search) -->
+    <div class="searchbar">
+      <input id="search" class="search" placeholder="Search templates…" autocomplete="off">
+      <button id="new" class="btn primary">+ New</button>
+    </div>
+
+    <!-- Left rail: category navigation + keyboard-shortcuts panel -->
+    <aside class="sidebar">
+      <nav id="nav" class="nav"></nav>
+      <div class="navfoot">
+        <div class="kbhead"><span class="kbicon">⌨️</span> Keyboard Shortcuts</div>
+        <ul id="kblist" class="kblist"></ul>
+        <a id="manageShortcuts" class="managelink" href="#">Manage shortcuts</a>
+      </div>
+    </aside>
+
+    <!-- Middle: template cards + pagination -->
+    <section class="cards">
+      <div id="cardActions" class="cardactions" hidden></div>
+      <ul id="list" class="list"></ul>
+      <div id="pager" class="pager" hidden>
+        <span id="pagerLabel" class="pagerlabel"></span>
+        <span class="pgrow"></span>
+        <button id="pagePrev" class="pgbtn" title="Previous page">‹</button>
+        <button id="pageNext" class="pgbtn" title="Next page">›</button>
+      </div>
+    </section>
+
+    <!-- Right: editor -->
+    <section class="editorpane" id="editorpane"></section>
+  </main>
+
+  <!-- Preview modal -->
+  <div id="previewModal" class="modal" hidden>
+    <div class="modalbox">
+      <div class="modalhead">
+        <span id="previewTitle" class="modaltitle">Preview</span>
+        <button id="previewClose" class="x" title="Close">&times;</button>
+      </div>
+      <div id="previewBody" class="modalbody"></div>
+      <div class="modalnote">Variables are shown highlighted — they're filled in when you insert the template.</div>
+    </div>
+  </div>
+
+  <!-- Shared data layer (same modules the content script + SW use). -->
+  <script src="../../core/sanitize.js"></script>
+  <script src="../../core/model.js"></script>
+  <script src="../../core/theme.js"></script>
+  <script src="../../core/store.js"></script>
+  <script src="../../core/entitlements.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

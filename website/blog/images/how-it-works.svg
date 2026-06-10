@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 360" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <style>
+      .card { fill:#ffffff; stroke:#ececf2; }
+      .badge { fill:#2f5bff; }
+      .bnum { fill:#ffffff; font-weight:800; font-size:26px; }
+      .title { fill:#11131a; font-weight:800; font-size:23px; }
+      .sub { fill:#5c6475; font-size:16px; }
+      .kbd { fill:#ffffff; stroke:#dfe3ee; }
+      .kbdt { fill:#11131a; font-weight:700; font-size:18px; }
+      .arrow { stroke:#c3cbe0; stroke-width:3; fill:none; }
+    </style>
+  </defs>
+  <rect width="1160" height="360" rx="20" fill="#f7f8fc"/>
+
+  <!-- Step 1 -->
+  <rect class="card" x="40" y="60" width="320" height="240" rx="18"/>
+  <circle class="badge" cx="80" cy="104" r="22"/>
+  <text class="bnum" x="80" y="113" text-anchor="middle">1</text>
+  <text class="title" x="124" y="111">Land in any reply</text>
+  <text class="sub" x="40" y="178" dx="24">Gmail, LinkedIn — anywhere</text>
+  <text class="sub" x="40" y="202" dx="24">you can type a message.</text>
+  <rect x="64" y="232" width="272" height="40" rx="9" fill="#f0f2f8"/>
+  <text x="80" y="258" fill="#9aa1b2" font-size="16">Type your reply…</text>
+  <rect x="318" y="236" width="2" height="32" fill="#2f5bff"/>
+
+  <!-- arrow -->
+  <path class="arrow" d="M372 180 H432"/>
+  <path class="arrow" d="M420 168 L434 180 L420 192"/>
+
+  <!-- Step 2 -->
+  <rect class="card" x="448" y="60" width="320" height="240" rx="18"/>
+  <circle class="badge" cx="488" cy="104" r="22"/>
+  <text class="bnum" x="488" y="113" text-anchor="middle">2</text>
+  <text class="title" x="532" y="111">Press the hotkey</text>
+  <text class="sub" x="448" y="186" dx="24">A search box opens right</text>
+  <text class="sub" x="448" y="210" dx="24">at your cursor.</text>
+  <rect class="kbd" x="556" y="236" width="74" height="40" rx="9"/>
+  <text class="kbdt" x="593" y="262" text-anchor="middle">Alt</text>
+  <text x="642" y="262" fill="#5c6475" font-weight="700" font-size="20">+</text>
+  <rect class="kbd" x="660" y="236" width="52" height="40" rx="9"/>
+  <text class="kbdt" x="686" y="262" text-anchor="middle">A</text>
+
+  <!-- arrow -->
+  <path class="arrow" d="M780 180 H840"/>
+  <path class="arrow" d="M828 168 L842 180 L828 192"/>
+
+  <!-- Step 3 -->
+  <rect class="card" x="856" y="60" width="264" height="240" rx="18"/>
+  <circle class="badge" cx="896" cy="104" r="22"/>
+  <text class="bnum" x="896" y="113" text-anchor="middle">3</text>
+  <text class="title" x="940" y="111">Enter — done</text>
+  <text class="sub" x="856" y="186" dx="24">The template drops in,</text>
+  <text class="sub" x="856" y="210" dx="24">exactly at the caret.</text>
+  <circle cx="896" cy="252" r="18" fill="#e9f9f1"/>
+  <path d="M888 252 l6 6 l11 -13" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="924" y="258" fill="#16a34a" font-weight="700" font-size="16">Inserted</text>
+</svg>

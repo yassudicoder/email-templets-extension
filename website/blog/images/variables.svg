@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 300" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <rect width="1160" height="300" rx="20" fill="#f7f8fc"/>
+
+  <!-- label left -->
+  <text x="60" y="56" fill="#9aa1b2" font-weight="700" font-size="14" letter-spacing="1.5">THE TEMPLATE YOU SAVE ONCE</text>
+  <!-- template card -->
+  <rect x="60" y="74" width="440" height="150" rx="16" fill="#ffffff" stroke="#ececf2"/>
+  <text x="84" y="120" font-size="19" fill="#2b303c">Hi <tspan fill="#2f5bff" font-weight="700">{first_name}</tspan>, thanks for</text>
+  <text x="84" y="150" font-size="19" fill="#2b303c">applying to <tspan fill="#2f5bff" font-weight="700">{company}</tspan>. We've</text>
+  <text x="84" y="180" font-size="19" fill="#2b303c">got your application…</text>
+
+  <!-- arrow -->
+  <path d="M540 150 H620" stroke="#c3cbe0" stroke-width="3" fill="none"/>
+  <path d="M608 138 L622 150 L608 162" stroke="#c3cbe0" stroke-width="3" fill="none"/>
+  <text x="581" y="132" text-anchor="middle" fill="#9aa1b2" font-size="13" font-weight="600">fill on insert</text>
+
+  <!-- label right -->
+  <text x="662" y="56" fill="#9aa1b2" font-weight="700" font-size="14" letter-spacing="1.5">WHAT YOUR PROSPECT READS</text>
+  <!-- result card -->
+  <rect x="662" y="74" width="440" height="150" rx="16" fill="#ffffff" stroke="#dbe3ff"/>
+  <rect x="662" y="74" width="440" height="150" rx="16" fill="#f5f7ff"/>
+  <text x="686" y="120" font-size="19" fill="#2b303c">Hi <tspan fill="#11131a" font-weight="700">Jordan</tspan>, thanks for</text>
+  <text x="686" y="150" font-size="19" fill="#2b303c">applying to <tspan fill="#11131a" font-weight="700">Acme</tspan>. We've</text>
+  <text x="686" y="180" font-size="19" fill="#2b303c">got your application…</text>
+</svg>
