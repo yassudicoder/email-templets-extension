@@ -12,7 +12,13 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://gmail-templates-and-canned.netlify.app/blog/gmail-canned-responses.html">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <script>(function(){var d=document.documentElement;d.classList.add('js');try{var s=localStorage.getItem('cr-theme');d.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));}catch(e){d.setAttribute('data-theme','light');}})();</script>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../spec-sheet.css">
+  <link rel="stylesheet" href="../dark.css">
+  <script src="../theme.js" defer></script>
+  <script src="../analytics.js" defer></script>
+  <script src="../motion.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,6 +85,30 @@
       <p class="article-lead">You type the same five emails all day. "Thanks for applying." "Quick follow-up." "Sorry, can we reschedule?" — retyped, word for word, for the 400th time. <strong>Gmail canned responses</strong> exist to kill that exact busywork. The catch: Gmail's built-in version is buried three menus deep and tends to fall apart the moment you use it in a reply. Here's how to set it up anyway, where it quietly eats your time, and a faster way to fire off any saved reply without leaving the keyboard.</p>
     </header>
 
+    <section class="calc" aria-label="Time-saved calculator">
+      <div class="calc-inner">
+        <p class="calc-kicker">Do the math · drag it</p>
+        <h3 class="calc-q">How much of your life are you losing to retyping the same emails?</h3>
+        <input type="range" id="calcRange" class="calc-range" min="5" max="120" value="40" aria-label="Emails sent per day">
+        <p class="calc-val"><b id="calcN">40</b> of these emails a day</p>
+        <div class="calc-out">
+          <div class="calc-stat accent"><span class="calc-big" id="calcHrs">2.8</span><span class="calc-lbl">hours saved / week</span></div>
+          <div class="calc-stat"><span class="calc-big" id="calcDays">18</span><span class="calc-lbl">work-days saved / year</span></div>
+        </div>
+        <div class="calc-bar"><i id="calcBar"></i></div>
+        <p class="calc-note">Assuming each templated reply saves ~50 seconds vs. typing it from scratch. That time is yours to keep.</p>
+      </div>
+    </section>
+
+    <div class="tldr2">
+      <p class="tl-k">The short version</p>
+      <ul>
+        <li>Gmail's built-in "Templates" work — but they're buried in a 3-click menu, break inside replies, and have no variables.</li>
+        <li>Press <kbd>Alt</kbd>+<kbd>A</kbd> to drop any saved reply at your cursor — in Gmail <em>and</em> LinkedIn — with <code>{first_name}</code> variables and <code>;shortcut</code> expansion.</li>
+        <li>Free, local-first, no account — your email never leaves your device.</li>
+      </ul>
+    </div>
+
     <nav class="toc" aria-label="Table of contents">
       <strong>In this guide</strong>
       <ol>
@@ -134,7 +164,7 @@
       <p>To reuse it, you open a draft, click <strong>⋮ → Templates</strong>, and pick it from the list. To edit one, you insert it, change the text, then overwrite the old version through the same menu. Yes, that's a lot of menu for one paragraph of text. Hold that thought.</p>
       <div class="callout tip">
         <span class="ci">✅</span>
-        <p><strong>Tip:</strong> Name templates by their first action word — "Follow up — pricing," "Reject — polite," "Schedule — 30 min." The list is alphabetical, so a naming convention is the only thing standing between you and chaos later.</p>
+        <p>Name templates by their first action word — "Follow up — pricing," "Reject — polite," "Schedule — 30 min." The list is alphabetical, so a naming convention is the only thing standing between you and chaos later.</p>
       </div>
 
       <h2 id="limits">Where Gmail's built-in templates quietly break down</h2>
@@ -146,6 +176,12 @@
         <li><strong>No search.</strong> Past 15 templates you're scrolling an unsorted dropdown like it's 2009.</li>
         <li><strong>Gmail only.</strong> Switch to LinkedIn or a help desk and your library stays behind, waving at you.</li>
       </ul>
+      <div class="statrow">
+        <div class="stat2"><b data-to="3">0</b><span>clicks to insert one</span></div>
+        <div class="stat2"><b data-to="0">0</b><span>variables supported</span></div>
+        <div class="stat2 accent"><b data-to="150">0</b><span>extra clicks a day at 50 replies</span></div>
+      </div>
+
       <p>Here's the honest version: <strong>Gmail's templates were built for someone who sends a template on their birthday.</strong> Not for you, clearing 80 replies before lunch. Two clicks doesn't sound like much — until it's the same two clicks, all day, forever.</p>
 
       <h2 id="faster">The faster way: insert any reply in one keystroke</h2>
@@ -154,11 +190,29 @@
       <ol>
         <li>Click into any compose box, reply, or message field.</li>
         <li>Press <kbd>Alt</kbd>+<kbd>A</kbd> — a searchable picker pops up at your cursor.</li>
-        <li>Type a couple letters, hit <kbd>Enter</kbd>, and the template lands <strong>exactly where your cursor is</strong> — formatting, links, quoted thread, all intact.</li>
+        <li>Type a couple letters, hit <kbd>Enter</kbd>, and the template lands <mark class="hl">exactly where your cursor is</mark> — formatting, links, quoted thread, all intact.</li>
       </ol>
 
       <figure class="figure">
-        <img src="images/how-it-works.svg" alt="Three-step diagram: land in any reply, press Alt+A to open the picker, press Enter and the template is inserted at the cursor">
+        <div class="hiw" role="img" aria-label="Three steps: land in any reply, press Alt+A to open the picker, and it inserts at your cursor">
+          <div class="hiw-step" style="--d:0s">
+            <div class="hiw-ic"><span class="hiw-field"><span class="hiw-caret"></span></span></div>
+            <div class="hiw-t">Land in any reply</div>
+            <div class="hiw-s">Gmail, LinkedIn — anywhere you type</div>
+          </div>
+          <div class="hiw-wire"><i></i></div>
+          <div class="hiw-step" style="--d:.85s">
+            <div class="hiw-ic"><span class="kc">Alt</span><span class="kc">A</span></div>
+            <div class="hiw-t">Press the hotkey</div>
+            <div class="hiw-s">A picker opens at your cursor</div>
+          </div>
+          <div class="hiw-wire"><i style="animation-delay:.85s"></i></div>
+          <div class="hiw-step" style="--d:1.7s">
+            <div class="hiw-ic"><svg class="hiw-check" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#e6f7ee"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="hiw-t">It's inserted</div>
+            <div class="hiw-s">Right at the caret, formatting intact</div>
+          </div>
+        </div>
         <figcaption>Insert in three moves — no three-dot menu in sight.</figcaption>
       </figure>
 
@@ -170,19 +224,45 @@
         <a class="btn lg" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome — Free</a>
       </div>
 
+      <div class="article-demo">
+        <p class="ad-label">↓ Try it without leaving this page</p>
+        <div class="try-wrap">
+          <div class="try-vars">
+            <label>First name <input class="tv-name" type="text" placeholder="Alex" autocomplete="off"></label>
+            <span class="try-vhint">Click in the box, press <kbd>Alt</kbd>+<kbd>A</kbd>, pick a template — and watch <code>{first_name}</code> fill in.</span>
+          </div>
+          <div class="try-compose">
+            <div class="tc-bar"><span class="dots"><i></i><i></i><i></i></span><span class="tc-title">New message</span><span class="tc-hint">Alt + A</span></div>
+            <div class="tc-meta"><span class="tc-l">To</span> someone@company.com</div>
+            <div class="tc-body" contenteditable="true" spellcheck="false" data-ph="Click here, then press Alt + A"></div>
+            <div class="tc-actions"><button class="btn primary sm" type="button">Insert template ▸</button><span class="tc-status"></span></div>
+            <div class="try-picker" hidden>
+              <input class="tp-search" placeholder="Search templates…" autocomplete="off">
+              <ul class="tp-list"></ul>
+              <div class="tp-foot"><span>↑↓ navigate</span><span>↵ insert</span><span>esc close</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="pullquote">Your inbox shouldn't feel like a typing test. <span>Let muscle memory do the boring part.</span></blockquote>
+
       <h2 id="variables">Variables: the part that actually saves time</h2>
       <p>Inserting a template was never the slow part. <strong>Fixing the name afterward is.</strong> You paste "Hi {first_name}", then go hunting for the spot where the real name goes. Variables delete that step entirely.</p>
       <p>With placeholders like <code>{first_name}</code> and <code>{company}</code>, you fill the personal bits inline as you insert — so the message never reads like a template, even though it absolutely is one.</p>
 
       <figure class="figure">
-        <img src="images/variables.svg" alt="A template containing {first_name} and {company} variables on the left transforms into a personalized message reading Hi Jordan, thanks for applying to Acme on the right">
-        <figcaption>Save it once with placeholders; fill them in as you send.</figcaption>
+        <div class="varbox" role="img" aria-label="One template with first name and company variables personalizes itself for every recipient">
+          <div class="vb-line">Hi <span class="vb-chip" id="vbName">{first_name}</span>, thanks for applying to <span class="vb-chip" id="vbCo">{company}</span>.</div>
+          <div class="vb-cap">One template → personalized for everyone. The placeholders fill themselves as you insert.</div>
+        </div>
+        <figcaption>Save it once with placeholders; they fill in as you send.</figcaption>
       </figure>
 
       <p>This is the difference between sending 20 templated emails an hour and sending 60 — without any of them sounding mass-produced. It's also how you avoid the most embarrassing email mistake there is (more on that in a second).</p>
 
       <h2 id="linkedin">Oh, and it works on LinkedIn too</h2>
-      <p>LinkedIn has <em>no</em> native templates. None. So most recruiters and salespeople keep their messages in a Google Doc and copy-paste them in — a workflow held together with hope and Ctrl+V.</p>
+      <p>LinkedIn has <em>no</em> native templates. None. So most recruiters and salespeople keep their messages in a Google Doc and copy-paste them in — <mark class="hl">a workflow held together with hope and Ctrl+V.</mark></p>
       <p>That's its own special pain: half the time you paste the wrong block, or the formatting explodes, or you send "Hi {first_name}" to an actual human. Because Canned Responses runs on <strong>linkedin.com</strong> as well as Gmail, the same <kbd>Alt</kbd>+<kbd>A</kbd> picker and the same library work inside LinkedIn messages, InMail, and comments. One template library, both of the highest-volume places you message people. No more doc.</p>
 
       <h2 id="compare">Gmail templates vs. a canned-responses extension</h2>
@@ -213,9 +293,11 @@
         <li><strong>Templating everything.</strong> Automate the repetitive 80%. Write the high-stakes 20% by hand. Templates are a floor for speed, not a replacement for thinking.</li>
       </ul>
 
+      <blockquote class="pullquote">Template the repetitive 80%. <span>Write the high-stakes 20% by hand.</span></blockquote>
+
       <h2 id="starter">10 templates worth stealing today</h2>
-      <p>No inspiration? Start here. These ten cover most high-volume inboxes — save them, sprinkle in a variable or two, and you'll feel the difference the same afternoon:</p>
-      <ol>
+      <p>No inspiration? Start here. These ten cover most high-volume inboxes — save them, sprinkle in a variable or two, and you'll feel the difference the same afternoon. <span class="copy-tip">Hover a line and hit <b>Copy</b>.</span></p>
+      <ol class="copy-list">
         <li><strong>Quick follow-up</strong> — "Hi {first_name}, just following up on my note below…"</li>
         <li><strong>Meeting reschedule</strong> — "Hi {first_name}, something's come up and I need to move our meeting…"</li>
         <li><strong>Thanks for applying</strong> — "Hi {first_name}, thanks for applying to {company}…"</li>
@@ -250,6 +332,7 @@
           <div class="arole">We build a free, local-first template tool for Gmail &amp; LinkedIn.</div>
         </div>
       </div>
+      <div class="colophon-end">— END OF FILE · CANNED RESPONSES · VOL.01 —</div>
     </div>
   </article>
 

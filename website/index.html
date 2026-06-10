@@ -13,7 +13,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gmail-templates-and-canned.netlify.app/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <script>(function(){var d=document.documentElement;d.classList.add('js');try{var s=localStorage.getItem('cr-theme');d.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));}catch(e){d.setAttribute('data-theme','light');}})();</script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="spec-sheet.css">
+  <link rel="stylesheet" href="dark.css">
+  <script src="theme.js" defer></script>
+  <script src="analytics.js" defer></script>
+  <script src="motion.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,9 +40,9 @@
       <span>Canned Responses</span>
     </a>
     <nav class="navlinks">
+      <a href="#try">Try it</a>
       <a href="#features">Features</a>
       <a href="blog/index.html">Blog</a>
-      <a href="#support">Support</a>
       <a href="#faq">FAQ</a>
       <a class="btn primary" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome</a>
     </nav>
@@ -45,24 +51,29 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
+      <div class="aurora" aria-hidden="true"><b></b><b></b><b></b></div>
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span> Free Chrome extension · no account</span>
-        <h1>Email templates &amp; canned responses for Gmail and LinkedIn</h1>
+        <h1>Email templates &amp; canned responses for <span class="grad">Gmail and LinkedIn</span></h1>
         <p class="lead">Insert any saved reply <b>right at your cursor</b> with one keystroke. Variables, abbreviations, save-from-email — keyboard-first, local-first, no account.</p>
         <div class="cta-row">
           <a class="btn primary lg" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome — Free</a>
-          <a class="btn ghost lg" href="#features">See how it works</a>
+          <a class="btn ghost lg" href="#try">Try it live →</a>
         </div>
         <p class="microcopy">Free · unlimited templates · works in Gmail &amp; LinkedIn · your data never leaves your device</p>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <div class="mock">
+        <div class="mock" id="heroMock">
           <div class="mock-bar"><span></span><span></span><span></span></div>
           <div class="mock-body">
-            <div class="mock-compose">New message</div>
-            <div class="picker">
-              <div class="picker-head">TEMPLATES</div>
-              <div class="picker-search">Search templates…</div>
+            <div class="mock-compose">
+              <div class="mc-row"><span class="mc-l">To</span> hiring@acme.com</div>
+              <div class="mc-row"><span class="mc-l">Subject</span> Re: your application</div>
+              <div class="mc-text"><span id="heroType"></span><span class="hcaret"></span></div>
+            </div>
+            <div class="picker" id="heroPicker">
+              <div class="picker-head">TEMPLATES <span class="pk-key">Alt+A</span></div>
+              <div class="picker-search"><span id="heroQuery" class="ph">Search templates…</span></div>
               <div class="picker-row sel"><b>Meeting reschedule</b><small>Hi {first_name}, something's come up…</small></div>
               <div class="picker-row"><b>Thanks for applying</b><small>Hi {first_name}, thanks so much…</small></div>
               <div class="picker-row"><b>Quick follow-up</b><small>Hi {first_name}, just following up…</small></div>
@@ -73,50 +84,124 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
-    <section id="features" class="section">
-      <h2>Everything you need to reply faster</h2>
-      <p class="section-sub">Built for recruiters, sales, and support pros who send the same replies all day.</p>
-      <div class="grid">
-        <div class="feature">
-          <div class="fi c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg></div>
-          <h3>Insert in one keystroke</h3><p>Press <kbd>Alt</kbd>+<kbd>A</kbd> in any compose box, search, and hit Enter. The template lands exactly at your cursor.</p></div>
-        <div class="feature">
-          <div class="fi c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-          <h3>Abbreviation expand</h3><p>Type <code>;intro</code> + Tab and it expands instantly — muscle memory for your most-used replies.</p></div>
-        <div class="feature">
-          <div class="fi c3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4a2 2 0 0 0-2 2v3a2 2 0 0 1-2 2 2 2 0 0 1 2 2v3a2 2 0 0 0 2 2"/><path d="M17 4a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2 2 2 0 0 0-2 2v3a2 2 0 0 1-2 2"/></svg></div>
-          <h3>Variables</h3><p>Use <code>{first_name}</code>, <code>{company}</code> and fill them inline as you insert. No more find-and-replace.</p></div>
-        <div class="feature">
-          <div class="fi c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>Save from any email</h3><p>Select text in an email and click <b>Save as template</b> — or right-click. Build your library as you work.</p></div>
-        <div class="feature">
-          <div class="fi c5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
-          <h3>Copy whole emails</h3><p>Reuse a designed email: one click copies it with formatting, colors, and images, ready to paste.</p></div>
-        <div class="feature">
-          <div class="fi c6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Local-first &amp; private</h3><p>Templates live on your device. We never read or transmit your email. No account, no telemetry.</p></div>
+    <!-- TRY IT (live, in-page) -->
+    <section id="try" class="section try-section">
+      <h2>Try it right here — no install</h2>
+      <p class="section-sub">Click in the box, press <kbd>Alt</kbd>+<kbd>A</kbd> (or hit Insert), and pick a template. It drops in at your cursor — exactly like it does in Gmail.</p>
+      <div class="try-wrap">
+        <div class="try-vars">
+          <label>First name <input id="tvName" class="tv-name" type="text" placeholder="Alex" autocomplete="off"></label>
+          <label>Company <input id="tvCo" class="tv-co" type="text" placeholder="Acme" autocomplete="off"></label>
+          <span class="try-vhint">Type your name and watch <code>{first_name}</code> fill in live across every template.</span>
+        </div>
+        <div class="try-compose" id="tryCompose">
+          <div class="tc-bar"><span class="dots"><i></i><i></i><i></i></span><span class="tc-title">New message</span><span class="tc-hint">Alt + A to insert</span></div>
+          <div class="tc-meta"><span class="tc-l">To</span> someone@company.com</div>
+          <div class="tc-body" id="tryBody" contenteditable="true" spellcheck="false" data-ph="Click here and start typing… then press Alt + A"></div>
+          <div class="tc-actions"><button class="btn primary sm" id="tryInsert" type="button">Insert template ▸</button><span class="tc-status" id="tryStatus"></span></div>
+          <div class="try-picker" id="tryPicker" hidden>
+            <input class="tp-search" id="tpSearch" placeholder="Search templates…" autocomplete="off">
+            <ul class="tp-list" id="tpList"></ul>
+            <div class="tp-foot"><span>↑↓ navigate</span><span>↵ insert</span><span>esc close</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SUPPORT -->
-    <section id="support" class="section alt">
-      <h2>Free, with all the features</h2>
-      <p class="section-sub">Every feature is unlocked and free — no plans, no paywall. If it saves you time, you can buy me a coffee. Totally optional.</p>
-      <div class="support-card">
-        <div class="coffee">☕</div>
-        <h3>Buy me a coffee</h3>
-        <p>I'm building Canned Responses solo. A coffee helps keep it free, fast, and improving.</p>
-        <a class="coffee-btn" href="https://www.buymeacoffee.com/yourhandle" target="_blank" rel="noopener" data-bmc>☕ Buy me a coffee</a>
-        <p class="support-note">No account, no paywall — donations never gate any feature.</p>
+    <!-- FEATURES — the spec sheet -->
+    <section id="features" class="section ledger-section">
+      <div class="ledger-head">
+        <span>INDEX / 01–06 · WHAT IT DOES</span>
+        <span>SIX PRIMITIVES</span>
       </div>
+      <h2 class="ledger-title">Everything you need to <span class="grad">reply faster</span></h2>
+
+      <div class="ledger" tabindex="0" role="listbox" aria-label="Features — use arrow keys to inspect">
+
+        <div class="lrow" role="option" tabindex="-1" data-i="0">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="1">01</div>
+            <div class="lmain"><h3 class="lhead">Insert in one keystroke</h3><p class="ldeck">Press the hotkey in any compose box, search, and hit Enter — the template lands exactly at your cursor.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <div class="dgrp"><span class="kc">Alt</span><span class="dplus">+</span><span class="kc">A</span></div>
+              <div class="dlines"><i></i><i></i><i></i></div>
+              <span class="lcap">ALT + A</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lrow alt" role="option" tabindex="-1" data-i="1">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="2">02</div>
+            <div class="lmain"><h3 class="lhead">Abbreviation expand</h3><p class="ldeck">Type a short trigger and press Tab — it expands in place. Muscle memory for your most-used replies.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <div class="dgrp"><code class="dmono">;intro</code><span class="kc">Tab</span><span class="darrow">→</span></div>
+              <div class="dlines"><i></i><i></i></div>
+              <span class="lcap">;INTRO + TAB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lrow purple" role="option" tabindex="-1" data-i="2">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="3">03</div>
+            <div class="lmain"><h3 class="lhead">Variables</h3><p class="ldeck">Drop in <code>{first_name}</code> or <code>{company}</code> and fill them as you insert. No more find-and-replace.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <div class="dvars">Hi <span class="vswap"><span class="t">{first_name}</span><span class="v">Alex</span></span>, re: <span class="vswap"><span class="t">{company}</span><span class="v">Acme</span></span></div>
+              <span class="lcap">{ FIRST_NAME }</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lrow alt" role="option" tabindex="-1" data-i="3">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="4">04</div>
+            <div class="lmain"><h3 class="lhead">Save from any email</h3><p class="ldeck">Select text in an email and save it as a template — or right-click. Build your library as you work.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <div class="dmarquee"><i></i><i></i><i></i><span class="dtag">+ SAVE</span></div>
+              <span class="lcap">SELECT → SAVE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lrow" role="option" tabindex="-1" data-i="4">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="5">05</div>
+            <div class="lmain"><h3 class="lhead">Copy whole emails</h3><p class="ldeck">Reuse a designed email — one click copies it with formatting, colours and images, ready to paste.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <div class="dstack"><span></span><span></span></div>
+              <span class="lcap">ONE-CLICK COPY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lrow alt teal" role="option" tabindex="-1" data-i="5">
+          <div class="rule"><i></i><b class="node"></b></div>
+          <div class="lrow-grid">
+            <div class="lnum" data-n="6">06</div>
+            <div class="lmain"><h3 class="lhead">Local-first &amp; private</h3><p class="ldeck">Templates live on your device. We never read or transmit your email. No account, no telemetry.</p></div>
+            <div class="ldiag" aria-hidden="true">
+              <svg class="dshield" viewBox="0 0 40 44" fill="none" stroke="#0d9488" stroke-width="1.6"><path d="M20 3l15 6v11c0 9-6.5 15-15 18C12.5 35 6 29 6 20V9z"/><path d="M14 21l4.5 4.5L27 17" stroke-width="2"/></svg>
+              <span class="lcap">ON-DEVICE ONLY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule last"><i></i><b class="node"></b></div>
+      </div>
+      <div class="ledger-foot"><span>SIX PRIMITIVES</span><span>↑ ↓ TO INSPECT · ↵ TO ACTUATE</span></div>
     </section>
 
     <!-- FAQ -->
     <section id="faq" class="section">
       <h2>Frequently asked questions</h2>
       <div class="faq">
-        <details><summary>Is it free?</summary><p>Yes — completely free, with every feature unlocked (unlimited templates, variables, images, HTML-email templates). There's no paywall. If it saves you time, you can <a href="#support">buy me a coffee</a> — but it's entirely optional and never gates anything.</p></details>
+        <details><summary>Is it free?</summary><p>Yes — completely free, with every feature unlocked (unlimited templates, variables, images, HTML-email templates). There's no paywall, and nothing is ever gated behind payment.</p></details>
         <details><summary>Do you read or send my emails?</summary><p>No. Your templates stay on your device, and the extension never reads or transmits your email content. There's no telemetry and no account.</p></details>
         <details><summary>Which sites does it work on?</summary><p>Gmail (mail.google.com) and LinkedIn (linkedin.com) — new messages, replies, inline replies, and comments.</p></details>
         <details><summary>Where is my data stored, and what if I uninstall?</summary><p>Everything is stored locally in your browser. You can export your templates to a JSON file at any time as a backup, and re-import them after a reinstall.</p></details>
@@ -134,7 +219,6 @@
       <nav class="foot-links">
         <a href="#features">Features</a>
         <a href="blog/index.html">Blog</a>
-        <a href="#support">Support</a>
         <a href="privacy.html">Privacy</a>
         <a href="mailto:hello@example.com">Contact</a>
       </nav>

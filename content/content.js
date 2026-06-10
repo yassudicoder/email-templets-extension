@@ -62,6 +62,14 @@
     }
     return null;
   }
+  // Surface label for analytics ("gmail" | "linkedin" | "other") — no content.
+  function surfaceName() {
+    for (const key of Object.keys(surfaces || {})) {
+      if (surfaces[key].matches && surfaces[key].matches()) return key;
+    }
+    return "other";
+  }
+  function track(event, props) { if (NS.analytics) NS.analytics.capture(event, props); }
 
   async function openPicker(ctx) {
     if (picker.isOpen()) return;
@@ -69,16 +77,18 @@
     const templates = store.getAll();
     const surface = currentSurface();
     const preferPlainText = !!(surface && surface.preferPlainText());
+    track("picker_opened", { surface: surfaceName() });
 
     picker.open(templates, {
       onInsert: (html) => {
         if (ctx) {
           const ok = inserter.insert(ctx, html, { preferPlainText });
-          if (ok) cue("✓ Inserted"); else console.warn("[CR] insertion returned false");
+          if (ok) { cue("✓ Inserted"); track("template_inserted", { surface: surfaceName(), mode: "insert" }); }
+          else console.warn("[CR] insertion returned false");
         } else if (navigator.clipboard) {
           // Opened from the toolbar button with no focused field -> copy instead.
           const text = NS.sanitize ? NS.sanitize.toPlainText(html) : html;
-          navigator.clipboard.writeText(text).then(() => cue("✓ Copied")).catch((e) => console.warn("[CR] copy failed", e));
+          navigator.clipboard.writeText(text).then(() => { cue("✓ Copied"); track("template_inserted", { surface: surfaceName(), mode: "copy" }); }).catch((e) => console.warn("[CR] copy failed", e));
         }
       }
     });

@@ -5,9 +5,9 @@
  *   - Relays the Ctrl/Cmd+J command to the focused tab's content script.
  * Shares the core modules with content scripts through the globalThis.CR
  * namespace (loaded here via importScripts). */
-importScripts("/core/model.js", "/core/store.js");
+importScripts("/core/model.js", "/core/store.js", "/core/analytics.js");
 
-const { store, model } = globalThis.CR;
+const { store, model, analytics } = globalThis.CR;
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   await store.init(); // creates the DB and/or migrates to the current schema
@@ -33,7 +33,10 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 chrome.runtime.onMessage.addListener((msg) => {
-  if (msg && msg.type === "OPEN_OPTIONS") chrome.runtime.openOptionsPage();
+  if (!msg) return;
+  if (msg.type === "OPEN_OPTIONS") chrome.runtime.openOptionsPage();
+  // Analytics events from content scripts / options — consent is checked in deliver().
+  if (msg.type === "CR_ANALYTICS") analytics.deliver(msg.event, msg.props);
 });
 
 chrome.commands.onCommand.addListener((command) => {

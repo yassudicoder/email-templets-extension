@@ -57,6 +57,9 @@
     return {
       hotkey: "Alt+A", schemaVersion: SCHEMA_VERSION, plan: "free", theme: "system",
       lastBackupAt: 0, backupReminderWeekly: false, backupNudgeDismissedAt: 0,
+      // Anonymous, opt-in product analytics — OFF until the user enables it.
+      // analyticsId is a random id (no identity) generated only once enabled.
+      analyticsEnabled: false, analyticsId: "",
       // Beta-era installs are flagged early-access so they can be grandfathered
       // when premium launches (set this default to false at that point).
       earlyAccess: true

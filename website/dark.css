@@ -1,0 +1,132 @@
+/* ============================================================
+   DARK MODE — driven by html[data-theme="dark"] (set before paint).
+   Strategy: override the core CSS variables (covers most of the site),
+   then patch the surfaces that use literal colours. Product "mock" UIs
+   (the Gmail compose demos) are intentionally kept light, like real
+   screenshots sitting on a dark page.
+   ============================================================ */
+
+/* theme toggle button (works in both themes) */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); transition: background .15s, color .15s, border-color .15s; padding: 0; }
+.theme-toggle:hover { background: var(--soft); color: var(--ink); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .moon { display: none; } .theme-toggle .sun { display: block; }
+html[data-theme="dark"] .theme-toggle .sun { display: none; } html[data-theme="dark"] .theme-toggle .moon { display: block; }
+
+/* ---- core variable overrides ---- */
+html[data-theme="dark"] {
+  --ink: #e8eaf2; --muted: #98a1b6; --line: #272b37; --bg: #0c0e14; --soft: #161922;
+  --hair: #262a36; --ring: rgba(120,150,255,.28); --blue: #5b7cff; --blue-dark: #4a6bf0;
+  color-scheme: dark;
+}
+html[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+
+/* ---- chrome ---- */
+html[data-theme="dark"] .nav { background: rgba(12,14,20,.78); border-bottom-color: var(--line); }
+html[data-theme="dark"] .navlinks a { color: var(--muted); }
+html[data-theme="dark"] .navlinks a:not(.btn):hover { color: var(--ink); }
+html[data-theme="dark"] .footer { background: #090b10; border-top-color: var(--line); }
+html[data-theme="dark"] .foot-links a, html[data-theme="dark"] .foot-copy, html[data-theme="dark"] .foot-brand { color: var(--muted); }
+
+/* ---- type bits ---- */
+html[data-theme="dark"] kbd { background: #1c2030; border-color: #3a4154; color: #e8eaf2; box-shadow: 0 1px 0 #3a4154; }
+html[data-theme="dark"] code { background: #1a1e2a; color: #aeb7d6; }
+html[data-theme="dark"] .eyebrow { background: #161a2b; color: #8aa0ff; }
+html[data-theme="dark"] .section.alt { background: linear-gradient(180deg, #0f1219, #0c0e14); border-block-color: var(--line); }
+
+/* ---- buttons ---- */
+html[data-theme="dark"] .btn { background: #1a1e2a; border-color: #2b3142; color: #e8eaf2; }
+html[data-theme="dark"] .btn:hover { background: #222838; }
+html[data-theme="dark"] .btn.ghost { background: transparent; }
+html[data-theme="dark"] .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+html[data-theme="dark"] .btn.primary:hover { background: var(--blue-dark); }
+
+/* ---- features ledger ---- */
+html[data-theme="dark"] .lnum { color: #2f3547; }
+@supports (-webkit-text-stroke: 1px #000) { html[data-theme="dark"] .lnum { color: transparent; -webkit-text-stroke-color: #3a4055; } }
+html[data-theme="dark"] .js .lrow.drawn .lnum { color: var(--ink); -webkit-text-stroke-color: transparent; }
+html[data-theme="dark"] .dlines i, html[data-theme="dark"] .dmarquee i { background: #2a3040; }
+html[data-theme="dark"] .kc { background: #1c2030; border-color: #3a4154; color: #e8eaf2; box-shadow: 0 2px 0 #3a4154; }
+html[data-theme="dark"] .dmono { background: #1a1e2a; border-color: #2b3142; color: #e8eaf2; }
+html[data-theme="dark"] .dstack span { background: #12151d; border-color: #3a4055; }
+html[data-theme="dark"] .dmarquee { border-color: #3a4055; }
+html[data-theme="dark"] .vswap .t { background: #211c38; border-color: #392f59; }
+html[data-theme="dark"] .vswap .v { background: #102b23; border-color: #1d5340; }
+
+/* ---- FAQ (homepage editorial) ---- */
+html[data-theme="dark"] #faq .faq details[open] { background: var(--soft); }
+html[data-theme="dark"] #faq .faq summary::before { color: #5a6378; }
+
+/* ---- blog hub TOC ---- */
+html[data-theme="dark"] .lead-plate { background: #12151d; }
+html[data-theme="dark"] .plate-num { -webkit-text-stroke-color: #2c3142; }
+html[data-theme="dark"] .plate-stamp { background: rgba(18,21,29,.75); border-color: var(--line); color: var(--muted); }
+html[data-theme="dark"] .tocnum { color: #2f3547; }
+@supports (-webkit-text-stroke: 1px #000) { html[data-theme="dark"] .tocrow.soon .tocnum { color: transparent; -webkit-text-stroke-color: #3a4055; } }
+html[data-theme="dark"] .tocstatus { border-color: var(--line); }
+
+/* ---- article editorial bits ---- */
+html[data-theme="dark"] .article-body { color: #c3c9da; }
+html[data-theme="dark"] .article-body strong, html[data-theme="dark"] .article-body h1, html[data-theme="dark"] .article-body h2 { color: #fff; }
+html[data-theme="dark"] .article-lead { color: var(--muted); }
+html[data-theme="dark"] .article-lead::first-letter { color: #fff; }
+html[data-theme="dark"] .tldr2 li { color: #c3c9da; }
+html[data-theme="dark"] .article-body .callout p { color: #c3c9da; }
+html[data-theme="dark"] .article-body .callout { background: var(--soft); border-left-color: #3a4055; }
+html[data-theme="dark"] .article-body .callout.tip { background: #0f1f1b; border-left-color: var(--teal); }
+html[data-theme="dark"] .pullquote { color: #fff; }
+html[data-theme="dark"] .stat2 b { color: #fff; }
+html[data-theme="dark"] .stat2.accent b { color: var(--blue); }
+html[data-theme="dark"] .colophon-end { color: #5a6378; border-top-color: var(--hair); }
+html[data-theme="dark"] .author .arole, html[data-theme="dark"] .breadcrumb, html[data-theme="dark"] .breadcrumb a { color: var(--muted); }
+html[data-theme="dark"] .toc a { color: #c3c9da; }
+html[data-theme="dark"] .article-head .article-meta .post-tag { border-color: var(--line); }
+
+/* highlighter — readable tint on dark */
+html[data-theme="dark"] mark.hl { background-image: linear-gradient(transparent 56%, rgba(120,150,255,.30) 56%); }
+
+/* comparison table */
+html[data-theme="dark"] .ctable { border-color: var(--line); }
+html[data-theme="dark"] .ctable th, html[data-theme="dark"] .ctable td { border-color: var(--line); color: #c3c9da; }
+html[data-theme="dark"] .ctable thead th { background: var(--soft); color: var(--ink); }
+html[data-theme="dark"] .ctable thead th.hl { background: #18203a; color: #9db4ff; }
+html[data-theme="dark"] .ctable tbody td.hl { background: #121731; }
+html[data-theme="dark"] .ctable td.yes { color: #6ee7a8; } html[data-theme="dark"] .ctable td.no { color: #f3a3a3; }
+
+/* calculator panel (already dark — lift it off the page) */
+html[data-theme="dark"] .calc { background: #12151d; border: 1px solid var(--line); }
+
+/* animated figure components */
+html[data-theme="dark"] .hiw { background: linear-gradient(180deg, #12151d, #0e1016); border-color: var(--line); }
+html[data-theme="dark"] .hiw-field { background: #1a1e2a; border-color: #3a4055; }
+html[data-theme="dark"] .varbox { background: #12151d; border-color: var(--line); }
+html[data-theme="dark"] .vb-line { color: var(--ink); }
+html[data-theme="dark"] .vb-chip { background: #211c38; color: #a99cf0; }
+html[data-theme="dark"] .vb-chip.val { background: #102b23; color: #5ed9a0; }
+
+/* reading rail */
+html[data-theme="dark"] .reading-rail a { background: #0c0e14; border-color: #3a4055; }
+html[data-theme="dark"] .reading-rail a span { background: var(--soft); border-color: var(--line); color: var(--muted); }
+
+/* ⌘K command palette */
+html[data-theme="dark"] .cmdk-overlay { background: rgba(4,6,12,.6); }
+html[data-theme="dark"] .cmdk { background: #14171f; }
+html[data-theme="dark"] .cmdk-input { color: #e8eaf2; border-bottom-color: var(--line); }
+html[data-theme="dark"] .cmdk-list li { color: #e8eaf2; }
+html[data-theme="dark"] .cmdk-list li .ci { background: #1c2233; color: #9db4ff; }
+html[data-theme="dark"] .cmdk-list li small, html[data-theme="dark"] .cmdk-foot { color: var(--muted); }
+html[data-theme="dark"] .cmdk-list li.sel { background: #1d2233; }
+html[data-theme="dark"] .cmdk-hint { background: #14171f; border-color: var(--line); color: var(--muted); }
+html[data-theme="dark"] .cmdk-hint kbd { background: #1c2030; border-color: #3a4154; color: #c3c9da; }
+
+/* the "Try it" band (its section had a hard light gradient) */
+html[data-theme="dark"] .try-section { background: linear-gradient(180deg, #0f1219, #0c0e14); border-block-color: var(--line); }
+html[data-theme="dark"] .try-vars input { background: #1a1e2a; border-color: #2b3142; color: #e8eaf2; }
+html[data-theme="dark"] .try-vars label { color: var(--muted); }
+html[data-theme="dark"] .try-vhint { color: #7e8597; }
+/* the compose mock itself stays LIGHT by design (a real Gmail screenshot on a dark page) */
+
+/* privacy page */
+html[data-theme="dark"] .legal h1, html[data-theme="dark"] .legal h2 { color: var(--ink); }
+html[data-theme="dark"] .legal p, html[data-theme="dark"] .legal li { color: #c3c9da; }
+html[data-theme="dark"] .tldr { background: var(--soft); border-color: var(--line); }

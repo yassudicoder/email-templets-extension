@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Email Templates & Canned Responses for Gmail & LinkedIn",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Keyboard-first email templates with reliable rich-text insertion in Gmail & LinkedIn. Local-first, no account.",
   "permissions": ["storage", "contextMenus"],
   "host_permissions": [
@@ -24,6 +24,7 @@
         "core/store.js",
         "core/entitlements.js",
         "core/inserter.js",
+        "core/analytics.js",
         "content/surfaces/gmail.js",
         "content/surfaces/linkedin.js",
         "content/picker.js",

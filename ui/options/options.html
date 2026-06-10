@@ -48,6 +48,13 @@
         <div class="kbhead"><span class="kbicon">⌨️</span> Keyboard Shortcuts</div>
         <ul id="kblist" class="kblist"></ul>
         <a id="manageShortcuts" class="managelink" href="#">Manage shortcuts</a>
+        <div class="privacy-box">
+          <label class="privacy-toggle">
+            <input type="checkbox" id="analyticsToggle">
+            <span>Share anonymous usage stats</span>
+          </label>
+          <p class="privacy-note">Off by default. Helps improve the extension — no message or template content is ever sent. <a id="privacyLink" href="#" target="_blank" rel="noopener">Learn more</a></p>
+        </div>
       </div>
     </aside>
 
@@ -85,6 +92,7 @@
   <script src="../../core/theme.js"></script>
   <script src="../../core/store.js"></script>
   <script src="../../core/entitlements.js"></script>
+  <script src="../../core/analytics.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

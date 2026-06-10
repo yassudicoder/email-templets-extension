@@ -87,6 +87,16 @@ body {
 .managelink { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; color: #4f46e5; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; }
 .managelink:hover { text-decoration: underline; }
 
+.privacy-box { margin-top: 16px; padding-top: 14px; border-top: 1px solid #eceef2; }
+.privacy-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; color: #4b5563; font-size: 13px; font-weight: 600; }
+.privacy-toggle input { width: 15px; height: 15px; cursor: pointer; accent-color: #2563eb; }
+.privacy-note { color: #9aa0ab; font-size: 11.5px; line-height: 1.45; margin: 6px 0 0; }
+.privacy-note a { color: #4f46e5; }
+[data-theme="dark"] .privacy-box { border-top-color: #262b36; }
+[data-theme="dark"] .privacy-toggle { color: #aeb6c2; }
+[data-theme="dark"] .privacy-note { color: #6b7280; }
+[data-theme="dark"] .privacy-note a { color: #818cf8; }
+
 /* ---- Cards (middle list) ---- */
 .cards { grid-area: cards; background: #f7f8fa; border-right: 1px solid #eceef2; display: flex; flex-direction: column; min-height: 0; }
 .cardactions { display: flex; align-items: center; gap: 8px; padding: 10px 14px 0; }

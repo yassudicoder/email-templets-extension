@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canned Responses — System Architecture</title>
+<style>
+  :root{
+    --ink:#16181d; --body:#33373f; --muted:#697079; --faint:#9aa0a9;
+    --line:#e7e8ec; --hair:#eef0f3; --bg:#ffffff; --soft:#f8f9fb;
+    --accent:#3b46d4; --accent-soft:#eef0fe;
+    --ok:#0f7a40; --ok-soft:#eef8f1; --no:#b4262a; --no-soft:#fbeeed;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--sans);color:var(--body);background:var(--bg);
+    font-size:18.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{color:var(--ink)}
+  h1{font-family:var(--serif);font-weight:600;font-size:48px;line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
+  h2{font-family:var(--serif);font-weight:600;font-size:33px;line-height:1.18;margin:0 0 16px;letter-spacing:-.01em}
+  h3{font-size:18px;font-weight:650;margin:0 0 4px}
+  p{margin:0 0 16px}
+  a{color:var(--accent);text-decoration:none}
+  .mono{font-family:var(--mono);font-size:.86em;color:var(--muted)}
+  code{font-family:var(--mono);font-size:.85em;background:var(--soft);border:1px solid var(--line);
+    padding:1px 5px;border-radius:4px;color:#3a4150}
+  .muted{color:var(--muted)}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line);background:var(--soft)}
+  .masthead .wrap{padding-top:60px;padding-bottom:52px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 18px}
+  .standfirst{font-size:21.5px;line-height:1.5;color:var(--muted);max-width:34em;margin:0}
+  .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+  .meta b{color:var(--muted);font-weight:600}
+
+  /* sections */
+  section{padding:56px 0;border-bottom:1px solid var(--hair)}
+  .kick{font-family:var(--mono);font-size:13.5px;letter-spacing:.08em;color:var(--faint);margin:0 0 12px}
+  .kick b{color:var(--accent);font-weight:600}
+  .intro{color:var(--muted);max-width:40em;margin:0 0 30px}
+
+  /* component rows */
+  .rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .row{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:22px 24px;border-bottom:1px solid var(--hair)}
+  .row:last-child{border-bottom:0}
+  .row:nth-child(even){background:var(--soft)}
+  .ic{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;
+    display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .ic svg{width:22px;height:22px}
+  .rname{font-weight:650;font-size:18px;color:var(--ink);display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .row p{margin:6px 0 0;font-size:16px;color:var(--muted)}
+  .aside{color:var(--faint);font-style:italic}
+
+  /* diagram */
+  .diagram{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:26px 20px;margin:6px 0 8px}
+  .tier{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+  .node{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 20px;text-align:center;min-width:188px}
+  .node .nt{font-weight:650;color:var(--ink);font-size:16px}
+  .node .nd{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-top:3px}
+  .node.key{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .lnk{color:var(--faint);font-family:var(--mono);font-size:13px;padding:0 14px}
+  .vlnk{width:100%;text-align:center;color:var(--faint);font-family:var(--mono);font-size:12px;padding:12px 0}
+  .vlnk span{display:block;color:var(--accent);font-size:16px;line-height:1}
+
+  /* steps */
+  .steps{counter-reset:s;display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+  .stp{counter-increment:s;position:relative;padding:0 0 22px 26px}
+  .stp:last-child{padding-bottom:0}
+  .stp::before{content:counter(s,decimal-leading-zero);position:absolute;left:-14px;top:-2px;
+    width:26px;height:26px;background:#fff;border:2px solid var(--line);border-radius:50%;
+    font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+  .stp h3{margin-bottom:3px}
+  .stp p{margin:0;font-size:16px;color:var(--muted)}
+
+  /* change list */
+  .changes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .chg{border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+  .chg h3{display:flex;align-items:center;gap:10px}
+  .chg h3 .ci{color:var(--accent);display:inline-flex}.chg h3 .ci svg{width:19px;height:19px}
+  .chg p{margin:8px 0 0;font-size:15.5px;color:var(--muted)}
+
+  /* privacy */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 0}
+  .pcard{border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .pcard.off{background:var(--soft)}
+  .pcard .ph{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+  .ph .lbl{font-weight:700;color:var(--ink);font-size:16.5px}
+  .ph .state{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 8px}
+  .toggle{width:40px;height:23px;border-radius:999px;position:relative;flex:0 0 auto;background:#cdd2dc}
+  .toggle.on{background:var(--accent)}
+  .toggle::after{content:"";position:absolute;top:3px;width:17px;height:17px;border-radius:50%;background:#fff}
+  .toggle.off::after{left:3px}.toggle.on::after{right:3px}
+  .pcard ul{margin:0;padding-left:18px}.pcard li{font-size:15.5px;margin:6px 0;color:var(--muted)}
+
+  .ledger{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:4px}
+  .lrow{display:grid;grid-template-columns:1fr 1fr}
+  .lrow>div{padding:16px 20px}
+  .lrow .lh{font-weight:650;color:var(--ink);font-size:15.5px;display:flex;align-items:center;gap:8px}
+  .lcol{border-bottom:1px solid var(--hair)}
+  .lcol.r{border-left:1px solid var(--hair)}
+  .lcol.r.head .lh{color:var(--no)} .lcol.l.head .lh{color:var(--ok)}
+  .litem{font-size:15.5px;color:var(--body);padding:8px 0;display:flex;gap:10px;align-items:baseline}
+  .mk{font-family:var(--mono);font-size:11px;flex:0 0 auto;margin-top:1px}
+  .mk.y{color:var(--ok)}.mk.n{color:var(--no)}
+  .lwrap{padding:8px 20px 16px}
+
+  /* note */
+  .note{display:flex;gap:13px;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:8px;background:var(--soft);padding:15px 18px;margin:24px 0;font-size:14.5px;color:var(--body)}
+  .note .nl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);flex:0 0 auto;padding-top:3px}
+  .note.ok{border-left-color:var(--ok)}.note.ok .nl{color:var(--ok)}
+
+  /* timeline */
+  .tlist{display:flex;flex-direction:column;border-left:2px solid var(--line);margin-left:6px}
+  .ti{position:relative;padding:0 0 24px 26px}.ti:last-child{padding-bottom:0}
+  .ti::before{content:"";position:absolute;left:-7px;top:5px;width:11px;height:11px;border-radius:50%;
+    background:#fff;border:2px solid var(--accent)}
+  .ti .ver{font-family:var(--mono);font-size:14.5px;color:var(--ink);font-weight:600}
+  .ti .tag{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px}
+  .ti ul{margin:8px 0 0;padding-left:18px}.ti li{font-size:15.5px;color:var(--muted);margin:4px 0}
+
+  footer{padding:30px 0 50px;color:var(--faint);font-size:13px;font-family:var(--mono)}
+  /* ---------- creative / interactive ---------- */
+  /* hero aurora */
+  .masthead{position:relative;overflow:hidden}
+  .masthead .wrap{position:relative;z-index:1}
+  .aurora{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.7}
+  .aurora b{position:absolute;border-radius:50%;filter:blur(64px);display:block}
+  .aurora b:nth-child(1){width:420px;height:420px;background:radial-gradient(closest-side,rgba(59,70,212,.20),transparent);top:-150px;left:-70px;animation:drift1 15s ease-in-out infinite alternate}
+  .aurora b:nth-child(2){width:340px;height:340px;background:radial-gradient(closest-side,rgba(120,80,220,.16),transparent);top:-90px;right:-50px;animation:drift2 18s ease-in-out infinite alternate}
+  .aurora b:nth-child(3){width:300px;height:300px;background:radial-gradient(closest-side,rgba(40,150,180,.12),transparent);bottom:-160px;left:40%;animation:drift1 20s ease-in-out infinite alternate-reverse}
+  @keyframes drift1{to{transform:translate(70px,40px) scale(1.18)}}
+  @keyframes drift2{to{transform:translate(-60px,30px) scale(1.12)}}
+
+  /* compose demo */
+  .demo{position:relative;max-width:580px;margin:6px auto 0;background:#fff;border:1px solid var(--line);
+    border-radius:15px;box-shadow:0 36px 70px -38px rgba(20,30,60,.55);overflow:hidden}
+  .demo-bar{display:flex;align-items:center;gap:11px;background:#f2f3f8;padding:12px 16px;border-bottom:1px solid var(--hair)}
+  .demo-bar .dots{display:flex;gap:6px}.demo-bar .dots i{width:11px;height:11px;border-radius:50%;background:#d4d8e2}
+  .demo-title{font-weight:650;color:var(--muted);font-size:14px}
+  .demo-field{padding:11px 18px;border-bottom:1px solid var(--hair);font-size:15px;color:var(--ink)}
+  .demo-field .dl{display:inline-block;width:62px;color:var(--faint);font-size:13px}
+  .demo-body{position:relative;padding:18px;min-height:128px;font-size:16px;line-height:1.65;color:var(--ink)}
+  .caret{display:inline-block;width:2px;height:1.05em;background:var(--accent);vertical-align:-3px;margin-left:1px;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .demo-picker{position:absolute;left:18px;right:18px;bottom:14px;background:#fff;border:1px solid #e4e7f0;
+    border-radius:12px;box-shadow:0 24px 54px -18px rgba(20,24,60,.45);overflow:hidden;
+    opacity:0;transform:translateY(16px) scale(.98);transition:opacity .3s,transform .3s;pointer-events:none}
+  .demo-picker.show{opacity:1;transform:none}
+  .dp-search{display:flex;align-items:center;gap:1px;padding:11px 14px;border-bottom:1px solid var(--hair);color:var(--muted);font-size:14.5px}
+  .dp-search .dp-key{margin-left:auto;font-family:var(--mono);font-size:11px;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+  .dp-row{padding:10px 14px;border-bottom:1px solid var(--hair);transition:background .15s,opacity .25s,max-height .3s,padding .3s;max-height:60px}
+  .dp-row:last-child{border-bottom:0}
+  .dp-row b{display:block;font-size:14px;color:var(--ink)}
+  .dp-row small{color:var(--faint);font-size:12.5px}
+  .dp-row.sel{background:var(--accent)}.dp-row.sel b{color:#fff}.dp-row.sel small{color:#dfe3ff}
+  .dp-row.hide{opacity:0;max-height:0;padding-top:0;padding-bottom:0;overflow:hidden;border:0}
+  .demo-toast{position:absolute;left:50%;bottom:16px;transform:translate(-50%,8px);background:var(--ok);color:#fff;
+    font-size:13px;font-weight:650;padding:6px 14px;border-radius:999px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
+  .demo-toast.show{opacity:1;transform:translate(-50%,0)}
+  .demo-ctl{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:16px}
+  .demo-hint{color:var(--faint);font-size:13px}
+  .btn-ghost{font:inherit;font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #dfe2fb;border-radius:9px;padding:8px 15px;cursor:pointer;transition:background .15s,transform .12s}
+  .btn-ghost:hover{background:#e4e7fe}.btn-ghost:active{transform:scale(.97)}
+
+  /* consent simulator */
+  .sim{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--soft)}
+  .sim-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .sim-toggle{display:inline-flex;align-items:center;gap:11px;background:none;border:0;cursor:pointer;font:inherit;padding:0}
+  .st-track{width:48px;height:27px;border-radius:999px;background:#cdd2dc;position:relative;transition:background .25s}
+  .st-knob{position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .25s cubic-bezier(.5,0,.3,1)}
+  .sim.on .st-track{background:var(--accent)}.sim.on .st-knob{left:24px}
+  .st-label{font-weight:600;color:var(--ink);font-size:15.5px}.st-label b{font-family:var(--mono)}
+  .sim.on .st-label b{color:var(--accent)}.sim:not(.on) .st-label b{color:var(--muted)}
+  .sim-stage{position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 4px}
+  .sim-node{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14.5px;font-weight:650;color:var(--ink);text-align:center;flex:0 0 auto;z-index:2}
+  .sim-node .snd{display:block;font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:400;margin-top:3px}
+  .sim-counter b{color:var(--accent);font-size:17px}
+  .sim-wire{flex:1 1 auto;height:2px;background:var(--line);border-radius:2px;min-width:26px}
+  .sim-gate{width:56px;height:56px;border-radius:13px;border:2px solid;display:flex;align-items:center;justify-content:center;flex:0 0 auto;z-index:2;transition:.25s;background:#fff}
+  .sim-gate svg{width:23px;height:23px}
+  .sim:not(.on) .sim-gate{border-color:#e6b3b0;color:var(--no);background:var(--no-soft)}
+  .sim.on .sim-gate{border-color:#a9d9bd;color:var(--ok);background:var(--ok-soft)}
+  .sim.on .g-lock{display:none}.sim:not(.on) .g-open{display:none}
+  .sim-gate.bump{animation:gshake .42s}
+  @keyframes gshake{0%,100%{transform:none}20%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
+  .packet{position:absolute;top:50%;left:0;width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft);z-index:3;pointer-events:none}
+  .packet.blocked{background:var(--no);box-shadow:0 0 0 5px var(--no-soft)}
+  .sim-msg{margin-top:14px;font-size:14px;color:var(--muted);font-family:var(--mono)}
+  .count-pop{display:inline-block;animation:cpop .4s}
+  @keyframes cpop{0%{transform:scale(1)}40%{transform:scale(1.45);color:var(--ok)}100%{transform:scale(1)}}
+
+  /* ---------- motion ---------- */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;
+    box-shadow:0 0 8px rgba(59,70,212,.4)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .masthead .eyebrow{animation:fadeUp .7s .05s both}
+  .masthead h1{animation:fadeUp .8s .14s both}
+  .masthead .standfirst{animation:fadeUp .8s .26s both}
+  .masthead .meta{animation:fadeUp .8s .38s both}
+  .js .reveal{opacity:0;transform:translateY(16px);
+    transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+  .reveal.show{opacity:1;transform:none}
+  .stp.show::before{animation:pop .45s .05s both}
+  @keyframes pop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+
+  /* animated diagram wires — a pulse "flows" between components */
+  .conn{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;padding:0 6px}
+  .conn-v{display:flex;align-items:center;justify-content:center;gap:11px;padding:12px 0}
+  .clab{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+  .wire{position:relative;width:96px;height:2px;background:var(--line);border-radius:2px}
+  .wire-v{position:relative;width:2px;height:46px;background:var(--line);border-radius:2px}
+  .wire .dot,.wire-v .dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft)}
+  .wire .dot{top:50%;left:0;transform:translate(-50%,-50%);animation:flowH 2.6s cubic-bezier(.55,0,.45,1) infinite}
+  .wire-v .dot{left:50%;top:0;transform:translate(-50%,-50%);animation:flowV 2.6s cubic-bezier(.55,0,.45,1) infinite}
+  @keyframes flowH{0%{left:0;opacity:0}14%{opacity:1}86%{opacity:1}100%{left:100%;opacity:0}}
+  @keyframes flowV{0%{top:0;opacity:0}14%{opacity:1}86%{opacity:1}100%{top:100%;opacity:0}}
+
+  /* the "Enabled" toggle knob slides in when the privacy cards reveal */
+  .show .toggle.on::after{animation:knob .55s .2s cubic-bezier(.5,0,.2,1) both}
+  @keyframes knob{from{transform:translateX(-17px)}to{transform:translateX(0)}}
+
+  /* hover micro-interactions */
+  .chg,.node,.pcard{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .chg:hover{transform:translateY(-3px);box-shadow:0 14px 32px -22px rgba(20,30,60,.5);border-color:#d6dae3}
+  .node:hover{border-color:#c7cdf0;box-shadow:0 8px 22px -18px rgba(40,50,120,.5)}
+  .ic{transition:transform .2s ease}
+  .row:hover .ic{transform:translateY(-2px)}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}
+    .js .reveal{opacity:1!important;transform:none!important}
+  }
+
+  @media(max-width:640px){
+    h1{font-size:30px}.changes,.twocol{grid-template-columns:1fr}
+    .node{min-width:0;flex:1 1 100%}.lnk{padding:8px 0;width:100%}
+    .lrow{grid-template-columns:1fr}.lcol.r{border-left:0;border-top:1px solid var(--hair)}
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="progress" id="prog"></div>
+
+<div class="masthead">
+  <div class="aurora" aria-hidden="true"><b></b><b></b><b></b></div>
+  <div class="wrap">
+    <p class="eyebrow">System Architecture · Internal Notes</p>
+    <h1>How Canned Responses is put together</h1>
+    <p class="standfirst">A plain walk-through of the moving parts, what each one does, and exactly where your data goes — and doesn't. No prior knowledge assumed.</p>
+    <div class="meta"><span><b>Product</b> &nbsp;Email Templates &amp; Canned Responses</span><span><b>Covers</b> &nbsp;v0.1 → v0.3</span><span><b>Audience</b> &nbsp;non-technical</span></div>
+  </div>
+</div>
+
+<!-- 1 COMPONENTS -->
+<section><div class="wrap">
+  <p class="kick"><b>01</b> — Components</p>
+  <h2>Four parts, four jobs</h2>
+  <p class="intro">The extension isn't one big program. It's four small pieces, each responsible for one thing. Here's each one in everyday terms.</p>
+
+  <div class="rows">
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg></div>
+      <div>
+        <div class="rname">Content scripts <span class="mono">in-page</span></div>
+        <p>Run inside the Gmail or LinkedIn tab while you work. They watch for your hotkey, show the picker, and place text at your cursor. <span class="aside">The hands-on helpers sitting on the page with you.</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="6" rx="1.5"/><rect x="4" y="14" width="16" height="6" rx="1.5"/><path d="M8 7h0M8 17h0"/></svg></div>
+      <div>
+        <div class="rname">Service worker <span class="mono">background</span></div>
+        <p>A background process that routes messages and runs quiet jobs. It sleeps when idle and wakes on demand. <span class="aside">The dispatcher in the back office.</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
+      <div>
+        <div class="rname">Local storage <span class="mono">on your device</span></div>
+        <p>Where every template and setting is kept — in your own browser, on your own machine. Nothing here is uploaded on its own. <span class="aside">A filing cabinet at home.</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="#fff"/><circle cx="15" cy="12" r="2" fill="#fff"/><circle cx="8" cy="17" r="2" fill="#fff"/></svg></div>
+      <div>
+        <div class="rname">Options page <span class="mono">the dashboard</span></div>
+        <p>The full management screen — write templates, sort them into folders, switch themes, empty the trash. <span class="aside">The control room.</span></p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 BIG PICTURE -->
+<section><div class="wrap">
+  <p class="kick"><b>02</b> — Topology</p>
+  <h2>How the parts connect</h2>
+  <p class="intro">The helpers and the dashboard both read from and write to the same local storage. The service worker passes messages between them. Storage is the shared source of truth.</p>
+
+  <div class="diagram">
+    <div class="tier">
+      <div class="node"><div class="nt">Content scripts</div><div class="nd">gmail · linkedin</div></div>
+      <div class="conn"><span class="clab">messages</span><div class="wire"><i class="dot"></i></div></div>
+      <div class="node"><div class="nt">Service worker</div><div class="nd">background</div></div>
+    </div>
+    <div class="conn-v"><div class="wire-v"><i class="dot" style="animation-delay:.5s"></i></div><span class="clab">read &amp; write</span></div>
+    <div class="tier">
+      <div class="node key"><div class="nt">Local storage</div><div class="nd">chrome.storage.local</div></div>
+      <div class="conn"><span class="clab">read / write</span><div class="wire"><i class="dot" style="animation-delay:1s"></i></div></div>
+      <div class="node"><div class="nt">Options page</div><div class="nd">dashboard</div></div>
+    </div>
+  </div>
+  <div class="note ok"><span class="nl">Key</span><div>Local storage lives on <b>your</b> computer. Saving a template is like writing in a private notebook — it isn't sent anywhere unless you explicitly act.</div></div>
+</div></section>
+
+<!-- 3 INSERT FLOW -->
+<section><div class="wrap">
+  <p class="kick"><b>03</b> — The core action</p>
+  <h2>Inserting a template (<code>Alt + A</code>)</h2>
+  <p class="intro">This is the whole purpose of the product: drop a saved reply exactly where the cursor is.</p>
+  <div class="demo" id="composeDemo">
+    <div class="demo-bar"><span class="dots"><i></i><i></i><i></i></span><span class="demo-title">New message</span></div>
+    <div class="demo-field"><span class="dl">To</span> alex@example.com</div>
+    <div class="demo-field"><span class="dl">Subject</span> Re: your application</div>
+    <div class="demo-body"><span id="demoText"></span><span class="caret" id="demoCaret"></span></div>
+    <div class="demo-picker" id="demoPicker">
+      <div class="dp-search"><span id="dpQuery"></span><span class="caret"></span><span class="dp-key">Alt + A</span></div>
+      <div class="dp-row"><b>Meeting reschedule</b><small>Hi {first_name}, something's come up…</small></div>
+      <div class="dp-row sel"><b>Quick follow-up</b><small>Hi {first_name}, just following up…</small></div>
+      <div class="dp-row"><b>Thanks for applying</b><small>Hi {first_name}, thanks so much…</small></div>
+    </div>
+    <div class="demo-toast" id="demoToast">✓ Inserted</div>
+  </div>
+  <div class="demo-ctl"><button class="btn-ghost" id="demoReplay">▶ Replay</button><span class="demo-hint">Plays automatically as it scrolls into view</span></div>
+  <p class="muted" style="font-size:15px;margin-top:20px">Alternative path: type a shortcut such as <code>;followup</code> then <b>Tab</b> to expand it in place — no menu required.</p>
+</div></section>
+
+<!-- 4 v0.2.0 -->
+<section><div class="wrap">
+  <p class="kick"><b>04</b> — Release v0.2.0 · <span class="muted">shipped</span></p>
+  <h2>From one flat list to an organised library</h2>
+  <p class="intro">Previously every template sat in a single list. We restructured storage to support folders, favourites, and a recoverable trash, and rebuilt the dashboard around them.</p>
+
+  <div class="changes">
+    <div class="chg"><h3><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> Folders</h3><p>Group templates by purpose. Create, rename, delete. Deleting a folder never deletes its templates — they return to “All”.</p></div>
+    <div class="chg"><h3><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0 1 12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-12"/></svg></span> Recoverable trash</h3><p>Deleting moves a template to Trash, not oblivion. Restore it, or delete permanently when you’re sure.</p></div>
+    <div class="chg"><h3><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span> Three-pane dashboard</h3><p>Folders left, template cards centre, editor right — the layout of a modern mail client.</p></div>
+    <div class="chg"><h3><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></span> Preview</h3><p>See a template rendered, with fill-in fields like <code>{first_name}</code> highlighted, before using it.</p></div>
+  </div>
+  <div class="note"><span class="nl">Migration</span><div>Existing templates carried over automatically with no data loss; they appear under “All Templates” until filed.</div></div>
+</div></section>
+
+<!-- 5 PRIVACY -->
+<section><div class="wrap">
+  <p class="kick"><b>05</b> — Release v0.3.0 · <span class="muted">next</span></p>
+  <h2>Optional, opt-in analytics</h2>
+  <p class="intro">To learn which features are used, we added usage analytics — implemented as a setting that is <b>off by default</b>. Nothing is collected unless the user turns it on.</p>
+
+  <div class="twocol">
+    <div class="pcard off">
+      <div class="ph"><span class="toggle off"></span><span class="lbl">Disabled</span><span class="state">default</span></div>
+      <ul><li>The extension transmits nothing.</li><li>Identical to a build with no analytics at all.</li></ul>
+    </div>
+    <div class="pcard">
+      <div class="ph"><span class="toggle on"></span><span class="lbl">Enabled</span><span class="state">user opt-in</span></div>
+      <ul><li>Sends anonymous, aggregate event counts.</li><li>e.g. <code>picker_opened</code>, <code>template_inserted</code>.</li></ul>
+    </div>
+  </div>
+
+  <h3 style="margin:30px 0 12px;font-size:19px">What is — and isn't — transmitted</h3>
+  <div class="ledger">
+    <div class="lrow">
+      <div class="lcol l head"><div class="lh"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sent (only when enabled)</div></div>
+      <div class="lcol r head"><div class="lh"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Never sent</div></div>
+    </div>
+    <div class="lrow">
+      <div class="lcol l lwrap">
+        <div class="litem"><span class="mk y">event</span> which action happened (e.g. “inserted”)</div>
+        <div class="litem"><span class="mk y">where</span> the site — “gmail” or “linkedin”</div>
+        <div class="litem"><span class="mk y">id</span> a random number, not tied to you</div>
+      </div>
+      <div class="lcol r lwrap">
+        <div class="litem"><span class="mk n">×</span> your template text (titles or bodies)</div>
+        <div class="litem"><span class="mk n">×</span> any email or message content</div>
+        <div class="litem"><span class="mk n">×</span> your name or email address</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin:32px 0 12px;font-size:19px">How it's enforced — a single checkpoint</h3>
+  <p class="intro" style="margin-bottom:18px">Every event is routed through the service worker, which checks the setting before any network request. It's the only exit, so nothing bypasses the check.</p>
+  <div class="sim" id="sim">
+    <div class="sim-head">
+      <button class="sim-toggle" id="simToggle" aria-pressed="false" title="Toggle analytics">
+        <span class="st-track"><span class="st-knob"></span></span>
+        <span class="st-label">Analytics: <b id="simState">OFF</b></span>
+      </button>
+      <button class="btn-ghost" id="simFire">Send a test event ›</button>
+    </div>
+    <div class="sim-stage" id="simStage">
+      <div class="sim-node" id="simEvent">Event<span class="snd">picker_opened</span></div>
+      <div class="sim-wire"></div>
+      <div class="sim-gate" id="simGate">
+        <svg class="g-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <svg class="g-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <div class="sim-wire"></div>
+      <div class="sim-node sim-counter" id="simCounter">Sent<span class="snd"><b id="simCount">0</b> events</span></div>
+    </div>
+    <div class="sim-msg" id="simMsg">Switch is OFF — events are dropped at the gate.</div>
+  </div>
+  <div class="note ok"><span class="nl">Verified</span><div>Because there is one exit that always checks the setting first, “off” means precisely zero data leaves — confirmed under test (0 requests off, 1 on, with no content in the payload).</div></div>
+</div></section>
+
+<!-- 6 WEBSITE -->
+<section><div class="wrap">
+  <p class="kick"><b>06</b> — Adjacent system</p>
+  <h2>The marketing site &amp; blog</h2>
+  <p class="intro">A separate, public website that promotes the extension. It shares no code or data with the extension itself.</p>
+  <div class="changes">
+    <div class="chg"><h3>Landing page</h3><p>Explains the product; the “Add to Chrome” button links to the live Web Store listing.</p></div>
+    <div class="chg"><h3>SEO blog</h3><p>A guide targeting “Gmail canned responses” searches, to bring in people already looking for this.</p></div>
+    <div class="chg"><h3>Site analytics</h3><p>Cookieless visit and click tracking — standard for any website, and confined to the site, not the extension.</p></div>
+    <div class="chg"><h3>Sitemap &amp; robots</h3><p>Machine-readable files that tell search engines which pages exist and how to index them.</p></div>
+  </div>
+</div></section>
+
+<!-- 7 TIMELINE -->
+<section style="border-bottom:0"><div class="wrap">
+  <p class="kick"><b>07</b> — History</p>
+  <h2>Release timeline</h2>
+  <div class="tlist">
+    <div class="ti"><span class="ver">v0.1.0</span><span class="tag">foundation</span>
+      <ul><li>Alt+A insertion in Gmail &amp; LinkedIn</li><li>Shortcuts, variables, save-from-email, local-first storage</li></ul></div>
+    <div class="ti"><span class="ver">v0.2.0</span><span class="tag">organised · live</span>
+      <ul><li>Folders, favourites, recoverable trash</li><li>Rebuilt three-pane dashboard with preview</li></ul></div>
+    <div class="ti"><span class="ver">v0.3.0</span><span class="tag">measured · uploading</span>
+      <ul><li>Optional opt-in analytics, off by default</li><li>Content-free; enforced at a single consent checkpoint</li></ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Canned Responses &amp; Email Templates — internal architecture notes. Local-first, privacy-first.</div></footer>
+
+<script>
+(function(){
+  // reading-progress bar
+  var prog=document.getElementById('prog');
+  function onScroll(){var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // staggered scroll-reveal
+  var sels='.kick,h2,.intro,.row,.diagram,.demo,.sim,.chg,.pcard,.ledger,.note,.ti';
+  Array.prototype.forEach.call(document.querySelectorAll('section'),function(sec){
+    var n=0;
+    Array.prototype.forEach.call(sec.querySelectorAll(sels),function(el){
+      el.classList.add('reveal');el.style.transitionDelay=(Math.min(n,6)*60)+'ms';n++;
+    });
+  });
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    Array.prototype.forEach.call(items,function(e){e.classList.add('show');});return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  Array.prototype.forEach.call(items,function(e){io.observe(e);});
+})();
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms);});};
+  var byId=function(id){return document.getElementById(id);};
+
+  /* ---- interactive Alt+A compose demo ---- */
+  var demo=byId('composeDemo');
+  if(demo){
+    var dText=byId('demoText'),dPick=byId('demoPicker'),dQ=byId('dpQuery'),
+        dToast=byId('demoToast'),dReplay=byId('demoReplay'),
+        dRows=demo.querySelectorAll('.dp-row');
+    var FINAL="Hi Alex, just following up on my note below — happy to answer any questions. Looking forward to hearing from you.";
+    var busy=false;
+    function type(el,txt,sp){return new Promise(function(res){var i=0;el.textContent='';(function st(){if(i<=txt.length){el.textContent=txt.slice(0,i++);setTimeout(st,sp);}else res();})();});}
+    function reset(){dText.textContent='';dQ.textContent='';dPick.classList.remove('show');dToast.classList.remove('show');
+      Array.prototype.forEach.call(dRows,function(r){r.classList.remove('hide');});}
+    function run(){
+      if(busy)return;busy=true;reset();
+      if(reduce){dText.textContent=FINAL;busy=false;return;}
+      (async function(){
+        await sleep(500);
+        dPick.classList.add('show');
+        await sleep(480);
+        await type(dQ,'fol',120);
+        Array.prototype.forEach.call(dRows,function(r){
+          if(!r.classList.contains('sel')) r.classList.add('hide');
+        });
+        await sleep(620);
+        dPick.classList.remove('show');
+        await sleep(320);
+        await type(dText,FINAL,24);
+        await sleep(260);
+        dToast.classList.add('show');
+        await sleep(2000);dToast.classList.remove('show');
+        busy=false;
+      })();
+    }
+    if(dReplay)dReplay.addEventListener('click',run);
+    var dio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run();dio.disconnect();}});},{threshold:.45});
+    dio.observe(demo);
+  }
+
+  /* ---- interactive consent simulator ---- */
+  var sim=byId('sim');
+  if(sim){
+    var tog=byId('simToggle'),stage=byId('simStage'),gate=byId('simGate'),
+        cntEl=byId('simCount'),msg=byId('simMsg'),fireBtn=byId('simFire'),
+        eN=byId('simEvent'),cN=byId('simCounter'),stEl=byId('simState');
+    var count=0,timer=null;
+    function setState(on){sim.classList.toggle('on',on);tog.setAttribute('aria-pressed',on?'true':'false');
+      stEl.textContent=on?'ON':'OFF';
+      msg.textContent=on?'Switch is ON — anonymous events pass the gate and reach the counter.'
+                        :'Switch is OFF — events are dropped at the gate. Nothing leaves.';}
+    function cx(node){return node.offsetLeft+node.offsetWidth/2-6;}
+    function fire(){
+      if(reduce){if(sim.classList.contains('on')){count++;cntEl.textContent=count;}return;}
+      var on=sim.classList.contains('on');
+      var p=document.createElement('div');p.className='packet';stage.appendChild(p);
+      var y=gate.offsetTop+gate.offsetHeight/2;p.style.top=y+'px';
+      var x0=cx(eN),xg=cx(gate),xc=cx(cN);
+      p.style.transform='translate('+x0+'px,-50%)';
+      var a1=p.animate([{transform:'translate('+x0+'px,-50%)'},{transform:'translate('+xg+'px,-50%)'}],
+        {duration:680,easing:'cubic-bezier(.5,0,.5,1)',fill:'forwards'});
+      a1.onfinish=function(){
+        if(on){
+          var a2=p.animate([{transform:'translate('+xg+'px,-50%)'},{transform:'translate('+xc+'px,-50%)'}],
+            {duration:560,easing:'cubic-bezier(.4,0,.3,1)',fill:'forwards'});
+          a2.onfinish=function(){p.remove();count++;cntEl.textContent=count;
+            cntEl.classList.remove('count-pop');void cntEl.offsetWidth;cntEl.classList.add('count-pop');};
+        }else{
+          p.classList.add('blocked');
+          gate.classList.remove('bump');void gate.offsetWidth;gate.classList.add('bump');
+          p.animate([{opacity:1},{opacity:0}],{duration:360,fill:'forwards'}).onfinish=function(){p.remove();};
+        }
+      };
+    }
+    tog.addEventListener('click',function(){setState(!sim.classList.contains('on'));});
+    if(fireBtn)fireBtn.addEventListener('click',fire);
+    setState(false);
+    if(!reduce){
+      var sio=new IntersectionObserver(function(es){es.forEach(function(en){
+        if(en.isIntersecting){if(!timer)timer=setInterval(fire,2700);}
+        else{clearInterval(timer);timer=null;}
+      });},{threshold:.3});
+      sio.observe(sim);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

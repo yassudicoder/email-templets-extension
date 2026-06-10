@@ -4,7 +4,7 @@
  * Create / edit / favorite / categorize / reorder / trash & restore. */
 (function () {
   "use strict";
-  const { store, sanitize, model, theme, entitlements } = globalThis.CR;
+  const { store, sanitize, model, theme, entitlements, analytics } = globalThis.CR;
   const canImages = () => !!(entitlements && entitlements.can("images"));
 
   const $ = (sel, root) => (root || document).querySelector(sel);
@@ -39,6 +39,17 @@
     $("#nudgeDismiss").addEventListener("click", async () => { await store.updateSettings({ backupNudgeDismissedAt: Date.now() }); renderNudge(); });
     $("#nudgeWeekly").addEventListener("change", async (e) => { await store.updateSettings({ backupReminderWeekly: e.target.checked }); renderNudge(); });
     $("#manageShortcuts").addEventListener("click", (e) => { e.preventDefault(); openShortcutsPage(); });
+    // Anonymous, opt-in analytics toggle (off by default).
+    const aTog = $("#analyticsToggle");
+    if (aTog) {
+      aTog.checked = !!store.getSettings().analyticsEnabled;
+      aTog.addEventListener("change", async (e) => {
+        await store.updateSettings({ analyticsEnabled: e.target.checked });
+        if (e.target.checked && analytics) analytics.capture("analytics_enabled");
+      });
+    }
+    const pLink = $("#privacyLink");
+    if (pLink) pLink.href = "https://gmail-templates-and-canned.netlify.app/privacy.html";
     $("#pagePrev").addEventListener("click", () => { if (page > 0) { page--; renderList(); } });
     $("#pageNext").addEventListener("click", () => { page++; renderList(); });
     $("#previewClose").addEventListener("click", closePreview);
@@ -72,6 +83,7 @@
     render();
     if (wasPaste && selectedId) { const b = $("#body"); if (b) b.focus(); }
     renderHotkey();
+    if (analytics) analytics.capture("options_opened");   // dropped by the SW unless opted in
   }
 
   function applyTheme() { theme.applyToDocument((store.getSettings() && store.getSettings().theme) || "system"); }

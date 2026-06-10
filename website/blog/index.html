@@ -12,7 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gmail-templates-and-canned.netlify.app/blog/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <script>(function(){var d=document.documentElement;d.classList.add('js');try{var s=localStorage.getItem('cr-theme');d.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));}catch(e){d.setAttribute('data-theme','light');}})();</script>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../spec-sheet.css">
+  <link rel="stylesheet" href="../dark.css">
+  <script src="../theme.js" defer></script>
+  <script src="../analytics.js" defer></script>
+  <script src="../motion.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,66 +45,83 @@
 
   <div class="blog-head">
     <span class="eyebrow"><span class="dot"></span> The Canned Responses blog</span>
-    <h1>Reply faster, type less</h1>
+    <h1>Reply faster, <span class="grad">type less</span></h1>
     <p>Practical guides on canned responses, Gmail templates, and high-volume reply workflows — for recruiters, sales reps, and support teams who send the same messages all day.</p>
   </div>
 
-  <main class="post-grid">
-    <!-- FEATURED / flagship -->
-    <a class="post-card featured" href="gmail-canned-responses.html">
-      <div class="post-thumb">✉️</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">How-to</span><span>10 min read</span></div>
-        <h2>Gmail Canned Responses: How to Save &amp; Insert Email Templates Fast (2026)</h2>
-        <p>Gmail's built-in templates are buried three menus deep and break on every reply. Here's how to set them up — and a keyboard-first way to insert any saved reply in one keystroke, with variables and LinkedIn support.</p>
-        <span class="post-readmore">Read the guide →</span>
+  <main class="toc">
+    <div class="toc-masthead">
+      <span>FIELD NOTES</span>
+      <span class="colophon">VOL.01 · CANNED RESPONSES · UPD JUN 2026 · 6 ENTRIES</span>
+    </div>
+
+    <!-- FEATURED / flagship — editorial lead, not a card -->
+    <a class="toc-lead" href="gmail-canned-responses.html">
+      <div class="rule"><i></i><b class="node"></b></div>
+      <div class="lead-grid">
+        <div class="lead-main">
+          <div class="lead-meta">No.01 · HOW-TO · 10 MIN · 2026</div>
+          <h2 class="lead-title">Gmail Canned Responses: How to Save &amp; Insert Email Templates Fast</h2>
+          <p class="lead-deck">Gmail's built-in templates are buried three menus deep and break on every reply. Here's the fix — and a keyboard-first way to insert any saved reply in one keystroke, with variables and LinkedIn support.</p>
+          <span class="lead-read">Read the guide →</span>
+        </div>
+        <div class="lead-plate" aria-hidden="true"><span class="plate-num">01</span><span class="plate-stamp">HOW-TO</span></div>
       </div>
     </a>
 
-    <!-- Upcoming -->
-    <div class="post-card soon">
-      <div class="post-thumb">🧰</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">Best tools</span><span>Coming soon</span></div>
-        <h3>7 Best Canned Response Chrome Extensions for Gmail (2026)</h3>
-        <p>An honest comparison of the top text-expansion and template tools — features, pricing, privacy, and who each one is actually for.</p>
+    <!-- contents list -->
+    <div class="toc-list" role="list">
+      <div class="tocrow soon" role="listitem">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">02</span>
+          <span class="toccat">BEST TOOLS</span>
+          <div class="tocmain"><h3 class="toctitle">7 Best Canned Response Chrome Extensions for Gmail (2026)</h3><p class="tocdek">An honest comparison of the top text-expansion and template tools — features, pricing, privacy, and who each is for.</p></div>
+          <span class="tocstatus">IN DRAFT</span>
+        </div>
       </div>
-    </div>
 
-    <div class="post-card soon">
-      <div class="post-thumb">🎯</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">Workflow</span><span>Coming soon</span></div>
-        <h3>The Recruiter Outreach Workflow: Templates That Don't Sound Like Templates</h3>
-        <p>How to build a reusable library of LinkedIn and email templates with variables so every candidate message feels personal at scale.</p>
+      <div class="tocrow soon" role="listitem">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">03</span>
+          <span class="toccat">WORKFLOW</span>
+          <div class="tocmain"><h3 class="toctitle">The Recruiter Outreach Workflow: Templates That Don't Sound Like Templates</h3><p class="tocdek">Build a reusable library of LinkedIn and email templates with variables so every message feels personal at scale.</p></div>
+          <span class="tocstatus">SCHEDULED · Q3</span>
+        </div>
       </div>
-    </div>
 
-    <div class="post-card soon">
-      <div class="post-thumb">💬</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">How-to</span><span>Coming soon</span></div>
-        <h3>How to Save Canned Responses on LinkedIn Messages</h3>
-        <p>LinkedIn has no native templates. Here's how to insert saved replies into messages, InMail, and comments without copy-pasting from a doc.</p>
+      <div class="tocrow soon" role="listitem">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">04</span>
+          <span class="toccat">HOW-TO</span>
+          <div class="tocmain"><h3 class="toctitle">How to Save Canned Responses on LinkedIn Messages</h3><p class="tocdek">LinkedIn has no native templates. Insert saved replies into messages, InMail and comments without copy-pasting.</p></div>
+          <span class="tocstatus">IN DRAFT</span>
+        </div>
       </div>
-    </div>
 
-    <div class="post-card soon">
-      <div class="post-thumb">⚡</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">Comparison</span><span>Coming soon</span></div>
-        <h3>Gmail Templates vs. Text Blaze vs. Briskine: Which Should You Use?</h3>
-        <p>A side-by-side breakdown of native Gmail templates and the most popular snippet extensions — by speed, privacy, and price.</p>
+      <div class="tocrow soon" role="listitem">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">05</span>
+          <span class="toccat">COMPARISON</span>
+          <div class="tocmain"><h3 class="toctitle">Gmail Templates vs. Text Blaze vs. Briskine: Which Should You Use?</h3><p class="tocdek">A side-by-side breakdown of native Gmail templates and the most popular snippet extensions — by speed, privacy and price.</p></div>
+          <span class="tocstatus">SCHEDULED · Q3</span>
+        </div>
       </div>
-    </div>
 
-    <div class="post-card soon">
-      <div class="post-thumb">🛟</div>
-      <div class="post-body">
-        <div class="post-meta-row"><span class="post-tag">Workflow</span><span>Coming soon</span></div>
-        <h3>15 Customer Support Email Templates (Copy &amp; Paste)</h3>
-        <p>Ready-to-use canned responses for refunds, bug reports, and angry customers — plus how to turn them into one-keystroke replies.</p>
+      <div class="tocrow soon" role="listitem">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">06</span>
+          <span class="toccat">WORKFLOW</span>
+          <div class="tocmain"><h3 class="toctitle">15 Customer Support Email Templates (Copy &amp; Paste)</h3><p class="tocdek">Ready-to-use canned responses for refunds, bug reports and angry customers — and how to fire them in one keystroke.</p></div>
+          <span class="tocstatus">IN DRAFT</span>
+        </div>
       </div>
+
+      <div class="rule last"><i></i><b class="node"></b></div>
     </div>
   </main>
 
