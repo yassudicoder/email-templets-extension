@@ -195,24 +195,26 @@
   }
 
   function cmdPalette(){
-    var inBlog = location.pathname.indexOf("/blog/") >= 0, pre = inBlog ? "../" : "";
     var CWS = "https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl";
     var cmds = [
       { i: "↓", t: "Add to Chrome — Free", s: "Install the extension", run: function(){ window.open(CWS, "_blank", "noopener"); } },
-      { i: "▸", t: "Try the live demo", s: "Use it on this page", run: function(){ go(pre + "index.html#try"); } },
-      { i: "✦", t: "Features", s: "What it does", run: function(){ go(pre + "index.html#features"); } },
-      { i: "✎", t: "Read the blog", s: "Guides & tips", run: function(){ go(pre + "blog/index.html"); } },
-      { i: "?", t: "FAQ", s: "Common questions", run: function(){ go(pre + "index.html#faq"); } },
-      { i: "◆", t: "Privacy", s: "How your data is handled", run: function(){ go(pre + "privacy.html"); } },
-      { i: "⌂", t: "Home", s: "Back to the top", run: function(){ go(pre + "index.html"); } }
+      { i: "▸", t: "Try the live demo", s: "Use it on this page", run: function(){ go("/#try"); } },
+      { i: "✦", t: "Features", s: "What it does", run: function(){ go("/#features"); } },
+      { i: "✎", t: "Read the blog", s: "Guides & tips", run: function(){ go("/blog/"); } },
+      { i: "?", t: "FAQ", s: "Common questions", run: function(){ go("/#faq"); } },
+      { i: "◆", t: "Privacy", s: "How your data is handled", run: function(){ go("/privacy"); } },
+      { i: "⌂", t: "Home", s: "Back to the top", run: function(){ go("/"); } }
     ];
     function go(url){
       close();
       var h = url.indexOf("#");
       if (h >= 0){
-        var base = url.slice(0, h) || "index.html", id = url.slice(h + 1);
-        var cur = location.pathname.split("/").pop() || "index.html";
-        if (base === cur){ var el = document.getElementById(id); if (el){ el.scrollIntoView({ behavior: "smooth" }); return; } }
+        var pathPart = url.slice(0, h), id = url.slice(h + 1);
+        // homepage anchors scroll in place; everywhere else, navigate
+        var onHome = location.pathname === "/" || location.pathname === "" || /\/index\.html$/.test(location.pathname);
+        if ((pathPart === "/" || pathPart === "") && onHome){
+          var el = document.getElementById(id); if (el){ el.scrollIntoView({ behavior: "smooth" }); return; }
+        }
       }
       location.href = url;
     }

@@ -1,0 +1,12 @@
+# Force .html URLs to their clean, canonical paths (301).
+# Netlify already serves each foo.html at /foo; these redirect the .html form
+# so there's a single canonical URL and no duplicate-content split.
+/index.html                                            /                                                301!
+/privacy.html                                          /privacy                                         301!
+/blog/index.html                                       /blog/                                           301!
+/blog/gmail-canned-responses.html                      /blog/gmail-canned-responses                     301!
+/blog/how-to-save-canned-responses-linkedin.html       /blog/how-to-save-canned-responses-linkedin      301!
+/blog/customer-support-email-templates.html            /blog/customer-support-email-templates           301!
+/blog/best-canned-response-extensions.html             /blog/best-canned-response-extensions            301!
+/blog/recruiter-outreach-templates.html                /blog/recruiter-outreach-templates               301!
+/blog/gmail-templates-vs-text-blaze-vs-briskine.html   /blog/gmail-templates-vs-text-blaze-vs-briskine   301!
