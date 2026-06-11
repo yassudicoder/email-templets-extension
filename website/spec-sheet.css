@@ -259,3 +259,9 @@ mark.hl.lit { background-size: 100% 100%; }
   #faq .faq summary::before { top: 24px; }
   #faq .faq p { padding: 0 20px 24px 44px; }
 }
+
+/* Draft/published flag: any contents entry marked data-status="draft" is hidden
+   from the public blog index (belt-and-braces; the real convention is to keep
+   drafts commented out in blog/index.html until their article + sitemap entry
+   exist). Remove the attribute to publish. */
+.toc-list [data-status="draft"], .toc-lead[data-status="draft"] { display: none !important; }

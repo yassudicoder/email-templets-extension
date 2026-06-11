@@ -148,6 +148,29 @@
         </div>
       </a>
 
+      <!-- ════════════════════════════════════════════════════════════════
+           DRAFTS / UNPUBLISHED POSTS — keep them here, COMMENTED OUT, so they
+           never render, never get crawled, and never 404. There is no build
+           step, so this comment IS the publish/draft flag. Rules:
+             1. A post is PUBLISHED only when its <a class="tocrow"> is moved
+                OUT of this comment AND its article file + sitemap.xml entry
+                both exist. Never ship a live row to a page that doesn't exist.
+             2. Need a draft visible to teammates but hidden from the public?
+                Add the row live with data-status="draft" — spec-sheet.css
+                hides any [data-status="draft"] entry (CSS safety net).
+           Copy this template out of the comment when the post goes live:
+
+      <a class="tocrow" href="SLUG.html" role="listitem" data-read="N">
+        <div class="rule"><i></i><b class="node"></b></div>
+        <div class="tocrow-grid">
+          <span class="tocnum">07</span>
+          <span class="toccat">CATEGORY</span>
+          <div class="tocmain"><h3 class="toctitle">Post title</h3><p class="tocdek">One-line description.</p></div>
+          <span class="tocstatus read">→ READ</span>
+        </div>
+      </a>
+           ════════════════════════════════════════════════════════════════ -->
+
       <div class="rule last"><i></i><b class="node"></b></div>
     </div>
   </main>
