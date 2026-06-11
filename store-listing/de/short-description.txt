@@ -1,0 +1,1 @@
+E-Mail-Vorlagen in Gmail und LinkedIn per Tastendruck einfügen. Mit Variablen, lokal gespeichert, ohne Konto.

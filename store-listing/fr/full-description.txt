@@ -1,0 +1,20 @@
+Arrêtez de retaper sans cesse les mêmes e-mails. Canned Responses met vos modèles d'e-mails à portée d'une touche dans Gmail et LinkedIn : recherchez, choisissez et insérez n'importe quelle réponse enregistrée directement à l'endroit de votre curseur.
+
+POURQUOI VOUS ALLEZ ADORER
+• Tout au clavier — appuyez sur Alt+A dans n'importe quel champ de rédaction, recherchez, puis validez avec Enter pour insérer. Sans menus, sans copier-coller.
+• Variables — ajoutez {first_name}, {company} et bien d'autres, puis remplissez-les au moment de l'insertion pour que chaque message reste personnel.
+• Expansion d'abréviations — tapez ;shortcut puis Tab pour développer un modèle instantanément.
+• Enregistrement depuis n'importe quel e-mail — sélectionnez du texte pour l'enregistrer comme modèle, ou faites un clic droit pour le sauvegarder.
+• Copie d'e-mails entiers — un clic copie un e-mail complet avec sa mise en forme, ses couleurs et ses images, prêt à être collé où vous voulez.
+• Organisation — catégories, favoris, recherche, réorganisation, export et import.
+
+FONCTIONNE LÀ OÙ VOUS ÉCRIVEZ
+Gmail (nouveaux messages, réponses, réponses en ligne) et LinkedIn (messages, InMail, commentaires).
+
+CONFIDENTIEL PAR CONCEPTION
+100 % local : vos modèles restent sur votre appareil. L'extension ne lit ni n'envoie jamais vos e-mails, il n'y a aucun compte, et rien ne quitte votre navigateur. Exportez une sauvegarde JSON quand vous le souhaitez.
+
+GRATUIT
+Tout est gratuit — modèles, variables et toutes les fonctionnalités sans limite. Sans abonnement payant, sans compte.
+
+Disponible en anglais, espagnol, portugais, allemand, français, hindi et japonais.
