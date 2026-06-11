@@ -157,7 +157,7 @@ marketing website, privacy policy, donations.
 3. **Fill placeholders:**
    - `data-cws` links -> your Chrome Web Store URL (after publishing).
    - `yourhandle` in Buy-Me-a-Coffee links -> your handle (website/index.html, ui/popup/popup.html, ui/options/options.html).
-   - `hello@example.com` -> your real email (website index/privacy).
+   - ~~`hello@example.com` -> your real email (website index/privacy).~~ DONE — set to boxai5115@gmail.com sitewide.
    - canonical/OG domain in website/index.html.
 4. Final reliability pass on your Gmail/LinkedIn.
 
