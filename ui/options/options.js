@@ -694,7 +694,9 @@
     const show = shouldNudge();
     el.hidden = !show;
     if (show) {
-      $("#nudgeCount").textContent = store.count();
+      const n = store.count();
+      const msg = $(".nmsg");
+      if (msg) msg.textContent = CR.i18n.plural("backup_nudge_message", n, [n]);
       $("#nudgeWeekly").checked = !!store.getSettings().backupReminderWeekly;
     }
   }

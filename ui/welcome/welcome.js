@@ -24,7 +24,7 @@
     items.forEach((t) => {
       const li = document.createElement("li");
       li.innerHTML = '<span class="lt"></span><span class="ls"></span>';
-      li.querySelector(".lt").textContent = t.title || "Untitled";
+      li.querySelector(".lt").textContent = t.title || CR.i18n.t("template_untitled");
       const snip = sanitize.toPlainText(t.body).replace(/\s+/g, " ").trim();
       li.querySelector(".ls").textContent = snip.length > 84 ? snip.slice(0, 84).trim() + "…" : snip;
       list.appendChild(li);
