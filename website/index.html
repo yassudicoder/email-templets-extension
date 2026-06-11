@@ -81,22 +81,6 @@
           <a class="btn primary lg" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome — Free</a>
           <a class="btn ghost lg" href="#try">Try it live →</a>
         </div>
-
-        <!-- Social proof. Honest by default: the strip stays HIDDEN until you put real
-             Chrome Web Store numbers in CR_SOCIAL below and set show:true. -->
-        <p class="social-proof" id="socialProof" hidden></p>
-        <script>
-          /* ─── The ONE place to edit social proof. TODO: set your real CWS numbers, then show:true ─── */
-          window.CR_SOCIAL = { show: false, rating: "4.9", users: "1,000" }; /* TODO: replace placeholder rating + user count */
-          (function () {
-            var c = window.CR_SOCIAL, el = document.getElementById("socialProof");
-            if (el && c && c.show && c.rating && c.users) {
-              el.innerHTML = '<span class="sp-star" aria-hidden="true">★</span> <strong>' + c.rating +
-                '</strong> on the Chrome Web Store · <strong>' + c.users + '+</strong> users';
-              el.hidden = false;
-            }
-          })();
-        </script>
         <p class="microcopy">Free · unlimited templates · works in Gmail &amp; LinkedIn · your data never leaves your device</p>
       </div>
       <div class="hero-visual" aria-hidden="true">
