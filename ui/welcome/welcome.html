@@ -13,7 +13,7 @@
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
-      <h1>You're all set 🎉</h1>
+      <h1 data-i18n="welcome_hero_title">You're all set 🎉</h1>
       <p class="sub">Canned Responses is ready in <b>Gmail</b> &amp; <b>LinkedIn</b>. Here's the one thing to remember:</p>
     </header>
 
@@ -23,41 +23,42 @@
     </section>
 
     <section class="cards">
-      <div class="card"><div class="ci">⌨️</div><h3>Two ways to insert</h3>
+      <div class="card"><div class="ci">⌨️</div><h3 data-i18n="welcome_card_insert_title">Two ways to insert</h3>
         <p>The <b class="hkfill">Alt+A</b> picker, or type <code>;shortcut</code> + <b>Tab</b> to expand instantly.</p></div>
-      <div class="card"><div class="ci">📑</div><h3>Save in one click</h3>
+      <div class="card"><div class="ci">📑</div><h3 data-i18n="welcome_card_save_title">Save in one click</h3>
         <p>Select text in an email → click <b>Save as template</b> (or right-click → save).</p></div>
-      <div class="card"><div class="ci">📋</div><h3>Copy whole emails</h3>
+      <div class="card"><div class="ci">📋</div><h3 data-i18n="welcome_card_copy_title">Copy whole emails</h3>
         <p>Open an email → <b>Copy</b> (next to Reply/Forward) → paste anywhere, styling kept.</p></div>
-      <div class="card"><div class="ci">⭐</div><h3>Organize</h3>
+      <div class="card"><div class="ci">⭐</div><h3 data-i18n="welcome_card_organize_title">Organize</h3>
         <p>Favorite, search, reorder, variables like <code>{first_name}</code>, export &amp; import.</p></div>
     </section>
 
     <section class="starters">
-      <h2>Your starter templates</h2>
+      <h2 data-i18n="welcome_starter_templates_heading">Your starter templates</h2>
       <ul id="list" class="list"></ul>
     </section>
 
     <section class="theme">
-      <span class="tlabel">Theme</span>
+      <span class="tlabel" data-i18n="welcome_theme_label">Theme</span>
       <div class="seg" id="themeSeg">
-        <button type="button" data-theme-val="system">System</button>
-        <button type="button" data-theme-val="light">Light</button>
-        <button type="button" data-theme-val="dark">Dark</button>
+        <button type="button" data-theme-val="system" data-i18n="theme_system">System</button>
+        <button type="button" data-theme-val="light" data-i18n="theme_light">Light</button>
+        <button type="button" data-theme-val="dark" data-i18n="theme_dark">Dark</button>
       </div>
-      <p class="thint">Applies to the picker, popup &amp; manager.</p>
+      <p class="thint" data-i18n="welcome_theme_hint">Applies to the picker, popup &amp; manager.</p>
     </section>
 
     <div class="cta">
-      <a class="btn primary" href="https://mail.google.com/" target="_blank" rel="noopener">Open Gmail →</a>
-      <button class="btn" id="manage">Manage templates</button>
+      <a class="btn primary" href="https://mail.google.com/" target="_blank" rel="noopener" data-i18n="welcome_open_gmail_btn">Open Gmail →</a>
+      <button class="btn" id="manage" data-i18n="welcome_manage_templates_btn">Manage templates</button>
     </div>
-    <p class="foot">Local-first · no account · your templates never leave your device.</p>
+    <p class="foot" data-i18n="welcome_footer_privacy">Local-first · no account · your templates never leave your device.</p>
   </main>
 
   <script src="../../core/sanitize.js"></script>
   <script src="../../core/model.js"></script>
   <script src="../../core/store.js"></script>
+  <script src="../../core/i18n.js"></script>
   <script src="welcome.js"></script>
 </body>
 </html>

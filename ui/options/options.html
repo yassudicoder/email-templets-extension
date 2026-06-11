@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Canned Responses — Templates</title>
+  <title data-i18n="options_page_title">Canned Responses — Templates</title>
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
   <header class="topbar">
     <div class="brand">Canned Responses</div>
     <div class="meta">
-      <span class="hkwrap">Theme:
-        <select id="themeSel" class="tsel" title="Light / Dark / System">
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
+      <span class="hkwrap"><span data-i18n="settings_theme_label">Theme:</span>
+        <select id="themeSel" class="tsel" data-i18n-title="settings_theme_tooltip" title="Light / Dark / System">
+          <option value="system" data-i18n="theme_system">System</option>
+          <option value="light" data-i18n="theme_light">Light</option>
+          <option value="dark" data-i18n="theme_dark">Dark</option>
         </select>
       </span>
-      <span class="hkwrap">Shortcut: <button id="hotkeyBtn" class="hkpill" title="Click, then press your shortcut">Alt+A</button></span>
-      <button id="exportBtn" class="btn ghost sm" title="Download a backup of all templates">Export</button>
-      <button id="importBtn" class="btn ghost sm" title="Import templates from a backup file">Import</button>
+      <span class="hkwrap"><span data-i18n="settings_shortcut_label">Shortcut: </span><button id="hotkeyBtn" class="hkpill" data-i18n-title="settings_hotkey_tooltip" title="Click, then press your shortcut">Alt+A</button></span>
+      <button id="exportBtn" class="btn ghost sm" data-i18n-title="button_export_tooltip" title="Download a backup of all templates" data-i18n="button_export">Export</button>
+      <button id="importBtn" class="btn ghost sm" data-i18n-title="button_import_tooltip" title="Import templates from a backup file" data-i18n="button_import">Import</button>
       <input id="importFile" type="file" accept="application/json,.json" hidden>
       <span id="count" class="count"></span>
     </div>
@@ -29,16 +29,16 @@
     <span class="nicon">💾</span>
     <span class="nmsg">You have <b id="nudgeCount"></b> templates. Back them up so a reinstall can't lose them.</span>
     <span class="ngrow"></span>
-    <label class="nweekly"><input type="checkbox" id="nudgeWeekly"> Remind me weekly</label>
-    <button id="nudgeExport" class="btn primary sm">Export backup</button>
-    <button id="nudgeDismiss" class="x" title="Dismiss">&times;</button>
+    <label class="nweekly"><input type="checkbox" id="nudgeWeekly"> <span data-i18n="backup_nudge_weekly_checkbox">Remind me weekly</span></label>
+    <button id="nudgeExport" class="btn primary sm" data-i18n="button_export_backup">Export backup</button>
+    <button id="nudgeDismiss" class="x" data-i18n-title="button_dismiss" title="Dismiss">&times;</button>
   </div>
 
   <main class="layout">
     <!-- Search + New spans the sidebar and the card list (grid area: search) -->
     <div class="searchbar">
-      <input id="search" class="search" placeholder="Search templates…" autocomplete="off">
-      <button id="new" class="btn primary">+ New</button>
+      <input id="search" class="search" data-i18n-ph="search_placeholder" placeholder="Search templates…" autocomplete="off">
+      <button id="new" class="btn primary" data-i18n="button_new_template">+ New</button>
     </div>
 
     <!-- Left rail: category navigation + keyboard-shortcuts panel -->
@@ -47,13 +47,13 @@
       <div class="navfoot">
         <div class="kbhead"><span class="kbicon">⌨️</span> Keyboard Shortcuts</div>
         <ul id="kblist" class="kblist"></ul>
-        <a id="manageShortcuts" class="managelink" href="#">Manage shortcuts</a>
+        <a id="manageShortcuts" class="managelink" href="#" data-i18n="link_manage_shortcuts">Manage shortcuts</a>
         <div class="privacy-box">
           <label class="privacy-toggle">
             <input type="checkbox" id="analyticsToggle">
-            <span>Share anonymous usage stats</span>
+            <span data-i18n="settings_analytics_toggle">Share anonymous usage stats</span>
           </label>
-          <p class="privacy-note">Off by default. Helps improve the extension — no message or template content is ever sent. <a id="privacyLink" href="#" target="_blank" rel="noopener">Learn more</a></p>
+          <p class="privacy-note"><span data-i18n="settings_analytics_note">Off by default. Helps improve the extension — no message or template content is ever sent. </span><a id="privacyLink" href="#" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a></p>
         </div>
       </div>
     </aside>
@@ -65,8 +65,8 @@
       <div id="pager" class="pager" hidden>
         <span id="pagerLabel" class="pagerlabel"></span>
         <span class="pgrow"></span>
-        <button id="pagePrev" class="pgbtn" title="Previous page">‹</button>
-        <button id="pageNext" class="pgbtn" title="Next page">›</button>
+        <button id="pagePrev" class="pgbtn" data-i18n-title="button_prev_page_tooltip" title="Previous page">‹</button>
+        <button id="pageNext" class="pgbtn" data-i18n-title="button_next_page_tooltip" title="Next page">›</button>
       </div>
     </section>
 
@@ -78,11 +78,11 @@
   <div id="previewModal" class="modal" hidden>
     <div class="modalbox">
       <div class="modalhead">
-        <span id="previewTitle" class="modaltitle">Preview</span>
-        <button id="previewClose" class="x" title="Close">&times;</button>
+        <span id="previewTitle" class="modaltitle" data-i18n="modal_preview_title">Preview</span>
+        <button id="previewClose" class="x" data-i18n-title="button_close_tooltip" title="Close">&times;</button>
       </div>
       <div id="previewBody" class="modalbody"></div>
-      <div class="modalnote">Variables are shown highlighted — they're filled in when you insert the template.</div>
+      <div class="modalnote" data-i18n="preview_variables_note">Variables are shown highlighted — they're filled in when you insert the template.</div>
     </div>
   </div>
 
@@ -93,6 +93,7 @@
   <script src="../../core/store.js"></script>
   <script src="../../core/entitlements.js"></script>
   <script src="../../core/analytics.js"></script>
+  <script src="../../core/i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

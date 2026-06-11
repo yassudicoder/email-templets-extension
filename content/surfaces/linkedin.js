@@ -26,9 +26,9 @@
     const btn = document.createElement("button");
     btn.id = BTN_ID;
     btn.type = "button";
-    btn.setAttribute("aria-label", "Canned Responses (Alt+A)");
-    btn.title = "Canned Responses — manage templates (Alt+A to insert)";
-    btn.innerHTML = ICON + '<span style="font-size:12px;line-height:1.2;">Templates</span>';
+    btn.setAttribute("aria-label", CR.i18n.t("surface_btn_aria_label"));
+    btn.title = CR.i18n.t("linkedin_btn_title");
+    btn.innerHTML = ICON + '<span style="font-size:12px;line-height:1.2;">' + CR.i18n.t("picker_panel_title") + '</span>';
     btn.style.cssText = [
       "display:flex", "flex-direction:column", "align-items:center", "justify-content:center",
       "gap:1px", "height:100%", "min-width:60px", "padding:0 8px", "background:transparent",

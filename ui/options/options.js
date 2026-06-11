@@ -27,6 +27,7 @@
   };
 
   async function boot() {
+    CR.i18n.localize(document);
     await store.init();
 
     $("#search").addEventListener("input", (e) => { query = e.target.value; page = 0; renderList(); });
@@ -73,7 +74,7 @@
     const wasPaste = !!settings.pasteIntoNew;
     if (wasPaste) {
       await store.updateSettings({ pasteIntoNew: false });
-      const rec = await store.create({ title: "Pasted email", body: "" });
+      const rec = await store.create({ title: CR.i18n.t("template_pasted_email_title"), body: "" });
       if (rec) selectedId = rec.id;
     }
     // Opened from the capture toast's "Edit".
@@ -101,7 +102,7 @@
     recording = true;
     const btn = $("#hotkeyBtn");
     btn.classList.add("recording");
-    btn.textContent = "Press keys…";
+    btn.textContent = CR.i18n.t("status_recording_hotkey");
     function cleanup() {
       recording = false;
       btn.classList.remove("recording");
@@ -119,7 +120,7 @@
       let key = null, m;
       if ((m = /^Key([A-Z])$/.exec(e.code))) key = m[1];
       else if ((m = /^Digit([0-9])$/.exec(e.code))) key = m[1];
-      if (!mods.length || !key) { btn.textContent = "Use Alt/Ctrl + a letter"; return; }
+      if (!mods.length || !key) { btn.textContent = CR.i18n.t("status_hotkey_invalid"); return; }
       const hotkey = mods.concat(key).join("+");
       await store.updateSettings({ hotkey });
       cleanup();
@@ -143,8 +144,8 @@
     const favCount = all.filter((t) => t.favorite).length;
 
     const virtuals = [
-      { key: "all", icon: ICONS.all, name: "All Templates", count: all.length, view: { type: "all" } },
-      { key: "fav", icon: ICONS.star, name: "Favorites", count: favCount, view: { type: "favorites" }, cls: "fav" }
+      { key: "all", icon: ICONS.all, name: CR.i18n.t("sidebar_all_templates"), count: all.length, view: { type: "all" } },
+      { key: "fav", icon: ICONS.star, name: CR.i18n.t("sidebar_favorites"), count: favCount, view: { type: "favorites" }, cls: "fav" }
     ];
     virtuals.forEach((v) => nav.appendChild(navItem(v)));
     nav.appendChild(divider());
@@ -157,7 +158,7 @@
     }
     nav.appendChild(divider());
     nav.appendChild(navItem({
-      key: "trash", icon: ICONS.trash, name: "Trash",
+      key: "trash", icon: ICONS.trash, name: CR.i18n.t("sidebar_trash"),
       count: store.getTrash().length, view: { type: "trash" }
     }));
 
@@ -173,7 +174,7 @@
     el.innerHTML =
       `<span class="nvicon">${v.icon}</span>
        <span class="nvname"></span>
-       ${v.catId ? '<button class="nvedit" title="Rename / delete">⋯</button>' : ""}
+       ${v.catId ? `<button class="nvedit" title="${CR.i18n.t("button_category_menu_tooltip")}">⋯</button>` : ""}
        <span class="nvcount">${v.count}</span>`;
     el.querySelector(".nvname").textContent = v.name;
     el.addEventListener("click", (e) => {
@@ -193,16 +194,17 @@
     ul.innerHTML = "";
     const withSc = store.getAll().filter((t) => t.shortcut).slice(0, 4);
     if (!withSc.length) {
-      ul.innerHTML = `<li class="kbempty">Add a shortcut to a template to expand it with <b>;name</b> + Tab.</li>`;
+      ul.innerHTML = `<li class="kbempty"></li>`;
+      ul.querySelector(".kbempty").textContent = CR.i18n.t("keyboard_shortcuts_empty_hint");
       return;
     }
     for (const t of withSc) {
       const li = document.createElement("li");
       li.className = "kbrow";
       li.innerHTML = `<span class="kbname"></span><span class="kbkey"></span>`;
-      li.querySelector(".kbname").textContent = t.title || "Untitled";
+      li.querySelector(".kbname").textContent = t.title || CR.i18n.t("template_untitled");
       li.querySelector(".kbkey").textContent = ";" + t.shortcut;
-      li.title = "Type ;" + t.shortcut + " then Tab to insert";
+      li.title = CR.i18n.t("shortcuts_item_title", [t.shortcut]);
       li.addEventListener("click", () => { selectInAnyView(t.id); });
       ul.appendChild(li);
     }
@@ -220,14 +222,14 @@
   // ---- Category rename / delete menu ------------------------------------
   function openCategoryMenu(anchor, catId, name) {
     const menu = buildMenu([
-      { label: "✎ Rename", fn: () => renameCategoryFlow(catId, name) },
+      { label: CR.i18n.t("context_rename_category"), fn: () => renameCategoryFlow(catId, name) },
       { sep: true },
-      { label: "🗑 Delete category", danger: true, fn: () => deleteCategoryFlow(catId, name) }
+      { label: CR.i18n.t("context_delete_category"), danger: true, fn: () => deleteCategoryFlow(catId, name) }
     ]);
     positionMenu(menu, anchor);
   }
   async function renameCategoryFlow(catId, current) {
-    const name = prompt("Rename category:", current);
+    const name = prompt(CR.i18n.t("prompt_rename_category"), current);
     if (name == null) return;
     const trimmed = name.trim();
     if (!trimmed) return;
@@ -237,8 +239,8 @@
   async function deleteCategoryFlow(catId, name) {
     const n = categoryCount(catId);
     const msg = n
-      ? `Delete "${name}"? Its ${n} template(s) will move to "All Templates" (not deleted).`
-      : `Delete "${name}"?`;
+      ? CR.i18n.plural("confirm_delete_category_with_templates", n, [name, n])
+      : CR.i18n.t("confirm_delete_empty_category", [name]);
     if (!confirm(msg)) return;
     await store.deleteCategory(catId);
     if (sameView(view, { type: "category", id: catId })) view = { type: "all" };
@@ -253,13 +255,13 @@
     return true; // all
   }
   function viewLabel() {
-    if (view.type === "favorites") return "Favorites";
-    if (view.type === "trash") return "Trash";
+    if (view.type === "favorites") return CR.i18n.t("sidebar_favorites");
+    if (view.type === "trash") return CR.i18n.t("sidebar_trash");
     if (view.type === "category") {
       const c = store.getCategories().find((c) => c.id === view.id);
-      return c ? c.name : "Category";
+      return c ? c.name : CR.i18n.t("field_label_category");
     }
-    return "All Templates";
+    return CR.i18n.t("sidebar_all_templates");
   }
 
   function visibleTemplates() {
@@ -282,9 +284,9 @@
     const actions = $("#cardActions");
     if (view.type === "trash" && store.getTrash().length) {
       actions.hidden = false;
-      actions.innerHTML = `<span class="ca-note">Items in Trash can be restored.</span><button id="emptyTrash" class="btn danger sm">Empty trash</button>`;
+      actions.innerHTML = `<span class="ca-note">${CR.i18n.t("trash_header_note")}</span><button id="emptyTrash" class="btn danger sm">${CR.i18n.t("button_empty_trash")}</button>`;
       $("#emptyTrash").addEventListener("click", async () => {
-        if (!confirm("Permanently delete everything in Trash? This can't be undone.")) return;
+        if (!confirm(CR.i18n.t("confirm_empty_trash"))) return;
         await store.emptyTrash(); render();
       });
     } else { actions.hidden = true; actions.innerHTML = ""; }
@@ -294,7 +296,7 @@
     if (!all.length) {
       const li = document.createElement("li");
       li.className = "empty";
-      li.textContent = query ? "No matches." : emptyMessage();
+      li.textContent = query ? CR.i18n.t("empty_no_matches") : emptyMessage();
       ul.appendChild(li);
       $("#pager").hidden = true;
       return;
@@ -306,17 +308,17 @@
     const pager = $("#pager");
     if (all.length > PAGE_SIZE) {
       pager.hidden = false;
-      $("#pagerLabel").textContent = `${start + 1}–${start + list.length} of ${all.length} templates`;
+      $("#pagerLabel").textContent = CR.i18n.t("pager_label", [start + 1, start + list.length, all.length]);
       $("#pagePrev").disabled = page === 0;
       $("#pageNext").disabled = page >= pageCount - 1;
     } else { pager.hidden = true; }
   }
 
   function emptyMessage() {
-    if (view.type === "trash") return "Trash is empty.";
-    if (view.type === "favorites") return "No favorites yet — star a template to pin it here.";
-    if (view.type === "category") return "Nothing in this category yet.";
-    return "No templates yet — click + New.";
+    if (view.type === "trash") return CR.i18n.t("empty_trash");
+    if (view.type === "favorites") return CR.i18n.t("empty_favorites");
+    if (view.type === "category") return CR.i18n.t("empty_category");
+    return CR.i18n.t("empty_all_templates");
   }
 
   function templateCard(t, canReorder) {
@@ -327,13 +329,13 @@
     li.innerHTML =
       `<div class="chead">
          <span class="ctitle"></span>
-         <button class="cstar ${t.favorite ? "on" : ""}" title="Favorite">${t.favorite ? "★" : "☆"}</button>
-         <button class="cmenu" title="More">⋯</button>
+         <button class="cstar ${t.favorite ? "on" : ""}" title="${CR.i18n.t("button_favorite_tooltip")}">${t.favorite ? "★" : "☆"}</button>
+         <button class="cmenu" title="${CR.i18n.t("button_more_tooltip")}">⋯</button>
        </div>
        <div class="csnip"></div>
        ${t.shortcut ? `<span class="cchip"></span>` : ""}`;
-    li.querySelector(".ctitle").textContent = t.title || "Untitled";
-    li.querySelector(".csnip").textContent = sanitize.toPlainText(t.body).slice(0, 90) || "(empty)";
+    li.querySelector(".ctitle").textContent = t.title || CR.i18n.t("template_untitled");
+    li.querySelector(".csnip").textContent = sanitize.toPlainText(t.body).slice(0, 90) || CR.i18n.t("template_empty_body");
     if (t.shortcut) li.querySelector(".cchip").textContent = ";" + t.shortcut;
 
     li.addEventListener("click", (e) => {
@@ -357,18 +359,18 @@
       `<div class="chead"><span class="ctitle"></span></div>
        <div class="csnip"></div>
        <div class="cbtns">
-         <button class="btn subtle sm" data-act="restore">Restore</button>
-         <button class="btn danger sm" data-act="purge">Delete forever</button>
+         <button class="btn subtle sm" data-act="restore">${CR.i18n.t("button_restore")}</button>
+         <button class="btn danger sm" data-act="purge">${CR.i18n.t("button_delete_forever")}</button>
        </div>`;
-    li.querySelector(".ctitle").textContent = t.title || "Untitled";
-    li.querySelector(".csnip").textContent = sanitize.toPlainText(t.body).slice(0, 90) || "(empty)";
+    li.querySelector(".ctitle").textContent = t.title || CR.i18n.t("template_untitled");
+    li.querySelector(".csnip").textContent = sanitize.toPlainText(t.body).slice(0, 90) || CR.i18n.t("template_empty_body");
     li.querySelector('[data-act="restore"]').addEventListener("click", async () => {
       const rec = await store.restore(t.id);
-      if (!rec) { alert("Couldn't restore — you're at the " + store.templateLimit() + "-template limit. Delete one first."); return; }
+      if (!rec) { alert(CR.i18n.t("alert_restore_limit_reached", [store.templateLimit()])); return; }
       render();
     });
     li.querySelector('[data-act="purge"]').addEventListener("click", async () => {
-      if (!confirm("Permanently delete this template? This can't be undone.")) return;
+      if (!confirm(CR.i18n.t("confirm_delete_template_forever"))) return;
       await store.remove(t.id); render();
     });
     return li;
@@ -378,25 +380,25 @@
   function openCardMenu(anchor, t) {
     const cats = store.getCategories();
     const items = [
-      { label: t.favorite ? "☆ Unfavorite" : "★ Favorite", fn: async () => { await store.update(t.id, { favorite: !t.favorite }); render(); } },
-      { label: "⧉ Duplicate", fn: () => duplicate(t) },
+      { label: t.favorite ? CR.i18n.t("context_unfavorite") : CR.i18n.t("context_favorite"), fn: async () => { await store.update(t.id, { favorite: !t.favorite }); render(); } },
+      { label: CR.i18n.t("context_duplicate"), fn: () => duplicate(t) },
       { sep: true },
-      { heading: "Move to" },
-      { label: (t.folderId == null ? "• " : "") + "Uncategorized", fn: async () => { await store.update(t.id, { folderId: null }); render(); } }
+      { heading: CR.i18n.t("context_menu_move_to") },
+      { label: (t.folderId == null ? "• " : "") + CR.i18n.t("context_uncategorized"), fn: async () => { await store.update(t.id, { folderId: null }); render(); } }
     ];
     for (const c of cats) items.push({ label: (t.folderId === c.id ? "• " : "") + c.name, fn: async () => { await store.update(t.id, { folderId: c.id }); render(); } });
-    items.push({ label: "+ New category…", fn: () => moveToNewCategory(t) });
+    items.push({ label: CR.i18n.t("context_new_category"), fn: () => moveToNewCategory(t) });
     items.push({ sep: true });
-    items.push({ label: "🗑 Delete", danger: true, fn: async () => { await store.softDelete(t.id); if (selectedId === t.id) selectedId = null; render(); } });
+    items.push({ label: CR.i18n.t("context_delete_template"), danger: true, fn: async () => { await store.softDelete(t.id); if (selectedId === t.id) selectedId = null; render(); } });
     positionMenu(buildMenu(items), anchor);
   }
   async function duplicate(t) {
-    const rec = await store.create({ title: (t.title || "Untitled") + " copy", body: t.body, shortcut: "", folderId: t.folderId, favorite: false });
-    if (!rec) { alert("You've reached the " + store.templateLimit() + "-template limit on the free plan."); return; }
+    const rec = await store.create({ title: CR.i18n.t("duplicate_title_suffix", [t.title || CR.i18n.t("template_untitled")]), body: t.body, shortcut: "", folderId: t.folderId, favorite: false });
+    if (!rec) { alert(CR.i18n.t("alert_duplicate_limit_reached", [store.templateLimit()])); return; }
     selectedId = rec.id; render();
   }
   async function moveToNewCategory(t) {
-    const name = prompt("New category name:");
+    const name = prompt(CR.i18n.t("prompt_new_category_name"));
     if (name == null || !name.trim()) return;
     const cat = await store.createCategory(name.trim());
     await store.update(t.id, { folderId: cat.id });
@@ -463,70 +465,70 @@
     const t = selectedId ? store.get(selectedId) : null;
     if (!t) {
       pane.innerHTML =
-        `<div class="placeholder"><div class="phicon">📝</div><h2>No template selected</h2>
-         <p>Pick a template, or click <b>+ New</b> to create one. Organize with categories on the left.</p></div>`;
+        `<div class="placeholder"><div class="phicon">📝</div><h2>${CR.i18n.t("editor_placeholder_title")}</h2>
+         <p>${CR.i18n.t("editor_placeholder_text")}</p></div>`;
       return;
     }
     const cats = store.getCategories();
-    const catOptions = ['<option value="">Uncategorized</option>']
+    const catOptions = [`<option value="">${CR.i18n.t("context_uncategorized")}</option>`]
       .concat(cats.map((c) => `<option value="${c.id}"${t.folderId === c.id ? " selected" : ""}></option>`))
-      .concat('<option value="__new__">+ New category…</option>').join("");
+      .concat(`<option value="__new__">${CR.i18n.t("context_new_category")}</option>`).join("");
 
     pane.innerHTML = `
       <div class="editor">
         <div class="fieldrow">
           <div class="field grow">
-            <label class="flabel" for="title">Template name</label>
-            <input id="title" class="finput" placeholder="e.g. Meeting reschedule">
+            <label class="flabel" for="title">${CR.i18n.t("field_label_title")}</label>
+            <input id="title" class="finput" placeholder="${CR.i18n.t("field_placeholder_title")}">
           </div>
           <div class="field grow">
-            <label class="flabel" for="shortcut">Shortcut <span class="opt">(optional)</span></label>
+            <label class="flabel" for="shortcut">${CR.i18n.t("field_label_shortcut")} <span class="opt">${CR.i18n.t("field_optional_marker")}</span></label>
             <input id="shortcut" class="finput" placeholder="reschedule">
           </div>
         </div>
         <div class="catrow">
           <div class="field">
-            <label class="flabel" for="catSel">Category</label>
+            <label class="flabel" for="catSel">${CR.i18n.t("field_label_category")}</label>
             <select id="catSel" class="finput tsel">${catOptions}</select>
           </div>
-          <button id="fav" class="fav-toggle ${t.favorite ? "on" : ""}" title="Favorite">${t.favorite ? "★" : "☆"}</button>
+          <button id="fav" class="fav-toggle ${t.favorite ? "on" : ""}" title="${CR.i18n.t("button_favorite_tooltip")}">${t.favorite ? "★" : "☆"}</button>
         </div>
         <div class="field">
-          <label class="flabel">Template content</label>
+          <label class="flabel">${CR.i18n.t("field_label_body")}</label>
           <div class="toolbar">
-            <select id="fontName" class="tsel" title="Font">
-              <option value="">Font</option>
-              <option value="Arial, sans-serif">Sans Serif</option>
-              <option value="Georgia, serif">Serif</option>
-              <option value="'Courier New', monospace">Monospace</option>
+            <select id="fontName" class="tsel" title="${CR.i18n.t("toolbar_font_label")}">
+              <option value="">${CR.i18n.t("toolbar_font_label")}</option>
+              <option value="Arial, sans-serif">${CR.i18n.t("toolbar_font_sans_serif")}</option>
+              <option value="Georgia, serif">${CR.i18n.t("toolbar_font_serif")}</option>
+              <option value="'Courier New', monospace">${CR.i18n.t("toolbar_font_monospace")}</option>
               <option value="'Times New Roman', serif">Times</option>
               <option value="Verdana, sans-serif">Verdana</option>
               <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
             </select>
-            <select id="fontSize" class="tsel" title="Size">
-              <option value="">Size</option>
-              <option value="2">Small</option>
-              <option value="3">Normal</option>
-              <option value="4">Large</option>
-              <option value="6">Huge</option>
+            <select id="fontSize" class="tsel" title="${CR.i18n.t("toolbar_size_label")}">
+              <option value="">${CR.i18n.t("toolbar_size_label")}</option>
+              <option value="2">${CR.i18n.t("toolbar_size_small")}</option>
+              <option value="3">${CR.i18n.t("toolbar_size_normal")}</option>
+              <option value="4">${CR.i18n.t("toolbar_size_large")}</option>
+              <option value="6">${CR.i18n.t("toolbar_size_huge")}</option>
             </select>
             <span class="tdiv"></span>
-            <button data-cmd="bold" title="Bold"><b>B</b></button>
-            <button data-cmd="italic" title="Italic"><i>I</i></button>
-            <button data-cmd="underline" title="Underline"><u>U</u></button>
-            <button data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
-            <label class="colorbtn" title="Text colour"><b>A</b><input type="color" id="foreColor" value="#202124"></label>
-            <label class="colorbtn" title="Highlight"><span class="hlmark">H</span><input type="color" id="hiliteColor" value="#fff34d"></label>
+            <button data-cmd="bold" title="${CR.i18n.t("toolbar_bold_tooltip")}"><b>B</b></button>
+            <button data-cmd="italic" title="${CR.i18n.t("toolbar_italic_tooltip")}"><i>I</i></button>
+            <button data-cmd="underline" title="${CR.i18n.t("toolbar_underline_tooltip")}"><u>U</u></button>
+            <button data-cmd="strikeThrough" title="${CR.i18n.t("toolbar_strikethrough_tooltip")}"><s>S</s></button>
+            <label class="colorbtn" title="${CR.i18n.t("toolbar_text_color_tooltip")}"><b>A</b><input type="color" id="foreColor" value="#202124"></label>
+            <label class="colorbtn" title="${CR.i18n.t("toolbar_highlight_tooltip")}"><span class="hlmark">H</span><input type="color" id="hiliteColor" value="#fff34d"></label>
             <span class="tdiv"></span>
-            <button data-cmd="insertUnorderedList" title="Bullet list">&bull;</button>
-            <button data-cmd="insertOrderedList" title="Numbered list">1.</button>
-            <button data-cmd="justifyLeft" title="Align left">&#9776;</button>
-            <button data-cmd="justifyCenter" title="Centre">&#8801;</button>
-            <button data-cmd="createLink" title="Insert link">&#128279;</button>
-            <button data-cmd="removeFormat" title="Clear formatting">&#10006;</button>
+            <button data-cmd="insertUnorderedList" title="${CR.i18n.t("toolbar_bullet_list_tooltip")}">&bull;</button>
+            <button data-cmd="insertOrderedList" title="${CR.i18n.t("toolbar_numbered_list_tooltip")}">1.</button>
+            <button data-cmd="justifyLeft" title="${CR.i18n.t("toolbar_align_left_tooltip")}">&#9776;</button>
+            <button data-cmd="justifyCenter" title="${CR.i18n.t("toolbar_align_center_tooltip")}">&#8801;</button>
+            <button data-cmd="createLink" title="${CR.i18n.t("toolbar_insert_link_tooltip")}">&#128279;</button>
+            <button data-cmd="removeFormat" title="${CR.i18n.t("toolbar_clear_formatting_tooltip")}">&#10006;</button>
             <span class="spacer"></span>
             <select id="varsel" class="varsel" title="Insert a variable">
-              <option value="">{ } Variables</option>
+              <option value="">${CR.i18n.t("toolbar_variables_label")}</option>
               <option value="first_name">{first_name}</option>
               <option value="last_name">{last_name}</option>
               <option value="company">{company}</option>
@@ -536,12 +538,12 @@
           <div id="body" class="body" contenteditable="true"></div>
         </div>
         <div class="actions">
-          <button id="preview" class="btn subtle">👁 Preview</button>
-          <button id="del" class="btn danger">Delete</button>
+          <button id="preview" class="btn subtle">${CR.i18n.t("button_preview")}</button>
+          <button id="del" class="btn danger">${CR.i18n.t("button_delete")}</button>
           <div class="grow"></div>
           <span id="status" class="status"></span>
-          <button id="cancel" class="btn subtle">Cancel</button>
-          <button id="save" class="btn primary">Save changes</button>
+          <button id="cancel" class="btn subtle">${CR.i18n.t("button_cancel")}</button>
+          <button id="save" class="btn primary">${CR.i18n.t("button_save")}</button>
         </div>
       </div>`;
 
@@ -575,7 +577,7 @@
         body.focus();
         const cmd = b.dataset.cmd;
         if (cmd === "createLink") {
-          const url = prompt("Link URL:", "https://");
+          const url = prompt(CR.i18n.t("prompt_link_url"), "https://");
           if (url) document.execCommand("createLink", false, url);
         } else { document.execCommand(cmd, false, null); }
       });
@@ -591,7 +593,7 @@
     $("#catSel").addEventListener("change", async (e) => {
       const v = e.target.value;
       if (v === "__new__") {
-        const name = prompt("New category name:");
+        const name = prompt(CR.i18n.t("prompt_new_category_name"));
         if (name == null || !name.trim()) { renderEditor(); return; }
         const cat = await store.createCategory(name.trim());
         await store.update(id, { folderId: cat.id });
@@ -611,13 +613,13 @@
     $("#preview").addEventListener("click", () => openPreview(id));
 
     $("#del").addEventListener("click", async () => {
-      if (!confirm("Move this template to Trash?")) return;
+      if (!confirm(CR.i18n.t("confirm_delete_template_to_trash"))) return;
       await store.softDelete(id);
       selectedId = null;
       render();
     });
 
-    $("#cancel").addEventListener("click", () => { renderEditor(); setStatus("Reverted"); });
+    $("#cancel").addEventListener("click", () => { renderEditor(); setStatus(CR.i18n.t("status_reverted")); });
     $("#save").addEventListener("click", () => save(id, false));
 
     // Autosave on blur so edits are never lost between sessions.
@@ -626,7 +628,7 @@
 
   async function save(id, silent) {
     if (!store.get(id)) return;
-    const title = $("#title").value.trim() || "Untitled";
+    const title = $("#title").value.trim() || CR.i18n.t("template_untitled");
     const shortcut = $("#shortcut").value.trim().replace(/^[;\/]/, "");   // tolerate a typed ; or / prefix
     const raw = $("#body").innerHTML;
     const allowImg = canImages();
@@ -634,9 +636,9 @@
     await store.update(id, { title, shortcut, body });
     if (!allowImg && sanitize.detectMedia(raw)) {
       $("#body").innerHTML = body;
-      proNote("Saved (text & formatting). Images are a Pro feature — upgrade to keep them.");
+      proNote(CR.i18n.t("status_saved_no_images_upsell"));
     } else {
-      setStatus(silent ? "Saved" : "Saved ✓");
+      setStatus(silent ? CR.i18n.t("status_saved_silent") : CR.i18n.t("status_saved"));
     }
     renderSidebar(); renderList();   // refresh title/snippet/shortcut chip; keep editor focus
   }
@@ -648,8 +650,8 @@
   function openPreview(id) {
     const t = store.get(id);
     if (!t) return;
-    $("#previewTitle").textContent = t.title || "Untitled";
-    $("#previewBody").innerHTML = highlightVars(sanitize.sanitize(t.body || "", { images: canImages() })) || "<i>(empty)</i>";
+    $("#previewTitle").textContent = t.title || CR.i18n.t("template_untitled");
+    $("#previewBody").innerHTML = highlightVars(sanitize.sanitize(t.body || "", { images: canImages() })) || ("<i>" + CR.i18n.t("template_empty_body") + "</i>");
     $("#previewModal").hidden = false;
   }
   function closePreview() { $("#previewModal").hidden = true; }
@@ -672,8 +674,9 @@
   function updateCount() {
     const n = store.getAll().length;
     const limit = store.templateLimit();
-    const head = isFinite(limit) ? (n + " / " + limit) : String(n);
-    $("#count").textContent = head + (n === 1 ? " template" : " templates");
+    $("#count").textContent = isFinite(limit)
+      ? (n + " / " + limit + (n === 1 ? " template" : " templates"))
+      : CR.i18n.plural("template_count", n, [n]);
   }
 
   // ---- Backup nudge -----------------------------------------------------
@@ -698,8 +701,8 @@
 
   async function onNew() {
     const folderId = view.type === "category" ? view.id : null;   // create into the active category
-    const rec = await store.create({ title: "Untitled", body: "", folderId, favorite: view.type === "favorites" });
-    if (!rec) { alert("You've reached the " + store.templateLimit() + "-template limit on the free plan. Delete one to add more."); return; }
+    const rec = await store.create({ title: CR.i18n.t("template_untitled"), body: "", folderId, favorite: view.type === "favorites" });
+    if (!rec) { alert(CR.i18n.t("alert_create_limit_reached", [store.templateLimit()])); return; }
     selectedId = rec.id;
     query = ""; $("#search").value = ""; page = 0;
     if (view.type === "trash") view = { type: "all" };
@@ -755,7 +758,7 @@
         const recs = list
           .filter((t) => t && (t.title || t.body))
           .map((t, i) => model.createTemplate({
-            title: String(t.title || "Untitled"),
+            title: String(t.title || CR.i18n.t("template_untitled")),
             body: sanitize.sanitize(String(t.body || ""), { images: canImages() }),
             shortcut: String(t.shortcut || ""),
             tags: Array.isArray(t.tags) ? t.tags : [],
@@ -767,13 +770,13 @@
         const added = await store.bulkInsert(recs);
         render();
         if (added.length < recs.length) {
-          alert("Imported " + added.length + " of " + recs.length + " — the rest hit the " + store.templateLimit() + "-template free-plan limit.");
+          alert(CR.i18n.t("alert_import_partial", [added.length, recs.length, store.templateLimit()]));
         } else {
-          alert("Imported " + added.length + " template(s).");
+          alert(CR.i18n.plural("alert_import_success", added.length, [added.length]));
         }
       } catch (err) {
         console.error("[CR] import failed", err);
-        alert("Import failed — that doesn't look like a valid Canned Responses JSON file.");
+        alert(CR.i18n.t("alert_import_failed"));
       } finally {
         e.target.value = "";
       }

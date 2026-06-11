@@ -47,10 +47,24 @@
   }
 
   // Seed categories — give the first run real structure to organize into.
-  function sampleCategories(now) {
+  // CATEGORY_SEED maps each default category to its i18n message key. The English
+  // names here are the fallback AND what the v1->v2 migration seeds (unchanged);
+  // localized names are applied ONLY on first install (see store.emptyDb).
+  const CATEGORY_SEED = [
+    { key: "category_follow_ups", name: "Follow Ups" },
+    { key: "category_outreach",   name: "Outreach" },
+    { key: "category_onboarding", name: "Onboarding" },
+    { key: "category_responses",  name: "Responses" },
+    { key: "category_closing",    name: "Closing" },
+    { key: "category_other",      name: "Other" }
+  ];
+  // `names` is an optional localized override (its length must match CATEGORY_SEED).
+  // Omitting it yields the English defaults — keeping migration behaviour identical.
+  function sampleCategories(now, names) {
     const base = now || Date.now();
-    const names = ["Follow Ups", "Outreach", "Onboarding", "Responses", "Closing", "Other"];
-    return names.map((name, i) => createCategory({ name, sortIndex: base + i }, base + i));
+    const list = (Array.isArray(names) && names.length === CATEGORY_SEED.length)
+      ? names : CATEGORY_SEED.map((c) => c.name);
+    return list.map((name, i) => createCategory({ name, sortIndex: base + i }, base + i));
   }
 
   function defaultSettings() {
@@ -106,7 +120,7 @@
   }
 
   NS.model = {
-    SCHEMA_VERSION, uuid, createTemplate, createCategory, defaultSettings,
+    SCHEMA_VERSION, CATEGORY_SEED, uuid, createTemplate, createCategory, defaultSettings,
     sampleTemplates, sampleCategories, migrate
   };
 })(globalThis);

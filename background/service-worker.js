@@ -19,7 +19,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({
       id: "cr-save-selection",
-      title: "Save selection as Canned Response",
+      title: chrome.i18n.getMessage("ctx_save_selection"),
       contexts: ["selection"],
       documentUrlPatterns: ["https://mail.google.com/*", "https://www.linkedin.com/*"]
     }, () => void chrome.runtime.lastError);

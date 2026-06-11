@@ -83,12 +83,12 @@
       onInsert: (html) => {
         if (ctx) {
           const ok = inserter.insert(ctx, html, { preferPlainText });
-          if (ok) { cue("✓ Inserted"); track("template_inserted", { surface: surfaceName(), mode: "insert" }); }
+          if (ok) { cue(CR.i18n.t("toast_inserted")); track("template_inserted", { surface: surfaceName(), mode: "insert" }); }
           else console.warn("[CR] insertion returned false");
         } else if (navigator.clipboard) {
           // Opened from the toolbar button with no focused field -> copy instead.
           const text = NS.sanitize ? NS.sanitize.toPlainText(html) : html;
-          navigator.clipboard.writeText(text).then(() => { cue("✓ Copied"); track("template_inserted", { surface: surfaceName(), mode: "copy" }); }).catch((e) => console.warn("[CR] copy failed", e));
+          navigator.clipboard.writeText(text).then(() => { cue(CR.i18n.t("toast_copied")); track("template_inserted", { surface: surfaceName(), mode: "copy" }); }).catch((e) => console.warn("[CR] copy failed", e));
         }
       }
     });

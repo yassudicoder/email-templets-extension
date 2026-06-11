@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Email Templates & Canned Responses for Gmail & LinkedIn",
+  "default_locale": "en",
+  "name": "__MSG_manifest_name__",
   "version": "0.3.0",
-  "description": "Keyboard-first email templates with reliable rich-text insertion in Gmail & LinkedIn. Local-first, no account.",
+  "description": "__MSG_manifest_description__",
   "permissions": ["storage", "contextMenus"],
   "host_permissions": [
     "https://mail.google.com/*",
@@ -19,6 +20,7 @@
       ],
       "js": [
         "core/sanitize.js",
+        "core/i18n.js",
         "core/model.js",
         "core/theme.js",
         "core/store.js",
@@ -58,7 +60,7 @@
   "commands": {
     "open-picker": {
       "suggested_key": { "default": "Alt+A", "mac": "Alt+A" },
-      "description": "Open the template picker at the caret"
+      "description": "__MSG_command_open_picker__"
     }
   }
 }

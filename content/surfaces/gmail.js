@@ -31,8 +31,8 @@
     btn.id = BTN_ID;
     btn.setAttribute("role", "button");
     btn.setAttribute("tabindex", "0");
-    btn.setAttribute("aria-label", "Canned Responses (Alt+A)");
-    btn.title = "Canned Responses — insert a template (Alt+A)";
+    btn.setAttribute("aria-label", CR.i18n.t("surface_btn_aria_label"));
+    btn.title = CR.i18n.t("gmail_btn_title");
     btn.innerHTML = ICON;
     btn.style.cssText = [
       "width:40px", "height:40px", "margin:0 2px", "border-radius:50%",
@@ -72,8 +72,8 @@
     const fab = document.createElement("div");
     fab.id = FLOAT_ID;
     fab.setAttribute("role", "button");
-    fab.setAttribute("aria-label", "Canned Responses (Alt+A)");
-    fab.title = "Canned Responses — insert a template (Alt+A)";
+    fab.setAttribute("aria-label", CR.i18n.t("surface_btn_aria_label"));
+    fab.title = CR.i18n.t("gmail_btn_title");
     fab.innerHTML = ICON;
     fab.style.cssText = "position:fixed;bottom:22px;right:22px;width:48px;height:48px;border-radius:50%;"
       + "background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;"
@@ -139,8 +139,8 @@
     try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
     sel.removeAllRanges();
     holder.remove();
-    if (ok) toast("Copied email — paste with Ctrl+V (font, colours & images kept)", "Open editor →", openEditorForPaste);
-    else toast("Copy failed — try selecting manually");
+    if (ok) toast(CR.i18n.t("toast_email_copied_success"), CR.i18n.t("toast_action_open_editor"), openEditorForPaste);
+    else toast(CR.i18n.t("toast_copy_failed"));
   }
 
   // Open the full editor on a fresh template, ready to paste the copied email.
@@ -164,9 +164,9 @@
     const b = document.createElement("button");
     b.type = "button";
     b.setAttribute("data-cr-copy", "1");
-    b.setAttribute("aria-label", "Copy email");
-    b.title = "Copy this email with formatting & images";
-    b.textContent = "Copy";
+    b.setAttribute("aria-label", CR.i18n.t("gmail_copy_btn_aria_label"));
+    b.title = CR.i18n.t("gmail_copy_btn_title");
+    b.textContent = CR.i18n.t("gmail_copy_btn_label");
     b.style.cssText = "margin:0 0 0 8px;padding:7px 16px;border:1px solid #dadce0;border-radius:18px;"
       + "background:#fff;color:#3c4043;font:500 14px system-ui,-apple-system,sans-serif;cursor:pointer;"
       + "vertical-align:middle;line-height:1.4;";
