@@ -20,6 +20,7 @@
       ],
       "js": [
         "core/sanitize.js",
+        "core/locales.js",
         "core/i18n.js",
         "core/model.js",
         "core/theme.js",

@@ -876,5 +876,13 @@
         "content": "$1"
       }
     }
+  },
+  "settings_language_label": {
+    "message": "Idioma:",
+    "description": "Label for the display-language selector in the options header"
+  },
+  "settings_language_auto": {
+    "message": "Automático (navegador)",
+    "description": "Language option that follows the browser language"
   }
 }

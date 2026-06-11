@@ -6,6 +6,7 @@
   const $ = (s) => document.querySelector(s);
 
   store.init().then(() => {
+    CR.i18n.setLocale((store.getSettings() && store.getSettings().locale) || "auto");
     CR.i18n.localize(document);
     // The welcome page stays LIGHT (clean, professional first impression). The
     // toggle below only sets the preference for the rest of the extension UI.

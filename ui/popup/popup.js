@@ -76,8 +76,9 @@
   });
 
   store.init().then(() => {
-    CR.i18n.localize(document);
     const s = store.getSettings();
+    CR.i18n.setLocale((s && s.locale) || "auto");
+    CR.i18n.localize(document);
     globalThis.CR.theme.applyToDocument((s && s.theme) || "system");
     // Localize the hint while preserving the runtime hotkey in #hk: split the
     // message on its baked-in "Alt+A" and rebuild around the existing <b id="hk">.

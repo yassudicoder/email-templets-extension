@@ -27,8 +27,9 @@
   };
 
   async function boot() {
-    CR.i18n.localize(document);
     await store.init();
+    CR.i18n.setLocale((store.getSettings() && store.getSettings().locale) || "auto");
+    CR.i18n.localize(document);
 
     $("#search").addEventListener("input", (e) => { query = e.target.value; page = 0; renderList(); });
     $("#new").addEventListener("click", onNew);
@@ -63,6 +64,24 @@
     applyTheme();
     $("#themeSel").value = store.getSettings().theme || "system";
     $("#themeSel").addEventListener("change", async (e) => { await store.updateSettings({ theme: e.target.value }); applyTheme(); });
+
+    // Language picker — switches the in-app UI language live (default = browser).
+    const langSel = $("#langSel");
+    function fillLang() {
+      langSel.innerHTML = '<option value="auto">' + CR.i18n.t("settings_language_auto") + "</option>" +
+        CR.i18n.languages().map((l) => '<option value="' + l.code + '">' + l.name + "</option>").join("");
+      langSel.value = (store.getSettings() && store.getSettings().locale) || "auto";
+    }
+    if (langSel) {
+      fillLang();
+      langSel.addEventListener("change", async () => {
+        await store.updateSettings({ locale: langSel.value });
+        CR.i18n.setLocale(langSel.value);
+        CR.i18n.localize(document);
+        fillLang();
+        render();
+      });
+    }
     try {
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
         if ((store.getSettings().theme || "system") === "system") applyTheme();

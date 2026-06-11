@@ -69,7 +69,7 @@
 
   function defaultSettings() {
     return {
-      hotkey: "Alt+A", schemaVersion: SCHEMA_VERSION, plan: "free", theme: "system",
+      hotkey: "Alt+A", schemaVersion: SCHEMA_VERSION, plan: "free", theme: "system", locale: "auto",
       lastBackupAt: 0, backupReminderWeekly: false, backupNudgeDismissedAt: 0,
       // Anonymous, opt-in product analytics — OFF until the user enables it.
       // analyticsId is a random id (no identity) generated only once enabled.
