@@ -1,0 +1,880 @@
+{
+  "category_follow_ups": {
+    "message": "फॉलो-अप",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_outreach": {
+    "message": "आउटरीच",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_onboarding": {
+    "message": "ऑनबोर्डिंग",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_responses": {
+    "message": "जवाब",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_closing": {
+    "message": "क्लोज़िंग",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_other": {
+    "message": "अन्य",
+    "description": "Seeded category name (first install only)"
+  },
+  "manifest_name": {
+    "message": "Gmail और LinkedIn के लिए ईमेल टेम्पलेट और Canned Responses",
+    "description": "Extension title shown in Chrome Web Store and settings"
+  },
+  "manifest_description": {
+    "message": "कीबोर्ड-फ़र्स्ट ईमेल टेम्पलेट, Gmail और LinkedIn में भरोसेमंद रिच-टेक्स्ट इंसर्शन के साथ। लोकल-फ़र्स्ट, कोई अकाउंट नहीं।",
+    "description": "Extension description shown in Chrome Web Store and settings"
+  },
+  "command_open_picker": {
+    "message": "कर्सर पर टेम्पलेट पिकर खोलें",
+    "description": "Keyboard shortcut description shown in Chrome shortcuts settings"
+  },
+  "ctx_save_selection": {
+    "message": "चयन को Canned Response के रूप में सहेजें",
+    "description": "Context-menu item shown on right-click when text is selected in Gmail/LinkedIn"
+  },
+  "popup_hint": {
+    "message": "इंसर्ट करने के लिए कंपोज़ बॉक्स में Alt+A दबाएँ। कॉपी करने के लिए यहाँ किसी टेम्पलेट पर क्लिक करें।",
+    "description": "Instruction text in popup explaining the hotkey and click-to-copy"
+  },
+  "search_placeholder": {
+    "message": "टेम्पलेट खोजें…",
+    "description": "Placeholder for the template search/filter input (shared across popup, options, picker, manager)"
+  },
+  "button_export_backup": {
+    "message": "बैकअप एक्सपोर्ट करें",
+    "description": "Button that triggers backup/export of all templates"
+  },
+  "popup_manage_button": {
+    "message": "प्रबंधित करें",
+    "description": "Button to open the options/manager page from the popup"
+  },
+  "empty_no_matches": {
+    "message": "कोई मिलान नहीं।",
+    "description": "Empty state shown when a search query returns no results"
+  },
+  "popup_empty_no_templates": {
+    "message": "अभी कोई टेम्पलेट नहीं।",
+    "description": "Empty state in popup when no templates exist at all"
+  },
+  "template_untitled": {
+    "message": "बिना शीर्षक",
+    "description": "Default label/fallback for templates that have no title set"
+  },
+  "popup_status_copied": {
+    "message": "कॉपी हुआ — Ctrl+V से पेस्ट करें",
+    "description": "Toast shown after a template is copied to clipboard from the popup"
+  },
+  "popup_status_copy_failed": {
+    "message": "कॉपी विफल",
+    "description": "Error shown when copy-to-clipboard fails in the popup"
+  },
+  "popup_status_backup_downloaded": {
+    "message": "बैकअप डाउनलोड हुआ",
+    "description": "Confirmation shown after a backup file is downloaded"
+  },
+  "options_page_title": {
+    "message": "Canned Responses — टेम्पलेट",
+    "description": "Browser tab title for the options/manager page"
+  },
+  "settings_theme_label": {
+    "message": "थीम:",
+    "description": "Label preceding the theme selector in the header"
+  },
+  "settings_theme_tooltip": {
+    "message": "लाइट / डार्क / सिस्टम",
+    "description": "Tooltip for the theme selector dropdown"
+  },
+  "theme_system": {
+    "message": "सिस्टम",
+    "description": "Theme option that follows the OS/system preference"
+  },
+  "theme_light": {
+    "message": "लाइट",
+    "description": "Light theme option"
+  },
+  "theme_dark": {
+    "message": "डार्क",
+    "description": "Dark theme option"
+  },
+  "settings_shortcut_label": {
+    "message": "शॉर्टकट: ",
+    "description": "Label preceding the current insert-picker hotkey in the header"
+  },
+  "settings_hotkey_tooltip": {
+    "message": "क्लिक करें, फिर अपना शॉर्टकट दबाएँ",
+    "description": "Tooltip for the hotkey record button"
+  },
+  "button_export_tooltip": {
+    "message": "सभी टेम्पलेट का बैकअप डाउनलोड करें",
+    "description": "Tooltip for the Export button"
+  },
+  "button_export": {
+    "message": "एक्सपोर्ट",
+    "description": "Export button label"
+  },
+  "button_import_tooltip": {
+    "message": "बैकअप फ़ाइल से टेम्पलेट इंपोर्ट करें",
+    "description": "Tooltip for the Import button"
+  },
+  "button_import": {
+    "message": "इंपोर्ट",
+    "description": "Import button label"
+  },
+  "backup_nudge_weekly_checkbox": {
+    "message": "मुझे हर हफ़्ते याद दिलाएँ",
+    "description": "Checkbox label to enable weekly backup reminders"
+  },
+  "button_dismiss": {
+    "message": "खारिज करें",
+    "description": "Tooltip for the backup-nudge dismiss (×) button"
+  },
+  "button_new_template": {
+    "message": "+ नया",
+    "description": "Button to create a new template"
+  },
+  "keyboard_shortcuts_heading": {
+    "message": "⌨️ कीबोर्ड शॉर्टकट",
+    "description": "Heading of the keyboard-shortcuts panel in the sidebar footer"
+  },
+  "link_manage_shortcuts": {
+    "message": "शॉर्टकट प्रबंधित करें",
+    "description": "Link to Chrome's keyboard-shortcuts settings"
+  },
+  "settings_analytics_toggle": {
+    "message": "अनाम उपयोग आँकड़े साझा करें",
+    "description": "Analytics opt-in checkbox label"
+  },
+  "settings_analytics_note": {
+    "message": "डिफ़ॉल्ट रूप से बंद। एक्सटेंशन को बेहतर बनाने में मदद करता है — कोई संदेश या टेम्पलेट सामग्री कभी नहीं भेजी जाती। ",
+    "description": "Privacy explanation for the analytics opt-in"
+  },
+  "link_learn_more_privacy": {
+    "message": "और जानें",
+    "description": "Link to the privacy policy"
+  },
+  "button_prev_page_tooltip": {
+    "message": "पिछला पृष्ठ",
+    "description": "Tooltip for the previous-page pager button"
+  },
+  "button_next_page_tooltip": {
+    "message": "अगला पृष्ठ",
+    "description": "Tooltip for the next-page pager button"
+  },
+  "modal_preview_title": {
+    "message": "पूर्वावलोकन",
+    "description": "Title of the template preview modal"
+  },
+  "button_close_tooltip": {
+    "message": "बंद करें",
+    "description": "Tooltip/label for close (×) buttons on modal, picker, and manager"
+  },
+  "preview_variables_note": {
+    "message": "वेरिएबल हाइलाइट किए हुए दिखते हैं — टेम्पलेट इंसर्ट करते समय वे भर जाते हैं।",
+    "description": "Note in the preview modal explaining variable highlighting"
+  },
+  "sidebar_all_templates": {
+    "message": "सभी टेम्पलेट",
+    "description": "Sidebar/virtual-view label for the 'all templates' view"
+  },
+  "sidebar_favorites": {
+    "message": "पसंदीदा",
+    "description": "Sidebar/virtual-view label for the favorites view"
+  },
+  "sidebar_trash": {
+    "message": "ट्रैश",
+    "description": "Sidebar/virtual-view label for the trash view"
+  },
+  "field_label_category": {
+    "message": "श्रेणी",
+    "description": "Label for the category selector and fallback label when a category is missing"
+  },
+  "button_category_menu_tooltip": {
+    "message": "नाम बदलें / हटाएँ",
+    "description": "Tooltip for the per-category context-menu (edit) button in the sidebar"
+  },
+  "keyboard_shortcuts_empty_hint": {
+    "message": "किसी टेम्पलेट में शॉर्टकट जोड़ें ताकि उसे ;name + Tab से एक्सपैंड किया जा सके।",
+    "description": "Empty state in the keyboard-shortcuts panel"
+  },
+  "shortcuts_item_title": {
+    "message": "इंसर्ट करने के लिए ;$shortcut$ टाइप करें फिर Tab दबाएँ",
+    "description": "Tooltip for a shortcut row in the shortcuts panel",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
+  },
+  "context_rename_category": {
+    "message": "✎ नाम बदलें",
+    "description": "Context-menu item to rename a category"
+  },
+  "context_delete_category": {
+    "message": "🗑 श्रेणी हटाएँ",
+    "description": "Context-menu item to delete a category"
+  },
+  "prompt_rename_category": {
+    "message": "श्रेणी का नाम बदलें:",
+    "description": "Prompt dialog text when renaming a category"
+  },
+  "confirm_delete_empty_category": {
+    "message": "\"$name$\" हटाएँ?",
+    "description": "Confirmation when deleting an empty category",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "empty_trash": {
+    "message": "ट्रैश खाली है।",
+    "description": "Empty state shown when the trash view has no items"
+  },
+  "empty_favorites": {
+    "message": "अभी कोई पसंदीदा नहीं — किसी टेम्पलेट को स्टार करके यहाँ पिन करें।",
+    "description": "Empty state for the favorites view"
+  },
+  "empty_category": {
+    "message": "इस श्रेणी में अभी कुछ नहीं है।",
+    "description": "Empty state for a category with no templates"
+  },
+  "empty_all_templates": {
+    "message": "अभी कोई टेम्पलेट नहीं — + नया पर क्लिक करें।",
+    "description": "Empty state when no templates exist, with a call to create one"
+  },
+  "button_favorite_tooltip": {
+    "message": "पसंदीदा",
+    "description": "Tooltip for the favorite/star toggle on cards, the editor, and the manager list"
+  },
+  "button_more_tooltip": {
+    "message": "और",
+    "description": "Tooltip for the per-card overflow (…) menu button"
+  },
+  "template_empty_body": {
+    "message": "(खाली)",
+    "description": "Placeholder shown when a template body/snippet is empty"
+  },
+  "button_restore": {
+    "message": "पुनर्स्थापित करें",
+    "description": "Button to restore a template from trash"
+  },
+  "button_delete_forever": {
+    "message": "हमेशा के लिए हटाएँ",
+    "description": "Button to permanently delete a template from trash"
+  },
+  "alert_restore_limit_reached": {
+    "message": "पुनर्स्थापित नहीं हो सका — आप $limit$-टेम्पलेट की सीमा पर हैं। पहले एक हटाएँ।",
+    "description": "Alert when restoring would exceed the free-plan template limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirm_delete_template_forever": {
+    "message": "इस टेम्पलेट को हमेशा के लिए हटाएँ? इसे पूर्ववत नहीं किया जा सकता।",
+    "description": "Confirmation for permanently deleting a single template"
+  },
+  "trash_header_note": {
+    "message": "ट्रैश में मौजूद आइटम पुनर्स्थापित किए जा सकते हैं।",
+    "description": "Note in the trash view header"
+  },
+  "button_empty_trash": {
+    "message": "ट्रैश खाली करें",
+    "description": "Button to permanently empty the trash"
+  },
+  "confirm_empty_trash": {
+    "message": "ट्रैश की हर चीज़ हमेशा के लिए हटाएँ? इसे पूर्ववत नहीं किया जा सकता।",
+    "description": "Confirmation for emptying the entire trash"
+  },
+  "pager_label": {
+    "message": "$total$ में से $start$–$end$ टेम्पलेट",
+    "description": "Pagination label showing the visible range and total",
+    "placeholders": {
+      "start": {
+        "content": "$1"
+      },
+      "end": {
+        "content": "$2"
+      },
+      "total": {
+        "content": "$3"
+      }
+    }
+  },
+  "context_unfavorite": {
+    "message": "☆ पसंदीदा से हटाएँ",
+    "description": "Card context-menu item to remove favorite status"
+  },
+  "context_favorite": {
+    "message": "★ पसंदीदा",
+    "description": "Card context-menu item to add to favorites"
+  },
+  "context_duplicate": {
+    "message": "⧉ डुप्लिकेट करें",
+    "description": "Card context-menu item to duplicate a template"
+  },
+  "context_menu_move_to": {
+    "message": "यहाँ ले जाएँ",
+    "description": "Heading of the 'move to category' submenu"
+  },
+  "context_uncategorized": {
+    "message": "अवर्गीकृत",
+    "description": "Option representing no category (uncategorized) in move menu and editor dropdown"
+  },
+  "context_new_category": {
+    "message": "+ नई श्रेणी…",
+    "description": "Option to create a new category while moving/assigning a template"
+  },
+  "context_delete_template": {
+    "message": "🗑 हटाएँ",
+    "description": "Card context-menu item to delete (move to trash) a template"
+  },
+  "duplicate_title_suffix": {
+    "message": "$title$ कॉपी",
+    "description": "Title given to a duplicated template (' copy' appended)",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_duplicate_limit_reached": {
+    "message": "आप फ्री प्लान पर $limit$-टेम्पलेट की सीमा तक पहुँच गए हैं।",
+    "description": "Alert when duplicating would exceed the free-plan template limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "prompt_new_category_name": {
+    "message": "नई श्रेणी का नाम:",
+    "description": "Prompt for entering a new category name"
+  },
+  "editor_placeholder_title": {
+    "message": "कोई टेम्पलेट चयनित नहीं",
+    "description": "Heading shown in the editor pane when no template is selected"
+  },
+  "editor_placeholder_text": {
+    "message": "कोई टेम्पलेट चुनें, या नया बनाने के लिए + नया पर क्लिक करें। बाईं ओर श्रेणियों से व्यवस्थित करें।",
+    "description": "Instructional text in the editor placeholder"
+  },
+  "field_label_title": {
+    "message": "टेम्पलेट का नाम",
+    "description": "Label for the template name/title input"
+  },
+  "field_placeholder_title": {
+    "message": "उदा. मीटिंग रीशेड्यूल",
+    "description": "Example placeholder for the template name input"
+  },
+  "field_label_shortcut": {
+    "message": "शॉर्टकट",
+    "description": "Label for the shortcut input field"
+  },
+  "field_optional_marker": {
+    "message": "(वैकल्पिक)",
+    "description": "Marker indicating a field is optional"
+  },
+  "field_label_body": {
+    "message": "टेम्पलेट सामग्री",
+    "description": "Label for the rich-text template body editor"
+  },
+  "toolbar_font_label": {
+    "message": "फ़ॉन्ट",
+    "description": "Default/label option for the font selector"
+  },
+  "toolbar_font_sans_serif": {
+    "message": "सैन्स सेरिफ़",
+    "description": "Sans Serif font option"
+  },
+  "toolbar_font_serif": {
+    "message": "सेरिफ़",
+    "description": "Serif font option"
+  },
+  "toolbar_font_monospace": {
+    "message": "मोनोस्पेस",
+    "description": "Monospace font option"
+  },
+  "toolbar_size_label": {
+    "message": "आकार",
+    "description": "Default/label option for the font size selector"
+  },
+  "toolbar_size_small": {
+    "message": "छोटा",
+    "description": "Small font size option"
+  },
+  "toolbar_size_normal": {
+    "message": "सामान्य",
+    "description": "Normal font size option"
+  },
+  "toolbar_size_large": {
+    "message": "बड़ा",
+    "description": "Large font size option"
+  },
+  "toolbar_size_huge": {
+    "message": "बहुत बड़ा",
+    "description": "Huge font size option"
+  },
+  "toolbar_bold_tooltip": {
+    "message": "बोल्ड",
+    "description": "Tooltip for the bold button"
+  },
+  "toolbar_italic_tooltip": {
+    "message": "इटैलिक",
+    "description": "Tooltip for the italic button"
+  },
+  "toolbar_underline_tooltip": {
+    "message": "अंडरलाइन",
+    "description": "Tooltip for the underline button"
+  },
+  "toolbar_strikethrough_tooltip": {
+    "message": "स्ट्राइकथ्रू",
+    "description": "Tooltip for the strikethrough button"
+  },
+  "toolbar_text_color_tooltip": {
+    "message": "टेक्स्ट का रंग",
+    "description": "Tooltip for the text-color button"
+  },
+  "toolbar_highlight_tooltip": {
+    "message": "हाइलाइट",
+    "description": "Tooltip for the highlight/background-color button"
+  },
+  "toolbar_bullet_list_tooltip": {
+    "message": "बुलेट सूची",
+    "description": "Tooltip for the bullet list button"
+  },
+  "toolbar_numbered_list_tooltip": {
+    "message": "क्रमांकित सूची",
+    "description": "Tooltip for the numbered list button"
+  },
+  "toolbar_align_left_tooltip": {
+    "message": "बाएँ संरेखित करें",
+    "description": "Tooltip for the align-left button"
+  },
+  "toolbar_align_center_tooltip": {
+    "message": "केंद्र में",
+    "description": "Tooltip for the center-align button"
+  },
+  "toolbar_insert_link_tooltip": {
+    "message": "लिंक इंसर्ट करें",
+    "description": "Tooltip for the insert-link button"
+  },
+  "toolbar_clear_formatting_tooltip": {
+    "message": "फ़ॉर्मेटिंग हटाएँ",
+    "description": "Tooltip for the clear-formatting button"
+  },
+  "toolbar_variables_label": {
+    "message": "{ } वेरिएबल",
+    "description": "Default/label option for the variable-insertion selector"
+  },
+  "button_preview": {
+    "message": "👁 पूर्वावलोकन",
+    "description": "Preview button in the editor toolbar"
+  },
+  "button_delete": {
+    "message": "हटाएँ",
+    "description": "Delete action label/tooltip in editor, picker list, and manager"
+  },
+  "button_cancel": {
+    "message": "रद्द करें",
+    "description": "Cancel/revert button in the editor"
+  },
+  "button_save": {
+    "message": "बदलाव सहेजें",
+    "description": "Save button in the options editor"
+  },
+  "status_reverted": {
+    "message": "वापस किया गया",
+    "description": "Status message after unsaved changes are reverted"
+  },
+  "status_saved_silent": {
+    "message": "सहेजा गया",
+    "description": "Status for a silent autosave"
+  },
+  "status_saved": {
+    "message": "सहेजा गया ✓",
+    "description": "Status for an explicit user-initiated save"
+  },
+  "status_saved_no_images_upsell": {
+    "message": "सहेजा गया (टेक्स्ट और फ़ॉर्मेटिंग)। इमेज एक Pro फ़ीचर है — उन्हें रखने के लिए अपग्रेड करें।",
+    "description": "Status when images were stripped on save (Pro upsell)"
+  },
+  "confirm_delete_template_to_trash": {
+    "message": "इस टेम्पलेट को ट्रैश में ले जाएँ?",
+    "description": "Confirmation for moving a template to trash from the editor"
+  },
+  "prompt_link_url": {
+    "message": "लिंक URL:",
+    "description": "Prompt for the URL when inserting a link"
+  },
+  "status_recording_hotkey": {
+    "message": "कीज़ दबाएँ…",
+    "description": "Button text shown while recording a new hotkey"
+  },
+  "status_hotkey_invalid": {
+    "message": "Alt/Ctrl + एक अक्षर का उपयोग करें",
+    "description": "Feedback when an invalid hotkey combination is pressed"
+  },
+  "alert_create_limit_reached": {
+    "message": "आप फ्री प्लान पर $limit$-टेम्पलेट की सीमा तक पहुँच गए हैं। और जोड़ने के लिए एक हटाएँ।",
+    "description": "Alert/error when creating a new template would exceed the free-plan limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_import_partial": {
+    "message": "$total$ में से $count$ इंपोर्ट हुए — बाकी $limit$-टेम्पलेट फ्री-प्लान सीमा से टकरा गए।",
+    "description": "Alert when an import partially succeeds due to the plan limit",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "limit": {
+        "content": "$3"
+      }
+    }
+  },
+  "alert_import_failed": {
+    "message": "इंपोर्ट विफल — यह एक मान्य Canned Responses JSON फ़ाइल नहीं लगती।",
+    "description": "Alert when an import file fails validation"
+  },
+  "template_pasted_email_title": {
+    "message": "पेस्ट किया गया ईमेल",
+    "description": "Default title for a template auto-created from pasted email content"
+  },
+  "welcome_hero_title": {
+    "message": "आप तैयार हैं 🎉",
+    "description": "Main heading on the post-install welcome page"
+  },
+  "welcome_hero_subtitle": {
+    "message": "Canned Responses Gmail और LinkedIn में तैयार है। बस एक बात याद रखें:",
+    "description": "Subheading explaining where the extension works"
+  },
+  "welcome_hotkey_instruction": {
+    "message": "किसी भी कंपोज़ बॉक्स में इसे दबाएँ → टेम्पलेट खोजें → कर्सर पर इंसर्ट करने के लिए Enter दबाएँ।",
+    "description": "Explains how to use the hotkey to insert a template"
+  },
+  "welcome_card_insert_title": {
+    "message": "इंसर्ट करने के दो तरीके",
+    "description": "Feature card title for insertion methods"
+  },
+  "welcome_card_insert_desc": {
+    "message": "Alt+A पिकर, या तुरंत एक्सपैंड करने के लिए ;shortcut + Tab टाइप करें।",
+    "description": "Feature description for the two insertion methods"
+  },
+  "welcome_card_save_title": {
+    "message": "एक क्लिक में सहेजें",
+    "description": "Feature card title for saving templates"
+  },
+  "welcome_card_save_desc": {
+    "message": "ईमेल में टेक्स्ट चुनें → टेम्पलेट के रूप में सहेजें पर क्लिक करें (या राइट-क्लिक → सहेजें)।",
+    "description": "Feature description for saving a selection as a template"
+  },
+  "welcome_card_copy_title": {
+    "message": "पूरे ईमेल कॉपी करें",
+    "description": "Feature card title for copying emails"
+  },
+  "welcome_card_copy_desc": {
+    "message": "ईमेल खोलें → कॉपी (Reply/Forward के बगल में) → कहीं भी पेस्ट करें, स्टाइलिंग बरकरार।",
+    "description": "Feature description for the email copy button"
+  },
+  "welcome_card_organize_title": {
+    "message": "व्यवस्थित करें",
+    "description": "Feature card title for organization features"
+  },
+  "welcome_card_organize_desc": {
+    "message": "पसंदीदा बनाएँ, खोजें, क्रम बदलें, {first_name} जैसे वेरिएबल, एक्सपोर्ट और इंपोर्ट।",
+    "description": "Feature description for organizational capabilities"
+  },
+  "welcome_starter_templates_heading": {
+    "message": "आपके स्टार्टर टेम्पलेट",
+    "description": "Heading above the list of pre-seeded starter templates"
+  },
+  "welcome_theme_label": {
+    "message": "थीम",
+    "description": "Label for the theme preference control on the welcome page"
+  },
+  "welcome_theme_hint": {
+    "message": "पिकर, पॉपअप और मैनेजर पर लागू होता है।",
+    "description": "Hint explaining where the theme preference applies"
+  },
+  "welcome_open_gmail_btn": {
+    "message": "Gmail खोलें →",
+    "description": "Primary button to launch Gmail"
+  },
+  "welcome_manage_templates_btn": {
+    "message": "टेम्पलेट प्रबंधित करें",
+    "description": "Secondary button to open the template manager"
+  },
+  "welcome_footer_privacy": {
+    "message": "लोकल-फ़र्स्ट · कोई अकाउंट नहीं · आपके टेम्पलेट कभी आपके डिवाइस से बाहर नहीं जाते।",
+    "description": "Privacy assurance in the welcome page footer"
+  },
+  "welcome_empty_state": {
+    "message": "अभी कोई टेम्पलेट नहीं — जोड़ने के लिए मैनेजर खोलें।",
+    "description": "Empty state guiding the user to add a first template"
+  },
+  "picker_panel_title": {
+    "message": "टेम्पलेट",
+    "description": "Header label for the picker panel and the LinkedIn nav button label"
+  },
+  "picker_no_matches_query": {
+    "message": "\"$query$\" से कोई टेम्पलेट मेल नहीं खाता।",
+    "description": "Empty state in the picker when a search has no results, echoing the query",
+    "placeholders": {
+      "query": {
+        "content": "$1"
+      }
+    }
+  },
+  "button_edit": {
+    "message": "संपादित करें",
+    "description": "Edit action label/tooltip in picker, manager, and capture toast"
+  },
+  "picker_new_template_btn": {
+    "message": "+ नया टेम्पलेट",
+    "description": "Button to create a new template from the picker footer"
+  },
+  "picker_new_template_title": {
+    "message": "नया टेम्पलेट बनाएँ",
+    "description": "Tooltip for the new-template button in the picker"
+  },
+  "picker_hint_navigate": {
+    "message": "↑↓ नेविगेट",
+    "description": "Keyboard hint for arrow-key navigation"
+  },
+  "picker_hint_insert": {
+    "message": "↵ इंसर्ट",
+    "description": "Keyboard hint for inserting the selected template"
+  },
+  "picker_hint_close": {
+    "message": "esc बंद",
+    "description": "Keyboard hint for closing the picker"
+  },
+  "picker_back_btn_title": {
+    "message": "टेम्पलेट पर वापस (Esc)",
+    "description": "Tooltip for the back button on the variable-fill screen"
+  },
+  "button_back": {
+    "message": "वापस",
+    "description": "Back navigation label/tooltip in picker and manager"
+  },
+  "picker_fill_heading": {
+    "message": "\"$title$\" भरें",
+    "description": "Heading prompting the user to fill in a template's variables",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "picker_insert_btn": {
+    "message": "इंसर्ट करें",
+    "description": "Button to insert the filled-in template"
+  },
+  "picker_delete_confirm": {
+    "message": "\"$title$\" हटाएँ?",
+    "description": "Confirmation prompt when deleting a template from the picker",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "manager_edit_heading": {
+    "message": "टेम्पलेट संपादित करें",
+    "description": "Header when editing an existing template in the manager"
+  },
+  "manager_new_heading": {
+    "message": "नया टेम्पलेट",
+    "description": "Header when creating a new template in the manager"
+  },
+  "manager_title_placeholder": {
+    "message": "टेम्पलेट का शीर्षक",
+    "description": "Placeholder for the template title input in the manager"
+  },
+  "manager_shortcut_placeholder": {
+    "message": ";expand के लिए शॉर्टकट (वैकल्पिक, उदा. sig)",
+    "description": "Placeholder for the shortcut input with an example"
+  },
+  "manager_insert_label": {
+    "message": "इंसर्ट:",
+    "description": "Label preceding the variable chip buttons"
+  },
+  "manager_body_placeholder": {
+    "message": "अपना टेम्पलेट लिखें… वेरिएबल के लिए {first_name} का उपयोग करें",
+    "description": "Placeholder for the template body textarea"
+  },
+  "manager_discard_btn": {
+    "message": "रद्द करें",
+    "description": "Button to discard an unsaved new template draft"
+  },
+  "manager_full_editor_link": {
+    "message": "पूरा एडिटर ↗",
+    "description": "Link to open the full template editor in the options page"
+  },
+  "manager_save_btn": {
+    "message": "सहेजें",
+    "description": "Save button in the inline manager editor"
+  },
+  "manager_delete_confirm": {
+    "message": "इस टेम्पलेट को हटाएँ?",
+    "description": "Confirmation prompt when deleting a template from the manager"
+  },
+  "toast_inserted": {
+    "message": "✓ इंसर्ट हुआ",
+    "description": "Toast shown after a template is inserted (via picker or ;shortcut expansion)"
+  },
+  "toast_copied": {
+    "message": "✓ कॉपी हुआ",
+    "description": "Toast shown after copying to clipboard"
+  },
+  "toast_saved_as_template": {
+    "message": "✓ टेम्पलेट के रूप में सहेजा गया",
+    "description": "Toast after saving a selection as a new template"
+  },
+  "toast_images_pro_feature": {
+    "message": "इमेज एक Pro फ़ीचर है",
+    "description": "Upsell note appended when images were stripped from a captured template"
+  },
+  "toast_template_limit_reached": {
+    "message": "टेम्पलेट सीमा पूरी हुई ($lim$)। और जोड़ने के लिए एक हटाएँ।",
+    "description": "Error toast when capturing would exceed the template limit",
+    "placeholders": {
+      "lim": {
+        "content": "$1"
+      }
+    }
+  },
+  "capture_pill_label": {
+    "message": "टेम्पलेट के रूप में सहेजें",
+    "description": "Label on the floating 'Save as template' pill shown over a selection"
+  },
+  "surface_btn_aria_label": {
+    "message": "Canned Responses (Alt+A)",
+    "description": "Accessibility label for the injected Gmail/LinkedIn template button"
+  },
+  "gmail_btn_title": {
+    "message": "Canned Responses — टेम्पलेट इंसर्ट करें (Alt+A)",
+    "description": "Tooltip for the Gmail top-bar template button"
+  },
+  "linkedin_btn_title": {
+    "message": "Canned Responses — टेम्पलेट प्रबंधित करें (इंसर्ट के लिए Alt+A)",
+    "description": "Tooltip for the LinkedIn nav template button"
+  },
+  "gmail_copy_btn_aria_label": {
+    "message": "ईमेल कॉपी करें",
+    "description": "Accessibility label for the Gmail Copy-email button"
+  },
+  "gmail_copy_btn_title": {
+    "message": "इस ईमेल को फ़ॉर्मेटिंग और इमेज सहित कॉपी करें",
+    "description": "Tooltip for the Gmail Copy-email button"
+  },
+  "gmail_copy_btn_label": {
+    "message": "कॉपी",
+    "description": "Label of the Gmail Copy-email button"
+  },
+  "toast_email_copied_success": {
+    "message": "ईमेल कॉपी हुआ — Ctrl+V से पेस्ट करें (फ़ॉन्ट, रंग और इमेज बरकरार)",
+    "description": "Success toast after copying an email with formatting"
+  },
+  "toast_action_open_editor": {
+    "message": "एडिटर खोलें →",
+    "description": "Actionable link in the copy-success toast to open the full editor"
+  },
+  "toast_copy_failed": {
+    "message": "कॉपी विफल — मैन्युअली चुनकर देखें",
+    "description": "Error toast when the email copy operation fails"
+  },
+  "template_count_one": {
+    "message": "$count$ टेम्पलेट",
+    "description": "Header count of templates (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "template_count_other": {
+    "message": "$count$ टेम्पलेट",
+    "description": "Header count of templates (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "backup_nudge_message_one": {
+    "message": "आपके पास $count$ टेम्पलेट है। इसका बैकअप लें ताकि दोबारा इंस्टॉल पर यह खो न जाए।",
+    "description": "Backup reminder banner; $count$ is the number of templates (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "backup_nudge_message_other": {
+    "message": "आपके पास $count$ टेम्पलेट हैं। इनका बैकअप लें ताकि दोबारा इंस्टॉल पर ये खो न जाएँ।",
+    "description": "Backup reminder banner; $count$ is the number of templates (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirm_delete_category_with_templates_one": {
+    "message": "\"$name$\" हटाएँ? इसका $n$ टेम्पलेट \"सभी टेम्पलेट\" में चला जाएगा (हटेगा नहीं)।",
+    "description": "Confirm deleting a category that still holds templates; $name$ = category, $n$ = number of templates (singular)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "n": {
+        "content": "$2"
+      }
+    }
+  },
+  "confirm_delete_category_with_templates_other": {
+    "message": "\"$name$\" हटाएँ? इसके $n$ टेम्पलेट \"सभी टेम्पलेट\" में चले जाएँगे (हटेंगे नहीं)।",
+    "description": "Confirm deleting a category that still holds templates; $name$ = category, $n$ = number of templates (plural)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "n": {
+        "content": "$2"
+      }
+    }
+  },
+  "alert_import_success_one": {
+    "message": "$count$ टेम्पलेट इंपोर्ट हुआ।",
+    "description": "Alert after a fully successful import; $count$ = number imported (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_import_success_other": {
+    "message": "$count$ टेम्पलेट इंपोर्ट हुए।",
+    "description": "Alert after a fully successful import; $count$ = number imported (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}
