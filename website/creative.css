@@ -1,0 +1,341 @@
+/* =====================================================================
+   creative.css — "The Living Spec Sheet" ambient system (additive, non-destructive)
+   Three layers of one printed artifact, in the existing blue+ink+hair language:
+     · grid   — the ruled engineering sheet  (homepage, BEHIND content)
+     · frame  — crop + registration marks     (all pages, framing the page)
+     · grain  — risograph paper fibre          (all pages, faint, above content)
+   plus an editorial running-header ticker + drafting dimension dividers.
+   All selectors cr- prefixed. Reuses design-system vars. Light + dark + reduced-motion safe.
+   ===================================================================== */
+
+/* ---------- 1. GRID — the ruled sheet (homepage only) ---------- */
+.cr-grid { position: fixed; inset: 0; z-index: -1; pointer-events: none; contain: strict;
+  background-image:
+    linear-gradient(to right,  rgba(36,55,120,.05)  0 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36,55,120,.05)  0 1px, transparent 1px),
+    linear-gradient(to right,  rgba(36,55,120,.026) 0 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36,55,120,.026) 0 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  -webkit-mask-image: radial-gradient(125% 115% at 50% 30%, #000 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.1) 100%);
+          mask-image: radial-gradient(125% 115% at 50% 30%, #000 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.1) 100%); }
+html[data-theme="dark"] .cr-grid {
+  background-image:
+    linear-gradient(to right,  rgba(150,175,255,.06)  0 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(150,175,255,.06)  0 1px, transparent 1px),
+    linear-gradient(to right,  rgba(150,175,255,.03)  0 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(150,175,255,.03)  0 1px, transparent 1px); }
+
+/* softer ruled sheet behind long-form reading pages (articles, legal) */
+.cr-grid.cr-faint { opacity: .5; }
+
+/* let the blueprint lead: dial the hero aurora back so the hero reads as a ruled
+   sheet rather than a generic gradient. Kept, not removed — a hint of colour depth. */
+.hero .aurora { opacity: .5; }
+html[data-theme="dark"] .hero .aurora { opacity: .42; }
+
+/* ---------- 2. FRAME — crop + registration marks (all pages) ---------- */
+.cr-frame { position: fixed; inset: 0; z-index: 11; pointer-events: none; }
+.cr-mk { position: absolute; width: 15px; height: 15px; opacity: .5; }
+.cr-mk::before, .cr-mk::after { content: ""; position: absolute; background: var(--blue); }
+.cr-mk::before { width: 15px; height: 1px; top: 0; left: 0; }
+.cr-mk::after  { width: 1px; height: 15px; top: 0; left: 0; }
+.cr-mk.tl { top: 14px; left: 14px; }
+.cr-mk.tr { top: 14px; right: 14px; } .cr-mk.tr::before { left: auto; right: 0; } .cr-mk.tr::after { left: auto; right: 0; }
+.cr-mk.bl { bottom: 14px; left: 14px; } .cr-mk.bl::before { top: auto; bottom: 0; } .cr-mk.bl::after { top: auto; bottom: 0; }
+.cr-mk.br { bottom: 14px; right: 14px; } .cr-mk.br::before { top: auto; bottom: 0; left: auto; right: 0; } .cr-mk.br::after { top: auto; bottom: 0; left: auto; right: 0; }
+.cr-reg { position: absolute; left: 13px; bottom: 40px; width: 18px; height: 18px;
+  border: 1px solid var(--blue); border-radius: 50%; opacity: .4; box-shadow: inset 0 0 0 4px var(--bg); }
+.cr-reg::before, .cr-reg::after { content: ""; position: absolute; background: var(--blue); }
+.cr-reg::before { left: 50%; top: -5px; width: 1px; height: 28px; transform: translateX(-.5px); }
+.cr-reg::after  { top: 50%; left: -5px; height: 1px; width: 28px; transform: translateY(-.5px); }
+html[data-theme="dark"] .cr-mk { opacity: .6; }
+html[data-theme="dark"] .cr-reg { opacity: .5; }
+
+/* ---------- 3. GRAIN — risograph paper fibre (all pages, faint) ---------- */
+:root { --cr-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.cr-grain { position: fixed; inset: 0; z-index: 2; pointer-events: none; contain: strict;
+  background-image: var(--cr-grain); background-size: 180px 180px;
+  mix-blend-mode: multiply; opacity: .05; }
+html[data-theme="dark"] .cr-grain { mix-blend-mode: soft-light; opacity: .038; }
+@supports not (mix-blend-mode: multiply) { .cr-grain { display: none; } }
+
+/* ---------- 4. TICKER — printed running header (homepage) ---------- */
+.cr-ticker { --cr-mono: ui-monospace, Menlo, "SFMono-Regular", Consolas, monospace;
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); background: var(--bg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.cr-ticker::before, .cr-ticker::after { content: ""; position: absolute; top: -1px; width: 1px; height: 6px;
+  background: var(--blue); opacity: .5; z-index: 2; }
+.cr-ticker::before { left: 7%; } .cr-ticker::after { right: 7%; }
+.cr-tk-track { display: flex; width: max-content; white-space: nowrap; will-change: transform;
+  animation: cr-tk 74s linear infinite; }
+.cr-ticker:hover .cr-tk-track, .cr-ticker.cr-pause .cr-tk-track { animation-play-state: paused; }
+@keyframes cr-tk { to { transform: translate3d(-50%, 0, 0); } }
+.cr-tk-seg { display: flex; align-items: center; flex: 0 0 auto; font-family: var(--cr-mono);
+  font-size: 12px; line-height: 1; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 11px 0; }
+.cr-tk-seg > span { display: inline-flex; align-items: center; padding-left: 22px; position: relative; }
+.cr-tk-seg > span::before { content: "\271A"; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  color: var(--blue); opacity: .5; font-size: 9px; letter-spacing: 0; }
+.cr-tk-seg > span::after { content: ""; display: inline-block; width: 18px; height: 1px; background: var(--hair); margin-left: 22px; }
+.cr-tk-seg b { color: var(--ink); font-weight: 600; }
+.cr-tk-seg .cr-k { color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; letter-spacing: .04em; font-size: 11px; }
+.cr-tk-static { display: none; font-family: var(--cr-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); text-align: center; padding: 11px 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-tk-static b { color: var(--ink); } .cr-tk-static .s { color: var(--blue); opacity: .6; }
+
+/* ---------- 5. DIMENSION DIVIDERS — drafting measurement between sections (homepage) ---------- */
+.cr-dim { --cr-mono: ui-monospace, Menlo, Consolas, monospace; --cr-e: cubic-bezier(.55,0,.45,1);
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px;
+  max-width: 1080px; margin: 4px auto; padding: 24px 28px; position: relative; }
+.cr-dm-side { position: relative; height: 18px; }
+.cr-dm-line { position: absolute; top: 50%; height: 1px; background: var(--hair); transform-origin: var(--o, center); }
+.cr-dm-side.l .cr-dm-line { left: 0; right: 13px; --o: right; }
+.cr-dm-side.r .cr-dm-line { left: 13px; right: 0; --o: left; }
+.cr-dm-tick { position: absolute; top: 50%; width: 1px; height: 11px; background: var(--muted); transform: translateY(-50%); opacity: .8; }
+.cr-dm-side.l .cr-dm-tick { left: 0; } .cr-dm-side.r .cr-dm-tick { right: 0; }
+.cr-dm-plate { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 4px; line-height: 1; }
+.cr-dm-num { font-family: var(--cr-mono); font-weight: 700; font-size: 15px; letter-spacing: .12em; color: var(--blue); font-variant-numeric: tabular-nums; }
+.cr-dm-label { font-family: var(--cr-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.cr-dm-span { position: absolute; bottom: -2px; font-family: var(--cr-mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: #aab2c6; white-space: nowrap; }
+.cr-dm-side.l .cr-dm-span { left: 0; } .cr-dm-side.r .cr-dm-span { right: 0; }
+/* draw-in (the .js class is set by the inline head script) */
+.js .cr-dim .cr-dm-line { transition: transform .7s var(--cr-e); }
+.js .cr-dim .cr-dm-tick { transition: transform .35s ease .55s, opacity .35s ease .55s; }
+.js .cr-dim:not(.cr-on) .cr-dm-line { transform: scaleX(0); }
+.js .cr-dim:not(.cr-on) .cr-dm-tick { transform: translateY(-50%) scaleY(0); opacity: 0; }
+.js .cr-dim .cr-dm-plate { transition: opacity .4s ease .2s; } .js .cr-dim:not(.cr-on) .cr-dm-plate { opacity: 0; }
+.js .cr-dim .cr-dm-span { transition: opacity .4s ease .6s; } .js .cr-dim:not(.cr-on) .cr-dm-span { opacity: 0; }
+
+/* ---------- reduced motion: static, calm ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cr-tk-track { display: none; } .cr-tk-static { display: block; } .cr-ticker::before, .cr-ticker::after { display: none; }
+  .js .cr-dim .cr-dm-line, .js .cr-dim .cr-dm-tick, .js .cr-dim .cr-dm-plate, .js .cr-dim .cr-dm-span { transition: none; }
+  .js .cr-dim:not(.cr-on) .cr-dm-line { transform: scaleX(1); }
+  .js .cr-dim:not(.cr-on) .cr-dm-tick { transform: translateY(-50%) scaleY(1); opacity: .8; }
+  .js .cr-dim:not(.cr-on) .cr-dm-plate, .js .cr-dim:not(.cr-on) .cr-dm-span { opacity: 1; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  .cr-grid { background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px; }
+  .cr-mk.tl, .cr-mk.bl { left: 8px; } .cr-mk.tr, .cr-mk.br { right: 8px; }
+  .cr-mk.tl, .cr-mk.tr { top: 8px; } .cr-mk.bl, .cr-mk.br { bottom: 8px; }
+  .cr-reg { left: 8px; bottom: 26px; }
+  .cr-dim { padding: 18px 16px; gap: 12px; } .cr-dm-span { display: none; }
+}
+
+/* =====================================================================
+   margin-sidenotes — Tufte-style marginalia for articles.
+   Numbered mono+blue reference markers in the body; notes render in the
+   WIDE RIGHT MARGIN of the centred .article on desktop, and collapse to
+   tap/focus-to-expand inline footnotes on narrow screens.
+   Pattern: Tufte CSS sidenotes + gwern collision-avoidance (JS placement)
+   + Frontend-Masters progressive-enhancement-to-popover on mobile.
+   Notes go RIGHT only — never collides with the left .reading-rail.
+   ===================================================================== */
+.cr-sn { --cr-sn-w: 184px; --cr-sn-gap: 30px; --cr-mono: ui-monospace, Menlo, "SFMono-Regular", Consolas, monospace; }
+
+/* the inline reference marker — a spec-sheet superscript tick */
+.cr-sn-ref {
+  font-family: var(--cr-mono); font-size: .62em; font-weight: 700; line-height: 0;
+  color: var(--blue); vertical-align: super; letter-spacing: .02em;
+  cursor: pointer; background: none; border: 0; padding: 0 .12em; margin: 0;
+  font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent;
+  counter-increment: cr-sn-counter;
+}
+.cr-sn-ref::before { content: "[" counter(cr-sn-counter, decimal-leading-zero) "]"; }
+.cr-sn-ref:hover { color: var(--blue-dark); }
+.cr-sn-ref:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; color: var(--blue-dark); }
+.cr-sn-ref[aria-expanded="true"] { color: var(--blue-dark); }
+/* article body counts the markers so numbering is automatic + reorder-safe */
+.article-body { counter-reset: cr-sn-counter sec; }
+
+/* the note itself — quieter register than body prose */
+.cr-sn-note {
+  font-family: var(--cr-mono); font-size: 12.5px; line-height: 1.5;
+  color: var(--muted); font-variant-numeric: oldstyle-nums;
+}
+.cr-sn-note b, .cr-sn-note strong { color: var(--ink); font-weight: 700; }
+.cr-sn-note code { font-size: .92em; }
+.cr-sn-note a { color: var(--blue); }
+/* the leading index — generated from the SAME counter as the marker, so authors
+   never hand-number and reordering can't desync the marker from its note */
+.cr-sn-note::before {
+  content: counter(cr-sn-counter, decimal-leading-zero);
+  font-family: var(--cr-mono); font-weight: 700; letter-spacing: .04em;
+  color: var(--blue); margin-right: 8px; font-variant-numeric: tabular-nums;
+}
+
+/* ---------- DESKTOP (>=1280px): float notes into the right margin ---------- */
+/* default (mobile-first): notes are collapsed footnotes, revealed on toggle */
+.cr-sn-note {
+  display: block; max-height: 0; overflow: hidden; opacity: 0;
+  margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--hair);
+}
+.js .cr-sn[data-open="1"] > .cr-sn-note {
+  max-height: 60vh; overflow: auto; opacity: 1; margin: 10px 0 16px; padding: 2px 0 2px 16px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cr-sn-note { transition: max-height .32s cubic-bezier(.4,0,.2,1), opacity .28s ease, margin .32s cubic-bezier(.4,0,.2,1); }
+}
+
+@media (min-width: 1280px) {
+  /* the marker stays inline; the note is lifted out into the gutter by JS,
+     which sets a per-note --cr-sn-top (px from the article's top). */
+  .cr-sn { position: static; }
+  .article-body .cr-sn-note {
+    position: absolute; left: 100%; width: var(--cr-sn-w);
+    margin-left: var(--cr-sn-gap); top: var(--cr-sn-top, 0);
+    max-height: none; overflow: visible; opacity: 1; padding: 0 0 0 13px;
+    border-left: 1px solid var(--hair); transition: none;
+    /* hang the index tick so the note text forms a clean optical edge */
+  }
+  .article-body { position: relative; } /* positioning context for the gutter notes */
+  /* the index number keeps its inline treatment; desktop just adds an accent
+     tick on the hairline where the note begins, aligning the eye to the row */
+  .article-body .cr-sn-note { color: var(--muted); transition: color .2s ease, border-color .2s ease; }
+  .article-body .cr-sn-note::after {
+    content: ""; position: absolute; left: -1px; top: 2px; width: 1px; height: 13px;
+    background: var(--blue); opacity: .5; transition: opacity .2s ease, box-shadow .2s ease;
+  }
+  /* notes sit quiet and warm to ink when their marker is hovered/focused */
+  .article-body .cr-sn.cr-sn-lit > .cr-sn-note { color: var(--ink); border-left-color: #c7cede; }
+  .article-body .cr-sn.cr-sn-lit > .cr-sn-note::after { opacity: 1; box-shadow: 0 0 0 3px rgba(47,91,255,.14); }
+  .article-body .cr-sn.cr-sn-lit > .cr-sn-ref { color: var(--blue-dark); }
+}
+
+/* ---------- DARK ---------- */
+/* explicit dark hairline (beats the desktop gutter rule's var(--hair), which can
+   resolve to the light token at this element in some cascades) */
+html[data-theme="dark"] .cr-sn-note { border-left-color: #2b3040; }
+html[data-theme="dark"] .cr-sn-note b, html[data-theme="dark"] .cr-sn-note strong { color: #fff; }
+@media (min-width: 1280px) {
+  html[data-theme="dark"] .article-body .cr-sn-note { color: #6c7589; }
+  html[data-theme="dark"] .article-body .cr-sn.cr-sn-lit > .cr-sn-note { color: #e8eaf2; }
+}
+
+/* ---------- REDUCED MOTION: instant, no slide ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cr-sn-note { transition: none; }
+}
+
+/* ---------- duotone — reusable two-ink print-plate hook for future images ---------- */
+.cr-duotone { position: relative; display: inline-block; isolation: isolate; }
+.cr-duotone > img { display: block; filter: grayscale(1) contrast(1.04); }
+.cr-duotone::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(135deg, var(--ink), var(--blue)); mix-blend-mode: lighten; opacity: .42; }
+.cr-duotone::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: var(--blue); mix-blend-mode: multiply; opacity: .26; }
+html[data-theme="dark"] .cr-duotone::after { background: linear-gradient(135deg, var(--blue), var(--ink)); mix-blend-mode: screen; opacity: .34; }
+html[data-theme="dark"] .cr-duotone::before { mix-blend-mode: screen; opacity: .22; }
+@supports not (mix-blend-mode: multiply) { .cr-duotone::before, .cr-duotone::after { display: none; } }
+
+/* =====================================================================
+   article-cover — editorial masthead "cover plate" (enhances .article-head).
+   JS adds .cr-cover; an oversized OUTLINED index numeral (outline->fill on
+   load), a mono kicker rule, the Fraunces H1, and an abstract line closed by
+   a registration mark. Additive · dark + reduced-motion safe · transform/opacity.
+   ===================================================================== */
+.article-head.cr-cover { position: relative; padding-top: 30px; padding-right: clamp(0px, 15vw, 156px); overflow: clip; }
+.article-head.cr-cover .cr-cover-kicker {
+  display: flex; align-items: center; gap: 12px;
+  font-family: ui-monospace, Menlo, "SFMono-Regular", Consolas, monospace;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  padding-bottom: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--hair); }
+.article-head.cr-cover .cr-cover-kicker .cr-cover-cat { color: var(--blue); border: 1px solid var(--line); border-radius: 4px; padding: 3px 9px; font-size: 11px; letter-spacing: .12em; }
+.article-head.cr-cover .cr-cover-kicker .cr-cover-vol { margin-left: auto; color: #9aa0b0; font-weight: 600; }
+.cr-cover-kdot { color: var(--line); }
+.cr-cover-idx {
+  position: absolute; top: -8px; right: -4px; z-index: 0;
+  font-family: var(--serif, "Fraunces", Georgia, serif); font-weight: 900; font-variant-numeric: lining-nums tabular-nums;
+  font-size: clamp(88px, 14vw, 170px); line-height: .82; letter-spacing: -.04em;
+  color: #d4dbec; pointer-events: none; -webkit-user-select: none; user-select: none; }
+@supports (-webkit-text-stroke: 1px #000) {
+  .cr-cover-idx { color: transparent; -webkit-text-stroke: 2px #cdd5e8; transition: -webkit-text-stroke-color .9s ease, color .9s ease; }
+  .article-head.cr-cover.cr-developed .cr-cover-idx { -webkit-text-stroke-color: transparent; color: #c7cede; } }
+.cr-cover-idx::before { content: ""; position: absolute; inset: -14px -14px auto auto; width: 14px; height: 14px; border-top: 1px solid var(--line); border-right: 1px solid var(--line); }
+.cr-cover-stamp { position: absolute; right: 2px; bottom: -2px; z-index: 1; font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; color: var(--muted); }
+.article-head.cr-cover h1, .article-head.cr-cover .article-lead,
+.article-head.cr-cover .cr-cover-kicker, .article-head.cr-cover .cr-cover-abstract { position: relative; z-index: 1; }
+.article-head.cr-cover h1 { margin-top: 8px; max-width: 20ch; }
+.cr-cover-abstract {
+  display: flex; align-items: center; gap: 14px; margin: 22px 0 4px; padding-top: 16px; border-top: 1px solid var(--hair);
+  font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.cr-cover-abstract .cr-cover-a-label { color: var(--blue); flex: 0 0 auto; }
+.cr-cover-abstract .cr-cover-a-meta { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-cover-reg { position: relative; flex: 0 0 auto; width: 15px; height: 15px; border: 1px solid var(--blue); border-radius: 50%; opacity: .55; }
+.cr-cover-reg::before, .cr-cover-reg::after { content: ""; position: absolute; background: var(--blue); }
+.cr-cover-reg::before { left: 50%; top: -4px; width: 1px; height: 23px; transform: translateX(-.5px); }
+.cr-cover-reg::after  { top: 50%; left: -4px; height: 1px; width: 23px; transform: translateY(-.5px); }
+.js .article-head.cr-cover .cr-cover-idx { opacity: 0; transform: translateY(6px); }
+.js .article-head.cr-cover.cr-developed .cr-cover-idx { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+.js .article-head.cr-cover .cr-cover-abstract { opacity: 0; }
+.js .article-head.cr-cover.cr-developed .cr-cover-abstract { opacity: 1; transition: opacity .6s ease .25s; }
+.js .article-head.cr-cover .cr-cover-reg { transform: rotate(-90deg) scale(.6); }
+.js .article-head.cr-cover.cr-developed .cr-cover-reg { transform: none; transition: transform .7s cubic-bezier(.2,.7,.3,1) .15s; }
+@media (max-width: 680px) {
+  .article-head.cr-cover { padding-right: 0; padding-top: 22px; }
+  .cr-cover-idx { top: -6px; right: -4px; font-size: clamp(70px, 22vw, 110px); opacity: .8; }
+  .article-head.cr-cover h1 { max-width: none; }
+  .cr-cover-kicker .cr-cover-vol { display: none; }
+  .cr-cover-abstract { flex-wrap: wrap; gap: 8px 12px; }
+  .cr-cover-abstract .cr-cover-a-meta { white-space: normal; } }
+html[data-theme="dark"] .article-head.cr-cover .cr-cover-kicker { color: var(--muted); border-bottom-color: var(--hair); }
+html[data-theme="dark"] .article-head.cr-cover .cr-cover-kicker .cr-cover-cat { border-color: var(--line); color: #9db4ff; }
+html[data-theme="dark"] .cr-cover-idx { color: #2b3142; }
+@supports (-webkit-text-stroke: 1px #000) {
+  html[data-theme="dark"] .cr-cover-idx { color: transparent; -webkit-text-stroke-color: #2c3142; }
+  html[data-theme="dark"] .article-head.cr-cover.cr-developed .cr-cover-idx { -webkit-text-stroke-color: transparent; color: #353c50; } }
+html[data-theme="dark"] .cr-cover-idx::before { border-color: var(--line); }
+html[data-theme="dark"] .cr-cover-stamp { color: #5a6378; }
+html[data-theme="dark"] .cr-cover-abstract { color: var(--muted); border-top-color: var(--hair); }
+html[data-theme="dark"] .cr-cover-abstract .cr-cover-a-label { color: #9db4ff; }
+html[data-theme="dark"] .cr-cover-reg { opacity: .65; }
+@media (prefers-reduced-motion: reduce) {
+  .js .article-head.cr-cover .cr-cover-idx, .js .article-head.cr-cover .cr-cover-abstract, .js .article-head.cr-cover .cr-cover-reg { opacity: 1; transform: none; transition: none; } }
+
+/* =====================================================================
+   hub-editorial — "Card-Catalog Index" for the blog hub contents list.
+   A FILED-UNDER facet row (peripheral dimming, no DOM removal) + a per-row
+   hover "dossier" meta line with a drawing hairline + a numeral register
+   caret. Enhances existing .tocrow — never overrides its hover. Additive.
+   ===================================================================== */
+.cr-hub { --cr-mono: ui-monospace, Menlo, "SFMono-Regular", Consolas, monospace; --cr-e: cubic-bezier(.55,0,.45,1); }
+.cr-facets { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 0 2px 4px; margin: -4px 0 2px; }
+.cr-facets-k { font-family: var(--cr-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-right: 4px; display: inline-flex; align-items: center; }
+.cr-facets-k::before { content: "\271A"; color: var(--blue); opacity: .55; font-size: 9px; margin-right: 7px; }
+.cr-facet { appearance: none; -webkit-appearance: none; cursor: pointer; font-family: var(--cr-mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; display: inline-flex; align-items: baseline; gap: 7px; line-height: 1; transition: color .18s ease, border-color .18s ease, background .18s ease; }
+.cr-facet .cr-facet-n { font-variant-numeric: tabular-nums; font-size: 10px; color: var(--blue); opacity: .85; }
+.cr-facet:hover, .cr-facet:focus-visible, .cr-facet[aria-pressed="true"] { color: var(--ink); border-color: #cdd9ff; outline: none; }
+.cr-facet[aria-pressed="true"] { background: rgba(47,91,255,.06); }
+.cr-facet[aria-pressed="true"] .cr-facet-n { opacity: 1; }
+.cr-facet:focus-visible { box-shadow: 0 0 0 3px var(--ring); }
+.cr-hub.cr-filtering .tocrow { transition: opacity .22s ease, filter .22s ease; }
+.cr-hub.cr-filtering .tocrow[data-cr-dim] { opacity: .26; filter: saturate(.45); }
+.cr-meta { display: flex; align-items: center; gap: 12px; margin-top: 0; max-height: 0; opacity: 0; overflow: hidden; font-family: var(--cr-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: max-height .3s var(--cr-e), opacity .26s ease, margin-top .3s var(--cr-e); }
+.cr-meta b { color: var(--blue); font-weight: 700; }
+.cr-meta .cr-dot { color: var(--line); }
+html[data-theme="dark"] .cr-meta .cr-dot { color: #3a4055; }
+.cr-meta .cr-mrule { position: relative; flex: 0 0 34px; height: 1px; background: var(--hair); transform: scaleX(0); transform-origin: left; transition: transform .42s var(--cr-e) .04s; }
+.tocrow:hover .cr-meta, a.tocrow:focus-visible .cr-meta { max-height: 22px; opacity: 1; margin-top: 9px; }
+.tocrow:hover .cr-meta .cr-mrule, a.tocrow:focus-visible .cr-meta .cr-mrule { transform: scaleX(1); }
+.cr-caret { position: relative; }
+.cr-caret::before { content: ""; position: absolute; left: -10px; top: 2px; width: 1px; height: 0; background: var(--blue); opacity: 0; transform-origin: top; transition: height .24s var(--cr-e), opacity .2s ease; }
+.tocrow:hover .cr-caret::before, a.tocrow:focus-visible .cr-caret::before { height: 26px; opacity: .8; }
+html[data-theme="dark"] .cr-facet { border-color: var(--line); }
+html[data-theme="dark"] .cr-facet:hover, html[data-theme="dark"] .cr-facet:focus-visible, html[data-theme="dark"] .cr-facet[aria-pressed="true"] { border-color: #2f3a63; }
+html[data-theme="dark"] .cr-facet[aria-pressed="true"] { background: rgba(91,124,255,.10); }
+@media (hover: none) {
+  .cr-meta { max-height: 22px; opacity: 1; margin-top: 9px; }
+  .cr-meta .cr-mrule { transform: scaleX(1); }
+  .cr-caret::before { height: 26px; opacity: .55; } }
+@media (prefers-reduced-motion: reduce) {
+  .cr-meta, .cr-meta .cr-mrule, .cr-caret::before, .cr-hub.cr-filtering .tocrow, .cr-facet { transition: none; }
+  .cr-meta .cr-mrule { transform: scaleX(1); } }
+@media (max-width: 760px) {
+  .cr-meta { font-size: 10px; gap: 9px; }
+  .cr-meta .cr-mrule { flex-basis: 22px; }
+  .cr-facets { gap: 7px 8px; }
+  .cr-facet { padding: 4px 9px; font-size: 10.5px; }
+  .cr-caret::before { display: none; } }

@@ -16,9 +16,11 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../spec-sheet.css">
   <link rel="stylesheet" href="../dark.css">
+  <link rel="stylesheet" href="../creative.css">
   <script src="../theme.js" defer></script>
   <script src="../analytics.js" defer></script>
   <script src="../motion.js" defer></script>
+  <script src="../creative.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -104,7 +106,7 @@
       <p class="tl-k">The short version</p>
       <ul>
         <li>Gmail's built-in "Templates" work — but they're buried in a 3-click menu, break inside replies, and have no variables.</li>
-        <li>Press <kbd>Alt</kbd>+<kbd>A</kbd> to drop any saved reply at your cursor — in Gmail <em>and</em> LinkedIn — with <code>{first_name}</code> variables and <code>;shortcut</code> expansion.</li>
+        <li>One keystroke drops any saved reply at your cursor — in Gmail <em>and</em> LinkedIn — with <code>{first_name}</code> variables and <code>;shortcut</code> expansion.</li>
         <li>Free, local-first, no account — your email never leaves your device.</li>
       </ul>
     </div>
@@ -173,7 +175,7 @@
         <li><strong>It's buried.</strong> Every single insert is a three-step menu dive: ⋮ → Templates → pick. Do that 50 times a day and you've spent the afternoon clicking a hamburger menu. There's no keyboard shortcut to skip it, either.</li>
         <li><strong>It detonates in replies.</strong> Native templates were built for blank drafts. Drop one into an existing reply and it loves to either nuke what you already typed or land somewhere below the quoted thread — never where your cursor actually is.</li>
         <li><strong>No variables.</strong> Templates are frozen text. No <code>{first_name}</code>, no <code>{company}</code>. So you still hand-edit the name on every send, which is the one part that was actually wasting your time.</li>
-        <li><strong>No search.</strong> Past 15 templates you're scrolling an unsorted dropdown like it's 2009.</li>
+        <li><strong>No search.</strong> Past 15 templates you're scrolling an unsorted dropdown like it's 2009.<span class="cr-sn"><button class="cr-sn-ref" type="button" aria-label="Footnote: about Gmail's template limit"></button><span class="cr-sn-note">Gmail caps you at <b>50 saved templates</b>, and the menu lists them alphabetically with no folders, search, or tags. Fine for a handful; unworkable once a real library forms.</span></span></li>
         <li><strong>Gmail only.</strong> Switch to LinkedIn or a help desk and your library stays behind, waving at you.</li>
       </ul>
       <div class="statrow">
@@ -185,11 +187,11 @@
       <p>Here's the honest version: <strong>Gmail's templates were built for someone who sends a template on their birthday.</strong> Not for you, clearing 80 replies before lunch. Two clicks doesn't sound like much — until it's the same two clicks, all day, forever.</p>
 
       <h2 id="faster">The faster way: insert any reply in one keystroke</h2>
-      <p>The fix for all of that is stupidly simple: get templates out of the menu and onto your keyboard. That's the whole idea behind <a href="../index.html">Canned Responses</a> — a free, local-first Chrome extension for Gmail and LinkedIn.</p>
+      <p>The fix for all of that is stupidly simple: get templates out of the menu and onto your keyboard. That's the whole idea behind <a href="../index.html">Canned Responses</a> — a free, local-first<span class="cr-sn"><button class="cr-sn-ref" type="button" aria-label="Footnote: what local-first means"></button><span class="cr-sn-note"><b>Local-first</b> means your templates live in the browser's own storage on your device — no account, no server, no sync to a company you've never heard of. The text of your emails never leaves your machine.</span></span> Chrome extension for Gmail and LinkedIn.</p>
       <p>The flow is three moves, and none of them is "open a menu":</p>
       <ol>
         <li>Click into any compose box, reply, or message field.</li>
-        <li>Press <kbd>Alt</kbd>+<kbd>A</kbd> — a searchable picker pops up at your cursor.</li>
+        <li>Press <kbd>Alt</kbd>+<kbd>A</kbd> (the default — rebindable in settings)<span class="cr-sn"><button class="cr-sn-ref" type="button" aria-label="Footnote: about the Alt+A default hotkey"></button><span class="cr-sn-note"><b>Why Alt+A?</b> It stays clear of Gmail's own shortcuts (Ctrl+J is reserved for spam) and works the same in Gmail and LinkedIn. Not a fan? Remap it in <code>chrome://extensions/shortcuts</code> or the extension's settings — any combo you like.</span></span> and a searchable picker pops up at your cursor.</li>
         <li>Type a couple letters, hit <kbd>Enter</kbd>, and the template lands <mark class="hl">exactly where your cursor is</mark> — formatting, links, quoted thread, all intact.</li>
       </ol>
 
@@ -263,7 +265,7 @@
 
       <h2 id="linkedin">Oh, and it works on LinkedIn too</h2>
       <p>LinkedIn has <em>no</em> native templates. None. So most recruiters and salespeople keep their messages in a Google Doc and copy-paste them in — <mark class="hl">a workflow held together with hope and Ctrl+V.</mark></p>
-      <p>That's its own special pain: half the time you paste the wrong block, or the formatting explodes, or you send "Hi {first_name}" to an actual human. Because Canned Responses runs on <strong>linkedin.com</strong> as well as Gmail, the same <kbd>Alt</kbd>+<kbd>A</kbd> picker and the same library work inside LinkedIn messages, InMail, and comments. One template library, both of the highest-volume places you message people. No more doc.</p>
+      <p>That's its own special pain: half the time you paste the wrong block, or the formatting explodes, or you send "Hi {first_name}" to an actual human. Because Canned Responses runs on <strong>linkedin.com</strong> as well as Gmail, the same picker and the same library work inside LinkedIn messages, InMail, and comments. One template library, both of the highest-volume places you message people. No more doc.</p>
 
       <h2 id="compare">Gmail templates vs. a canned-responses extension</h2>
       <p>For occasional use, native templates are fine. For daily, high-volume reality, here's the honest side-by-side:</p>
@@ -272,7 +274,7 @@
           <tr><th>Capability</th><th>Gmail Templates (built-in)</th><th class="hl">Canned Responses (extension)</th></tr>
         </thead>
         <tbody>
-          <tr><td>Insert speed</td><td>3-click menu, no shortcut</td><td class="hl yes">One keystroke (Alt+A)</td></tr>
+          <tr><td>Insert speed</td><td>3-click menu, no shortcut</td><td class="hl yes">One keystroke</td></tr>
           <tr><td>Inserts at your cursor in replies</td><td class="no">Flaky</td><td class="hl yes">Yes</td></tr>
           <tr><td>Variables / merge fields</td><td class="no">No</td><td class="hl yes">Yes — {first_name}, {company}…</td></tr>
           <tr><td>Abbreviation expand</td><td class="no">No</td><td class="hl yes">Yes — ;intro + Tab</td></tr>
@@ -339,8 +341,8 @@
   <section class="related">
     <h2>Keep reading</h2>
     <div class="related-list">
-      <a href="index.html"><div class="rt">7 Best Canned Response Chrome Extensions (2026)</div><div class="rp">An honest comparison of the top template and text-expansion tools.</div></a>
-      <a href="index.html"><div class="rt">How to Save Canned Responses on LinkedIn</div><div class="rp">LinkedIn has no native templates — here's the workaround.</div></a>
+      <a href="best-canned-response-extensions.html"><div class="rt">7 Best Canned Response Chrome Extensions (2026)</div><div class="rp">An honest comparison of the top template and text-expansion tools.</div></a>
+      <a href="how-to-save-canned-responses-linkedin.html"><div class="rt">How to Save Canned Responses on LinkedIn</div><div class="rp">LinkedIn has no native templates — here's the workaround.</div></a>
     </div>
   </section>
 

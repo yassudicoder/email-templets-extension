@@ -110,6 +110,14 @@
 .tocdek { color: #9aa0b0; font-size: 14.5px; line-height: 1.5; margin: 0; max-width: 60ch; }
 .tocstatus { justify-self: end; align-self: start; font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; white-space: nowrap; transition: color .2s, border-color .2s; }
 .tocrow.soon:hover .tocstatus { color: var(--blue); border-color: #cdd9ff; }
+/* published contents rows (real links) */
+a.tocrow { display: block; color: inherit; }
+a.tocrow .tocnum { color: var(--ink); -webkit-text-stroke: 0; }
+a.tocrow .toctitle { transition: color .2s ease, transform .2s ease; }
+a.tocrow:hover .toctitle { color: var(--blue); transform: translateX(5px); }
+a.tocrow:hover .tocnum { color: var(--blue); }
+.tocstatus.read { color: var(--blue); border-color: #cdd9ff; background: none; }
+a.tocrow:hover .tocstatus.read { background: var(--blue); color: #fff; border-color: var(--blue); }
 
 @media (max-width: 760px) {
   .lrow-grid, .lrow.alt .lrow-grid { grid-template-columns: 1fr; gap: 14px; padding: 38px 0; }

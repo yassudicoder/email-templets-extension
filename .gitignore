@@ -1,0 +1,7 @@
+# Playwright MCP scratch output (screenshots / snapshots)
+.playwright-mcp/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
