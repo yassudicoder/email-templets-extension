@@ -339,3 +339,10 @@ html[data-theme="dark"] .cr-facet[aria-pressed="true"] { background: rgba(91,124
   .cr-facets { gap: 7px 8px; }
   .cr-facet { padding: 4px 9px; font-size: 10.5px; }
   .cr-caret::before { display: none; } }
+
+/* Homepage social-proof strip (populated + revealed by CR_SOCIAL in index.html;
+   hidden by default so nothing unverified is ever shown). */
+.social-proof { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; font-size: 14px; font-weight: 500; color: var(--muted); }
+.social-proof strong { color: var(--ink); font-weight: 700; }
+.social-proof .sp-star { color: #f5a623; font-size: 15px; }
+.social-proof[hidden] { display: none; }
