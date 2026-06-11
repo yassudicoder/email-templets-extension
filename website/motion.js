@@ -530,17 +530,27 @@
     // highlighter sweep
     inView(document.querySelectorAll("mark.hl"), function(el){ el.classList.add("lit"); }, 0.9);
 
-    // animated stat counters
-    inView(document.querySelectorAll(".stat2 b[data-to]"), function(el){
+    // animated stat counters — the HTML hard-codes the FINAL value (so no-JS
+    // readers + crawlers see the real number); JS counts up as enhancement.
+    // data-suffix (e.g. "+") is preserved through the count and stays intact.
+    var statEls = document.querySelectorAll(".stat2 b[data-to]");
+    // pre-seed the start frame so the hard-coded final value doesn't flash
+    // before the count-up (reduced-motion keeps the hard-coded value as-is).
+    if (!reduce) [].forEach.call(statEls, function(el){
+      el.textContent = "0" + (el.getAttribute("data-suffix") || "");
+    });
+    inView(statEls, function(el){
       var to = parseFloat(el.getAttribute("data-to")) || 0;
-      if (reduce){ el.textContent = String(to); return; }
+      var suf = el.getAttribute("data-suffix") || "";
+      if (reduce){ el.textContent = String(to) + suf; return; }
       var start = null;
-      (function step(ts){
+      function step(ts){
         if (start === null) start = ts;
         var p = Math.min((ts - start) / 900, 1), e = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(to * e));
-        if (p < 1) requestAnimationFrame(step); else el.textContent = String(to);
-      })();
+        el.textContent = String(Math.round(to * e)) + suf;
+        if (p < 1) requestAnimationFrame(step); else el.textContent = String(to) + suf;
+      }
+      requestAnimationFrame(step);
     }, 0.6);
 
     // comparison table reveal (marks pop + winner glow)
