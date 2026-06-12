@@ -6,6 +6,8 @@
   const $ = (s) => document.querySelector(s);
 
   store.init().then(() => {
+    CR.i18n.setLocale((store.getSettings() && store.getSettings().locale) || "auto");
+    CR.i18n.localize(document);
     // The welcome page stays LIGHT (clean, professional first impression). The
     // toggle below only sets the preference for the rest of the extension UI.
     const hotkey = (store.getSettings() && store.getSettings().hotkey) || "Alt+A";
@@ -16,13 +18,14 @@
     const list = $("#list");
     const items = store.getAll().slice(0, 5);
     if (!items.length) {
-      list.innerHTML = '<li class="lt">No templates yet — open the manager to add one.</li>';
+      list.innerHTML = '<li class="lt"></li>';
+      list.querySelector(".lt").textContent = CR.i18n.t("welcome_empty_state");
       return;
     }
     items.forEach((t) => {
       const li = document.createElement("li");
       li.innerHTML = '<span class="lt"></span><span class="ls"></span>';
-      li.querySelector(".lt").textContent = t.title || "Untitled";
+      li.querySelector(".lt").textContent = t.title || CR.i18n.t("template_untitled");
       const snip = sanitize.toPlainText(t.body).replace(/\s+/g, " ").trim();
       li.querySelector(".ls").textContent = snip.length > 84 ? snip.slice(0, 84).trim() + "…" : snip;
       list.appendChild(li);

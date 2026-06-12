@@ -1,0 +1,20 @@
+Stop retyping the same emails. Canned Responses puts your email templates one keystroke away in Gmail and LinkedIn — search, pick, and insert any saved reply right at your cursor.
+
+WHY YOU'LL LOVE IT
+• Keyboard-first — press Alt+A in any compose box, search, and hit Enter to insert. No menus, no copy-paste.
+• Variables — add {first_name}, {company} and more, and fill them in as you insert so every message feels personal.
+• Abbreviation expansion — type ;shortcut then Tab to expand a template instantly.
+• Save from any email — select text and save it as a template, or right-click to save.
+• Copy whole emails — one click copies a full email with its formatting, colours and images, ready to paste anywhere.
+• Organize — categories, favorites, search, reorder, export & import.
+
+WORKS WHERE YOU WRITE
+Gmail (new messages, replies, inline replies) and LinkedIn (messages, InMail, comments).
+
+PRIVATE BY DESIGN
+Local-first: your templates live on your device. The extension never reads or sends your email, there is no account, and nothing leaves your browser. Export a JSON backup whenever you like.
+
+FREE
+Everything is free — unlimited templates, variables, and every feature. No paywall, no account.
+
+Available in English, Spanish, Portuguese, German, French, Hindi and Japanese.

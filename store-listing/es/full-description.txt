@@ -1,0 +1,20 @@
+Deja de reescribir los mismos correos. Canned Responses pone tus plantillas de correo a una tecla de distancia en Gmail y LinkedIn: busca, elige e inserta cualquier respuesta guardada justo donde tienes el cursor.
+
+POR QUÉ TE VA A ENCANTAR
+• Pensado para el teclado: presiona Alt+A en cualquier cuadro de redacción, busca y presiona Enter para insertar. Sin menús, sin copiar y pegar.
+• Variables: agrega {first_name}, {company} y más, y complétalas al insertar para que cada mensaje se sienta personal.
+• Expansión de abreviaturas: escribe ;shortcut y luego Tab para expandir una plantilla al instante.
+• Guarda desde cualquier correo: selecciona texto y guárdalo como plantilla, o haz clic derecho para guardarlo.
+• Copia correos completos: con un clic copias un correo entero con su formato, colores e imágenes, listo para pegar donde quieras.
+• Organiza: categorías, favoritos, búsqueda, reordenamiento, exportación e importación.
+
+FUNCIONA DONDE ESCRIBES
+Gmail (mensajes nuevos, respuestas, respuestas en línea) y LinkedIn (mensajes, InMail, comentarios).
+
+PRIVADO POR DISEÑO
+Todo local primero: tus plantillas viven en tu dispositivo. La extensión nunca lee ni envía tu correo, no hay cuenta y nada sale de tu navegador. Exporta una copia de seguridad en JSON cuando quieras.
+
+GRATIS
+Todo es gratis: plantillas, variables y todas las funciones sin límite. Sin muros de pago, sin cuenta.
+
+Disponible en inglés, español, portugués, alemán, francés, hindi y japonés.

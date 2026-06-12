@@ -1,0 +1,888 @@
+{
+  "category_follow_ups": {
+    "message": "Seguimientos",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_outreach": {
+    "message": "Prospección",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_onboarding": {
+    "message": "Bienvenida",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_responses": {
+    "message": "Respuestas",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_closing": {
+    "message": "Cierre",
+    "description": "Seeded category name (first install only)"
+  },
+  "category_other": {
+    "message": "Otros",
+    "description": "Seeded category name (first install only)"
+  },
+  "manifest_name": {
+    "message": "Plantillas de correo y Canned Responses para Gmail y LinkedIn",
+    "description": "Extension title shown in Chrome Web Store and settings"
+  },
+  "manifest_description": {
+    "message": "Plantillas de correo controladas por teclado, con inserción fiable de texto enriquecido en Gmail y LinkedIn. Local primero, sin cuenta.",
+    "description": "Extension description shown in Chrome Web Store and settings"
+  },
+  "command_open_picker": {
+    "message": "Abrir el selector de plantillas en el cursor",
+    "description": "Keyboard shortcut description shown in Chrome shortcuts settings"
+  },
+  "ctx_save_selection": {
+    "message": "Guardar selección como Canned Response",
+    "description": "Context-menu item shown on right-click when text is selected in Gmail/LinkedIn"
+  },
+  "popup_hint": {
+    "message": "Pulsa Alt+A en un cuadro de redacción para insertar. Haz clic en una plantilla aquí para copiarla.",
+    "description": "Instruction text in popup explaining the hotkey and click-to-copy"
+  },
+  "search_placeholder": {
+    "message": "Buscar plantillas…",
+    "description": "Placeholder for the template search/filter input (shared across popup, options, picker, manager)"
+  },
+  "button_export_backup": {
+    "message": "Exportar copia",
+    "description": "Button that triggers backup/export of all templates"
+  },
+  "popup_manage_button": {
+    "message": "Gestionar",
+    "description": "Button to open the options/manager page from the popup"
+  },
+  "empty_no_matches": {
+    "message": "Sin resultados.",
+    "description": "Empty state shown when a search query returns no results"
+  },
+  "popup_empty_no_templates": {
+    "message": "Aún no hay plantillas.",
+    "description": "Empty state in popup when no templates exist at all"
+  },
+  "template_untitled": {
+    "message": "Sin título",
+    "description": "Default label/fallback for templates that have no title set"
+  },
+  "popup_status_copied": {
+    "message": "Copiado — pega con Ctrl+V",
+    "description": "Toast shown after a template is copied to clipboard from the popup"
+  },
+  "popup_status_copy_failed": {
+    "message": "Error al copiar",
+    "description": "Error shown when copy-to-clipboard fails in the popup"
+  },
+  "popup_status_backup_downloaded": {
+    "message": "Copia descargada",
+    "description": "Confirmation shown after a backup file is downloaded"
+  },
+  "options_page_title": {
+    "message": "Canned Responses — Plantillas",
+    "description": "Browser tab title for the options/manager page"
+  },
+  "settings_theme_label": {
+    "message": "Tema:",
+    "description": "Label preceding the theme selector in the header"
+  },
+  "settings_theme_tooltip": {
+    "message": "Claro / Oscuro / Sistema",
+    "description": "Tooltip for the theme selector dropdown"
+  },
+  "theme_system": {
+    "message": "Sistema",
+    "description": "Theme option that follows the OS/system preference"
+  },
+  "theme_light": {
+    "message": "Claro",
+    "description": "Light theme option"
+  },
+  "theme_dark": {
+    "message": "Oscuro",
+    "description": "Dark theme option"
+  },
+  "settings_shortcut_label": {
+    "message": "Atajo: ",
+    "description": "Label preceding the current insert-picker hotkey in the header"
+  },
+  "settings_hotkey_tooltip": {
+    "message": "Haz clic y luego pulsa tu atajo",
+    "description": "Tooltip for the hotkey record button"
+  },
+  "button_export_tooltip": {
+    "message": "Descargar una copia de seguridad de todas las plantillas",
+    "description": "Tooltip for the Export button"
+  },
+  "button_export": {
+    "message": "Exportar",
+    "description": "Export button label"
+  },
+  "button_import_tooltip": {
+    "message": "Importar plantillas desde un archivo de copia",
+    "description": "Tooltip for the Import button"
+  },
+  "button_import": {
+    "message": "Importar",
+    "description": "Import button label"
+  },
+  "backup_nudge_weekly_checkbox": {
+    "message": "Recordármelo cada semana",
+    "description": "Checkbox label to enable weekly backup reminders"
+  },
+  "button_dismiss": {
+    "message": "Descartar",
+    "description": "Tooltip for the backup-nudge dismiss (×) button"
+  },
+  "button_new_template": {
+    "message": "+ Nueva",
+    "description": "Button to create a new template"
+  },
+  "keyboard_shortcuts_heading": {
+    "message": "⌨️ Atajos de teclado",
+    "description": "Heading of the keyboard-shortcuts panel in the sidebar footer"
+  },
+  "link_manage_shortcuts": {
+    "message": "Gestionar atajos",
+    "description": "Link to Chrome's keyboard-shortcuts settings"
+  },
+  "settings_analytics_toggle": {
+    "message": "Compartir estadísticas de uso anónimas",
+    "description": "Analytics opt-in checkbox label"
+  },
+  "settings_analytics_note": {
+    "message": "Desactivado por defecto. Ayuda a mejorar la extensión — nunca se envía el contenido de mensajes ni plantillas. ",
+    "description": "Privacy explanation for the analytics opt-in"
+  },
+  "link_learn_more_privacy": {
+    "message": "Más información",
+    "description": "Link to the privacy policy"
+  },
+  "button_prev_page_tooltip": {
+    "message": "Página anterior",
+    "description": "Tooltip for the previous-page pager button"
+  },
+  "button_next_page_tooltip": {
+    "message": "Página siguiente",
+    "description": "Tooltip for the next-page pager button"
+  },
+  "modal_preview_title": {
+    "message": "Vista previa",
+    "description": "Title of the template preview modal"
+  },
+  "button_close_tooltip": {
+    "message": "Cerrar",
+    "description": "Tooltip/label for close (×) buttons on modal, picker, and manager"
+  },
+  "preview_variables_note": {
+    "message": "Las variables aparecen resaltadas — se rellenan al insertar la plantilla.",
+    "description": "Note in the preview modal explaining variable highlighting"
+  },
+  "sidebar_all_templates": {
+    "message": "Todas las plantillas",
+    "description": "Sidebar/virtual-view label for the 'all templates' view"
+  },
+  "sidebar_favorites": {
+    "message": "Favoritas",
+    "description": "Sidebar/virtual-view label for the favorites view"
+  },
+  "sidebar_trash": {
+    "message": "Papelera",
+    "description": "Sidebar/virtual-view label for the trash view"
+  },
+  "field_label_category": {
+    "message": "Categoría",
+    "description": "Label for the category selector and fallback label when a category is missing"
+  },
+  "button_category_menu_tooltip": {
+    "message": "Renombrar / eliminar",
+    "description": "Tooltip for the per-category context-menu (edit) button in the sidebar"
+  },
+  "keyboard_shortcuts_empty_hint": {
+    "message": "Añade un atajo a una plantilla para expandirla con ;nombre + Tab.",
+    "description": "Empty state in the keyboard-shortcuts panel"
+  },
+  "shortcuts_item_title": {
+    "message": "Escribe ;$shortcut$ y luego Tab para insertar",
+    "description": "Tooltip for a shortcut row in the shortcuts panel",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
+  },
+  "context_rename_category": {
+    "message": "✎ Renombrar",
+    "description": "Context-menu item to rename a category"
+  },
+  "context_delete_category": {
+    "message": "🗑 Eliminar categoría",
+    "description": "Context-menu item to delete a category"
+  },
+  "prompt_rename_category": {
+    "message": "Renombrar categoría:",
+    "description": "Prompt dialog text when renaming a category"
+  },
+  "confirm_delete_empty_category": {
+    "message": "¿Eliminar \"$name$\"?",
+    "description": "Confirmation when deleting an empty category",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "empty_trash": {
+    "message": "La papelera está vacía.",
+    "description": "Empty state shown when the trash view has no items"
+  },
+  "empty_favorites": {
+    "message": "Aún no hay favoritas — marca una plantilla con estrella para fijarla aquí.",
+    "description": "Empty state for the favorites view"
+  },
+  "empty_category": {
+    "message": "Aún no hay nada en esta categoría.",
+    "description": "Empty state for a category with no templates"
+  },
+  "empty_all_templates": {
+    "message": "Aún no hay plantillas — haz clic en + Nueva.",
+    "description": "Empty state when no templates exist, with a call to create one"
+  },
+  "button_favorite_tooltip": {
+    "message": "Favorita",
+    "description": "Tooltip for the favorite/star toggle on cards, the editor, and the manager list"
+  },
+  "button_more_tooltip": {
+    "message": "Más",
+    "description": "Tooltip for the per-card overflow (…) menu button"
+  },
+  "template_empty_body": {
+    "message": "(vacío)",
+    "description": "Placeholder shown when a template body/snippet is empty"
+  },
+  "button_restore": {
+    "message": "Restaurar",
+    "description": "Button to restore a template from trash"
+  },
+  "button_delete_forever": {
+    "message": "Eliminar definitivamente",
+    "description": "Button to permanently delete a template from trash"
+  },
+  "alert_restore_limit_reached": {
+    "message": "No se pudo restaurar — has alcanzado el límite de $limit$ plantillas. Elimina una primero.",
+    "description": "Alert when restoring would exceed the free-plan template limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirm_delete_template_forever": {
+    "message": "¿Eliminar esta plantilla definitivamente? No se puede deshacer.",
+    "description": "Confirmation for permanently deleting a single template"
+  },
+  "trash_header_note": {
+    "message": "Los elementos de la papelera se pueden restaurar.",
+    "description": "Note in the trash view header"
+  },
+  "button_empty_trash": {
+    "message": "Vaciar papelera",
+    "description": "Button to permanently empty the trash"
+  },
+  "confirm_empty_trash": {
+    "message": "¿Eliminar todo lo que hay en la papelera de forma definitiva? No se puede deshacer.",
+    "description": "Confirmation for emptying the entire trash"
+  },
+  "pager_label": {
+    "message": "$start$–$end$ de $total$ plantillas",
+    "description": "Pagination label showing the visible range and total",
+    "placeholders": {
+      "start": {
+        "content": "$1"
+      },
+      "end": {
+        "content": "$2"
+      },
+      "total": {
+        "content": "$3"
+      }
+    }
+  },
+  "context_unfavorite": {
+    "message": "☆ Quitar de favoritas",
+    "description": "Card context-menu item to remove favorite status"
+  },
+  "context_favorite": {
+    "message": "★ Favorita",
+    "description": "Card context-menu item to add to favorites"
+  },
+  "context_duplicate": {
+    "message": "⧉ Duplicar",
+    "description": "Card context-menu item to duplicate a template"
+  },
+  "context_menu_move_to": {
+    "message": "Mover a",
+    "description": "Heading of the 'move to category' submenu"
+  },
+  "context_uncategorized": {
+    "message": "Sin categoría",
+    "description": "Option representing no category (uncategorized) in move menu and editor dropdown"
+  },
+  "context_new_category": {
+    "message": "+ Nueva categoría…",
+    "description": "Option to create a new category while moving/assigning a template"
+  },
+  "context_delete_template": {
+    "message": "🗑 Eliminar",
+    "description": "Card context-menu item to delete (move to trash) a template"
+  },
+  "duplicate_title_suffix": {
+    "message": "$title$ copia",
+    "description": "Title given to a duplicated template (' copy' appended)",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_duplicate_limit_reached": {
+    "message": "Has alcanzado el límite de $limit$ plantillas del plan gratuito.",
+    "description": "Alert when duplicating would exceed the free-plan template limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "prompt_new_category_name": {
+    "message": "Nombre de la nueva categoría:",
+    "description": "Prompt for entering a new category name"
+  },
+  "editor_placeholder_title": {
+    "message": "Ninguna plantilla seleccionada",
+    "description": "Heading shown in the editor pane when no template is selected"
+  },
+  "editor_placeholder_text": {
+    "message": "Elige una plantilla o haz clic en + Nueva para crear una. Organízalas con categorías a la izquierda.",
+    "description": "Instructional text in the editor placeholder"
+  },
+  "field_label_title": {
+    "message": "Nombre de la plantilla",
+    "description": "Label for the template name/title input"
+  },
+  "field_placeholder_title": {
+    "message": "p. ej. Reprogramar reunión",
+    "description": "Example placeholder for the template name input"
+  },
+  "field_label_shortcut": {
+    "message": "Atajo",
+    "description": "Label for the shortcut input field"
+  },
+  "field_optional_marker": {
+    "message": "(opcional)",
+    "description": "Marker indicating a field is optional"
+  },
+  "field_label_body": {
+    "message": "Contenido de la plantilla",
+    "description": "Label for the rich-text template body editor"
+  },
+  "toolbar_font_label": {
+    "message": "Fuente",
+    "description": "Default/label option for the font selector"
+  },
+  "toolbar_font_sans_serif": {
+    "message": "Sans Serif",
+    "description": "Sans Serif font option"
+  },
+  "toolbar_font_serif": {
+    "message": "Serif",
+    "description": "Serif font option"
+  },
+  "toolbar_font_monospace": {
+    "message": "Monoespaciada",
+    "description": "Monospace font option"
+  },
+  "toolbar_size_label": {
+    "message": "Tamaño",
+    "description": "Default/label option for the font size selector"
+  },
+  "toolbar_size_small": {
+    "message": "Pequeño",
+    "description": "Small font size option"
+  },
+  "toolbar_size_normal": {
+    "message": "Normal",
+    "description": "Normal font size option"
+  },
+  "toolbar_size_large": {
+    "message": "Grande",
+    "description": "Large font size option"
+  },
+  "toolbar_size_huge": {
+    "message": "Enorme",
+    "description": "Huge font size option"
+  },
+  "toolbar_bold_tooltip": {
+    "message": "Negrita",
+    "description": "Tooltip for the bold button"
+  },
+  "toolbar_italic_tooltip": {
+    "message": "Cursiva",
+    "description": "Tooltip for the italic button"
+  },
+  "toolbar_underline_tooltip": {
+    "message": "Subrayado",
+    "description": "Tooltip for the underline button"
+  },
+  "toolbar_strikethrough_tooltip": {
+    "message": "Tachado",
+    "description": "Tooltip for the strikethrough button"
+  },
+  "toolbar_text_color_tooltip": {
+    "message": "Color de texto",
+    "description": "Tooltip for the text-color button"
+  },
+  "toolbar_highlight_tooltip": {
+    "message": "Resaltado",
+    "description": "Tooltip for the highlight/background-color button"
+  },
+  "toolbar_bullet_list_tooltip": {
+    "message": "Lista con viñetas",
+    "description": "Tooltip for the bullet list button"
+  },
+  "toolbar_numbered_list_tooltip": {
+    "message": "Lista numerada",
+    "description": "Tooltip for the numbered list button"
+  },
+  "toolbar_align_left_tooltip": {
+    "message": "Alinear a la izquierda",
+    "description": "Tooltip for the align-left button"
+  },
+  "toolbar_align_center_tooltip": {
+    "message": "Centrar",
+    "description": "Tooltip for the center-align button"
+  },
+  "toolbar_insert_link_tooltip": {
+    "message": "Insertar enlace",
+    "description": "Tooltip for the insert-link button"
+  },
+  "toolbar_clear_formatting_tooltip": {
+    "message": "Quitar formato",
+    "description": "Tooltip for the clear-formatting button"
+  },
+  "toolbar_variables_label": {
+    "message": "{ } Variables",
+    "description": "Default/label option for the variable-insertion selector"
+  },
+  "button_preview": {
+    "message": "👁 Vista previa",
+    "description": "Preview button in the editor toolbar"
+  },
+  "button_delete": {
+    "message": "Eliminar",
+    "description": "Delete action label/tooltip in editor, picker list, and manager"
+  },
+  "button_cancel": {
+    "message": "Cancelar",
+    "description": "Cancel/revert button in the editor"
+  },
+  "button_save": {
+    "message": "Guardar cambios",
+    "description": "Save button in the options editor"
+  },
+  "status_reverted": {
+    "message": "Cambios revertidos",
+    "description": "Status message after unsaved changes are reverted"
+  },
+  "status_saved_silent": {
+    "message": "Guardado",
+    "description": "Status for a silent autosave"
+  },
+  "status_saved": {
+    "message": "Guardado ✓",
+    "description": "Status for an explicit user-initiated save"
+  },
+  "status_saved_no_images_upsell": {
+    "message": "Guardado (texto y formato). Las imágenes son una función Pro — pasa a Pro para conservarlas.",
+    "description": "Status when images were stripped on save (Pro upsell)"
+  },
+  "confirm_delete_template_to_trash": {
+    "message": "¿Mover esta plantilla a la papelera?",
+    "description": "Confirmation for moving a template to trash from the editor"
+  },
+  "prompt_link_url": {
+    "message": "URL del enlace:",
+    "description": "Prompt for the URL when inserting a link"
+  },
+  "status_recording_hotkey": {
+    "message": "Pulsa las teclas…",
+    "description": "Button text shown while recording a new hotkey"
+  },
+  "status_hotkey_invalid": {
+    "message": "Usa Alt/Ctrl + una letra",
+    "description": "Feedback when an invalid hotkey combination is pressed"
+  },
+  "alert_create_limit_reached": {
+    "message": "Has alcanzado el límite de $limit$ plantillas del plan gratuito. Elimina una para añadir más.",
+    "description": "Alert/error when creating a new template would exceed the free-plan limit",
+    "placeholders": {
+      "limit": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_import_partial": {
+    "message": "Se importaron $count$ de $total$ — el resto alcanzó el límite de $limit$ plantillas del plan gratuito.",
+    "description": "Alert when an import partially succeeds due to the plan limit",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      },
+      "limit": {
+        "content": "$3"
+      }
+    }
+  },
+  "alert_import_failed": {
+    "message": "Error al importar — esto no parece un archivo JSON válido de Canned Responses.",
+    "description": "Alert when an import file fails validation"
+  },
+  "template_pasted_email_title": {
+    "message": "Correo pegado",
+    "description": "Default title for a template auto-created from pasted email content"
+  },
+  "welcome_hero_title": {
+    "message": "¡Todo listo! 🎉",
+    "description": "Main heading on the post-install welcome page"
+  },
+  "welcome_hero_subtitle": {
+    "message": "Canned Responses ya está listo en Gmail y LinkedIn. Lo único que debes recordar es esto:",
+    "description": "Subheading explaining where the extension works"
+  },
+  "welcome_hotkey_instruction": {
+    "message": "Púlsalo en cualquier cuadro de redacción → busca una plantilla → Enter para insertarla justo en el cursor.",
+    "description": "Explains how to use the hotkey to insert a template"
+  },
+  "welcome_card_insert_title": {
+    "message": "Dos formas de insertar",
+    "description": "Feature card title for insertion methods"
+  },
+  "welcome_card_insert_desc": {
+    "message": "El selector con Alt+A, o escribe ;shortcut + Tab para expandir al instante.",
+    "description": "Feature description for the two insertion methods"
+  },
+  "welcome_card_save_title": {
+    "message": "Guarda con un clic",
+    "description": "Feature card title for saving templates"
+  },
+  "welcome_card_save_desc": {
+    "message": "Selecciona texto en un correo → haz clic en Guardar como plantilla (o clic derecho → guardar).",
+    "description": "Feature description for saving a selection as a template"
+  },
+  "welcome_card_copy_title": {
+    "message": "Copia correos completos",
+    "description": "Feature card title for copying emails"
+  },
+  "welcome_card_copy_desc": {
+    "message": "Abre un correo → Copiar (junto a Responder/Reenviar) → pégalo donde quieras, con el estilo intacto.",
+    "description": "Feature description for the email copy button"
+  },
+  "welcome_card_organize_title": {
+    "message": "Organiza",
+    "description": "Feature card title for organization features"
+  },
+  "welcome_card_organize_desc": {
+    "message": "Favoritas, búsqueda, reordenar, variables como {first_name}, exportar e importar.",
+    "description": "Feature description for organizational capabilities"
+  },
+  "welcome_starter_templates_heading": {
+    "message": "Tus plantillas iniciales",
+    "description": "Heading above the list of pre-seeded starter templates"
+  },
+  "welcome_theme_label": {
+    "message": "Tema",
+    "description": "Label for the theme preference control on the welcome page"
+  },
+  "welcome_theme_hint": {
+    "message": "Se aplica al selector, al popup y al gestor.",
+    "description": "Hint explaining where the theme preference applies"
+  },
+  "welcome_open_gmail_btn": {
+    "message": "Abrir Gmail →",
+    "description": "Primary button to launch Gmail"
+  },
+  "welcome_manage_templates_btn": {
+    "message": "Gestionar plantillas",
+    "description": "Secondary button to open the template manager"
+  },
+  "welcome_footer_privacy": {
+    "message": "Local primero · sin cuenta · tus plantillas nunca salen de tu dispositivo.",
+    "description": "Privacy assurance in the welcome page footer"
+  },
+  "welcome_empty_state": {
+    "message": "Aún no hay plantillas — abre el gestor para añadir una.",
+    "description": "Empty state guiding the user to add a first template"
+  },
+  "picker_panel_title": {
+    "message": "Plantillas",
+    "description": "Header label for the picker panel and the LinkedIn nav button label"
+  },
+  "picker_no_matches_query": {
+    "message": "Ninguna plantilla coincide con \"$query$\".",
+    "description": "Empty state in the picker when a search has no results, echoing the query",
+    "placeholders": {
+      "query": {
+        "content": "$1"
+      }
+    }
+  },
+  "button_edit": {
+    "message": "Editar",
+    "description": "Edit action label/tooltip in picker, manager, and capture toast"
+  },
+  "picker_new_template_btn": {
+    "message": "+ Nueva plantilla",
+    "description": "Button to create a new template from the picker footer"
+  },
+  "picker_new_template_title": {
+    "message": "Crear una plantilla nueva",
+    "description": "Tooltip for the new-template button in the picker"
+  },
+  "picker_hint_navigate": {
+    "message": "↑↓ navegar",
+    "description": "Keyboard hint for arrow-key navigation"
+  },
+  "picker_hint_insert": {
+    "message": "↵ insertar",
+    "description": "Keyboard hint for inserting the selected template"
+  },
+  "picker_hint_close": {
+    "message": "esc cerrar",
+    "description": "Keyboard hint for closing the picker"
+  },
+  "picker_back_btn_title": {
+    "message": "Volver a las plantillas (Esc)",
+    "description": "Tooltip for the back button on the variable-fill screen"
+  },
+  "button_back": {
+    "message": "Atrás",
+    "description": "Back navigation label/tooltip in picker and manager"
+  },
+  "picker_fill_heading": {
+    "message": "Rellenar \"$title$\"",
+    "description": "Heading prompting the user to fill in a template's variables",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "picker_insert_btn": {
+    "message": "Insertar",
+    "description": "Button to insert the filled-in template"
+  },
+  "picker_delete_confirm": {
+    "message": "¿Eliminar \"$title$\"?",
+    "description": "Confirmation prompt when deleting a template from the picker",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "manager_edit_heading": {
+    "message": "Editar plantilla",
+    "description": "Header when editing an existing template in the manager"
+  },
+  "manager_new_heading": {
+    "message": "Nueva plantilla",
+    "description": "Header when creating a new template in the manager"
+  },
+  "manager_title_placeholder": {
+    "message": "Título de la plantilla",
+    "description": "Placeholder for the template title input in the manager"
+  },
+  "manager_shortcut_placeholder": {
+    "message": "Atajo para ;expand (opcional, p. ej. firma)",
+    "description": "Placeholder for the shortcut input with an example"
+  },
+  "manager_insert_label": {
+    "message": "Insertar:",
+    "description": "Label preceding the variable chip buttons"
+  },
+  "manager_body_placeholder": {
+    "message": "Escribe tu plantilla… usa {first_name} para variables",
+    "description": "Placeholder for the template body textarea"
+  },
+  "manager_discard_btn": {
+    "message": "Descartar",
+    "description": "Button to discard an unsaved new template draft"
+  },
+  "manager_full_editor_link": {
+    "message": "Editor completo ↗",
+    "description": "Link to open the full template editor in the options page"
+  },
+  "manager_save_btn": {
+    "message": "Guardar",
+    "description": "Save button in the inline manager editor"
+  },
+  "manager_delete_confirm": {
+    "message": "¿Eliminar esta plantilla?",
+    "description": "Confirmation prompt when deleting a template from the manager"
+  },
+  "toast_inserted": {
+    "message": "✓ Insertada",
+    "description": "Toast shown after a template is inserted (via picker or ;shortcut expansion)"
+  },
+  "toast_copied": {
+    "message": "✓ Copiada",
+    "description": "Toast shown after copying to clipboard"
+  },
+  "toast_saved_as_template": {
+    "message": "✓ Guardada como plantilla",
+    "description": "Toast after saving a selection as a new template"
+  },
+  "toast_images_pro_feature": {
+    "message": "las imágenes son una función Pro",
+    "description": "Upsell note appended when images were stripped from a captured template"
+  },
+  "toast_template_limit_reached": {
+    "message": "Límite de plantillas alcanzado ($lim$). Elimina una para añadir más.",
+    "description": "Error toast when capturing would exceed the template limit",
+    "placeholders": {
+      "lim": {
+        "content": "$1"
+      }
+    }
+  },
+  "capture_pill_label": {
+    "message": "Guardar como plantilla",
+    "description": "Label on the floating 'Save as template' pill shown over a selection"
+  },
+  "surface_btn_aria_label": {
+    "message": "Canned Responses (Alt+A)",
+    "description": "Accessibility label for the injected Gmail/LinkedIn template button"
+  },
+  "gmail_btn_title": {
+    "message": "Canned Responses — insertar una plantilla (Alt+A)",
+    "description": "Tooltip for the Gmail top-bar template button"
+  },
+  "linkedin_btn_title": {
+    "message": "Canned Responses — gestionar plantillas (Alt+A para insertar)",
+    "description": "Tooltip for the LinkedIn nav template button"
+  },
+  "gmail_copy_btn_aria_label": {
+    "message": "Copiar correo",
+    "description": "Accessibility label for the Gmail Copy-email button"
+  },
+  "gmail_copy_btn_title": {
+    "message": "Copiar este correo con formato e imágenes",
+    "description": "Tooltip for the Gmail Copy-email button"
+  },
+  "gmail_copy_btn_label": {
+    "message": "Copiar",
+    "description": "Label of the Gmail Copy-email button"
+  },
+  "toast_email_copied_success": {
+    "message": "Correo copiado — pega con Ctrl+V (se conservan fuente, colores e imágenes)",
+    "description": "Success toast after copying an email with formatting"
+  },
+  "toast_action_open_editor": {
+    "message": "Abrir editor →",
+    "description": "Actionable link in the copy-success toast to open the full editor"
+  },
+  "toast_copy_failed": {
+    "message": "Error al copiar — prueba a seleccionar manualmente",
+    "description": "Error toast when the email copy operation fails"
+  },
+  "template_count_one": {
+    "message": "$count$ plantilla",
+    "description": "Header count of templates (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "template_count_other": {
+    "message": "$count$ plantillas",
+    "description": "Header count of templates (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "backup_nudge_message_one": {
+    "message": "Tienes $count$ plantilla. Haz una copia para que una reinstalación no la pierda.",
+    "description": "Backup reminder banner; $count$ is the number of templates (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "backup_nudge_message_other": {
+    "message": "Tienes $count$ plantillas. Haz una copia para que una reinstalación no las pierda.",
+    "description": "Backup reminder banner; $count$ is the number of templates (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirm_delete_category_with_templates_one": {
+    "message": "¿Eliminar \"$name$\"? Su $n$ plantilla pasará a \"Todas las plantillas\" (no se elimina).",
+    "description": "Confirm deleting a category that still holds templates; $name$ = category, $n$ = number of templates (singular)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "n": {
+        "content": "$2"
+      }
+    }
+  },
+  "confirm_delete_category_with_templates_other": {
+    "message": "¿Eliminar \"$name$\"? Sus $n$ plantillas pasarán a \"Todas las plantillas\" (no se eliminan).",
+    "description": "Confirm deleting a category that still holds templates; $name$ = category, $n$ = number of templates (plural)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "n": {
+        "content": "$2"
+      }
+    }
+  },
+  "alert_import_success_one": {
+    "message": "Se importó $count$ plantilla.",
+    "description": "Alert after a fully successful import; $count$ = number imported (singular)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "alert_import_success_other": {
+    "message": "Se importaron $count$ plantillas.",
+    "description": "Alert after a fully successful import; $count$ = number imported (plural)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings_language_label": {
+    "message": "Idioma:",
+    "description": "Label for the display-language selector in the options header"
+  },
+  "settings_language_auto": {
+    "message": "Automático (navegador)",
+    "description": "Language option that follows the browser language"
+  }
+}

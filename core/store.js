@@ -14,11 +14,20 @@
   let cache = null;                  // { schemaVersion, templates: {id: rec}, settings }
   const listeners = new Set();
 
+  // First-install only: localize the seeded category names to the browser locale.
+  // After this they are user data and are never re-translated; the v1->v2 migration
+  // (model.MIGRATIONS[2]) keeps the English defaults, so existing users are untouched.
+  function localizedCategoryNames() {
+    if (g.chrome && chrome.i18n && chrome.i18n.getMessage) {
+      return model.CATEGORY_SEED.map((c) => chrome.i18n.getMessage(c.key) || c.name);
+    }
+    return model.CATEGORY_SEED.map((c) => c.name);
+  }
   function emptyDb() {
     return {
       schemaVersion: model.SCHEMA_VERSION,
       templates: {},
-      categories: model.sampleCategories(Date.now()),
+      categories: model.sampleCategories(Date.now(), localizedCategoryNames()),
       settings: model.defaultSettings()
     };
   }

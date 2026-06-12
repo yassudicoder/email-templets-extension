@@ -18,12 +18,17 @@
 
   // Hydrate this frame's in-memory cache; storage.onChanged keeps it fresh.
   store.init()
-    .then(() => { const s = store.getSettings(); if (s && s.hotkey) hotkeySpec = parseHotkey(s.hotkey); })
+    .then(() => {
+      const s = store.getSettings();
+      if (s && s.hotkey) hotkeySpec = parseHotkey(s.hotkey);
+      if (CR.i18n) CR.i18n.setLocale((s && s.locale) || "auto");   // in-page UI language
+    })
     .catch((e) => console.error("[CR] store init failed", e));
 
-  // Keep the page-level hotkey in sync with the configured setting.
+  // Keep the page-level hotkey + in-page UI language in sync with the settings.
   store.subscribe((db) => {
     if (db && db.settings && db.settings.hotkey) hotkeySpec = parseHotkey(db.settings.hotkey);
+    if (CR.i18n && db && db.settings) CR.i18n.setLocale(db.settings.locale || "auto");
   });
 
   // ---- Hotkey parsing (default Alt+A; not browser-reserved, so page keydown
@@ -83,12 +88,12 @@
       onInsert: (html) => {
         if (ctx) {
           const ok = inserter.insert(ctx, html, { preferPlainText });
-          if (ok) { cue("✓ Inserted"); track("template_inserted", { surface: surfaceName(), mode: "insert" }); }
+          if (ok) { cue(CR.i18n.t("toast_inserted")); track("template_inserted", { surface: surfaceName(), mode: "insert" }); }
           else console.warn("[CR] insertion returned false");
         } else if (navigator.clipboard) {
           // Opened from the toolbar button with no focused field -> copy instead.
           const text = NS.sanitize ? NS.sanitize.toPlainText(html) : html;
-          navigator.clipboard.writeText(text).then(() => { cue("✓ Copied"); track("template_inserted", { surface: surfaceName(), mode: "copy" }); }).catch((e) => console.warn("[CR] copy failed", e));
+          navigator.clipboard.writeText(text).then(() => { cue(CR.i18n.t("toast_copied")); track("template_inserted", { surface: surfaceName(), mode: "copy" }); }).catch((e) => console.warn("[CR] copy failed", e));
         }
       }
     });

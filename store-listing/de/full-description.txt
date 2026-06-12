@@ -1,0 +1,20 @@
+Schluss mit dem ewigen Neutippen derselben E-Mails. Canned Responses bringt deine E-Mail-Vorlagen in Gmail und LinkedIn auf einen Tastendruck — suchen, auswählen und jede gespeicherte Antwort direkt an deiner Cursorposition einfügen.
+
+DARUM WIRST DU ES LIEBEN
+• Tastatur zuerst — drücke Alt+A in jedem Eingabefeld, suche und füge mit Enter ein. Keine Menüs, kein Kopieren und Einfügen.
+• Variablen — füge {first_name}, {company} und mehr hinzu und fülle sie beim Einfügen aus, damit jede Nachricht persönlich wirkt.
+• Kürzel-Erweiterung — tippe ;shortcut und dann Tab, um eine Vorlage sofort einzusetzen.
+• Aus jeder E-Mail speichern — markiere Text und speichere ihn als Vorlage, oder speichere per Rechtsklick.
+• Ganze E-Mails kopieren — ein Klick kopiert eine komplette E-Mail mit Formatierung, Farben und Bildern, fertig zum Einfügen.
+• Organisieren — Kategorien, Favoriten, Suche, Sortierung, Export und Import.
+
+FUNKTIONIERT DORT, WO DU SCHREIBST
+Gmail (neue Nachrichten, Antworten, Inline-Antworten) und LinkedIn (Nachrichten, InMail, Kommentare).
+
+VON GRUND AUF PRIVAT
+Lokal zuerst: Deine Vorlagen bleiben auf deinem Gerät. Die Erweiterung liest oder sendet deine E-Mails nie, es gibt kein Konto, und nichts verlässt deinen Browser. Erstelle jederzeit ein JSON-Backup.
+
+KOSTENLOS
+Alles ist kostenlos — unbegrenzte Vorlagen, Variablen und alle Funktionen. Keine Bezahlschranke, kein Konto.
+
+Verfügbar in Englisch, Spanisch, Portugiesisch, Deutsch, Französisch, Hindi und Japanisch.

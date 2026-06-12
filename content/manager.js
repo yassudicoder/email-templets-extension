@@ -172,11 +172,11 @@
         <div class="hd">
           <span class="ttl">Canned Responses</span>
           <div class="hdacts">
-            <button id="new" class="btn primary">+ New</button>
-            <button id="close" class="x" title="Close">&times;</button>
+            <button id="new" class="btn primary">${esc(CR.i18n.t("button_new_template"))}</button>
+            <button id="close" class="x" title="${esc(CR.i18n.t("button_close_tooltip"))}">&times;</button>
           </div>
         </div>
-        <input id="q" class="q" placeholder="Search templates…" value="${esc(query)}">
+        <input id="q" class="q" placeholder="${esc(CR.i18n.t("search_placeholder"))}" value="${esc(query)}">
         <ul class="list"></ul>
       </div>`;
     shadow.getElementById("close").onclick = closePanel;
@@ -192,20 +192,20 @@
     const items = templates();
     const ul = shadow.querySelector(".list");
     if (!items.length) {
-      ul.innerHTML = `<li class="empty">${query ? "No matches." : "No templates yet — click + New."}</li>`;
+      ul.innerHTML = `<li class="empty">${esc(query ? CR.i18n.t("empty_no_matches") : CR.i18n.t("empty_all_templates"))}</li>`;
       return;
     }
     ul.innerHTML = items.map((t) =>
       `<li class="row" data-id="${t.id}">
-         <button class="star ${t.favorite ? "on" : ""}" data-act="fav" title="Favorite">${t.favorite ? "★" : "☆"}</button>
+         <button class="star ${t.favorite ? "on" : ""}" data-act="fav" title="${esc(CR.i18n.t("button_favorite_tooltip"))}">${t.favorite ? "★" : "☆"}</button>
          <div class="rmain" data-act="edit"><div class="rt"></div><div class="rs"></div></div>
-         <button class="ic" data-act="edit" title="Edit">&#9998;</button>
-         <button class="ic" data-act="del" title="Delete">&#128465;</button>
+         <button class="ic" data-act="edit" title="${esc(CR.i18n.t("button_edit"))}">&#9998;</button>
+         <button class="ic" data-act="del" title="${esc(CR.i18n.t("button_delete"))}">&#128465;</button>
        </li>`).join("");
     items.forEach((t) => {
       const li = ul.querySelector(`li[data-id="${t.id}"]`);
-      li.querySelector(".rt").textContent = t.title || "Untitled";
-      li.querySelector(".rs").textContent = plain(t.body).slice(0, 60) || "(empty)";
+      li.querySelector(".rt").textContent = t.title || CR.i18n.t("template_untitled");
+      li.querySelector(".rs").textContent = plain(t.body).slice(0, 60) || CR.i18n.t("template_empty_body");
       li.addEventListener("click", (e) => {
         const act = (e.target.closest("[data-act]") || {}).dataset && e.target.closest("[data-act]").dataset.act;
         if (act === "fav") toggleFav(t.id);
@@ -221,7 +221,7 @@
     updateRows();
   }
   async function delTemplate(id) {
-    if (!confirm("Delete this template?")) return;
+    if (!confirm(CR.i18n.t("manager_delete_confirm"))) return;
     await NS.store.softDelete(id);
     updateRows();
   }
@@ -238,25 +238,25 @@
       <style>${styles()}</style>
       <div class="panel ${themeCls()}">
         <div class="hd">
-          <button id="back" class="x" title="Back">&larr;</button>
-          <span class="ttl">${editingId ? "Edit template" : "New template"}</span>
-          <div class="hdacts"><button id="close" class="x" title="Close">&times;</button></div>
+          <button id="back" class="x" title="${esc(CR.i18n.t("button_back"))}">&larr;</button>
+          <span class="ttl">${esc(editingId ? CR.i18n.t("manager_edit_heading") : CR.i18n.t("manager_new_heading"))}</span>
+          <div class="hdacts"><button id="close" class="x" title="${esc(CR.i18n.t("button_close_tooltip"))}">&times;</button></div>
         </div>
         <div class="edit">
-          <input id="title" class="ti" placeholder="Template title">
-          <input id="shortcut" class="sc" placeholder="Shortcut for ;expand (optional, e.g. sig)">
-          <div class="vars"><span class="vlbl">Insert:</span>
+          <input id="title" class="ti" placeholder="${esc(CR.i18n.t("manager_title_placeholder"))}">
+          <input id="shortcut" class="sc" placeholder="${esc(CR.i18n.t("manager_shortcut_placeholder"))}">
+          <div class="vars"><span class="vlbl">${esc(CR.i18n.t("manager_insert_label"))}</span>
             <button class="chip" data-var="first_name">{first_name}</button>
             <button class="chip" data-var="last_name">{last_name}</button>
             <button class="chip" data-var="company">{company}</button>
           </div>
-          <textarea id="body" class="bd" placeholder="Write your template… use {first_name} for variables"></textarea>
+          <textarea id="body" class="bd" placeholder="${esc(CR.i18n.t("manager_body_placeholder"))}"></textarea>
           <div id="lim" class="lim" hidden></div>
           <div class="acts">
-            <button id="del" class="btn danger">${editingId ? "Delete" : "Discard"}</button>
+            <button id="del" class="btn danger">${esc(editingId ? CR.i18n.t("button_delete") : CR.i18n.t("manager_discard_btn"))}</button>
             <span class="grow"></span>
-            <a id="full" class="lnk">Full editor &#8599;</a>
-            <button id="save" class="btn primary">Save</button>
+            <a id="full" class="lnk">${esc(CR.i18n.t("manager_full_editor_link"))}</a>
+            <button id="save" class="btn primary">${esc(CR.i18n.t("manager_save_btn"))}</button>
           </div>
         </div>
       </div>`;
@@ -295,7 +295,7 @@
       if (!rec) {                                // hit the free-plan cap
         const el = shadow.getElementById("lim");
         const lim = (NS.store.templateLimit && NS.store.templateLimit()) || 150;
-        if (el) { el.textContent = "You've reached the " + lim + "-template limit on the free plan. Delete one to add more."; el.hidden = false; }
+        if (el) { el.textContent = CR.i18n.t("alert_create_limit_reached", [lim]); el.hidden = false; }
         return;
       }
       editingId = rec.id;
@@ -305,7 +305,7 @@
   }
   async function delEdit() {
     if (editingId) {
-      if (!confirm("Delete this template?")) return;
+      if (!confirm(CR.i18n.t("manager_delete_confirm"))) return;
       await NS.store.softDelete(editingId);
     }
     draft = null; editingId = null; mode = "list"; renderList(); // "Discard" on a new draft just returns

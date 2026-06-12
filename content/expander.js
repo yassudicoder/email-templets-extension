@@ -37,7 +37,7 @@
   function expandWith(ctx, tpl) {
     const onInsert = (html) => {
       const ok = NS.inserter.insert(ctx, html, { preferPlainText: preferPlain() });
-      if (ok && NS.ui && NS.ui.cue) NS.ui.cue("✓ Inserted");
+      if (ok && NS.ui && NS.ui.cue) NS.ui.cue(CR.i18n.t("toast_inserted"));
     };
     if (NS.picker && NS.picker.fill) NS.picker.fill(tpl, onInsert);
     else onInsert(tpl.body);

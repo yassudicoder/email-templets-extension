@@ -37,11 +37,11 @@
     hidePill();
     if (!rec) {
       const lim = (NS.store.templateLimit && NS.store.templateLimit()) || 150;
-      toast("Template limit reached (" + lim + "). Delete one to add more.", true);
+      toast(CR.i18n.t("toast_template_limit_reached", [lim]), true);
       return;
     }
-    let msg = "✓ Saved as template";
-    if (!allowImg && cap.hadMedia) msg += " — images are a Pro feature";   // graceful upsell
+    let msg = CR.i18n.t("toast_saved_as_template");
+    if (!allowImg && cap.hadMedia) msg += " — " + CR.i18n.t("toast_images_pro_feature");   // graceful upsell
     toast(msg, false, rec.id);
   }
 
@@ -62,7 +62,7 @@
     toastEl.appendChild(span);
     if (editId) {
       const a = document.createElement("a");
-      a.textContent = "Edit";
+      a.textContent = CR.i18n.t("button_edit");
       a.style.cssText = "color:#fff;text-decoration:underline;cursor:pointer;font-weight:600;";
       a.addEventListener("click", async () => {
         try { await NS.store.updateSettings({ focusTemplateId: editId }); } catch (e) {}
@@ -88,7 +88,7 @@
       + ".pill{display:inline-flex;align-items:center;gap:6px;background:#1f2937;color:#fff;"
       + "font:12px/1 system-ui,-apple-system,sans-serif;padding:8px 11px;border-radius:8px;cursor:pointer;"
       + "box-shadow:0 4px 14px rgba(0,0,0,.35);} .pill:hover{background:#111827;} .pill svg{width:14px;height:14px;}"
-      + "</style><button class=\"pill\" id=\"b\">" + ICON + " Save as template</button>";
+      + "</style><button class=\"pill\" id=\"b\">" + ICON + " " + CR.i18n.t("capture_pill_label") + "</button>";
     document.documentElement.appendChild(host);
     const b = shadow.getElementById("b");
     b.addEventListener("mousedown", (e) => e.preventDefault()); // keep the selection alive

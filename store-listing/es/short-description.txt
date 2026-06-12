@@ -1,0 +1,1 @@
+Inserta plantillas de correo en Gmail y LinkedIn con una tecla. Variables, todo local, sin cuenta.

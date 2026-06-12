@@ -112,8 +112,8 @@
     shadow.innerHTML = `
       <style>${styles()}</style>
       <div class="panel ${themeCls()}">
-        <div class="phead"><span class="ptitle">Templates</span><button class="pclose" title="Close">&times;</button></div>
-        <input class="search" placeholder="Search templates…" value="${esc(state.query)}" />
+        <div class="phead"><span class="ptitle">${esc(CR.i18n.t("picker_panel_title"))}</span><button class="pclose" title="${esc(CR.i18n.t("button_close_tooltip"))}">&times;</button></div>
+        <input class="search" placeholder="${esc(CR.i18n.t("search_placeholder"))}" value="${esc(state.query)}" />
         ${items.length ? `<ul>${items.map((t, i) => `
           <li data-i="${i}" class="${i === state.index ? "sel" : ""}">
             <div class="rowmain">
@@ -121,14 +121,14 @@
               <div class="p">${esc(plain(t.body))}</div>
             </div>
             <div class="rowacts">
-              <button class="ic" data-act="edit" title="Edit">&#9998;</button>
-              <button class="ic" data-act="del" title="Delete">&#128465;</button>
+              <button class="ic" data-act="edit" title="${esc(CR.i18n.t("button_edit"))}">&#9998;</button>
+              <button class="ic" data-act="del" title="${esc(CR.i18n.t("button_delete"))}">&#128465;</button>
             </div>
           </li>`).join("")}</ul>`
-          : `<div class="empty">No templates match &ldquo;${esc(state.query)}&rdquo;.</div>`}
+          : `<div class="empty">${esc(CR.i18n.t("picker_no_matches_query", [state.query]))}</div>`}
         <div class="ft">
-          <button class="newbtn" id="cr-new" title="Create a new template">+ New template</button>
-          <span class="hints"><span>&uarr;&darr; navigate</span><span>&crarr; insert</span><span>esc close</span></span>
+          <button class="newbtn" id="cr-new" title="${esc(CR.i18n.t("picker_new_template_title"))}">${esc(CR.i18n.t("picker_new_template_btn"))}</button>
+          <span class="hints"><span>${esc(CR.i18n.t("picker_hint_navigate"))}</span><span>${esc(CR.i18n.t("picker_hint_insert"))}</span><span>${esc(CR.i18n.t("picker_hint_close"))}</span></span>
         </div>
       </div>`;
     const newBtn = shadow.getElementById("cr-new");
@@ -180,7 +180,7 @@
 
   async function deleteTemplate(tpl) {
     if (!tpl || !NS.store) return;
-    if (!confirm(`Delete "${tpl.title || "Untitled"}"?`)) return;
+    if (!confirm(CR.i18n.t("picker_delete_confirm", [tpl.title || CR.i18n.t("template_untitled")]))) return;
     await NS.store.softDelete(tpl.id);
     state.templates = NS.store.getAll();
     state.filtered = filterTemplates(state.query);
@@ -232,12 +232,12 @@
       <style>${styles()}</style>
       <div class="panel ${themeCls()}"><div class="varbox">
         <div class="vhead">
-          <button class="backarrow" id="back" title="Back to templates (Esc)" aria-label="Back">&larr;</button>
-          <h3>Fill in &ldquo;${esc(tpl.title)}&rdquo;</h3>
+          <button class="backarrow" id="back" title="${esc(CR.i18n.t("picker_back_btn_title"))}" aria-label="${esc(CR.i18n.t("button_back"))}">&larr;</button>
+          <h3>${esc(CR.i18n.t("picker_fill_heading", [tpl.title]))}</h3>
         </div>
         ${tokens.map((t) => `<label>${esc(t)}</label>
           <input data-tok="${esc(t)}" placeholder="${esc(t)}" autocomplete="off" />`).join("")}
-        <div class="row"><button class="primary" id="ins">Insert</button></div>
+        <div class="row"><button class="primary" id="ins">${esc(CR.i18n.t("picker_insert_btn"))}</button></div>
       </div></div>`;
     const goBack = () => { if (state && state.fillOnly) close(); else paintList(); };
     const inputs = Array.from(shadow.querySelectorAll("input[data-tok]"));

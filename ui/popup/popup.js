@@ -22,14 +22,14 @@
     ul.innerHTML = "";
     const items = visible();
     if (!items.length) {
-      ul.innerHTML = `<li class="pempty">${query ? "No matches." : "No templates yet."}</li>`;
+      ul.innerHTML = `<li class="pempty">${query ? CR.i18n.t("empty_no_matches") : CR.i18n.t("popup_empty_no_templates")}</li>`;
       return;
     }
     for (const t of items) {
       const li = document.createElement("li");
       li.className = "prow";
       li.innerHTML = `<span class="pstar">${t.favorite ? "★" : ""}</span><span class="ptitle"></span>`;
-      li.querySelector(".ptitle").textContent = t.title || "Untitled";
+      li.querySelector(".ptitle").textContent = t.title || CR.i18n.t("template_untitled");
       li.title = sanitize.toPlainText(t.body);
       li.addEventListener("click", () => copyTemplate(t));
       ul.appendChild(li);
@@ -40,10 +40,10 @@
     const text = sanitize.toPlainText(t.body);
     try {
       await navigator.clipboard.writeText(text);
-      setStatus("Copied — paste with Ctrl+V");
+      setStatus(CR.i18n.t("popup_status_copied"));
     } catch (e) {
       console.error("[CR] popup copy failed", e);
-      setStatus("Copy failed");
+      setStatus(CR.i18n.t("popup_status_copy_failed"));
     }
   }
 
@@ -72,12 +72,24 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     store.updateSettings({ lastBackupAt: Date.now() });   // backed up -> stops the nudge
-    setStatus("Backup downloaded");
+    setStatus(CR.i18n.t("popup_status_backup_downloaded"));
   });
 
   store.init().then(() => {
     const s = store.getSettings();
+    CR.i18n.setLocale((s && s.locale) || "auto");
+    CR.i18n.localize(document);
     globalThis.CR.theme.applyToDocument((s && s.theme) || "system");
+    // Localize the hint while preserving the runtime hotkey in #hk: split the
+    // message on its baked-in "Alt+A" and rebuild around the existing <b id="hk">.
+    const hint = $(".pophint"), hk = $("#hk");
+    if (hint && hk) {
+      const parts = CR.i18n.t("popup_hint").split("Alt+A");
+      hint.textContent = "";
+      hint.appendChild(document.createTextNode(parts[0] != null ? parts[0] : ""));
+      hint.appendChild(hk);
+      hint.appendChild(document.createTextNode(parts.slice(1).join("Alt+A")));
+    }
     if (s && s.hotkey && $("#hk")) $("#hk").textContent = s.hotkey;
     $("#search").addEventListener("input", (e) => { query = e.target.value; render(); });
     render();
