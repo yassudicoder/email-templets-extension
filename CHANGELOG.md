@@ -18,8 +18,6 @@
   (auto-generated from `_locales/`); the default `"auto"` follows the browser.
 - **Localized Chrome Web Store listing** (title ≤45, short description ≤132, and full
   description) for all 7 languages under `store-listing/<lang>/`.
-- A short **feedback form opens on uninstall** (`setUninstallURL`) — placeholder URL,
-  marked TODO; set your real link before publishing.
 
 ### Changed
 - Seeded category names are now **localized to the browser's language on first install**.

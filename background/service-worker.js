@@ -12,9 +12,6 @@ const { store, model, analytics } = globalThis.CR;
 chrome.runtime.onInstalled.addListener(async (details) => {
   await store.init(); // creates the DB and/or migrates to the current schema
 
-  // Open a short feedback form when the user uninstalls (no data is attached).
-  // TODO: replace with your real feedback/Google Form URL before publishing.
-  chrome.runtime.setUninstallURL("https://example.com/canned-responses/uninstall-feedback");
   if (details.reason === "install") {
     if (store.getAll().length === 0) await store.bulkInsert(model.sampleTemplates(Date.now()));
     chrome.tabs.create({ url: chrome.runtime.getURL("ui/welcome/welcome.html") });
