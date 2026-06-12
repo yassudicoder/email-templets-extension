@@ -884,5 +884,15 @@
   "settings_language_auto": {
     "message": "自動（ブラウザー）",
     "description": "Language option that follows the browser language"
+  },
+  "hotkey_changed": {
+    "message": "ショートカットを $key$ に変更しました。すぐに有効になります。すでに開いている Gmail または LinkedIn のタブが反応しない場合は、再読み込みしてください。",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Alt+S"
+      }
+    },
+    "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
   }
 }

@@ -884,5 +884,15 @@
   "settings_language_auto": {
     "message": "Auto (browser)",
     "description": "Language option that follows the browser language"
+  },
+  "hotkey_changed": {
+    "message": "Shortcut changed to $key$. It works right away — if an open Gmail or LinkedIn tab doesn't respond, reload it.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Alt+S"
+      }
+    },
+    "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
   }
 }

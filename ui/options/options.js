@@ -109,6 +109,17 @@
   function applyTheme() { theme.applyToDocument((store.getSettings() && store.getSettings().theme) || "system"); }
   function render() { renderSidebar(); renderList(); renderEditor(); updateCount(); renderNudge(); }
 
+  // ---- Transient confirmation toast (e.g. after changing the shortcut) ---
+  let toastTimer = null;
+  function toast(msg) {
+    const el = $("#toast");
+    if (!el || !msg) return;
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.hidden = true; }, 6500);
+  }
+
   // ---- Hotkey preference ------------------------------------------------
   function renderHotkey() {
     const s = store.getSettings();
@@ -144,6 +155,7 @@
       await store.updateSettings({ hotkey });
       cleanup();
       renderHotkey();
+      toast(CR.i18n.t("hotkey_changed", [hotkey]));
     }
     document.addEventListener("keydown", onKey, true);
   }

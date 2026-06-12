@@ -275,3 +275,17 @@ body {
 [data-theme="dark"] .modalhead, [data-theme="dark"] .modalnote { border-color: #2a3140; }
 [data-theme="dark"] .modalnote { color: #8b93a3; }
 [data-theme="dark"] .modalbody .vchip { background: #4a3a12; color: #f0cd7a; }
+
+/* Transient confirmation toast (e.g. after changing the keyboard shortcut). */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  max-width: min(520px, 92vw); z-index: 1000;
+  background: #111827; color: #f8fafc;
+  padding: 11px 16px; border-radius: 10px;
+  font-size: 13px; line-height: 1.45; text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .28);
+  animation: toastIn .18s ease-out;
+}
+.toast[hidden] { display: none; }
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }

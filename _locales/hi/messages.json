@@ -884,5 +884,15 @@
   "settings_language_auto": {
     "message": "स्वतः (ब्राउज़र)",
     "description": "Language option that follows the browser language"
+  },
+  "hotkey_changed": {
+    "message": "शॉर्टकट बदलकर $key$ कर दिया गया। यह तुरंत काम करता है — अगर कोई पहले से खुला Gmail या LinkedIn टैब काम न करे, तो उसे रीलोड करें।",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Alt+S"
+      }
+    },
+    "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
   }
 }

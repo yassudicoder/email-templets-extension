@@ -884,5 +884,15 @@
   "settings_language_auto": {
     "message": "Auto (navigateur)",
     "description": "Language option that follows the browser language"
+  },
+  "hotkey_changed": {
+    "message": "Raccourci changé en $key$. Il fonctionne immédiatement ; si un onglet Gmail ou LinkedIn déjà ouvert ne répond pas, rechargez-le.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Alt+S"
+      }
+    },
+    "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
   }
 }

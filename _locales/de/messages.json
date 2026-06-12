@@ -884,5 +884,15 @@
   "settings_language_auto": {
     "message": "Automatisch (Browser)",
     "description": "Language option that follows the browser language"
+  },
+  "hotkey_changed": {
+    "message": "Tastenkürzel auf $key$ geändert. Es funktioniert sofort – falls ein bereits geöffneter Gmail- oder LinkedIn-Tab nicht reagiert, lade ihn neu.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Alt+S"
+      }
+    },
+    "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
   }
 }
