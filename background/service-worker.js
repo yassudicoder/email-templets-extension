@@ -5,12 +5,19 @@
  *   - Relays the Ctrl/Cmd+J command to the focused tab's content script.
  * Shares the core modules with content scripts through the globalThis.CR
  * namespace (loaded here via importScripts). */
-importScripts("/core/model.js", "/core/store.js", "/core/analytics.js");
+importScripts("/core/model.js", "/core/store.js", "/core/analytics.js", "/core/feedback-config.js");
 
-const { store, model, analytics } = globalThis.CR;
+const { store, model, analytics, feedbackConfig } = globalThis.CR;
 
 chrome.runtime.onInstalled.addListener(async (details) => {
   await store.init(); // creates the DB and/or migrates to the current schema
+
+  // One-question uninstall survey — Chrome opens this when the user removes the
+  // extension. URL is a TODO placeholder in core/feedback-config.js. setUninstallURL
+  // persists across SW restarts, so setting it on install/update is enough.
+  if (feedbackConfig && feedbackConfig.UNINSTALL_SURVEY_URL) {
+    chrome.runtime.setUninstallURL(feedbackConfig.UNINSTALL_SURVEY_URL, () => void chrome.runtime.lastError);
+  }
 
   if (details.reason === "install") {
     if (store.getAll().length === 0) await store.bulkInsert(model.sampleTemplates(Date.now()));
