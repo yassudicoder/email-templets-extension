@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/gmail-canned-responses</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/gmail-canned-responses</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/how-to-save-canned-responses-linkedin</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/how-to-save-canned-responses-linkedin</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/customer-support-email-templates</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/customer-support-email-templates</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/best-canned-response-extensions</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/best-canned-response-extensions</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/recruiter-outreach-templates</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/recruiter-outreach-templates</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/blog/gmail-templates-vs-text-blaze-vs-briskine</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/blog/gmail-templates-vs-text-blaze-vs-briskine</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gmail-templates-and-canned.netlify.app/privacy</loc>
+    <loc>https://gmail-templates-and-canned.vercel.app/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

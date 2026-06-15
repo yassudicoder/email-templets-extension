@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gmail-templates-and-canned.netlify.app/sitemap.xml
+Sitemap: https://gmail-templates-and-canned.vercel.app/sitemap.xml
