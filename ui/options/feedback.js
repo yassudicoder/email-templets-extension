@@ -159,7 +159,9 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !$("#feedbackModal").hidden) close();
     });
-    $("#fbSubmit").addEventListener("click", (e) => { e.preventDefault(); submit(); });
+    // Handle the form's submit event (covers the button click AND Enter in a field)
+    // so the action-less form never navigates/reloads the options page.
+    $("#fbForm").addEventListener("submit", (e) => { e.preventDefault(); submit(); });
     $("#fbSendAnother").addEventListener("click", () => {
       $("#fbSuccess").hidden = true;
       $("#fbForm").hidden = false;
