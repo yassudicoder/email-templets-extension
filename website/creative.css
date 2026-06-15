@@ -244,7 +244,7 @@ html[data-theme="dark"] .cr-duotone::before { mix-blend-mode: screen; opacity: .
   font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
   padding-bottom: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--hair); }
 .article-head.cr-cover .cr-cover-kicker .cr-cover-cat { color: var(--blue); border: 1px solid var(--line); border-radius: 4px; padding: 3px 9px; font-size: 11px; letter-spacing: .12em; }
-.article-head.cr-cover .cr-cover-kicker .cr-cover-vol { margin-left: auto; color: #9aa0b0; font-weight: 600; }
+.article-head.cr-cover .cr-cover-kicker .cr-cover-vol { margin-left: auto; color: #6b7280; font-weight: 600; }
 .cr-cover-kdot { color: var(--line); }
 .cr-cover-idx {
   position: absolute; top: -8px; right: -4px; z-index: 0;

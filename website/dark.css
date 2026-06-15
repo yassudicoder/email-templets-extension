@@ -130,3 +130,6 @@ html[data-theme="dark"] .try-vhint { color: #7e8597; }
 html[data-theme="dark"] .legal h1, html[data-theme="dark"] .legal h2 { color: var(--ink); }
 html[data-theme="dark"] .legal p, html[data-theme="dark"] .legal li { color: #c3c9da; }
 html[data-theme="dark"] .tldr { background: var(--soft); border-color: var(--line); }
+
+/* A3 sticky CTA — dark surface to match the nav */
+html[data-theme="dark"] .sticky-cta { background: rgba(12,14,20,.9); border-top-color: var(--line); }
