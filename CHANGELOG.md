@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.5.0 — 2026-06-15
+
+### Added
+- **In-app feedback** — a non-intrusive "💬 Feedback" button in the options header
+  opens a form to report a bug or request an improvement without leaving the
+  extension. Type + required message + optional reply email, with a visible,
+  user-controlled diagnostics line (extension version, browser, OS, locale)
+  attached only when the default-on "Include this info" box is checked. Submits
+  straight to a form service (Web3Forms) — no backend, no new permissions, and
+  nothing is sent unless you click Send. A secondary "email directly" mailto is
+  always available as a fallback. Fully localized across all 7 languages.
+- **Uninstall survey** — when the extension is removed, Chrome opens a short
+  one-question "What made you uninstall?" page so churned users can tell us why.
+
+### Privacy
+- Updated the privacy policy with a "Feedback" section describing exactly what a
+  feedback submission sends and that it is strictly user-initiated. No background
+  telemetry; template and message content are never included.
+
+### Notes
+- The Web3Forms access key and the uninstall-survey URL are clearly-marked TODO
+  constants in one place (`core/feedback-config.js`) — fill them in before
+  publishing. Same file carries the reminder to update the Web Store "Data
+  safety" disclosure (User-provided content + optional Email).
+
 ## 0.4.0 — 2026-06-11
 
 ### Added
