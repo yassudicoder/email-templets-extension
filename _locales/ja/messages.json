@@ -894,5 +894,93 @@
       }
     },
     "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
+  },
+  "feedback_button": {
+    "message": "💬 フィードバック",
+    "description": "Label of the 'Send feedback' button in the options header"
+  },
+  "feedback_button_tooltip": {
+    "message": "フィードバックを送信、または不具合を報告",
+    "description": "Tooltip for the feedback header button"
+  },
+  "feedback_modal_title": {
+    "message": "フィードバックを送信",
+    "description": "Title of the feedback modal"
+  },
+  "feedback_modal_subtitle": {
+    "message": "不具合、アイデア、改善できそうなことなど — 開発者に直接届きます。",
+    "description": "Subtitle/intro text in the feedback modal"
+  },
+  "feedback_type_label": {
+    "message": "種類",
+    "description": "Label for the feedback type selector"
+  },
+  "feedback_type_bug": {
+    "message": "不具合の報告",
+    "description": "Feedback type option: bug report"
+  },
+  "feedback_type_feature": {
+    "message": "機能のリクエスト",
+    "description": "Feedback type option: feature request"
+  },
+  "feedback_type_general": {
+    "message": "一般的なフィードバック",
+    "description": "Feedback type option: general feedback"
+  },
+  "feedback_type_other": {
+    "message": "その他",
+    "description": "Feedback type option: other"
+  },
+  "feedback_message_label": {
+    "message": "メッセージ",
+    "description": "Label for the feedback message textarea"
+  },
+  "feedback_message_placeholder": {
+    "message": "困っていること、足りないもの、改善できそうなことは？",
+    "description": "Placeholder for the feedback message textarea"
+  },
+  "feedback_email_label": {
+    "message": "メール（任意 — 返信が必要な場合のみ）",
+    "description": "Label for the optional reply-email field"
+  },
+  "feedback_email_placeholder": {
+    "message": "you@example.com",
+    "description": "Placeholder for the optional email field"
+  },
+  "feedback_diagnostics_checkbox": {
+    "message": "この情報を含める:",
+    "description": "Checkbox label preceding the attached diagnostics string (version, browser, OS, locale)"
+  },
+  "feedback_submit": {
+    "message": "フィードバックを送信",
+    "description": "Submit button in the feedback form"
+  },
+  "feedback_sending": {
+    "message": "送信中…",
+    "description": "Submit button label while the feedback is being sent"
+  },
+  "feedback_success_title": {
+    "message": "ありがとうございます — 受け取りました",
+    "description": "Heading of the feedback success state"
+  },
+  "feedback_success_text": {
+    "message": "フィードバックは開発者に直接届きました。すべてのメッセージに目を通しています。",
+    "description": "Body text of the feedback success state"
+  },
+  "feedback_send_another": {
+    "message": "もう一件送る",
+    "description": "Button to send another piece of feedback after success"
+  },
+  "feedback_error_lead": {
+    "message": "送信できませんでした — 直接メールしてください：",
+    "description": "Error lead shown when sending feedback fails; followed by a clickable mailto link"
+  },
+  "feedback_validation_empty": {
+    "message": "送信する前にメッセージを入力してください。",
+    "description": "Validation error when the feedback message is empty"
+  },
+  "feedback_email_fallback": {
+    "message": "または直接メールする",
+    "description": "Secondary mailto link next to the feedback form"
   }
 }

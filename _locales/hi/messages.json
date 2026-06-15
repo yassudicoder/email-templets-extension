@@ -894,5 +894,93 @@
       }
     },
     "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
+  },
+  "feedback_button": {
+    "message": "💬 फ़ीडबैक",
+    "description": "Label of the 'Send feedback' button in the options header"
+  },
+  "feedback_button_tooltip": {
+    "message": "फ़ीडबैक भेजें या कोई समस्या बताएं",
+    "description": "Tooltip for the feedback header button"
+  },
+  "feedback_modal_title": {
+    "message": "फ़ीडबैक भेजें",
+    "description": "Title of the feedback modal"
+  },
+  "feedback_modal_subtitle": {
+    "message": "बग, सुझाव या जो भी बेहतर हो सकता है — यह सीधे डेवलपर तक पहुँचता है।",
+    "description": "Subtitle/intro text in the feedback modal"
+  },
+  "feedback_type_label": {
+    "message": "प्रकार",
+    "description": "Label for the feedback type selector"
+  },
+  "feedback_type_bug": {
+    "message": "बग रिपोर्ट",
+    "description": "Feedback type option: bug report"
+  },
+  "feedback_type_feature": {
+    "message": "फ़ीचर का अनुरोध",
+    "description": "Feedback type option: feature request"
+  },
+  "feedback_type_general": {
+    "message": "सामान्य फ़ीडबैक",
+    "description": "Feedback type option: general feedback"
+  },
+  "feedback_type_other": {
+    "message": "अन्य",
+    "description": "Feedback type option: other"
+  },
+  "feedback_message_label": {
+    "message": "संदेश",
+    "description": "Label for the feedback message textarea"
+  },
+  "feedback_message_placeholder": {
+    "message": "क्या परेशान करता है, क्या कमी है, या क्या बेहतर हो सकता है?",
+    "description": "Placeholder for the feedback message textarea"
+  },
+  "feedback_email_label": {
+    "message": "ईमेल (वैकल्पिक — केवल अगर आप उत्तर चाहते हैं)",
+    "description": "Label for the optional reply-email field"
+  },
+  "feedback_email_placeholder": {
+    "message": "you@example.com",
+    "description": "Placeholder for the optional email field"
+  },
+  "feedback_diagnostics_checkbox": {
+    "message": "यह जानकारी शामिल करें:",
+    "description": "Checkbox label preceding the attached diagnostics string (version, browser, OS, locale)"
+  },
+  "feedback_submit": {
+    "message": "फ़ीडबैक भेजें",
+    "description": "Submit button in the feedback form"
+  },
+  "feedback_sending": {
+    "message": "भेजा जा रहा है…",
+    "description": "Submit button label while the feedback is being sent"
+  },
+  "feedback_success_title": {
+    "message": "धन्यवाद — मिल गया",
+    "description": "Heading of the feedback success state"
+  },
+  "feedback_success_text": {
+    "message": "आपका फ़ीडबैक सीधे डेवलपर तक पहुँच गया। हम हर संदेश पढ़ते हैं।",
+    "description": "Body text of the feedback success state"
+  },
+  "feedback_send_another": {
+    "message": "एक और भेजें",
+    "description": "Button to send another piece of feedback after success"
+  },
+  "feedback_error_lead": {
+    "message": "भेजा नहीं जा सका — मुझे सीधे यहाँ ईमेल करें",
+    "description": "Error lead shown when sending feedback fails; followed by a clickable mailto link"
+  },
+  "feedback_validation_empty": {
+    "message": "भेजने से पहले कृपया एक संदेश लिखें।",
+    "description": "Validation error when the feedback message is empty"
+  },
+  "feedback_email_fallback": {
+    "message": "या सीधे ईमेल करें",
+    "description": "Secondary mailto link next to the feedback form"
   }
 }

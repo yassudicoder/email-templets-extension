@@ -894,5 +894,93 @@
       }
     },
     "description": "Toast shown after recording a new keyboard shortcut; $key$ is the new shortcut e.g. Alt+S"
+  },
+  "feedback_button": {
+    "message": "💬 Feedback",
+    "description": "Label of the 'Send feedback' button in the options header"
+  },
+  "feedback_button_tooltip": {
+    "message": "Feedback senden oder einen Fehler melden",
+    "description": "Tooltip for the feedback header button"
+  },
+  "feedback_modal_title": {
+    "message": "Feedback senden",
+    "description": "Title of the feedback modal"
+  },
+  "feedback_modal_subtitle": {
+    "message": "Fehler, Ideen oder alles, was besser sein könnte – geht direkt an den Entwickler.",
+    "description": "Subtitle/intro text in the feedback modal"
+  },
+  "feedback_type_label": {
+    "message": "Art",
+    "description": "Label for the feedback type selector"
+  },
+  "feedback_type_bug": {
+    "message": "Fehlerbericht",
+    "description": "Feedback type option: bug report"
+  },
+  "feedback_type_feature": {
+    "message": "Funktionswunsch",
+    "description": "Feedback type option: feature request"
+  },
+  "feedback_type_general": {
+    "message": "Allgemeines Feedback",
+    "description": "Feedback type option: general feedback"
+  },
+  "feedback_type_other": {
+    "message": "Sonstiges",
+    "description": "Feedback type option: other"
+  },
+  "feedback_message_label": {
+    "message": "Nachricht",
+    "description": "Label for the feedback message textarea"
+  },
+  "feedback_message_placeholder": {
+    "message": "Was ist ärgerlich, fehlt oder könnte besser sein?",
+    "description": "Placeholder for the feedback message textarea"
+  },
+  "feedback_email_label": {
+    "message": "E-Mail (optional – nur wenn du eine Antwort möchtest)",
+    "description": "Label for the optional reply-email field"
+  },
+  "feedback_email_placeholder": {
+    "message": "du@beispiel.com",
+    "description": "Placeholder for the optional email field"
+  },
+  "feedback_diagnostics_checkbox": {
+    "message": "Diese Infos mitsenden:",
+    "description": "Checkbox label preceding the attached diagnostics string (version, browser, OS, locale)"
+  },
+  "feedback_submit": {
+    "message": "Feedback senden",
+    "description": "Submit button in the feedback form"
+  },
+  "feedback_sending": {
+    "message": "Wird gesendet…",
+    "description": "Submit button label while the feedback is being sent"
+  },
+  "feedback_success_title": {
+    "message": "Danke – angekommen",
+    "description": "Heading of the feedback success state"
+  },
+  "feedback_success_text": {
+    "message": "Dein Feedback ging direkt an den Entwickler. Wir lesen jede Nachricht.",
+    "description": "Body text of the feedback success state"
+  },
+  "feedback_send_another": {
+    "message": "Weiteres senden",
+    "description": "Button to send another piece of feedback after success"
+  },
+  "feedback_error_lead": {
+    "message": "Senden fehlgeschlagen – schreib mir direkt an",
+    "description": "Error lead shown when sending feedback fails; followed by a clickable mailto link"
+  },
+  "feedback_validation_empty": {
+    "message": "Bitte schreibe eine Nachricht, bevor du sendest.",
+    "description": "Validation error when the feedback message is empty"
+  },
+  "feedback_email_fallback": {
+    "message": "oder direkt per E-Mail",
+    "description": "Secondary mailto link next to the feedback form"
   }
 }

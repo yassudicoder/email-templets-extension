@@ -24,6 +24,7 @@
       <button id="exportBtn" class="btn ghost sm" data-i18n-title="button_export_tooltip" title="Download a backup of all templates" data-i18n="button_export">Export</button>
       <button id="importBtn" class="btn ghost sm" data-i18n-title="button_import_tooltip" title="Import templates from a backup file" data-i18n="button_import">Import</button>
       <input id="importFile" type="file" accept="application/json,.json" hidden>
+      <button id="feedbackBtn" class="btn ghost sm fbtrigger" data-i18n-title="feedback_button_tooltip" title="Send feedback or report a bug" data-i18n="feedback_button">💬 Feedback</button>
       <span id="count" class="count"></span>
     </div>
   </header>
@@ -89,6 +90,57 @@
     </div>
   </div>
 
+  <!-- Feedback modal (user-initiated; sends only on submit) -->
+  <div id="feedbackModal" class="modal" hidden>
+    <div class="modalbox fbbox">
+      <div class="modalhead">
+        <span class="modaltitle" data-i18n="feedback_modal_title">Send feedback</span>
+        <button id="fbClose" class="x" data-i18n-title="button_close_tooltip" title="Close">&times;</button>
+      </div>
+
+      <form id="fbForm" class="modalbody fbform" novalidate>
+        <p class="fbsub" data-i18n="feedback_modal_subtitle">Bugs, ideas, or anything that could be better — it goes straight to the developer.</p>
+
+        <label class="fblabel" for="fbType" data-i18n="feedback_type_label">Type</label>
+        <select id="fbType" class="finput tsel fbselect">
+          <option value="bug" data-i18n="feedback_type_bug">Bug report</option>
+          <option value="feature" data-i18n="feedback_type_feature">Feature request</option>
+          <option value="general" selected data-i18n="feedback_type_general">General feedback</option>
+          <option value="other" data-i18n="feedback_type_other">Other</option>
+        </select>
+
+        <label class="fblabel" for="fbMessage" data-i18n="feedback_message_label">Message</label>
+        <textarea id="fbMessage" class="finput fbtextarea" rows="5" data-i18n-ph="feedback_message_placeholder" placeholder="What's frustrating, missing, or could be better?"></textarea>
+
+        <label class="fblabel" for="fbEmail" data-i18n="feedback_email_label">Email (optional — only if you'd like a reply)</label>
+        <input id="fbEmail" type="text" class="finput" autocomplete="off" data-i18n-ph="feedback_email_placeholder" placeholder="you@example.com">
+
+        <!-- Honeypot: hidden from humans; bots that fill it are flagged as spam by Web3Forms -->
+        <input type="text" name="botcheck" id="fbBotcheck" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="fbdiag">
+          <input type="checkbox" id="fbDiag" checked>
+          <span><span data-i18n="feedback_diagnostics_checkbox">Include this info:</span> <span id="fbDiagText" class="fbdiagtext"></span></span>
+        </label>
+
+        <div id="fbError" class="fberror" role="alert" hidden></div>
+
+        <div class="fbactions">
+          <a class="fb-direct fb-direct-mailto" href="mailto:boxai5115@gmail.com" data-i18n="feedback_email_fallback">or email directly</a>
+          <span class="grow"></span>
+          <button id="fbSubmit" type="submit" class="btn primary" data-i18n="feedback_submit">Send feedback</button>
+        </div>
+      </form>
+
+      <div id="fbSuccess" class="modalbody fbsuccess" hidden>
+        <div class="fbcheck">✓</div>
+        <h3 class="fbsuccesstitle" data-i18n="feedback_success_title">Thanks — got it</h3>
+        <p class="fbsuccesstext" data-i18n="feedback_success_text">Your feedback went straight to the developer. We read every message.</p>
+        <button id="fbSendAnother" class="btn subtle sm" data-i18n="feedback_send_another">Send another</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
   <!-- Shared data layer (same modules the content script + SW use). -->
@@ -100,6 +152,8 @@
   <script src="../../core/analytics.js"></script>
   <script src="../../core/locales.js"></script>
   <script src="../../core/i18n.js"></script>
+  <script src="../../core/feedback-config.js"></script>
   <script src="options.js"></script>
+  <script src="feedback.js"></script>
 </body>
 </html>
