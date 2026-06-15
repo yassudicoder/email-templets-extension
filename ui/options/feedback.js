@@ -52,6 +52,13 @@
     return a;
   }
 
+  // Canonical English labels for the email subject/type, so the developer's inbox
+  // stays consistent regardless of the user's UI language (the form is localized).
+  const TYPE_LABELS = {
+    bug: "Bug report", feature: "Feature request",
+    general: "General feedback", other: "Other"
+  };
+
   let busy = false;
 
   function open() {
@@ -109,7 +116,7 @@
     if (!cfg.WEB3FORMS_ACCESS_KEY) { showError(messageEl); return; }
 
     const type = $("#fbType").value || "general";
-    const typeLabel = $("#fbType").selectedOptions[0] ? $("#fbType").selectedOptions[0].textContent : type;
+    const typeLabel = TYPE_LABELS[type] || "Feedback";
     const email = ($("#fbEmail").value || "").trim();
     const includeDiag = $("#fbDiag").checked;
     const botcheck = $("#fbBotcheck").value;   // honeypot — humans leave this empty
