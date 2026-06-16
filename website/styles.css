@@ -44,6 +44,21 @@ code { background: #f0f2f8; padding: 1px 6px; border-radius: 6px; font-size: .88
 .navlinks a.btn { color: #fff; font-weight: 600; }
 .navlinks a:not(.btn):hover { color: var(--ink); }
 
+/* theme toggle — base/box styling (moved out of dark.css so it is styled in the
+   default LIGHT theme too; dark.css only swaps the sun/moon icon). */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); transition: background .15s, color .15s, border-color .15s; padding: 0; }
+.theme-toggle:hover { background: var(--soft); color: var(--ink); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .moon { display: none; } .theme-toggle .sun { display: block; }
+
+/* mobile nav menu (button + dropdown injected by theme.js; hidden on desktop) */
+.nav-menu-btn { display: none; align-items: center; justify-content: center; width: 38px; height: 38px; flex-shrink: 0; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; padding: 0; }
+.nav-menu-btn:hover { background: var(--soft); color: var(--ink); }
+.nav-menu-panel { display: none; }
+
+/* anchored jumps to in-page sections clear the sticky nav (offset bumped on mobile) */
+#try, #features, #faq { scroll-margin-top: 80px; }
+
 /* hero */
 .hero { position: relative; max-width: 1160px; margin: 0 auto; padding: 80px 28px 72px;
   display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
@@ -147,12 +162,31 @@ code { background: #f0f2f8; padding: 1px 6px; border-radius: 6px; font-size: .88
   .grid { grid-template-columns: 1fr; }
   .plans { grid-template-columns: 1fr; }
   .navlinks a:not(.btn) { display: none; }
+  /* the secondary links + theme toggle are hidden in the bar — surface them in a tap menu */
+  .navlinks { gap: 8px; }
+  .navlinks > .theme-toggle { display: none; }
+  .nav-menu-btn { display: inline-flex; }
+  .nav-menu-panel { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg);
+    border-bottom: 1px solid var(--line); box-shadow: 0 22px 44px -26px rgba(26,33,64,.45); padding: 8px; }
+  .nav.menu-open .nav-menu-panel { display: block; }
+  .nav-menu-panel a, .nav-menu-panel .nav-menu-toggle { display: flex; align-items: center; min-height: 44px;
+    padding: 10px 14px; color: var(--ink); font-weight: 600; border-radius: 10px; }
+  .nav-menu-panel a:hover, .nav-menu-panel a:focus-visible,
+  .nav-menu-panel .nav-menu-toggle:hover, .nav-menu-panel .nav-menu-toggle:focus-visible { background: var(--soft); outline: none; }
+  /* theme toggle, relocated into the menu as a labelled full-width row */
+  .nav-menu-panel .nav-menu-toggle { width: 100%; height: auto; justify-content: flex-start; gap: 12px;
+    border: 0; background: transparent; cursor: pointer; font: inherit; font-weight: 600; }
+  .nav-menu-panel .nav-menu-toggle::after { content: "Theme"; }
+  .nav-menu-panel .nav-menu-toggle svg { width: 18px; height: 18px; }
 }
 
 @media (max-width: 560px) {
   .foot-inner { flex-direction: column; align-items: center; text-align: center; }
   .foot-links { justify-content: center; gap: 12px 18px; }
 }
+
+/* NOTE: the phone/touch "mobile pass" overrides live at the END of this file
+   (search "MOBILE PASS") so they win the cascade over later-defined base rules. */
 
 /* ============ BLOG ============ */
 .blog-head { max-width: 760px; margin: 0 auto; padding: 64px 28px 8px; text-align: center; }
@@ -522,3 +556,60 @@ code { background: #f0f2f8; padding: 1px 6px; border-radius: 6px; font-size: .88
 .sticky-cta-txt { font-size: 14px; font-weight: 600; color: var(--ink); }
 .sticky-cta .btn { white-space: nowrap; }
 @media (max-width: 560px) { .sticky-cta-txt { display: none; } .sticky-cta-inner { gap: 0; } .sticky-cta .btn { width: 100%; } }
+
+/* ============================================================
+   MOBILE PASS — phone/tablet/touch overrides, kept at the END so they win the
+   cascade over the (later-defined) blog/demo base rules. Desktop is untouched:
+   every rule is inside a max-width or coarse-pointer media query.
+   ============================================================ */
+@media (max-width: 560px) {
+  /* hero headline scales fluidly + balances; keep CTAs above the 390px fold */
+  .hero h1 { font-size: clamp(27px, 8.2vw, 34px); line-height: 1.12; text-wrap: balance; }
+  .hero { padding-top: 28px; padding-bottom: 40px; gap: 28px; }
+  .lead { font-size: 16px; margin-bottom: 18px; }
+  .cws-badge { font-size: 13px; }
+
+  /* generic section headings + vertical rhythm (the desktop 34px / 84px is heavy on a phone) */
+  .section h2 { font-size: 27px; }
+  .section-sub { font-size: 15.5px; }
+  .section { padding-top: 52px; padding-bottom: 52px; }
+
+  /* reclaim ~10px of width per side (only .hero dropped its gutters before) */
+  .section, .footer, .article, .related, .blog-head, .post-grid { padding-left: 18px; padding-right: 18px; }
+  .nav { padding-left: 14px; padding-right: 14px; }
+  /* compact brand so brand + menu button + CTA fit comfortably at 360px */
+  .brand { font-size: 15.5px; gap: 7px; }
+  .brand svg { width: 24px; height: 24px; }
+  /* keep "Add to Chrome" on ONE line (no "Add to / Chrome" wrap); the brand
+     wordmark absorbs the squeeze instead. Heights then match the 44px menu btn. */
+  .navlinks .btn.primary { white-space: nowrap; flex-shrink: 0; font-size: 14px; padding: 11px 14px; }
+
+  /* tap targets: footer links + menu button to 44px */
+  .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
+  .nav-menu-btn { width: 44px; height: 44px; }
+
+  /* live-demo variable inputs go fluid instead of a brittle fixed 148px */
+  .try-vars { gap: 12px; }
+  .try-vars label { flex: 1 1 140px; }
+  .try-vars input { width: 100%; }
+  .try-vhint { min-width: 0; flex-basis: 100%; }
+
+  /* copy buttons in template-list posts: tappable height + room for it */
+  .copy-btn { min-height: 36px; display: inline-flex; align-items: center; }
+  .copy-list li { padding-right: 84px; }
+
+  /* anchored jumps clear the taller mobile sticky nav (homepage + in-post h2) */
+  #try, #features, #faq, .article-body h2 { scroll-margin-top: 108px; }
+}
+
+/* coarse-pointer (touch): hide keyboard-only hints, adapt the demo copy to tap */
+@media (hover: none) and (pointer: coarse) {
+  .tp-foot { display: none; }
+  .tc-hint { font-size: 0; }
+  .tc-hint::after { content: attr(data-touch); font-size: 12px; }
+  .tc-body:empty::before { content: attr(data-ph-touch); }
+}
+/* touch laptops/phones: copy buttons can't be hover-revealed, so always show them */
+@media (hover: none) { .copy-btn { opacity: 1; } }
+/* decorative hero-mock keyboard hint is noise on small screens (mock is aria-hidden) */
+@media (max-width: 768px) { .picker-foot { display: none; } }

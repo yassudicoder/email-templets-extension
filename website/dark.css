@@ -6,11 +6,8 @@
    screenshots sitting on a dark page.
    ============================================================ */
 
-/* theme toggle button (works in both themes) */
-.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); transition: background .15s, color .15s, border-color .15s; padding: 0; }
-.theme-toggle:hover { background: var(--soft); color: var(--ink); }
-.theme-toggle svg { width: 18px; height: 18px; }
-.theme-toggle .moon { display: none; } .theme-toggle .sun { display: block; }
+/* theme toggle button — base/box styling now lives in styles.css (always loaded,
+   so the toggle is styled in LIGHT mode too). Only the dark-mode icon swap is here. */
 html[data-theme="dark"] .theme-toggle .sun { display: none; } html[data-theme="dark"] .theme-toggle .moon { display: block; }
 
 /* ---- core variable overrides ---- */

@@ -45,8 +45,67 @@
     if (cta) nav.insertBefore(btn, cta); else nav.appendChild(btn);
   }
 
-  if (document.readyState !== "loading") build();
-  else document.addEventListener("DOMContentLoaded", build);
+  // On phones the secondary nav links are hidden (CSS). Surface them in a tap
+  // menu so Blog/Features/FAQ stay reachable. Injected here so all pages share it.
+  var HAMB = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+  var XICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  function buildMenu() {
+    var navlinks = document.querySelector(".navlinks");
+    if (!navlinks || document.querySelector(".nav-menu-btn")) return;
+    var nav = document.querySelector(".nav") || navlinks;
+    var links = navlinks.querySelectorAll("a:not(.btn)");
+    if (!links.length) return;
+
+    var panel = document.createElement("div");
+    panel.className = "nav-menu-panel";
+    panel.id = "nav-menu-panel";
+
+    var btn = document.createElement("button");
+    btn.className = "nav-menu-btn";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Menu");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", "nav-menu-panel");
+    btn.innerHTML = HAMB;
+
+    function close() { nav.classList.remove("menu-open"); btn.setAttribute("aria-expanded", "false"); btn.innerHTML = HAMB; }
+    function open() { nav.classList.add("menu-open"); btn.setAttribute("aria-expanded", "true"); btn.innerHTML = XICON; }
+
+    Array.prototype.forEach.call(links, function (a) {
+      var c = a.cloneNode(true);
+      c.className = "";
+      c.addEventListener("click", close);
+      panel.appendChild(c);
+    });
+
+    // theme toggle, relocated into the menu on mobile (the bar copy is hidden by CSS)
+    var t2 = document.createElement("button");
+    t2.className = "theme-toggle nav-menu-toggle";
+    t2.type = "button";
+    t2.setAttribute("aria-label", "Toggle dark mode");
+    t2.innerHTML = SUN + MOON;
+    t2.addEventListener("click", function () { set(cur() === "dark" ? "light" : "dark"); });
+    panel.appendChild(t2);
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      nav.classList.contains("menu-open") ? close() : open();
+    });
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("menu-open") && !panel.contains(e.target) && !btn.contains(e.target)) close();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 900) close(); });
+
+    var toggleBtn = navlinks.querySelector(".theme-toggle");
+    if (toggleBtn) navlinks.insertBefore(btn, toggleBtn);
+    else { var cta = navlinks.querySelector("a.btn"); cta ? navlinks.insertBefore(btn, cta) : navlinks.appendChild(btn); }
+    nav.appendChild(panel);
+  }
+
+  function init() { build(); buildMenu(); }
+  if (document.readyState !== "loading") init();
+  else document.addEventListener("DOMContentLoaded", init);
 
   // follow the OS only while the user hasn't made an explicit choice
   try {

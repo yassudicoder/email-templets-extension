@@ -130,7 +130,10 @@ a.tocrow:hover .tocstatus.read { background: var(--blue); color: #fff; border-co
   .lead-grid { grid-template-columns: 1fr; gap: 22px; }
   .lead-plate { min-height: 150px; }
   .tocrow-grid { grid-template-columns: 40px 1fr; gap: 6px 16px; }
-  .toccat, .tocstatus { grid-column: 2; justify-self: start; }
+  /* keep the title+dek (.tocmain) out of the 40px number column — without this it
+     auto-places into column 1 and wraps to one character per line. */
+  .toccat, .tocmain, .tocstatus { grid-column: 2; justify-self: start; }
+  .tocdek { max-width: none; }
 }
 
 /* ============ article — spec-sheet editorial ============ */
@@ -262,6 +265,36 @@ mark.hl.lit { background-size: 100% 100%; }
   #faq .faq summary { padding: 22px 40px 22px 44px; font-size: 16px; }
   #faq .faq summary::before { top: 24px; }
   #faq .faq p { padding: 0 20px 24px 44px; }
+}
+
+/* ---- mobile pass: blog comparison tables, gutters, in-article overflow guards ---- */
+@media (max-width: 640px) {
+  /* reclaim side gutter on the blog index masthead/contents */
+  .toc { padding-left: 18px; padding-right: 18px; }
+
+  /* comparison tables: scroll as ONE readable block (the cells get a real
+     min-width so the existing display:block;overflow-x:auto actually engages
+     instead of crushing 4–5 columns), with the row-label column pinned and a
+     right-edge fade as the scroll affordance. var(--bg)/var(--soft) make the
+     sticky cell + fade theme-adaptive, so dark mode needs no extra override. */
+  .ctable { border-radius: 8px; position: relative;
+    background:
+      linear-gradient(to left, var(--bg), rgba(255,255,255,0) 26px) right center / 26px 100% no-repeat local,
+      radial-gradient(farthest-side at 100% 50%, rgba(20,25,45,.16), rgba(0,0,0,0)) right center / 14px 100% no-repeat scroll; }
+  .ctable thead th, .ctable tbody td { white-space: normal; min-width: 132px; overflow-wrap: anywhere; word-break: break-word; }
+  .ctable thead th:first-child, .ctable tbody td:first-child { min-width: 116px; position: sticky; left: 0; z-index: 1; }
+  .ctable thead th:first-child { background: var(--soft); }
+  .ctable tbody td:first-child { background: var(--bg); }
+
+  /* in-article overflow guards (defensive: long tokens / future <pre>) */
+  .article-body code, .article-body kbd { overflow-wrap: anywhere; word-break: break-word; }
+  .article-body pre { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+  .colophon-end { font-size: 11px; letter-spacing: .06em; }
+}
+
+/* features ledger keyboard hint is hidden at <=640 already; extend to the 768 tablet */
+@media (max-width: 768px) {
+  .ledger-foot span:last-child { display: none; }
 }
 
 /* Draft/published flag: any contents entry marked data-status="draft" is hidden
