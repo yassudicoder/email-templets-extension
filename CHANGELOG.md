@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.6.0 — 2026-06-17
+
+### Added
+- **Cross-device sync (no account)** — optional "Sync templates across my devices"
+  setting (off by default) that rides on Chrome's built-in sync, so your templates
+  and categories roam across the Chrome browsers you're signed into. No account, no
+  backend. Additive, newest-wins merge that never drops data; best for text
+  templates (very large or image-heavy libraries may exceed Chrome's sync limits).
+- **Smart auto tokens** — `{date}`, `{time}` and `{day}` now fill in automatically at
+  insert time (no prompt), in both the Alt+A picker and the `;shortcut`+Tab expander.
+- **Richer usage insights** — content-free events for template created, import/export
+  counts, save-from-selection, expander inserts, and library size.
+
+### Changed
+- **Anonymous usage analytics is now ON by default (opt-out)** and strictly
+  content-free — event names + a random id only, never template or message content.
+  A one-time in-app notice explains it, and it can be switched off any time in the
+  options page.
+- **Feedback** now opens a pre-filled email draft (Gmail compose) that you send
+  yourself instead of posting to a form service — so it works with no backend.
+  Removed the diagnostics line, and "email directly" now reliably opens an email
+  (previously a dead `mailto:` on machines with no default mail app).
+
+### Privacy
+- Privacy policy updated: analytics on-by-default (with opt-out), feedback-by-email,
+  and the optional Chrome-Sync storage are all disclosed accurately. Your template
+  and message content still never leaves your device.
+- Extension analytics now uses its own PostHog project, separate from the website.
+
 ## 0.5.0 — 2026-06-15
 
 ### Added

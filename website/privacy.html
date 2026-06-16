@@ -45,35 +45,36 @@
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated: June 15, 2026</p>
 
-    <p class="tldr"><b>In short:</b> Canned Responses &amp; Email Templates stores your templates locally on your own device. It does <b>not</b> read, collect, or transmit your emails or messages, and there is <b>no account</b>. The extension sends <b>no data at all by default</b>. The only exceptions are two things you control: optional anonymous usage statistics you can turn on, and feedback you choose to send us — neither ever includes any message or template content.</p>
+    <p class="tldr"><b>In short:</b> Canned Responses &amp; Email Templates stores your templates locally on your own device, and there is <b>no account</b>. Your <b>templates and messages never leave your device</b> — the extension does not read, collect, or transmit any of their content. To improve the product it does collect <b>anonymous, content-free usage statistics</b> (just which features are used) — this is <b>on by default, and you can turn it off anytime</b> in the options page. The only other data it sends is feedback you choose to submit. Neither ever includes any message or template content.</p>
 
     <h2>What the extension stores</h2>
     <p>The extension saves the data you create — your templates (titles, bodies, shortcuts, tags, favorites) and your settings (hotkey, theme, backup preferences) — using your browser's local extension storage (<code>chrome.storage.local</code>). This data lives on your device.</p>
+    <p>If you turn on the optional <i>"Sync templates across my devices"</i> setting (off by default), your templates and categories are also kept in <b>Chrome's built-in sync</b> (<code>chrome.storage.sync</code>) so they roam across the Chrome browsers where you're signed in. That uses your own Google/Chrome Sync — <b>not our servers</b> — and still needs no account with us. Turn the setting off to keep everything on one device.</p>
 
     <h2>What the extension does not do</h2>
     <ul>
       <li>It does <b>not</b> read, scan, collect, store, or transmit the content of your emails or messages — ever, regardless of any setting.</li>
       <li>It does <b>not</b> require an account or sign-in.</li>
       <li>It does <b>not</b> include advertising or third-party advertising trackers.</li>
-      <li>By default it sends <b>no</b> data to us or any server. The only exceptions are user-initiated: the optional anonymous usage statistics (off until you turn them on) and the feedback you choose to submit — both described below.</li>
+      <li>It does <b>not</b> include advertising or third-party advertising trackers, and it never transmits the content of your templates, emails, or messages.</li>
+      <li>The only data it sends is anonymous, content-free usage statistics (on by default, can be turned off) and feedback you choose to submit — both described below.</li>
     </ul>
 
-    <h2>Optional usage analytics (off by default)</h2>
-    <p>To understand which features are useful and where to improve, the extension includes an <b>optional</b> setting — <i>"Share anonymous usage stats"</i> in the options page — that is <b>turned off by default</b>. You can turn it on or off at any time.</p>
-    <p>When (and only when) you turn it on, the extension sends a small number of anonymous, aggregate <b>events</b> to our analytics provider (PostHog):</p>
+    <h2>Anonymous usage analytics (on by default — you can turn it off)</h2>
+    <p>To understand which features are useful and where to improve, the extension collects a small number of <b>anonymous, content-free</b> usage events. This is controlled by the <i>"Share anonymous usage stats"</i> setting in the options page, which is <b>on by default</b>. You are shown a one-time notice about it, and you can turn it off at any time — when off, the extension transmits nothing.</p>
+    <p>The events are sent to our analytics provider (PostHog):</p>
     <ul>
-      <li><b>What is sent:</b> event names such as "picker opened" and "template inserted", which site they happened on (Gmail or LinkedIn), and a <b>random ID</b> that is not linked to your name, email, or any account.</li>
+      <li><b>What is sent:</b> event names such as "picker opened", "template inserted", and "template created"; which site they happened on (Gmail or LinkedIn); simple <b>counts</b> (for example, how many templates you have, or how many you import or export); and a <b>random ID</b> that is not linked to your name, email, or any account.</li>
       <li><b>What is never sent:</b> the content of your templates (titles or bodies), and the content of any email or message — none of it leaves your device.</li>
     </ul>
-    <p>If you leave the setting off, the extension transmits nothing.</p>
+    <p>To turn it off, open the options page and switch off <i>"Share anonymous usage stats"</i> (or choose <i>"Turn off"</i> on the one-time notice).</p>
 
     <h2>Feedback (only when you send it)</h2>
-    <p>The extension includes an optional <i>"Send feedback"</i> form in its options page so you can report a bug or request an improvement without leaving the extension. This is <b>entirely user-initiated</b> — nothing is sent unless you fill in the form and click <b>Send</b>. It is not background telemetry.</p>
-    <p>When (and only when) you submit feedback, the extension sends the following to our email through a form service (<a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a>):</p>
+    <p>The extension includes an optional <i>"Send feedback"</i> form in its options page so you can report a bug or request an improvement without leaving the extension. This is <b>entirely user-initiated</b>. When you click <b>Send</b>, the extension simply opens a pre-filled email draft (in Gmail) addressed to us — <b>you</b> review it and send it yourself. The extension does not transmit anything on its own, and there is no background telemetry.</p>
+    <p>Because you send the email yourself, we receive only:</p>
     <ul>
-      <li>Your <b>message</b> — the text you type into the form.</li>
-      <li>Your <b>email address</b>, only if you choose to enter one so we can reply (it is optional — leave it blank and we receive no email from you).</li>
-      <li>If you leave the <i>"Include this info"</i> box checked, a short <b>diagnostics</b> line — the extension version, your browser and operating system, and your locale — which helps us reproduce bugs. The form shows you exactly what this contains, and you can uncheck it before sending.</li>
+      <li>Your <b>message</b> — the text you typed, placed into the email draft.</li>
+      <li>Your <b>email address</b>, because you are the sender (so we can reply).</li>
     </ul>
     <p>We use this only to read and respond to your feedback. The content of your templates and the content of your emails or messages are <b>never</b> included.</p>
 
@@ -88,10 +89,10 @@
     <p>You can <b>export</b> your templates to a JSON file at any time as a backup, and <b>import</b> them later. Because the data is stored locally, <b>uninstalling the extension removes it from your device</b> — we recommend exporting a backup before uninstalling. Clearing your browser's extension data will also remove it.</p>
 
     <h2>Third parties</h2>
-    <p>The extension does not share data with any third parties, because it does not collect or transmit your data in the first place.</p>
+    <p>The only third party the extension sends data to is our analytics provider, <b>PostHog</b>, and only the anonymous, content-free usage events described above (when analytics is on). It never shares your personal data, your templates, or any email or message content with anyone.</p>
 
     <h2>About this website</h2>
-    <p>This marketing website (the pages on this domain) is separate from the extension and uses privacy-friendly, <b>cookieless</b> analytics to count visits and see which pages lead to installs. It does not use advertising cookies and does not track you across other websites. The extension itself remains completely analytics-free, exactly as described above.</p>
+    <p>This marketing website (the pages on this domain) is separate from the extension and uses privacy-friendly, <b>cookieless</b> analytics to count visits and see which pages lead to installs. It does not use advertising cookies and does not track you across other websites. The extension's own anonymous, content-free usage analytics — which you can turn off — are described in the section above.</p>
 
     <h2>Children's privacy</h2>
     <p>The extension is intended for general business use and is not directed to children under 13.</p>

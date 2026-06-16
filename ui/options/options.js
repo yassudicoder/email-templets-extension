@@ -41,13 +41,34 @@
     $("#nudgeDismiss").addEventListener("click", async () => { await store.updateSettings({ backupNudgeDismissedAt: Date.now() }); renderNudge(); });
     $("#nudgeWeekly").addEventListener("change", async (e) => { await store.updateSettings({ backupReminderWeekly: e.target.checked }); renderNudge(); });
     $("#manageShortcuts").addEventListener("click", (e) => { e.preventDefault(); openShortcutsPage(); });
-    // Anonymous, opt-in analytics toggle (off by default).
+    // Anonymous analytics toggle (ON by default; content-free; user can opt out).
     const aTog = $("#analyticsToggle");
     if (aTog) {
       aTog.checked = !!store.getSettings().analyticsEnabled;
       aTog.addEventListener("change", async (e) => {
         await store.updateSettings({ analyticsEnabled: e.target.checked });
         if (e.target.checked && analytics) analytics.capture("analytics_enabled");
+      });
+    }
+    // One-time disclosure notice: "Got it" keeps it on, "Turn off" opts out — both
+    // mark the notice as seen so it never nags again.
+    $("#analyticsNoticeOk").addEventListener("click", async () => {
+      await store.updateSettings({ analyticsNoticeShown: true }); renderAnalyticsNotice();
+    });
+    $("#analyticsNoticeOff").addEventListener("click", async () => {
+      await store.updateSettings({ analyticsNoticeShown: true, analyticsEnabled: false });
+      if (aTog) aTog.checked = false;
+      renderAnalyticsNotice();
+    });
+    renderAnalyticsNotice();
+    // Optional cross-device sync (off by default). Flipping it on triggers a
+    // reconcile through the store's normal write path — no extra plumbing here.
+    const sTog = $("#syncToggle");
+    if (sTog) {
+      sTog.checked = !!store.getSettings().syncEnabled;
+      sTog.addEventListener("change", async (e) => {
+        await store.updateSettings({ syncEnabled: e.target.checked });
+        if (e.target.checked && analytics) analytics.capture("sync_enabled");
       });
     }
     const pLink = $("#privacyLink");
@@ -59,7 +80,7 @@
 
     // External changes (seeding, other tabs) refresh everything without
     // clobbering the open editor's focus.
-    store.subscribe(() => { renderSidebar(); renderList(); updateCount(); renderHotkey(); applyTheme(); renderNudge(); });
+    store.subscribe(() => { renderSidebar(); renderList(); updateCount(); renderHotkey(); applyTheme(); renderNudge(); renderAnalyticsNotice(); });
 
     applyTheme();
     $("#themeSel").value = store.getSettings().theme || "system";
@@ -103,7 +124,7 @@
     render();
     if (wasPaste && selectedId) { const b = $("#body"); if (b) b.focus(); }
     renderHotkey();
-    if (analytics) analytics.capture("options_opened");   // dropped by the SW unless opted in
+    if (analytics) analytics.capture("options_opened", { templates: store.getAll().length });   // dropped by the SW unless opted in
   }
 
   function applyTheme() { theme.applyToDocument((store.getSettings() && store.getSettings().theme) || "system"); }
@@ -732,10 +753,18 @@
     }
   }
 
+  // ---- One-time analytics disclosure notice -----------------------------
+  function renderAnalyticsNotice() {
+    const el = $("#analyticsNotice");
+    if (!el) return;
+    el.hidden = !!store.getSettings().analyticsNoticeShown;   // shown until acknowledged
+  }
+
   async function onNew() {
     const folderId = view.type === "category" ? view.id : null;   // create into the active category
     const rec = await store.create({ title: CR.i18n.t("template_untitled"), body: "", folderId, favorite: view.type === "favorites" });
     if (!rec) { alert(CR.i18n.t("alert_create_limit_reached", [store.templateLimit()])); return; }
+    if (analytics) analytics.capture("template_created");   // content-free: a new template was added
     selectedId = rec.id;
     query = ""; $("#search").value = ""; page = 0;
     if (view.type === "trash") view = { type: "all" };
@@ -765,6 +794,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     store.updateSettings({ lastBackupAt: Date.now() });
     renderNudge();
+    if (analytics) analytics.capture("templates_exported", { count: data.templates.length });   // count only, no content
   }
 
   function onImportFile(e) {
@@ -801,6 +831,7 @@
           }, base + i));
         if (!recs.length) throw new Error("nothing to import");
         const added = await store.bulkInsert(recs);
+        if (analytics) analytics.capture("templates_imported", { count: added.length });   // count only, no content
         render();
         if (added.length < recs.length) {
           alert(CR.i18n.t("alert_import_partial", [added.length, recs.length, store.templateLimit()]));

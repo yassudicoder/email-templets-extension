@@ -38,6 +38,15 @@
     <button id="nudgeDismiss" class="x" data-i18n-title="button_dismiss" title="Dismiss">&times;</button>
   </div>
 
+  <!-- One-time disclosure: analytics is on by default (anonymous, content-free). -->
+  <div id="analyticsNotice" class="nudge" hidden>
+    <span class="nicon">📊</span>
+    <span class="nmsg" data-i18n="analytics_notice_msg">Anonymous usage stats are <b>on</b> to help improve the extension — we never collect your templates or messages, only which features get used. You can turn this off anytime.</span>
+    <span class="ngrow"></span>
+    <button id="analyticsNoticeOff" class="btn sm" data-i18n="analytics_notice_turn_off">Turn off</button>
+    <button id="analyticsNoticeOk" class="btn primary sm" data-i18n="analytics_notice_ok">Got it</button>
+  </div>
+
   <main class="layout">
     <!-- Search + New spans the sidebar and the card list (grid area: search) -->
     <div class="searchbar">
@@ -57,7 +66,14 @@
             <input type="checkbox" id="analyticsToggle">
             <span data-i18n="settings_analytics_toggle">Share anonymous usage stats</span>
           </label>
-          <p class="privacy-note"><span data-i18n="settings_analytics_note">Off by default. Helps improve the extension — no message or template content is ever sent. </span><a id="privacyLink" href="#" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a></p>
+          <p class="privacy-note"><span data-i18n="settings_analytics_note">On by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it off here anytime. </span><a id="privacyLink" href="#" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a></p>
+        </div>
+        <div class="privacy-box">
+          <label class="privacy-toggle">
+            <input type="checkbox" id="syncToggle">
+            <span data-i18n="settings_sync_toggle">Sync templates across my devices</span>
+          </label>
+          <p class="privacy-note" data-i18n="settings_sync_note">Off by default. Uses Chrome's built-in sync — no account needed. Best for text templates; very large libraries or image-heavy templates may not fit.</p>
         </div>
       </div>
     </aside>
@@ -118,15 +134,10 @@
         <!-- Honeypot: hidden from humans; bots that fill it are flagged as spam by Web3Forms -->
         <input type="text" name="botcheck" id="fbBotcheck" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <label class="fbdiag">
-          <input type="checkbox" id="fbDiag" checked>
-          <span><span data-i18n="feedback_diagnostics_checkbox">Include this info:</span> <span id="fbDiagText" class="fbdiagtext"></span></span>
-        </label>
-
         <div id="fbError" class="fberror" role="alert" hidden></div>
 
         <div class="fbactions">
-          <a class="fb-direct fb-direct-mailto" href="mailto:boxai5115@gmail.com" data-i18n="feedback_email_fallback">or email directly</a>
+          <a class="fb-direct fb-direct-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=boxai5115@gmail.com&amp;su=Canned+Responses+feedback" target="_blank" rel="noopener" data-i18n="feedback_email_fallback">or email directly</a>
           <span class="grow"></span>
           <button id="fbSubmit" type="submit" class="btn primary" data-i18n="feedback_submit">Send feedback</button>
         </div>
@@ -146,6 +157,7 @@
   <!-- Shared data layer (same modules the content script + SW use). -->
   <script src="../../core/sanitize.js"></script>
   <script src="../../core/model.js"></script>
+  <script src="../../core/sync.js"></script>
   <script src="../../core/theme.js"></script>
   <script src="../../core/store.js"></script>
   <script src="../../core/entitlements.js"></script>

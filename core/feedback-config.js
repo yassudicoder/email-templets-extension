@@ -5,16 +5,14 @@
  *
  * ─────────────────────────────────────────────────────────────────────────
  * ⚠️ CHROME WEB STORE "DATA SAFETY" DISCLOSURE — UPDATE BEFORE PUBLISHING ⚠️
- * Once this feedback feature ships, the extension can transmit user-provided
- * data (only when the user clicks "Send"). Update the Web Store dashboard's
- * Data safety form to disclose that, when a user submits feedback, the
- * extension collects:
- *   • "User-provided content"  → the feedback message text (and the optional
- *                                 diagnostics string: version, browser, OS, locale).
- *   • "Email (optional)"       → only if the user chooses to enter one for a reply.
- * Mark it as collected (not "shared/sold"), used for app functionality /
- * customer support, optional, and user-initiated. Nothing is sent in the
- * background — only on an explicit user submit.
+ * Default behavior (no WEB3FORMS_ACCESS_KEY set): clicking "Send" opens a
+ * pre-filled email DRAFT in the user's own mail (Gmail) — the user sends it
+ * themselves, so the extension transmits nothing on its own.
+ * If you DO set a WEB3FORMS_ACCESS_KEY, "Send" instead POSTs the message (and
+ * optional reply-to email) to Web3Forms. In that case update the Web Store
+ * Data safety form to disclose "User-provided content" (the message) and the
+ * optional "Email", collected (not shared/sold), for support, user-initiated.
+ * Either way nothing is sent in the background — only on an explicit submit.
  * ─────────────────────────────────────────────────────────────────────────
  */
 (function (g) {

@@ -7,7 +7,7 @@
   "use strict";
   const NS = (g.CR = g.CR || {});
 
-  const SCHEMA_VERSION = 2;
+  const SCHEMA_VERSION = 3;
 
   function uuid() {
     if (g.crypto && g.crypto.randomUUID) return g.crypto.randomUUID();
@@ -71,9 +71,13 @@
     return {
       hotkey: "Alt+A", schemaVersion: SCHEMA_VERSION, plan: "free", theme: "system", locale: "auto",
       lastBackupAt: 0, backupReminderWeekly: false, backupNudgeDismissedAt: 0,
-      // Anonymous, opt-in product analytics — OFF until the user enables it.
-      // analyticsId is a random id (no identity) generated only once enabled.
-      analyticsEnabled: false, analyticsId: "",
+      // Optional cross-device sync via chrome.storage.sync (no account) — OFF until opted in.
+      syncEnabled: false,
+      // Anonymous product analytics — ON by default (opt-out). It is strictly
+      // content-free: only event names + a random analyticsId (no name/email/account),
+      // NEVER template titles/bodies or any message content. Users are shown a
+      // one-time notice (analyticsNoticeShown) and can switch it off any time.
+      analyticsEnabled: true, analyticsId: "", analyticsNoticeShown: false,
       // Beta-era installs are flagged early-access so they can be grandfathered
       // when premium launches (set this default to false at that point).
       earlyAccess: true
@@ -105,7 +109,16 @@
   const MIGRATIONS = {
     // v2: introduce named categories. Existing templates keep folderId === null
     // (they show under "All Templates" until the user files them) — never lost.
-    2: (db) => { if (!Array.isArray(db.categories)) db.categories = sampleCategories(Date.now()); }
+    2: (db) => { if (!Array.isArray(db.categories)) db.categories = sampleCategories(Date.now()); },
+    // v3: anonymous analytics becomes ON by default (opt-out). Ensure the keys
+    // exist, switch it on, and flag the one-time disclosure notice so existing
+    // users are told and can opt out. Runs once (schemaVersion then becomes 3).
+    3: (db) => {
+      if (!db.settings) db.settings = defaultSettings();
+      if (typeof db.settings.analyticsId !== "string") db.settings.analyticsId = "";
+      db.settings.analyticsEnabled = true;
+      db.settings.analyticsNoticeShown = false;
+    }
   };
 
   function migrate(db) {

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "default_locale": "en",
   "name": "__MSG_manifest_name__",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "__MSG_manifest_description__",
   "permissions": ["storage", "contextMenus"],
   "host_permissions": [
@@ -24,6 +24,7 @@
         "core/i18n.js",
         "core/model.js",
         "core/theme.js",
+        "core/sync.js",
         "core/store.js",
         "core/entitlements.js",
         "core/inserter.js",

@@ -152,12 +152,36 @@
     "description": "Analytics opt-in checkbox label"
   },
   "settings_analytics_note": {
-    "message": "Off by default. Helps improve the extension — no message or template content is ever sent. ",
-    "description": "Privacy explanation for the analytics opt-in"
+    "message": "On by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it off here anytime. ",
+    "description": "Privacy explanation for the analytics setting"
+  },
+  "analytics_notice_msg": {
+    "message": "Anonymous usage stats are on to help improve the extension — we never collect your templates or messages, only which features get used. You can turn this off anytime.",
+    "description": "One-time disclosure banner that analytics is on by default"
+  },
+  "analytics_notice_turn_off": {
+    "message": "Turn off",
+    "description": "Button to opt out of analytics on the disclosure banner"
+  },
+  "analytics_notice_ok": {
+    "message": "Got it",
+    "description": "Button to acknowledge the analytics disclosure (keeps it on)"
+  },
+  "welcome_footer_analytics": {
+    "message": "To improve the extension we collect anonymous usage stats (which features get used — never your templates or messages). You can turn this off anytime in Settings.",
+    "description": "Analytics disclosure line on the welcome page"
   },
   "link_learn_more_privacy": {
     "message": "Learn more",
     "description": "Link to the privacy policy"
+  },
+  "settings_sync_toggle": {
+    "message": "Sync templates across my devices",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "Off by default. Uses Chrome's built-in sync — no account needed. Best for text templates; very large libraries or image-heavy templates may not fit.",
+    "description": "Explanation for the cross-device sync toggle"
   },
   "button_prev_page_tooltip": {
     "message": "Previous page",

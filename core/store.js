@@ -14,6 +14,52 @@
   let cache = null;                  // { schemaVersion, templates: {id: rec}, settings }
   const listeners = new Set();
 
+  // ---- Optional cross-device sync (off unless settings.syncEnabled; see core/sync.js).
+  // Reconcile = pull the user's shared snapshot, additively merge it (newest-wins),
+  // save anything new locally, and publish anything the remote lacks. Additive +
+  // single-flight + echo-guarded, so it never loses local data and never ping-pongs.
+  let syncStamp = 0;            // stamp of the snapshot we last pushed (ignore our own echo)
+  let applyingRemote = false;   // true while persisting a merge locally (suppresses re-trigger)
+  let reconciling = false;      // single-flight guard
+  let reconcileTimer = null;
+  function syncOn() {
+    return !!(cache && cache.settings && cache.settings.syncEnabled && NS.crsync && NS.crsync.has());
+  }
+  function notify() {
+    for (const cb of listeners) {
+      try { cb(cache); } catch (e) { console.error("[CR] store listener error", e); }
+    }
+  }
+  function scheduleReconcile(db) {
+    if (applyingRemote || !db || !db.settings || !db.settings.syncEnabled) return;
+    if (!NS.crsync || !NS.crsync.has()) return;
+    clearTimeout(reconcileTimer);
+    reconcileTimer = setTimeout(function () { reconcile(); }, 1200);
+  }
+  async function reconcile() {
+    if (reconciling || !syncOn()) return;
+    reconciling = true;
+    try {
+      const remote = await NS.crsync.pull();
+      const local = { templates: cache.templates, categories: cache.categories };
+      const merged = remote ? NS.crsync.merge(local, remote) : local;
+      if (NS.crsync.addsBeyond(merged, local)) {          // remote brought something new -> save it
+        cache.templates = merged.templates;
+        cache.categories = merged.categories;
+        applyingRemote = true;
+        await writeRaw(cache);
+        applyingRemote = false;
+        notify();
+      }
+      if (!remote || NS.crsync.addsBeyond(merged, remote)) {   // we hold something remote lacks -> publish
+        const stamp = Date.now();
+        const r = await NS.crsync.push({ templates: merged.templates, categories: merged.categories }, stamp);
+        if (r && r.ok) syncStamp = r.stamp;
+      }
+    } catch (e) { applyingRemote = false; }
+    finally { reconciling = false; }
+  }
+
   // First-install only: localize the seeded category names to the browser locale.
   // After this they are user data and are never re-translated; the v1->v2 migration
   // (model.MIGRATIONS[2]) keeps the English defaults, so existing users are untouched.
@@ -42,7 +88,7 @@
   }
   function writeRaw(db) {
     return new Promise((resolve) => {
-      try { chrome.storage.local.set({ [DB_KEY]: db }, () => resolve()); }
+      try { chrome.storage.local.set({ [DB_KEY]: db }, () => { scheduleReconcile(db); resolve(); }); }
       catch (e) { resolve(); }
     });
   }
@@ -53,6 +99,7 @@
     if (!db) { db = emptyDb(); await writeRaw(db); }
     else { db = model.migrate(db); }
     cache = db;
+    await reconcile();          // fold in / publish to the user's other devices (no-op unless sync is on)
     return cache;
   }
 
@@ -189,11 +236,18 @@
   function subscribe(cb) { listeners.add(cb); return () => listeners.delete(cb); }
 
   if (g.chrome && chrome.storage && chrome.storage.onChanged) {
-    chrome.storage.onChanged.addListener((changes, area) => {
-      if (area !== "local" || !changes[DB_KEY]) return;
-      cache = changes[DB_KEY].newValue || null;
-      for (const cb of listeners) {
-        try { cb(cache); } catch (e) { console.error("[CR] store listener error", e); }
+    chrome.storage.onChanged.addListener((changes, areaName) => {
+      if (areaName === "local") {
+        if (!changes[DB_KEY]) return;
+        cache = changes[DB_KEY].newValue || cache;
+        notify();
+        return;
+      }
+      // Another of this user's devices changed the shared snapshot — pull + merge it.
+      if (areaName === "sync" && NS.crsync && changes[NS.crsync.META] && syncOn()) {
+        const meta = changes[NS.crsync.META].newValue;
+        if (meta && meta.stamp === syncStamp) return;     // our own echo — ignore
+        reconcile();
       }
     });
   }

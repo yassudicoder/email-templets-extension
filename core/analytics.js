@@ -12,9 +12,14 @@
   "use strict";
   const NS = (g.CR = g.CR || {});
 
-  const KEY = "phc_zDzP8jVXv3J9a5tNeUe3Pj4cbHLXnYEASJoCN232TLqG"; // public project key
+  // This PostHog project is DEDICATED to the extension. The marketing website now
+  // uses a DIFFERENT project (website/analytics.js) so the two data sets never mix.
+  const KEY = "phc_zDzP8jVXv3J9a5tNeUe3Pj4cbHLXnYEASJoCN232TLqG"; // extension-only project
   const HOST = "https://us.i.posthog.com";                        // EU: https://eu.i.posthog.com
   const isServiceWorker = (typeof window === "undefined");        // SW has no window
+
+  // Extension version, attached to every event so you can segment by release.
+  function appVersion() { try { return chrome.runtime.getManifest().version; } catch (e) { return ""; } }
 
   // Runs in the service worker only: gate on consent, then fire-and-forget.
   async function deliver(event, props) {
@@ -29,7 +34,8 @@
         api_key: KEY,
         event: event,
         distinct_id: id,
-        properties: Object.assign({ $lib: "cr-extension" }, props || {})
+        // app/app_version make extension events unmistakable even if a project is shared.
+        properties: Object.assign({ $lib: "cr-extension", app: "extension", app_version: appVersion() }, props || {})
       });
       // text/plain => "simple" CORS request (no preflight); PostHog parses the JSON body.
       fetch(HOST + "/capture/", {

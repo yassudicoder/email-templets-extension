@@ -32,12 +32,22 @@
     return false;
   }
 
+  // Surface label for analytics ("gmail" | "linkedin" | "other") — no content.
+  function surfaceKey() {
+    const s = NS.surfaces || {};
+    for (const k of Object.keys(s)) { if (s[k].matches && s[k].matches()) return k; }
+    return "other";
+  }
+
   // Insert the template at the captured spot. Variable templates route through the
   // picker's inline fill box; token-free ones insert immediately.
   function expandWith(ctx, tpl) {
     const onInsert = (html) => {
       const ok = NS.inserter.insert(ctx, html, { preferPlainText: preferPlain() });
-      if (ok && NS.ui && NS.ui.cue) NS.ui.cue(CR.i18n.t("toast_inserted"));
+      if (!ok) return;
+      if (NS.ui && NS.ui.cue) NS.ui.cue(CR.i18n.t("toast_inserted"));
+      // Opt-in, content-free: counts an insert via the abbreviation-expand path + surface.
+      if (NS.analytics) NS.analytics.capture("template_inserted", { surface: surfaceKey(), mode: "expand" });
     };
     if (NS.picker && NS.picker.fill) NS.picker.fill(tpl, onInsert);
     else onInsert(tpl.body);

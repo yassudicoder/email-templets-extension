@@ -5,7 +5,7 @@
  *   - Relays the Ctrl/Cmd+J command to the focused tab's content script.
  * Shares the core modules with content scripts through the globalThis.CR
  * namespace (loaded here via importScripts). */
-importScripts("/core/model.js", "/core/store.js", "/core/analytics.js", "/core/feedback-config.js");
+importScripts("/core/model.js", "/core/sync.js", "/core/store.js", "/core/analytics.js", "/core/feedback-config.js");
 
 const { store, model, analytics, feedbackConfig } = globalThis.CR;
 

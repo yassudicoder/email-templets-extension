@@ -14,39 +14,25 @@
   const cfg = globalThis.CR.feedbackConfig || {};
   const $ = (sel, root) => (root || document).querySelector(sel);
 
-  // ---- Lightly parse navigator.userAgent into "Browser · OS" --------------
-  function parseUA(ua) {
-    ua = ua || "";
-    let browser = "Browser";
-    let m;
-    if (/\bEdg\//.test(ua) && (m = /\bEdg\/(\d+)/.exec(ua))) browser = "Edge " + m[1];
-    else if (/\bOPR\//.test(ua) && (m = /\bOPR\/(\d+)/.exec(ua))) browser = "Opera " + m[1];
-    else if (/\bFirefox\//.test(ua) && (m = /\bFirefox\/(\d+)/.exec(ua))) browser = "Firefox " + m[1];
-    else if (/\bChrome\//.test(ua) && (m = /\bChrome\/(\d+)/.exec(ua))) browser = "Chrome " + m[1];
-    else if (/\bSafari\//.test(ua)) browser = "Safari";
-
-    let os = "Unknown OS";
-    if (/Windows NT 10/.test(ua)) os = "Windows";
-    else if (/Windows/.test(ua)) os = "Windows";
-    else if (/Mac OS X/.test(ua)) os = "macOS";
-    else if (/CrOS/.test(ua)) os = "ChromeOS";
-    else if (/Android/.test(ua)) os = "Android";
-    else if (/Linux/.test(ua)) os = "Linux";
-    return browser + " · " + os;
+  // ---- Open an email draft to the contact address. We use a Gmail compose URL
+  //      (opens in-browser) rather than mailto:, which silently does nothing when
+  //      the OS has no default mail app configured. -------------------------------
+  function composeUrl(message, type) {
+    const typeLabel = (type && TYPE_LABELS[type]) || "Feedback";
+    let url = "https://mail.google.com/mail/?view=cm&fs=1&to=" +
+      encodeURIComponent(cfg.CONTACT_EMAIL || "") +
+      "&su=" + encodeURIComponent("Canned Responses feedback — " + typeLabel);
+    if (message) url += "&body=" + encodeURIComponent(message);
+    return url;
+  }
+  function openCompose(message, type) {
+    window.open(composeUrl(message, type), "_blank", "noopener");
   }
 
-  // Exactly what the diagnostics line shows AND what gets attached — kept in sync.
-  function diagnosticsString() {
-    let version = "?";
-    let locale = "?";
-    try { version = chrome.runtime.getManifest().version; } catch (e) {}
-    try { locale = (chrome.i18n && chrome.i18n.getUILanguage && chrome.i18n.getUILanguage()) || "?"; } catch (e) {}
-    return "v" + version + " · " + parseUA(navigator.userAgent) + " · " + locale;
-  }
-
-  function mailtoFallbackLink() {
+  function emailFallbackLink() {
     const a = document.createElement("a");
-    a.href = "mailto:" + cfg.CONTACT_EMAIL;
+    a.href = composeUrl("", "");
+    a.target = "_blank"; a.rel = "noopener";
     a.textContent = cfg.CONTACT_EMAIL;
     a.className = "fb-mailto";
     return a;
@@ -69,7 +55,6 @@
     $("#fbSuccess").hidden = true;
     const err = $("#fbError");
     err.hidden = true; err.textContent = "";
-    $("#fbDiagText").textContent = diagnosticsString();
     modal.hidden = false;
     const msg = $("#fbMessage");
     if (msg) msg.focus();
@@ -82,9 +67,9 @@
   function showError(messageEl) {
     const err = $("#fbError");
     err.textContent = "";
-    // "Couldn't send — email me directly at <mailto>"
+    // "Couldn't send — email me directly at <link>"
     err.appendChild(document.createTextNode(i18n.t("feedback_error_lead") + " "));
-    err.appendChild(mailtoFallbackLink());
+    err.appendChild(emailFallbackLink());
     err.hidden = false;
     if (messageEl) messageEl.scrollIntoView({ block: "nearest" });
   }
@@ -112,13 +97,14 @@
     }
     errEl.hidden = true; errEl.textContent = "";
 
-    // No access key configured yet → don't pretend; route to the mailto fallback.
-    if (!cfg.WEB3FORMS_ACCESS_KEY) { showError(messageEl); return; }
-
     const type = $("#fbType").value || "general";
+
+    // No backend access key configured → just open an email draft (Gmail compose)
+    // with the message prefilled, so "Send feedback" works without a backend.
+    if (!cfg.WEB3FORMS_ACCESS_KEY) { openCompose(message, type); close(); return; }
+
     const typeLabel = TYPE_LABELS[type] || "Feedback";
     const email = ($("#fbEmail").value || "").trim();
-    const includeDiag = $("#fbDiag").checked;
     const botcheck = $("#fbBotcheck").value;   // honeypot — humans leave this empty
 
     const payload = {
@@ -130,7 +116,6 @@
       botcheck: botcheck
     };
     if (email) payload.email = email;                         // reply-to address
-    if (includeDiag) payload.diagnostics = diagnosticsString();
 
     setBusy(true);
     try {
@@ -174,8 +159,12 @@
       $("#fbForm").hidden = false;
       $("#fbMessage").focus();
     });
-    // Point the two static mailto links at the configured contact address.
-    document.querySelectorAll(".fb-direct-mailto").forEach((a) => { a.href = "mailto:" + cfg.CONTACT_EMAIL; });
+    // Point the "email directly" link at a Gmail compose window (opens in-browser;
+    // mailto: silently fails when no OS mail app is set).
+    document.querySelectorAll(".fb-direct-mailto").forEach((a) => {
+      a.href = composeUrl("", "");
+      a.target = "_blank"; a.rel = "noopener";
+    });
   }
 
   document.addEventListener("DOMContentLoaded", wire);

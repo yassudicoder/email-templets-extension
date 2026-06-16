@@ -9,11 +9,14 @@
  *   - Disables unused bundles: surveys (~32 KiB) and dead-click autocapture (~6 KiB),
  *     so only the core array.js loads.
  *
- * SETUP: paste your "phc_" Project API Key into POSTHOG_KEY. Until then analytics stays off. */
+ * SETUP: this must be a DIFFERENT PostHog project from the extension
+ * (core/analytics.js owns phc_zDzP8...232TLqG) so website and extension data never
+ * mix. Create a new "Website" project in PostHog and paste ITS "phc_" Project API
+ * Key into POSTHOG_KEY. Until then website analytics stays off (guard below). */
 (function () {
   "use strict";
 
-  var POSTHOG_KEY = "phc_zDzP8jVXv3J9a5tNeUe3Pj4cbHLXnYEASJoCN232TLqG";
+  var POSTHOG_KEY = "phc_REPLACE_WITH_WEBSITE_PROJECT_KEY";
   var POSTHOG_HOST = "https://us.i.posthog.com"; // EU region: https://eu.i.posthog.com
 
   if (!POSTHOG_KEY || POSTHOG_KEY.indexOf("REPLACE") !== -1) return;

@@ -43,6 +43,8 @@
     let msg = CR.i18n.t("toast_saved_as_template");
     if (!allowImg && cap.hadMedia) msg += " — " + CR.i18n.t("toast_images_pro_feature");   // graceful upsell
     toast(msg, false, rec.id);
+    // Opt-in, content-free: a template was created from a page selection (no text sent).
+    if (NS.analytics) NS.analytics.capture("selection_saved", {});
   }
 
   // ---- Toast (with optional Edit link) ----------------------------------

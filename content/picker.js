@@ -209,14 +209,32 @@
   }
 
   const TOKEN_RE = /\{([a-z0-9_]+)\}/gi;
+
+  // Auto tokens resolve at insert time with NO prompt. Everything else
+  // ({first_name}, {company}, …) is a fill-in the user is asked for.
+  const AUTO = {
+    date: () => new Date().toLocaleDateString(),
+    time: () => new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+    day:  () => new Date().toLocaleDateString([], { weekday: "long" })
+  };
   function tokensIn(body) {
     const out = [], seen = new Set();
     let m;
     TOKEN_RE.lastIndex = 0;
     while ((m = TOKEN_RE.exec(body))) {
-      if (!seen.has(m[1])) { seen.add(m[1]); out.push(m[1]); }
+      const key = m[1].toLowerCase();
+      if (!seen.has(m[1]) && !AUTO[key]) { seen.add(m[1]); out.push(m[1]); }   // skip auto tokens
     }
     return out;
+  }
+  // Replace every {token}: auto -> computed value, prompted -> user value (escaped),
+  // unknown -> left untouched so a stray brace is never silently eaten.
+  function substitute(body, vals) {
+    return body.replace(TOKEN_RE, (m, name) => {
+      const key = name.toLowerCase();
+      if (AUTO[key]) return esc(AUTO[key]());
+      return vals[name] ? esc(vals[name]) : m;
+    });
   }
 
   function choose(i) {
@@ -224,7 +242,7 @@
     if (!tpl) return;
     const tokens = tokensIn(tpl.body);
     if (tokens.length) renderVarFill(tpl, tokens);
-    else finish(tpl.body);
+    else finish(substitute(tpl.body, {}));   // still resolve auto tokens (date/time/day)
   }
 
   function renderVarFill(tpl, tokens) {
@@ -245,9 +263,7 @@
     const apply = () => {
       const vals = {};
       inputs.forEach((inp) => { vals[inp.dataset.tok] = inp.value.trim(); });
-      const filled = tpl.body.replace(TOKEN_RE, (m, name) =>
-        vals[name] ? esc(vals[name]) : m);
-      finish(filled);
+      finish(substitute(tpl.body, vals));
     };
     shadow.getElementById("ins").addEventListener("click", apply);
     shadow.getElementById("back").addEventListener("click", (e) => { e.preventDefault(); goBack(); });
@@ -332,7 +348,7 @@
   // abbreviation-expand). No tokens -> insert immediately, no UI.
   function openFill(tpl, onInsert) {
     const tokens = tokensIn(tpl.body);
-    if (!tokens.length) { if (onInsert) onInsert(tpl.body); return; }
+    if (!tokens.length) { if (onInsert) onInsert(substitute(tpl.body, {})); return; }
     if (open) return;
     open = true;
     state = { templates: [], filtered: [], index: 0, query: "", onInsert, fillOnly: true };
