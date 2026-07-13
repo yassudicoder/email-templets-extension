@@ -787,6 +787,38 @@
     "message": "Copiar",
     "description": "Label of the Gmail Copy-email button"
   },
+  "gmail_word_reply": {
+    "message": "Responder",
+    "description": "Gmail's own Reply-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_word_forward": {
+    "message": "Encaminhar",
+    "description": "Gmail's own Forward-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_aria_support": {
+    "message": "Suporte",
+    "description": "Gmail's Support icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_help": {
+    "message": "Ajuda",
+    "description": "Gmail's Help icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_settings": {
+    "message": "Configurações",
+    "description": "Gmail's Settings icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_google_apps": {
+    "message": "Google Apps",
+    "description": "Gmail's Google apps icon aria-label (header anchor, not shown in our UI)"
+  },
+  "settings_header_button_toggle": {
+    "message": "Mostrar o botão na barra superior do Gmail",
+    "description": "Label for the Gmail top-bar button toggle"
+  },
+  "settings_header_button_note": {
+    "message": "Ativado por padrão. Uma forma rápida de abrir seus modelos pela barra do Gmail. O botão dentro da mensagem e o atalho de teclado continuam sempre disponíveis.",
+    "description": "Explanation for the Gmail top-bar button toggle"
+  },
   "toast_email_copied_success": {
     "message": "E-mail copiado — cole com Ctrl+V (fonte, cores e imagens mantidas)",
     "description": "Success toast after copying an email with formatting"

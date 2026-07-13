@@ -71,6 +71,15 @@
         if (e.target.checked && analytics) analytics.capture("sync_enabled");
       });
     }
+    // Gmail top-bar button (on by default). The in-compose button + Alt+A are the
+    // durable entry points; the content script reacts live via storage.onChanged.
+    const hTog = $("#headerBtnToggle");
+    if (hTog) {
+      hTog.checked = store.getSettings().showHeaderButton !== false;
+      hTog.addEventListener("change", async (e) => {
+        await store.updateSettings({ showHeaderButton: e.target.checked });
+      });
+    }
     const pLink = $("#privacyLink");
     if (pLink) pLink.href = "https://gmail-templates-and-canned.netlify.app/privacy.html";
     $("#pagePrev").addEventListener("click", () => { if (page > 0) { page--; renderList(); } });

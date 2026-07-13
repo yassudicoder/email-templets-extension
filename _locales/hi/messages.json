@@ -787,6 +787,38 @@
     "message": "कॉपी",
     "description": "Label of the Gmail Copy-email button"
   },
+  "gmail_word_reply": {
+    "message": "जवाब दें",
+    "description": "Gmail's own Reply-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_word_forward": {
+    "message": "आगे भेजें",
+    "description": "Gmail's own Forward-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_aria_support": {
+    "message": "सहायता",
+    "description": "Gmail's Support icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_help": {
+    "message": "सहायता",
+    "description": "Gmail's Help icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_settings": {
+    "message": "सेटिंग",
+    "description": "Gmail's Settings icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_google_apps": {
+    "message": "Google ऐप्लिकेशन",
+    "description": "Gmail's Google apps icon aria-label (header anchor, not shown in our UI)"
+  },
+  "settings_header_button_toggle": {
+    "message": "Gmail की ऊपरी बार में बटन दिखाएँ",
+    "description": "Label for the Gmail top-bar button toggle"
+  },
+  "settings_header_button_note": {
+    "message": "डिफ़ॉल्ट रूप से चालू। Gmail के टूलबार से अपने टेम्पलेट खोलने का तेज़ तरीका। कंपोज़ में मौजूद बटन और आपका कीबोर्ड शॉर्टकट हमेशा उपलब्ध रहते हैं।",
+    "description": "Explanation for the Gmail top-bar button toggle"
+  },
   "toast_email_copied_success": {
     "message": "ईमेल कॉपी हुआ — Ctrl+V से पेस्ट करें (फ़ॉन्ट, रंग और इमेज बरकरार)",
     "description": "Success toast after copying an email with formatting"
