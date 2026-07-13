@@ -155,6 +155,30 @@
     "message": "デフォルトはオフ。拡張機能の改善に役立ちます — メッセージやテンプレートの内容が送信されることはありません。 ",
     "description": "Privacy explanation for the analytics opt-in"
   },
+  "analytics_notice_msg": {
+    "message": "匿名で内容を含まない利用統計を共有して、この拡張機能の改善に協力しませんか？ テンプレートやメッセージを見ることは一切なく、どの機能が使われたかだけを記録します。いつでも変更できます。",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
+  },
+  "analytics_notice_no_thanks": {
+    "message": "共有しない",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
+  },
+  "analytics_notice_share": {
+    "message": "統計を共有",
+    "description": "Button to opt in to analytics on the one-time prompt"
+  },
+  "settings_sync_toggle": {
+    "message": "テンプレートを複数のデバイスで同期",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "デフォルトはオフ。Chrome の内蔵同期を使用します — アカウント不要。テキストテンプレートに最適です。非常に大きなライブラリや画像の多いテンプレートは収まらない場合があります。",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "welcome_footer_analytics": {
+    "message": "拡張機能の改善に役立てるため、匿名の利用統計（テンプレートやメッセージではなく、どの機能が使われたか）をオンにできます。オンにするまでは送信されず、設定でいつでも変更できます。",
+    "description": "Analytics disclosure line on the welcome page"
+  },
   "link_learn_more_privacy": {
     "message": "詳細を見る",
     "description": "Link to the privacy policy"

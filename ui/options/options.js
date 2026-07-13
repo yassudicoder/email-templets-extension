@@ -41,7 +41,7 @@
     $("#nudgeDismiss").addEventListener("click", async () => { await store.updateSettings({ backupNudgeDismissedAt: Date.now() }); renderNudge(); });
     $("#nudgeWeekly").addEventListener("change", async (e) => { await store.updateSettings({ backupReminderWeekly: e.target.checked }); renderNudge(); });
     $("#manageShortcuts").addEventListener("click", (e) => { e.preventDefault(); openShortcutsPage(); });
-    // Anonymous analytics toggle (ON by default; content-free; user can opt out).
+    // Anonymous analytics toggle (OFF by default; content-free; user opts in).
     const aTog = $("#analyticsToggle");
     if (aTog) {
       aTog.checked = !!store.getSettings().analyticsEnabled;
@@ -50,10 +50,14 @@
         if (e.target.checked && analytics) analytics.capture("analytics_enabled");
       });
     }
-    // One-time disclosure notice: "Got it" keeps it on, "Turn off" opts out — both
-    // mark the notice as seen so it never nags again.
+    // One-time opt-in ask (analytics is OFF until the user says yes): "Share stats"
+    // turns it on, "No thanks" leaves it off — both mark the prompt as seen so it
+    // never nags again.
     $("#analyticsNoticeOk").addEventListener("click", async () => {
-      await store.updateSettings({ analyticsNoticeShown: true }); renderAnalyticsNotice();
+      await store.updateSettings({ analyticsNoticeShown: true, analyticsEnabled: true });
+      if (aTog) aTog.checked = true;
+      if (analytics) analytics.capture("analytics_enabled");
+      renderAnalyticsNotice();
     });
     $("#analyticsNoticeOff").addEventListener("click", async () => {
       await store.updateSettings({ analyticsNoticeShown: true, analyticsEnabled: false });
@@ -72,7 +76,7 @@
       });
     }
     const pLink = $("#privacyLink");
-    if (pLink) pLink.href = "https://gmail-templates-and-canned.netlify.app/privacy.html";
+    if (pLink) pLink.href = "https://email-templets-extension.vercel.app/privacy";
     $("#pagePrev").addEventListener("click", () => { if (page > 0) { page--; renderList(); } });
     $("#pageNext").addEventListener("click", () => { page++; renderList(); });
     $("#previewClose").addEventListener("click", closePreview);

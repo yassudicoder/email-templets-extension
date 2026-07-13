@@ -38,13 +38,13 @@
     <button id="nudgeDismiss" class="x" data-i18n-title="button_dismiss" title="Dismiss">&times;</button>
   </div>
 
-  <!-- One-time disclosure: analytics is on by default (anonymous, content-free). -->
+  <!-- One-time opt-in ask: analytics is OFF until the user chooses to share. -->
   <div id="analyticsNotice" class="nudge" hidden>
     <span class="nicon">📊</span>
-    <span class="nmsg" data-i18n="analytics_notice_msg">Anonymous usage stats are <b>on</b> to help improve the extension — we never collect your templates or messages, only which features get used. You can turn this off anytime.</span>
+    <span class="nmsg" data-i18n="analytics_notice_msg">Help improve this extension with <b>anonymous</b>, content-free usage stats? We never see your templates or messages — only which features get used. You can change this anytime.</span>
     <span class="ngrow"></span>
-    <button id="analyticsNoticeOff" class="btn sm" data-i18n="analytics_notice_turn_off">Turn off</button>
-    <button id="analyticsNoticeOk" class="btn primary sm" data-i18n="analytics_notice_ok">Got it</button>
+    <button id="analyticsNoticeOff" class="btn sm" data-i18n="analytics_notice_no_thanks">No thanks</button>
+    <button id="analyticsNoticeOk" class="btn primary sm" data-i18n="analytics_notice_share">Share stats</button>
   </div>
 
   <main class="layout">
@@ -66,7 +66,7 @@
             <input type="checkbox" id="analyticsToggle">
             <span data-i18n="settings_analytics_toggle">Share anonymous usage stats</span>
           </label>
-          <p class="privacy-note"><span data-i18n="settings_analytics_note">On by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it off here anytime. </span><a id="privacyLink" href="#" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a></p>
+          <p class="privacy-note"><span data-i18n="settings_analytics_note">Off by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it on or off here anytime. </span><a id="privacyLink" href="#" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a></p>
         </div>
         <div class="privacy-box">
           <label class="privacy-toggle">

@@ -155,6 +155,30 @@
     "message": "डिफ़ॉल्ट रूप से बंद। एक्सटेंशन को बेहतर बनाने में मदद करता है — कोई संदेश या टेम्पलेट सामग्री कभी नहीं भेजी जाती। ",
     "description": "Privacy explanation for the analytics opt-in"
   },
+  "analytics_notice_msg": {
+    "message": "इस एक्सटेंशन को बेहतर बनाने में गुमनाम, सामग्री-रहित उपयोग आँकड़ों से मदद करें? हम आपके टेम्पलेट या संदेश कभी नहीं देखते — केवल यह कि कौन-सी सुविधाएँ इस्तेमाल होती हैं। आप इसे कभी भी बदल सकते हैं।",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
+  },
+  "analytics_notice_no_thanks": {
+    "message": "नहीं, धन्यवाद",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
+  },
+  "analytics_notice_share": {
+    "message": "आँकड़े साझा करें",
+    "description": "Button to opt in to analytics on the one-time prompt"
+  },
+  "settings_sync_toggle": {
+    "message": "मेरे डिवाइसों में टेम्पलेट सिंक करें",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "डिफ़ॉल्ट रूप से बंद। Chrome की अंतर्निहित सिंक का उपयोग करता है — किसी खाते की ज़रूरत नहीं। टेक्स्ट टेम्पलेट के लिए सबसे अच्छा; बहुत बड़ी लाइब्रेरी या छवि-भारी टेम्पलेट शायद न समाएँ।",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "welcome_footer_analytics": {
+    "message": "एक्सटेंशन को बेहतर बनाने में मदद के लिए आप गुमनाम उपयोग आँकड़ों को चालू कर सकते हैं (कौन-सी सुविधाएँ इस्तेमाल होती हैं — कभी आपके टेम्पलेट या संदेश नहीं)। यह तब तक बंद रहता है जब तक आप इसे चालू न करें, और आप इसे सेटिंग्स में कभी भी बदल सकते हैं।",
+    "description": "Analytics disclosure line on the welcome page"
+  },
   "link_learn_more_privacy": {
     "message": "और जानें",
     "description": "Link to the privacy policy"

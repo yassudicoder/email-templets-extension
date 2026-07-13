@@ -152,23 +152,23 @@
     "description": "Analytics opt-in checkbox label"
   },
   "settings_analytics_note": {
-    "message": "On by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it off here anytime. ",
+    "message": "Off by default. Anonymous — no message or template content is ever sent, only which features get used. Turn it on or off here anytime. ",
     "description": "Privacy explanation for the analytics setting"
   },
   "analytics_notice_msg": {
-    "message": "Anonymous usage stats are on to help improve the extension — we never collect your templates or messages, only which features get used. You can turn this off anytime.",
-    "description": "One-time disclosure banner that analytics is on by default"
+    "message": "Help improve this extension with anonymous, content-free usage stats? We never see your templates or messages — only which features get used. You can change this anytime.",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
   },
-  "analytics_notice_turn_off": {
-    "message": "Turn off",
-    "description": "Button to opt out of analytics on the disclosure banner"
+  "analytics_notice_no_thanks": {
+    "message": "No thanks",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
   },
-  "analytics_notice_ok": {
-    "message": "Got it",
-    "description": "Button to acknowledge the analytics disclosure (keeps it on)"
+  "analytics_notice_share": {
+    "message": "Share stats",
+    "description": "Button to opt in to analytics on the one-time prompt"
   },
   "welcome_footer_analytics": {
-    "message": "To improve the extension we collect anonymous usage stats (which features get used — never your templates or messages). You can turn this off anytime in Settings.",
+    "message": "You can opt in to anonymous usage stats (which features get used — never your templates or messages) to help improve the extension. It's off until you turn it on, and you can change it anytime in Settings.",
     "description": "Analytics disclosure line on the welcome page"
   },
   "link_learn_more_privacy": {

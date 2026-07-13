@@ -73,11 +73,12 @@
       lastBackupAt: 0, backupReminderWeekly: false, backupNudgeDismissedAt: 0,
       // Optional cross-device sync via chrome.storage.sync (no account) — OFF until opted in.
       syncEnabled: false,
-      // Anonymous product analytics — ON by default (opt-out). It is strictly
+      // Anonymous product analytics — OFF by default (opt-in). It is strictly
       // content-free: only event names + a random analyticsId (no name/email/account),
-      // NEVER template titles/bodies or any message content. Users are shown a
-      // one-time notice (analyticsNoticeShown) and can switch it off any time.
-      analyticsEnabled: true, analyticsId: "", analyticsNoticeShown: false,
+      // NEVER template titles/bodies or any message content. A one-time prompt
+      // (analyticsNoticeShown) asks the user to opt in; nothing is sent until they do,
+      // and they can switch it on or off any time.
+      analyticsEnabled: false, analyticsId: "", analyticsNoticeShown: false,
       // Beta-era installs are flagged early-access so they can be grandfathered
       // when premium launches (set this default to false at that point).
       earlyAccess: true
@@ -110,13 +111,14 @@
     // v2: introduce named categories. Existing templates keep folderId === null
     // (they show under "All Templates" until the user files them) — never lost.
     2: (db) => { if (!Array.isArray(db.categories)) db.categories = sampleCategories(Date.now()); },
-    // v3: anonymous analytics becomes ON by default (opt-out). Ensure the keys
-    // exist, switch it on, and flag the one-time disclosure notice so existing
-    // users are told and can opt out. Runs once (schemaVersion then becomes 3).
+    // v3: anonymous analytics is introduced as OPT-IN (off by default). Ensure the
+    // keys exist and flag the one-time opt-in prompt so upgrading users are asked.
+    // Never force it on — a user who already stored a choice keeps it; anyone
+    // without a stored value defaults to off. Runs once (schemaVersion becomes 3).
     3: (db) => {
       if (!db.settings) db.settings = defaultSettings();
       if (typeof db.settings.analyticsId !== "string") db.settings.analyticsId = "";
-      db.settings.analyticsEnabled = true;
+      if (typeof db.settings.analyticsEnabled !== "boolean") db.settings.analyticsEnabled = false;
       db.settings.analyticsNoticeShown = false;
     }
   };

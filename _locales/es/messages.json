@@ -155,6 +155,30 @@
     "message": "Desactivado por defecto. Ayuda a mejorar la extensión — nunca se envía el contenido de mensajes ni plantillas. ",
     "description": "Privacy explanation for the analytics opt-in"
   },
+  "analytics_notice_msg": {
+    "message": "¿Quieres ayudar a mejorar esta extensión con estadísticas de uso anónimas y sin contenido? Nunca vemos tus plantillas ni tus mensajes, solo qué funciones se usan. Puedes cambiarlo cuando quieras.",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
+  },
+  "analytics_notice_no_thanks": {
+    "message": "No, gracias",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
+  },
+  "analytics_notice_share": {
+    "message": "Compartir estadísticas",
+    "description": "Button to opt in to analytics on the one-time prompt"
+  },
+  "settings_sync_toggle": {
+    "message": "Sincronizar plantillas entre mis dispositivos",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "Desactivado por defecto. Usa la sincronización integrada de Chrome, sin necesidad de cuenta. Ideal para plantillas de texto; las bibliotecas muy grandes o con muchas imágenes podrían no caber.",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "welcome_footer_analytics": {
+    "message": "Puedes activar las estadísticas de uso anónimas (qué funciones se usan, nunca tus plantillas ni mensajes) para ayudar a mejorar la extensión. Está desactivado hasta que lo actives, y puedes cambiarlo cuando quieras en Ajustes.",
+    "description": "Analytics disclosure line on the welcome page"
+  },
   "link_learn_more_privacy": {
     "message": "Más información",
     "description": "Link to the privacy policy"

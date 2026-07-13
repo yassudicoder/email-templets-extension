@@ -155,6 +155,30 @@
     "message": "Standardmäßig aus. Hilft, die Erweiterung zu verbessern – Nachrichten- oder Vorlageninhalte werden nie gesendet. ",
     "description": "Privacy explanation for the analytics opt-in"
   },
+  "analytics_notice_msg": {
+    "message": "Diese Erweiterung mit anonymen, inhaltsfreien Nutzungsstatistiken verbessern helfen? Wir sehen nie deine Vorlagen oder Nachrichten – nur welche Funktionen genutzt werden. Du kannst das jederzeit ändern.",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
+  },
+  "analytics_notice_no_thanks": {
+    "message": "Nein danke",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
+  },
+  "analytics_notice_share": {
+    "message": "Statistiken teilen",
+    "description": "Button to opt in to analytics on the one-time prompt"
+  },
+  "settings_sync_toggle": {
+    "message": "Vorlagen auf meinen Geräten synchronisieren",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "Standardmäßig aus. Nutzt die integrierte Synchronisierung von Chrome – kein Konto nötig. Am besten für Textvorlagen; sehr große Sammlungen oder bildlastige Vorlagen passen möglicherweise nicht.",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "welcome_footer_analytics": {
+    "message": "Du kannst anonymen Nutzungsstatistiken zustimmen (welche Funktionen genutzt werden – nie deine Vorlagen oder Nachrichten), um die Erweiterung zu verbessern. Sie ist aus, bis du sie einschaltest, und du kannst das jederzeit in den Einstellungen ändern.",
+    "description": "Analytics disclosure line on the welcome page"
+  },
   "link_learn_more_privacy": {
     "message": "Mehr erfahren",
     "description": "Link to the privacy policy"

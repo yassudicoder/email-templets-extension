@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Sorry to see you go — Canned Responses &amp; Email Templates</title>
+  <meta name="description" content="Uninstalled Canned Responses? Tell us in one click what made you go — it helps us fix it. Or reinstall from the Chrome Web Store.">
+  <link rel="canonical" href="https://email-templets-extension.vercel.app/uninstall">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <script>(function(){var d=document.documentElement;d.classList.add('js');var t='light';try{var s=localStorage.getItem('cr-theme');t=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}d.setAttribute('data-theme',t);if(t==='dark'){var l=document.createElement('link');l.rel='stylesheet';l.href='/dark.css';l.id='cr-darkcss';document.head.appendChild(l);}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/creative.css">
+  <script src="/theme.js" defer></script>
+  <script src="/creative.js" defer></script>
+  <style>
+    .un { max-width: 640px; margin: 0 auto; padding: 64px 24px 88px; }
+    .un-kicker { font-family: ui-monospace, Menlo, "SFMono-Regular", Consolas, monospace;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+    .un h1 { font-size: 30px; line-height: 1.15; margin: 0 0 10px; }
+    .un-lede { color: var(--muted); font-size: 17px; margin: 0 0 32px; }
+    .un-card { background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; }
+    .un-card legend { font-weight: 700; font-size: 17px; padding: 0; margin: 0 0 4px; color: var(--ink); }
+    .un-card .un-q-note { color: var(--muted); font-size: 13.5px; margin: 0 0 16px; }
+    .un-opts { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; }
+    .un-opt { display: flex; align-items: center; gap: 11px; padding: 12px 14px; border: 1px solid var(--line);
+      border-radius: 10px; background: var(--bg); cursor: pointer; transition: border-color .12s, box-shadow .12s; }
+    .un-opt:hover { border-color: #cfd4e2; }
+    .un-opt input { accent-color: var(--blue); width: 16px; height: 16px; margin: 0; flex: 0 0 auto; }
+    .un-opt span { color: var(--ink); font-size: 15px; }
+    .un-opt:has(input:checked) { border-color: var(--blue); box-shadow: 0 0 0 3px var(--ring); }
+    .un-textarea { width: 100%; margin-top: 14px; min-height: 84px; resize: vertical; padding: 12px 14px;
+      border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink);
+      font: inherit; font-size: 15px; box-sizing: border-box; }
+    .un-textarea:focus, .un-opt input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+    .un-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+    .un-privacy { color: var(--muted); font-size: 12.5px; margin: 18px 2px 0; }
+    .un-reinstall { margin-top: 36px; padding-top: 26px; border-top: 1px dashed var(--line); text-align: center; }
+    .un-reinstall p { color: var(--muted); font-size: 15px; margin: 0 0 14px; }
+    .un-reinstall .un-r-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .un-thanks { display: none; }
+    .un-thanks.show { display: block; }
+    .un-thanks .un-check { font-size: 40px; line-height: 1; color: var(--blue); }
+    .un-form.hide { display: none; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>Canned Responses</span>
+    </a>
+    <nav class="navlinks"><a href="/">Home</a></nav>
+  </header>
+
+  <main class="un">
+    <p class="un-kicker">// Uninstall</p>
+    <h1>Sorry to see you go.</h1>
+    <p class="un-lede">The extension is off your browser — no data is left behind, and nothing was sent anywhere. Before you head out, one quick question would genuinely help us make it better.</p>
+
+    <form id="unForm" class="un-form">
+      <fieldset class="un-card">
+        <legend>What made you uninstall?</legend>
+        <p class="un-q-note">Pick the closest one. It's optional and completely anonymous.</p>
+        <div class="un-opts" role="radiogroup" aria-label="Reason for uninstalling">
+          <label class="un-opt"><input type="radio" name="reason" value="It broke or didn't work in Gmail"><span>It broke or didn't work in Gmail</span></label>
+          <label class="un-opt"><input type="radio" name="reason" value="It was missing a feature I needed"><span>It was missing a feature I needed</span></label>
+          <label class="un-opt"><input type="radio" name="reason" value="I switched to another tool"><span>I switched to another tool</span></label>
+          <label class="un-opt"><input type="radio" name="reason" value="It was too complicated"><span>It was too complicated to use</span></label>
+          <label class="un-opt"><input type="radio" name="reason" value="Other"><span>Something else</span></label>
+        </div>
+        <textarea id="unDetails" class="un-textarea" placeholder="Anything more you'd like to add? (optional)"></textarea>
+        <div class="un-actions">
+          <button type="submit" class="btn primary lg">Send feedback</button>
+          <a class="btn ghost lg" href="/">No thanks, go home</a>
+        </div>
+        <p class="un-privacy">Clicking Send opens a pre-filled email draft in your own mail app — you review it and send it yourself. We never collected your templates or messages, and this page sends nothing on its own.</p>
+      </fieldset>
+    </form>
+
+    <div id="unThanks" class="un-thanks">
+      <div class="un-card" style="text-align:center;">
+        <div class="un-check">✓</div>
+        <h2 style="margin:10px 0 6px;font-size:20px;">Thanks — that really helps.</h2>
+        <p style="color:var(--muted);margin:0;">Your draft is open in your mail app. Send it when you're ready, and we'll read every word.</p>
+      </div>
+    </div>
+
+    <div class="un-reinstall">
+      <p>Changed your mind, or fixed the issue? You're always welcome back.</p>
+      <div class="un-r-links">
+        <a class="btn primary" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Reinstall from Chrome Web Store</a>
+        <a class="btn ghost" href="/">Back to home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Canned Responses &amp; Email Templates
+      </div>
+      <nav class="foot-links">
+        <a href="/#features">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:boxai5115@gmail.com">boxai5115@gmail.com</a>
+      </nav>
+    </div>
+    <p class="foot-copy">© 2026 Canned Responses. Local-first · no account · your templates never leave your device.</p>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("unForm");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var picked = form.querySelector('input[name="reason"]:checked');
+        var reason = picked ? picked.value : "(no reason selected)";
+        var details = (document.getElementById("unDetails").value || "").trim();
+        var subject = "Canned Responses — uninstall feedback";
+        var lines = ["Reason: " + reason];
+        if (details) { lines.push("", "Details:", details); }
+        var body = lines.join("\r\n");
+        var to = "boxai5115@gmail.com";
+        var href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        // Same zero-backend pattern as the extension's feedback form: open the
+        // user's own mail with a pre-filled draft — nothing is transmitted here.
+        window.location.href = href;
+        form.classList.add("hide");
+        document.getElementById("unThanks").classList.add("show");
+      });
+    })();
+  </script>
+</body>
+</html>

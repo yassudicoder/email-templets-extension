@@ -155,6 +155,30 @@
     "message": "Désactivé par défaut. Aide à améliorer l'extension — aucun message ni contenu de modèle n'est jamais envoyé. ",
     "description": "Privacy explanation for the analytics opt-in"
   },
+  "analytics_notice_msg": {
+    "message": "Aider à améliorer cette extension avec des statistiques d'utilisation anonymes et sans contenu ? Nous ne voyons jamais vos modèles ni vos messages — seulement quelles fonctionnalités sont utilisées. Vous pouvez changer cela à tout moment.",
+    "description": "One-time prompt asking the user to opt in to anonymous analytics"
+  },
+  "analytics_notice_no_thanks": {
+    "message": "Non merci",
+    "description": "Button to decline analytics on the one-time opt-in prompt"
+  },
+  "analytics_notice_share": {
+    "message": "Partager les statistiques",
+    "description": "Button to opt in to analytics on the one-time prompt"
+  },
+  "settings_sync_toggle": {
+    "message": "Synchroniser les modèles sur mes appareils",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "Désactivé par défaut. Utilise la synchronisation intégrée de Chrome — aucun compte requis. Idéal pour les modèles de texte ; les très grandes bibliothèques ou les modèles riches en images peuvent ne pas tenir.",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "welcome_footer_analytics": {
+    "message": "Vous pouvez activer des statistiques d'utilisation anonymes (quelles fonctionnalités sont utilisées — jamais vos modèles ni vos messages) pour aider à améliorer l'extension. C'est désactivé jusqu'à ce que vous l'activiez, et vous pouvez le changer à tout moment dans les Paramètres.",
+    "description": "Analytics disclosure line on the welcome page"
+  },
   "link_learn_more_privacy": {
     "message": "En savoir plus",
     "description": "Link to the privacy policy"
