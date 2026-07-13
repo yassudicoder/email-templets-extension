@@ -81,7 +81,7 @@
       });
     }
     const pLink = $("#privacyLink");
-    if (pLink) pLink.href = "https://gmail-templates-and-canned.netlify.app/privacy.html";
+    if (pLink) pLink.href = "https://email-templets-extension.vercel.app/privacy";
     $("#pagePrev").addEventListener("click", () => { if (page > 0) { page--; renderList(); } });
     $("#pageNext").addEventListener("click", () => { page++; renderList(); });
     $("#previewClose").addEventListener("click", closePreview);
