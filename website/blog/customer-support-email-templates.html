@@ -18,13 +18,15 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://gmail-templates-and-canned.netlify.app/og/customer-support-email-templates.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <script>(function(){var d=document.documentElement;d.classList.add('js');var t='light';try{var s=localStorage.getItem('cr-theme');t=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}d.setAttribute('data-theme',t);if(t==='dark'){var l=document.createElement('link');l.rel='stylesheet';l.href='/dark.css';l.id='cr-darkcss';document.head.appendChild(l);}})();</script>
+  <script>(function(){try{var t=localStorage.getItem('cr-theme');if(!t&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../spec-sheet.css">
   <link rel="stylesheet" href="../creative.css">
+  <link rel="stylesheet" href="../dark.css">
+  <link rel="stylesheet" href="../once.css">
   <link rel="stylesheet" href="../once-blog.css">
-  <script src="../theme.js" defer></script>
   <script src="../analytics.js" defer></script>
+  <script src="../once.js" defer></script>
   <script src="../motion.min.js" defer></script>
   <script src="../creative.js" defer></script>
   <script type="application/ld+json">
@@ -62,17 +64,19 @@
   </script>
 </head>
 <body>
-  <header class="nav">
-    <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
-      <span>Canned Responses</span>
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Canned Responses — home">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 10.2h5M9.5 12.2h3" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <b>Canned Responses</b>
+      <span class="brand-key mono" aria-hidden="true">ALT+A</span>
     </a>
-    <nav class="navlinks">
+    <nav class="bar-nav" aria-label="Site">
+      <a href="/#try">Try it</a>
       <a href="/#features">Features</a>
       <a href="/blog/">Blog</a>
       <a href="/#faq">FAQ</a>
-      <a class="btn primary" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome</a>
     </nav>
+    <a class="btn btn-blue btn-bar" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener">Add to Chrome<span class="btn-free"> — free</span></a>
   </header>
 
   <article class="article">
@@ -178,20 +182,20 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="foot-inner">
+  <footer class="foot">
+    <div class="foot-grid">
       <div class="foot-brand">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        Canned Responses &amp; Email Templates
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <b>Canned Responses</b>
       </div>
-      <nav class="foot-links">
+      <nav class="foot-links mono" aria-label="Footer">
         <a href="/#features">Features</a>
         <a href="/blog/">Blog</a>
         <a href="/privacy">Privacy</a>
-        <a href="mailto:boxai5115@gmail.com">boxai5115@gmail.com</a>
+        <a href="/#faq">FAQ</a>
       </nav>
     </div>
-    <p class="foot-copy">© 2026 Canned Responses. Local-first · no account · your templates never leave your device.</p>
+    <p class="foot-copy mono">© 2026 CANNED RESPONSES · LOCAL-FIRST · NO ACCOUNT · YOUR TEMPLATES NEVER TOUCH OUR SERVERS — THERE AREN'T ANY</p>
   </footer>
 </body>
 </html>

@@ -1,75 +1,44 @@
 /* ==========================================================================
    CANNED RESPONSES — once-blog.css
-   Brings the legacy long-form pages (blog hub, articles, privacy, 404) in
-   line with the TYPE IT ONCE landing page: paper/ink palette, extension-blue
-   accent, Fraunces display + JetBrains Mono technical layer, and a matching
-   dark mode driven by the same html[data-theme="dark"] attribute + cr-theme
-   key the landing uses. Loads AFTER styles.css / spec-sheet.css / dark.css /
-   creative.css and only overrides — page structure is unchanged.
+   The blog wears the main site's clothes. Two jobs:
+   1. HUB — blog/index.html is authored directly in the TYPE IT ONCE system
+      (once.css); this file adds the hub-specific layout.
+   2. ARTICLES / PRIVACY / 404 — legacy long-form pages load their original
+      sheets, then once.css, then this file: it bridges the legacy token names
+      onto the TYPE IT ONCE tokens (light AND dark) and re-skins the article
+      components (cards, keycaps, tables, calculator) to match the landing.
    ========================================================================== */
 
-@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/jetbrains-mono-latin-600-normal.woff2) format("woff2")}
-
-/* ---- palette: light = paper & ink ---- */
-:root{
-  --blue:#2563eb; --blue-dark:#1d52c9;
-  --ink:#14161c; --muted:#5a6170;
-  --line:#e6e3d8; --bg:#faf9f5; --soft:#f2f0e9;
-  --ring:rgba(37,99,235,.18);
-}
-/* ---- palette: dark = the same desk, lamp off (matches the landing) ---- */
+/* ---- token bridge: legacy var names → TYPE IT ONCE tokens ----
+   Pure var() indirection, so one map serves light and dark alike. Declared
+   at :root and again under html[data-theme="dark"] to outrank dark.css. */
+:root,
 html[data-theme="dark"]{
-  --ink:#e9ecf3; --muted:#a0a8b8; --line:#242936; --bg:#0f1116; --soft:#151821;
-  --hair:#242936; --ring:rgba(110,163,255,.3); --blue:#6ea3ff; --blue-dark:#8ab3ff;
+  --bg:var(--paper);
+  --soft:var(--paper2);
+  --muted:var(--mut);
+  --blue-dark:var(--blue-deep);
+  --ring:var(--blue-soft);
+  --hair:var(--line);
 }
-html[data-theme="dark"] body{background:var(--bg)}
-html[data-theme="dark"] .footer{background:#0b0d12}
-::selection{background:#2563eb;color:#fff}
+html[data-theme="dark"] body{background:var(--paper)}
+html[data-theme="dark"] .footer{background:var(--paper2)}
 
-/* ---- typography: Fraunces display + JetBrains Mono technical layer ---- */
-h1,h2,h3,.brand,.toctitle,.toc-masthead h1{
-  font-family:"Fraunces",Georgia,"Times New Roman",serif !important;
+/* ---- typography: the landing's voices, everywhere ---- */
+h1,h2,h3,.toctitle{
+  font-family:var(--serif) !important;
   font-weight:800;letter-spacing:-.015em;font-variation-settings:"opsz" 100;
 }
-kbd,code,pre,
-.post-tag,.article-meta,.toccat,.tocnum,.toc-kicker,
+kbd,code,pre,.kc,
+.post-tag,.article-meta,.breadcrumb,.toccat,.tocnum,
 .cr-cover-kicker,.cr-cover-stamp,.cr-cover-abstract,.cr-cover-idx,
 .cr-meta,.cr-facets,.cr-facet,.legal-meta,
-.cr-tk-seg span,.cr-tk-static{
-  font-family:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace !important;
+.cr-tk-seg span,.cr-tk-static,
+.calc-kicker,.calc-lbl,.calc-note,.tl-k{
+  font-family:var(--mono) !important;
 }
 
-/* ---- nav: same bar language as the landing ---- */
-.nav{background:rgba(250,249,245,.85)}
-html[data-theme="dark"] .nav{background:rgba(15,17,22,.82);border-bottom-color:var(--line)}
-.navlinks a:not(.btn){
-  font-family:"JetBrains Mono",ui-monospace,monospace;
-  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-}
-.navlinks a:not(.btn):hover{color:var(--blue)}
-
-/* the install CTA is the extension blue in both themes, like the landing */
-.btn.primary,
-html[data-theme="dark"] .btn.primary{
-  background:#2563eb;border-color:#2563eb;color:#fff;
-  box-shadow:0 1px 0 #1d52c9,0 6px 20px -8px rgba(37,99,235,.5);
-}
-.btn.primary:hover,
-html[data-theme="dark"] .btn.primary:hover{background:#2e6ef5}
-
-/* kbd chips read as little keycaps */
-kbd{
-  border:1px solid var(--line) !important;border-bottom-width:2.5px !important;
-  border-radius:6px !important;background:var(--soft) !important;color:var(--ink) !important;
-  box-shadow:none !important;font-weight:600 !important;
-}
-
-/* accents that were still the old blue-violet */
-html[data-theme="dark"] .eyebrow{background:rgba(110,163,255,.12);color:#8ab3ff}
-a:not(.btn):not(.brand):not(.tocrow):hover{text-decoration-color:var(--blue)}
-
-/* no purple: gradient text becomes the brand blue ramp */
+/* no purple anywhere: gradient text becomes the brand blue ramp */
 .grad,.calc-stat.accent .calc-big{
   background:linear-gradient(100deg,#2563eb,#5b8cff) !important;
   -webkit-background-clip:text !important;background-clip:text !important;color:transparent !important;
@@ -79,6 +48,138 @@ html[data-theme="dark"] .calc-stat.accent .calc-big{
   background:linear-gradient(100deg,#6ea3ff,#a9c6ff) !important;
   -webkit-background-clip:text !important;background-clip:text !important;
 }
+.cr-cover-idx{opacity:.45}
+html[data-theme="dark"] .cr-cover-idx{opacity:.28}
 
-/* the oversized article-cover numeral sits quieter behind dark text */
-html[data-theme="dark"] .cr-cover-idx{opacity:.3}
+/* ==========================================================================
+   HUB (blog/index.html — authored in the landing system)
+   ========================================================================== */
+.hub-main{max-width:1040px;margin:0 auto;padding:calc(var(--nav-h) + 64px) 24px 90px}
+.hub-head{padding:0 0 36px;max-width:none}
+.hub-head h1{font-size:clamp(34px,4.6vw,64px)}
+
+.hub-lead{
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:stretch;
+  text-decoration:none;position:relative;overflow:hidden;
+  background:var(--card);border:1.5px solid var(--blue-line);border-radius:16px;
+  padding:28px clamp(20px,3.5vw,40px);
+  box-shadow:0 24px 60px -30px rgba(37,99,235,.35);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.hub-lead:hover{transform:translateY(-3px);box-shadow:0 30px 70px -30px rgba(37,99,235,.5)}
+.hub-meta{display:flex;align-items:center;gap:12px;letter-spacing:.14em;font-size:.64rem;color:var(--faint)}
+.hub-cat{color:var(--blue);border:1px solid var(--blue-line);border-radius:6px;background:var(--blue-soft);padding:2px 8px;font-size:.6rem;letter-spacing:.14em}
+.hub-lead h2{margin-top:12px;font-size:clamp(24px,2.8vw,38px);color:var(--ink)}
+.hub-dek{margin-top:10px;color:var(--mut);max-width:60ch;line-height:1.65}
+.hub-read{display:inline-block;margin-top:16px;color:var(--blue);letter-spacing:.14em;font-size:.68rem;font-weight:600}
+.hub-num{
+  align-self:center;font-size:clamp(64px,9vw,120px);font-weight:600;color:transparent;
+  -webkit-text-stroke:1.5px var(--line3);letter-spacing:0;line-height:1;padding-right:8px;
+}
+.hub-lead:hover .hub-num{-webkit-text-stroke-color:var(--blue-line)}
+
+.hub-list{margin-top:8px}
+.hub-row{
+  display:grid;grid-template-columns:52px 110px 1fr auto;gap:18px;align-items:center;
+  padding:24px 8px;border-top:1px solid var(--line2);text-decoration:none;
+  transition:background .15s,border-color .15s;
+}
+.hub-row:last-of-type{border-bottom:1px solid var(--line2)}
+.hub-row:hover{background:var(--card)}
+.hub-n{color:var(--faint);letter-spacing:.14em;font-size:.78rem}
+.hub-row .hub-cat{justify-self:start}
+.hub-main-cell h3{font-size:clamp(17px,1.9vw,23px);color:var(--ink);transition:color .15s}
+.hub-row:hover .hub-main-cell h3{color:var(--blue)}
+.hub-main-cell p{margin-top:5px;color:var(--mut);font-size:.9rem;line-height:1.6;max-width:64ch}
+.hub-go{color:var(--faint);letter-spacing:.12em;font-size:.64rem;white-space:nowrap;transition:color .15s,transform .2s var(--ease)}
+.hub-row:hover .hub-go{color:var(--blue);transform:translateX(3px)}
+.hub-cta-line{margin-top:36px;text-align:center;letter-spacing:.14em;font-size:.68rem;color:var(--faint)}
+.hub-cta-line a{color:var(--blue);text-decoration:none}
+.hub-cta-line a:hover{text-decoration:underline}
+@media (max-width:760px){
+  .hub-lead{grid-template-columns:1fr}
+  .hub-num{display:none}
+  .hub-row{grid-template-columns:40px 1fr auto;grid-template-areas:"n cat go" "main main main";row-gap:8px}
+  .hub-n{grid-area:n}
+  .hub-row .hub-cat{grid-area:cat}
+  .hub-main-cell{grid-area:main}
+  .hub-go{grid-area:go;justify-self:end}
+}
+
+/* ==========================================================================
+   ARTICLES / PRIVACY / 404 — legacy pages re-skinned
+   ========================================================================== */
+/* clear the fixed landing bar (legacy pages had a sticky nav) */
+.article,.legal,main.toc{padding-top:calc(var(--nav-h) + 46px) !important}
+.article{max-width:780px;margin:0 auto}
+.article,.legal{font-size:17px}
+.breadcrumb{font-size:.66rem;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+.breadcrumb a{color:var(--mut)}
+.article-meta{color:var(--faint);letter-spacing:.1em;font-size:.68rem;text-transform:uppercase}
+.post-tag{
+  color:var(--blue) !important;background:var(--blue-soft) !important;
+  border:1px solid var(--blue-line) !important;border-radius:6px !important;
+  padding:2px 9px !important;font-size:.6rem !important;letter-spacing:.14em !important;
+  text-transform:uppercase;
+}
+.article-head h1{font-size:clamp(30px,4.4vw,50px);line-height:1.06}
+.article-lead{color:var(--mut);font-size:1.02rem;line-height:1.75}
+
+/* cards: every callout box becomes a landing index-card */
+.tldr2,.cta-box,.varbox,.calc-inner,.figure,.pullquote,
+.hiw-step,.cr-sn-note,.stat2,.try-wrap,.tv,.compare-wrap{
+  background:var(--card);
+  border-color:var(--line2);
+}
+.tldr2,.cta-box,.varbox,.calc-inner{
+  border:1px solid var(--line2) !important;border-radius:14px !important;
+  box-shadow:0 18px 44px -26px rgba(20,22,28,.25);
+}
+html[data-theme="dark"] .tldr2,
+html[data-theme="dark"] .cta-box,
+html[data-theme="dark"] .varbox,
+html[data-theme="dark"] .calc-inner{box-shadow:0 18px 44px -26px rgba(0,0,0,.5)}
+.tl-k,.calc-kicker{color:var(--blue) !important;letter-spacing:.18em !important;font-size:.62rem !important}
+.pullquote{
+  font-family:var(--serif) !important;font-weight:600;
+  border-left:3px solid var(--blue) !important;background:var(--paper2) !important;
+  border-radius:0 12px 12px 0;
+}
+
+/* keycap chips for keyboard references */
+kbd,.kc{
+  display:inline-block;
+  border:1px solid var(--line3) !important;border-bottom-width:2.5px !important;
+  border-radius:6px !important;background:var(--kc-face) !important;color:var(--ink) !important;
+  box-shadow:none !important;font-weight:600 !important;font-size:.82em !important;
+  padding:0 .48em !important;letter-spacing:.06em;
+}
+code:not(.kc){color:var(--blue);background:var(--blue-soft);border-radius:5px;padding:.06em .4em}
+pre code{color:inherit;background:none;padding:0}
+
+/* comparison tables */
+table{border-color:var(--line2) !important}
+th{font-family:var(--mono) !important;font-size:.66rem !important;letter-spacing:.12em;text-transform:uppercase;color:var(--faint) !important}
+td,th{border-color:var(--line) !important}
+.hl{background:var(--blue-soft) !important}
+.hl.yes,.yes{color:var(--green) !important}
+.no{color:var(--red) !important}
+
+/* the CTA buttons inside articles are the extension blue, like the landing */
+.btn.primary,
+html[data-theme="dark"] .btn.primary{
+  background:#2563eb !important;border-color:#2563eb !important;color:#fff !important;
+  border-radius:11px !important;
+  box-shadow:0 1px 0 #1d52c9,0 6px 20px -8px rgba(37,99,235,.5) !important;
+}
+.btn.primary:hover,
+html[data-theme="dark"] .btn.primary:hover{background:#2e6ef5 !important}
+.btn:not(.primary){background:var(--card);border-color:var(--line2);color:var(--mut)}
+.btn:not(.primary):hover{border-color:var(--blue-line);color:var(--blue)}
+
+/* legacy ticker + dividers pick up the paper language */
+.cr-ticker{border-color:var(--line) !important;background:var(--paper2) !important}
+.cr-tk-seg span,.cr-tk-static{color:var(--faint) !important;letter-spacing:.12em}
+
+/* eyebrow pill (privacy/404) */
+.eyebrow{background:var(--blue-soft) !important;color:var(--blue) !important;font-family:var(--mono) !important;font-size:.64rem !important;letter-spacing:.12em;text-transform:uppercase}

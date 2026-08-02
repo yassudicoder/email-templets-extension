@@ -17,16 +17,16 @@
   <meta property="og:image:alt" content="The Canned Responses blog — guides on canned responses and email templates for Gmail &amp; LinkedIn.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://gmail-templates-and-canned.netlify.app/og/cover.png">
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <script>(function(){var d=document.documentElement;d.classList.add('js');var t='light';try{var s=localStorage.getItem('cr-theme');t=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}d.setAttribute('data-theme',t);if(t==='dark'){var l=document.createElement('link');l.rel='stylesheet';l.href='/dark.css';l.id='cr-darkcss';document.head.appendChild(l);}})();</script>
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="../spec-sheet.css">
-  <link rel="stylesheet" href="../creative.css">
+  <script>(function(){try{var t=localStorage.getItem('cr-theme');if(!t&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+  <link rel="preload" href="../fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../once.css">
   <link rel="stylesheet" href="../once-blog.css">
-  <script src="../theme.js" defer></script>
   <script src="../analytics.js" defer></script>
-  <script src="../motion.min.js" defer></script>
-  <script src="../creative.js" defer></script>
+  <script src="../once.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,164 +37,108 @@
   }
   </script>
 </head>
-<body>
-  <header class="nav">
-    <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
-      <span>Canned Responses</span>
+<body class="hub">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Canned Responses — home">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 10.2h5M9.5 12.2h3" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <b>Canned Responses</b>
+      <span class="brand-key mono" aria-hidden="true">ALT+A</span>
     </a>
-    <nav class="navlinks">
+    <nav class="bar-nav" aria-label="Site">
+      <a href="/#try">Try it</a>
       <a href="/#features">Features</a>
-      <a href="/blog/">Blog</a>
+      <a href="/blog/" aria-current="page">Blog</a>
       <a href="/#faq">FAQ</a>
-      <a class="btn primary" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener" data-cws>Add to Chrome</a>
     </nav>
+    <a class="btn btn-blue btn-bar" href="https://chromewebstore.google.com/detail/email-templates-canned-re/amhocmgofedeoapkokhjpiklnphpafcl" target="_blank" rel="noopener">Add to Chrome<span class="btn-free"> — free</span></a>
   </header>
 
-  <div class="blog-head">
-    <span class="eyebrow"><span class="dot"></span> The Canned Responses blog</span>
-    <h1>Reply faster, <span class="grad">type less</span></h1>
-    <p>Practical guides on canned responses, Gmail templates, and high-volume reply workflows — for recruiters, sales reps, and support teams who send the same messages all day.</p>
-  </div>
+  <main id="main" class="hub-main">
+    <header class="sec-head hub-head">
+      <p class="sec-kick mono">FIELD NOTES · VOL.01 · 6 ENTRIES · UPD JUN 2026</p>
+      <h1>Reply faster, type less.</h1>
+      <p class="sec-sub">Practical guides on canned responses, Gmail templates, and high-volume reply workflows — for recruiters, sales reps, and support teams who send the same messages all day.</p>
+    </header>
 
-  <!-- field-notes running header -->
-  <div class="cr-ticker" aria-hidden="true">
-    <div class="cr-tk-track" aria-hidden="true">
-      <div class="cr-tk-seg">
-        <span>LOCAL-FIRST</span>
-        <span><span class="cr-k">ALT+A</span>&nbsp;INSERTS AT CURSOR</span>
-        <span>NO ACCOUNT</span>
-        <span><b>0 BYTES</b>&nbsp;UPLOADED</span>
-        <span>GMAIL &middot; LINKEDIN</span>
-        <span>KEYBOARD-FIRST</span>
-        <span>TEMPLATES NEVER LEAVE THIS DEVICE</span>
+    <!-- featured lead -->
+    <a class="hub-lead" href="/blog/gmail-canned-responses">
+      <div class="hub-lead-main">
+        <p class="hub-meta mono"><span class="hub-cat">HOW-TO</span>No.01 · 10 MIN · 2026</p>
+        <h2>Gmail Canned Responses: How to Save &amp; Insert Email Templates Fast</h2>
+        <p class="hub-dek">Gmail's built-in templates are buried three menus deep and break on every reply. Here's the fix — and a keyboard-first way to insert any saved reply in one keystroke, with variables and LinkedIn support.</p>
+        <span class="hub-read mono">READ THE GUIDE →</span>
       </div>
-      <div class="cr-tk-seg">
-        <span>LOCAL-FIRST</span>
-        <span><span class="cr-k">ALT+A</span>&nbsp;INSERTS AT CURSOR</span>
-        <span>NO ACCOUNT</span>
-        <span><b>0 BYTES</b>&nbsp;UPLOADED</span>
-        <span>GMAIL &middot; LINKEDIN</span>
-        <span>KEYBOARD-FIRST</span>
-        <span>TEMPLATES NEVER LEAVE THIS DEVICE</span>
-      </div>
-    </div>
-    <div class="cr-tk-static"><span class="s">&#10042;</span> LOCAL-FIRST &middot; <b>ALT+A</b> INSERTS AT CURSOR &middot; NO ACCOUNT &middot; 0 BYTES UPLOADED</div>
-  </div>
-
-  <main class="toc">
-    <div class="toc-masthead">
-      <span>FIELD NOTES</span>
-      <span class="colophon">VOL.01 · CANNED RESPONSES · UPD JUN 2026 · 6 ENTRIES</span>
-    </div>
-
-    <!-- FEATURED / flagship — editorial lead, not a card -->
-    <a class="toc-lead" href="/blog/gmail-canned-responses">
-      <div class="rule"><i></i><b class="node"></b></div>
-      <div class="lead-grid">
-        <div class="lead-main">
-          <div class="lead-meta">No.01 · HOW-TO · 10 MIN · 2026</div>
-          <h2 class="lead-title">Gmail Canned Responses: How to Save &amp; Insert Email Templates Fast</h2>
-          <p class="lead-deck">Gmail's built-in templates are buried three menus deep and break on every reply. Here's the fix — and a keyboard-first way to insert any saved reply in one keystroke, with variables and LinkedIn support.</p>
-          <span class="lead-read">Read the guide →</span>
-        </div>
-        <div class="lead-plate" aria-hidden="true"><span class="plate-num">01</span><span class="plate-stamp">HOW-TO</span></div>
-      </div>
+      <span class="hub-num mono" aria-hidden="true">01</span>
     </a>
 
-    <!-- contents list -->
-    <div class="toc-list" role="list">
-      <a class="tocrow" href="/blog/how-to-save-canned-responses-linkedin" role="listitem" data-read="7">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">02</span>
-          <span class="toccat">HOW-TO</span>
-          <div class="tocmain"><h3 class="toctitle">How to Save Canned Responses on LinkedIn Messages</h3><p class="tocdek">LinkedIn has no native templates. Insert saved replies into messages, InMail and comments without copy-pasting.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+    <!-- ledger -->
+    <div class="hub-list">
+      <a class="hub-row" href="/blog/how-to-save-canned-responses-linkedin">
+        <span class="hub-n mono">02</span>
+        <span class="hub-cat mono">HOW-TO</span>
+        <span class="hub-main-cell"><h3>How to Save Canned Responses on LinkedIn Messages</h3><p>LinkedIn has no native templates. Insert saved replies into messages, InMail and comments without copy-pasting.</p></span>
+        <span class="hub-go mono">7 MIN →</span>
       </a>
-
-      <a class="tocrow" href="/blog/customer-support-email-templates" role="listitem" data-read="8">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">03</span>
-          <span class="toccat">TEMPLATES</span>
-          <div class="tocmain"><h3 class="toctitle">15 Customer Support Email Templates (Copy &amp; Paste)</h3><p class="tocdek">Ready-to-use canned responses for refunds, bug reports and angry customers — fire them in one keystroke.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+      <a class="hub-row" href="/blog/customer-support-email-templates">
+        <span class="hub-n mono">03</span>
+        <span class="hub-cat mono">TEMPLATES</span>
+        <span class="hub-main-cell"><h3>15 Customer Support Email Templates (Copy &amp; Paste)</h3><p>Ready-to-use canned responses for refunds, bug reports and angry customers — fire them in one keystroke.</p></span>
+        <span class="hub-go mono">8 MIN →</span>
       </a>
-
-      <a class="tocrow" href="/blog/best-canned-response-extensions" role="listitem" data-read="9">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">04</span>
-          <span class="toccat">BEST TOOLS</span>
-          <div class="tocmain"><h3 class="toctitle">7 Best Canned Response Chrome Extensions for Gmail (2026)</h3><p class="tocdek">An honest comparison of the top text-expansion and template tools — features, pricing, privacy, and who each is for.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+      <a class="hub-row" href="/blog/best-canned-response-extensions">
+        <span class="hub-n mono">04</span>
+        <span class="hub-cat mono">BEST TOOLS</span>
+        <span class="hub-main-cell"><h3>7 Best Canned Response Chrome Extensions for Gmail (2026)</h3><p>An honest comparison of the top text-expansion and template tools — features, pricing, privacy, and who each is for.</p></span>
+        <span class="hub-go mono">9 MIN →</span>
       </a>
-
-      <a class="tocrow" href="/blog/recruiter-outreach-templates" role="listitem" data-read="10">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">05</span>
-          <span class="toccat">WORKFLOW</span>
-          <div class="tocmain"><h3 class="toctitle">The Recruiter Outreach Workflow: Templates That Don't Sound Like Templates</h3><p class="tocdek">Build a reusable library of LinkedIn and email templates with variables so every message feels personal at scale.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+      <a class="hub-row" href="/blog/recruiter-outreach-templates">
+        <span class="hub-n mono">05</span>
+        <span class="hub-cat mono">WORKFLOW</span>
+        <span class="hub-main-cell"><h3>The Recruiter Outreach Workflow: Templates That Don't Sound Like Templates</h3><p>Build a reusable library of LinkedIn and email templates with variables so every message feels personal at scale.</p></span>
+        <span class="hub-go mono">10 MIN →</span>
       </a>
-
-      <a class="tocrow" href="/blog/gmail-templates-vs-text-blaze-vs-briskine" role="listitem" data-read="9">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">06</span>
-          <span class="toccat">COMPARISON</span>
-          <div class="tocmain"><h3 class="toctitle">Gmail Templates vs. Text Blaze vs. Briskine: Which Should You Use?</h3><p class="tocdek">A side-by-side breakdown of native Gmail templates and the most popular snippet extensions — by speed, privacy and price.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+      <a class="hub-row" href="/blog/gmail-templates-vs-text-blaze-vs-briskine">
+        <span class="hub-n mono">06</span>
+        <span class="hub-cat mono">COMPARISON</span>
+        <span class="hub-main-cell"><h3>Gmail Templates vs. Text Blaze vs. Briskine: Which Should You Use?</h3><p>A side-by-side breakdown of native Gmail templates and the most popular snippet extensions — by speed, privacy and price.</p></span>
+        <span class="hub-go mono">9 MIN →</span>
       </a>
 
       <!-- ════════════════════════════════════════════════════════════════
            DRAFTS / UNPUBLISHED POSTS — keep them here, COMMENTED OUT, so they
            never render, never get crawled, and never 404. There is no build
-           step, so this comment IS the publish/draft flag. Rules:
-             1. A post is PUBLISHED only when its <a class="tocrow"> is moved
-                OUT of this comment AND its article file + sitemap.xml entry
-                both exist. Never ship a live row to a page that doesn't exist.
-             2. Need a draft visible to teammates but hidden from the public?
-                Add the row live with data-status="draft" — spec-sheet.css
-                hides any [data-status="draft"] entry (CSS safety net).
-           Copy this template out of the comment when the post goes live:
+           step, so this comment IS the publish/draft flag. A post is PUBLISHED
+           only when its <a class="hub-row"> is moved OUT of this comment AND
+           its article file + sitemap.xml entry both exist. Template:
 
-      <a class="tocrow" href="SLUG.html" role="listitem" data-read="N">
-        <div class="rule"><i></i><b class="node"></b></div>
-        <div class="tocrow-grid">
-          <span class="tocnum">07</span>
-          <span class="toccat">CATEGORY</span>
-          <div class="tocmain"><h3 class="toctitle">Post title</h3><p class="tocdek">One-line description.</p></div>
-          <span class="tocstatus read">→ READ</span>
-        </div>
+      <a class="hub-row" href="/blog/SLUG">
+        <span class="hub-n mono">07</span>
+        <span class="hub-cat mono">CATEGORY</span>
+        <span class="hub-main-cell"><h3>Post title</h3><p>One-line description.</p></span>
+        <span class="hub-go mono">N MIN →</span>
       </a>
            ════════════════════════════════════════════════════════════════ -->
-
-      <div class="rule last"><i></i><b class="node"></b></div>
     </div>
+
+    <p class="hub-cta-line mono">TIRED OF READING ABOUT IT? <a href="/#try">PRESS ALT+A YOURSELF →</a></p>
   </main>
 
-  <footer class="footer">
-    <div class="foot-inner">
+  <footer class="foot">
+    <div class="foot-grid">
       <div class="foot-brand">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        Canned Responses &amp; Email Templates
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#2563eb"/><path d="M19 14a1.6 1.6 0 0 1-1.6 1.6H8l-3 3V6.6A1.6 1.6 0 0 1 6.6 5h10.8A1.6 1.6 0 0 1 19 6.6z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <b>Canned Responses</b>
       </div>
-      <nav class="foot-links">
+      <nav class="foot-links mono" aria-label="Footer">
         <a href="/#features">Features</a>
         <a href="/blog/">Blog</a>
         <a href="/privacy">Privacy</a>
-        <a href="mailto:boxai5115@gmail.com">boxai5115@gmail.com</a>
+        <a href="/#faq">FAQ</a>
       </nav>
     </div>
-    <p class="foot-copy">© 2026 Canned Responses. Local-first · no account · your templates never leave your device.</p>
+    <p class="foot-copy mono">© 2026 CANNED RESPONSES · LOCAL-FIRST · NO ACCOUNT · YOUR TEMPLATES NEVER TOUCH OUR SERVERS — THERE AREN'T ANY</p>
   </footer>
 </body>
 </html>
