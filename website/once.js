@@ -710,7 +710,49 @@
   })();
 
   /* ========================================================================
-     8) micro — magnetic primary buttons
+     8) theme — the lamp switch (shares the blog's stored preference)
+     ======================================================================== */
+  (function theme() {
+    var root = d.documentElement;
+    function cur() { return root.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+    function set(t) {
+      if (t === "dark") root.setAttribute("data-theme", "dark");
+      else root.removeAttribute("data-theme");
+      try { localStorage.setItem("cr-theme", t); } catch (e) {}
+      sync();
+    }
+    var btn = d.createElement("button");
+    btn.type = "button";
+    btn.className = "theme-key";
+    btn.innerHTML =
+      '<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>' +
+      '<svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>';
+    function sync() {
+      var dark = cur() === "dark";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      btn.title = dark ? "Light mode" : "Dark mode";
+    }
+    sync();
+    btn.addEventListener("click", function () { set(cur() === "dark" ? "light" : "dark"); });
+    var bar = $(".bar"), cta = $(".btn-bar");
+    if (bar && cta) bar.insertBefore(btn, cta); else if (bar) bar.appendChild(btn);
+    // follow the OS only while the user hasn't chosen
+    try {
+      matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+        var stored = null;
+        try { stored = localStorage.getItem("cr-theme"); } catch (err) {}
+        if (!stored) {
+          if (e.matches) root.setAttribute("data-theme", "dark");
+          else root.removeAttribute("data-theme");
+          sync();
+        }
+      });
+    } catch (e) {}
+  })();
+
+  /* ========================================================================
+     9) micro — magnetic primary buttons
      ======================================================================== */
   (function micro() {
     if (reduce || !window.matchMedia || !matchMedia("(pointer:fine)").matches) return;

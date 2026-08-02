@@ -1,0 +1,84 @@
+/* ==========================================================================
+   CANNED RESPONSES — once-blog.css
+   Brings the legacy long-form pages (blog hub, articles, privacy, 404) in
+   line with the TYPE IT ONCE landing page: paper/ink palette, extension-blue
+   accent, Fraunces display + JetBrains Mono technical layer, and a matching
+   dark mode driven by the same html[data-theme="dark"] attribute + cr-theme
+   key the landing uses. Loads AFTER styles.css / spec-sheet.css / dark.css /
+   creative.css and only overrides — page structure is unchanged.
+   ========================================================================== */
+
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/jetbrains-mono-latin-600-normal.woff2) format("woff2")}
+
+/* ---- palette: light = paper & ink ---- */
+:root{
+  --blue:#2563eb; --blue-dark:#1d52c9;
+  --ink:#14161c; --muted:#5a6170;
+  --line:#e6e3d8; --bg:#faf9f5; --soft:#f2f0e9;
+  --ring:rgba(37,99,235,.18);
+}
+/* ---- palette: dark = the same desk, lamp off (matches the landing) ---- */
+html[data-theme="dark"]{
+  --ink:#e9ecf3; --muted:#a0a8b8; --line:#242936; --bg:#0f1116; --soft:#151821;
+  --hair:#242936; --ring:rgba(110,163,255,.3); --blue:#6ea3ff; --blue-dark:#8ab3ff;
+}
+html[data-theme="dark"] body{background:var(--bg)}
+html[data-theme="dark"] .footer{background:#0b0d12}
+::selection{background:#2563eb;color:#fff}
+
+/* ---- typography: Fraunces display + JetBrains Mono technical layer ---- */
+h1,h2,h3,.brand,.toctitle,.toc-masthead h1{
+  font-family:"Fraunces",Georgia,"Times New Roman",serif !important;
+  font-weight:800;letter-spacing:-.015em;font-variation-settings:"opsz" 100;
+}
+kbd,code,pre,
+.post-tag,.article-meta,.toccat,.tocnum,.toc-kicker,
+.cr-cover-kicker,.cr-cover-stamp,.cr-cover-abstract,.cr-cover-idx,
+.cr-meta,.cr-facets,.cr-facet,.legal-meta,
+.cr-tk-seg span,.cr-tk-static{
+  font-family:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace !important;
+}
+
+/* ---- nav: same bar language as the landing ---- */
+.nav{background:rgba(250,249,245,.85)}
+html[data-theme="dark"] .nav{background:rgba(15,17,22,.82);border-bottom-color:var(--line)}
+.navlinks a:not(.btn){
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.navlinks a:not(.btn):hover{color:var(--blue)}
+
+/* the install CTA is the extension blue in both themes, like the landing */
+.btn.primary,
+html[data-theme="dark"] .btn.primary{
+  background:#2563eb;border-color:#2563eb;color:#fff;
+  box-shadow:0 1px 0 #1d52c9,0 6px 20px -8px rgba(37,99,235,.5);
+}
+.btn.primary:hover,
+html[data-theme="dark"] .btn.primary:hover{background:#2e6ef5}
+
+/* kbd chips read as little keycaps */
+kbd{
+  border:1px solid var(--line) !important;border-bottom-width:2.5px !important;
+  border-radius:6px !important;background:var(--soft) !important;color:var(--ink) !important;
+  box-shadow:none !important;font-weight:600 !important;
+}
+
+/* accents that were still the old blue-violet */
+html[data-theme="dark"] .eyebrow{background:rgba(110,163,255,.12);color:#8ab3ff}
+a:not(.btn):not(.brand):not(.tocrow):hover{text-decoration-color:var(--blue)}
+
+/* no purple: gradient text becomes the brand blue ramp */
+.grad,.calc-stat.accent .calc-big{
+  background:linear-gradient(100deg,#2563eb,#5b8cff) !important;
+  -webkit-background-clip:text !important;background-clip:text !important;color:transparent !important;
+}
+html[data-theme="dark"] .grad,
+html[data-theme="dark"] .calc-stat.accent .calc-big{
+  background:linear-gradient(100deg,#6ea3ff,#a9c6ff) !important;
+  -webkit-background-clip:text !important;background-clip:text !important;
+}
+
+/* the oversized article-cover numeral sits quieter behind dark text */
+html[data-theme="dark"] .cr-cover-idx{opacity:.3}
