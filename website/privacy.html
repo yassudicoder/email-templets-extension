@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — Canned Responses &amp; Email Templates</title>
-  <meta name="description" content="Privacy policy for the Canned Responses & Email Templates extension. Your templates stay local; we never read or transmit your email. No account, no tracking.">
+  <meta name="description" content="Privacy policy for the Canned Responses & Email Templates extension. Templates stay local, there is no account, and optional Gmail and AI features run only when you turn them on.">
   <link rel="canonical" href="https://gmail-templates-and-canned.netlify.app/privacy">
   <meta property="og:title" content="Privacy Policy — Canned Responses &amp; Email Templates">
-  <meta property="og:description" content="Privacy policy for the Canned Responses & Email Templates extension. Your templates stay local; we never read or transmit your email. No account, no tracking.">
+  <meta property="og:description" content="Privacy policy for the Canned Responses & Email Templates extension. Templates stay local, there is no account, and optional Gmail and AI features run only when you turn them on.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gmail-templates-and-canned.netlify.app/privacy">
   <meta property="og:image" content="https://gmail-templates-and-canned.netlify.app/og/cover.png">
@@ -43,21 +43,45 @@
 
   <main class="legal">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: June 15, 2026</p>
+    <p class="updated">Last updated: October 23, 2026</p>
 
-    <p class="tldr"><b>In short:</b> Canned Responses &amp; Email Templates stores your templates locally on your own device, and there is <b>no account</b>. Your <b>templates and messages never leave your device</b> — the extension does not read, collect, or transmit any of their content. To improve the product it does collect <b>anonymous, content-free usage statistics</b> (just which features are used) — this is <b>on by default, and you can turn it off anytime</b> in the options page. The only other data it sends is feedback you choose to submit. Neither ever includes any message or template content.</p>
+    <p class="tldr"><b>In short:</b> Canned Responses &amp; Email Templates stores your templates and settings locally on your own device, and there is <b>no account</b> and <b>no server of ours</b> that stores your data. By default the extension does not read your email. Two <b>optional</b> features change that only when you use them: <b>Connect Gmail</b> (to send scheduled emails and to draft auto-replies for review) and <b>AI writing</b>. Email content then goes only to Google's Gmail API and to the AI that writes your draft — through our relay, which never stores it, for the built-in AI, or directly to your own AI provider if you add an API key. The extension also collects <b>anonymous, content-free usage statistics</b> (on by default, can be turned off) and any feedback you choose to send.</p>
 
     <h2>What the extension stores</h2>
     <p>The extension saves the data you create — your templates (titles, bodies, shortcuts, tags, favorites) and your settings (hotkey, theme, backup preferences) — using your browser's local extension storage (<code>chrome.storage.local</code>). This data lives on your device.</p>
     <p>If you turn on the optional <i>"Sync templates across my devices"</i> setting (off by default), your templates and categories are also kept in <b>Chrome's built-in sync</b> (<code>chrome.storage.sync</code>) so they roam across the Chrome browsers where you're signed in. That uses your own Google/Chrome Sync — <b>not our servers</b> — and still needs no account with us. Turn the setting off to keep everything on one device.</p>
+    <p>If you use the optional features below, the extension also stores, locally on your device: your scheduled emails (recipients, subject, message and send time) until they are sent, your auto-reply rules, the drafts waiting in your review queue together with the email each one answers, a short activity log, the address of the Gmail account you connected, your AI provider settings (including your API key) and the "About you" details you enter for the AI. Handled drafts are deleted automatically after 14 days. None of this is synced or included in exports.</p>
+
+    <h2>Optional: Connect Gmail (scheduled send and auto-reply drafts)</h2>
+    <p>Off until you click <b>Connect Gmail</b> in the extension's dashboard and sign in with Google. The extension asks only for what each feature needs:</p>
+    <ul>
+      <li><b>Send email on your behalf</b> (<code>gmail.send</code>) — used only to send the emails you schedule and the replies you approve. It cannot read your mailbox.</li>
+      <li><b>Read your email</b> (<code>gmail.readonly</code>) — requested only if you turn on <b>auto-reply drafts</b>. While that is on, the extension checks your inbox for new messages and reads the sender, subject and text of messages that match a rule you created, so it can prepare a draft reply. Newsletters, notifications and automated mail are skipped. Nothing is ever sent without your click.</li>
+      <li><b>Your email address</b> (<code>email</code>) — to show which account is connected.</li>
+    </ul>
+    <p>All Gmail requests go directly from your browser to Google. The sign-in token is kept only in your browser's temporary session storage and is never sent to us. You can disconnect at any time in the dashboard (this revokes the token) or at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
+    <p>Canned Responses' use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. Gmail data is used only to provide the features you turned on, is never sold, never used for advertising, never used to train AI models by us, and is never read by people.</p>
+
+    <h2>Optional: AI writing</h2>
+    <p>Nothing is sent to any AI until you ask for a draft. You can write with AI in two ways:</p>
+    <ul>
+      <li><b>Built-in AI (no API key needed).</b> Your request goes to our relay at <code>email-templets-extension.vercel.app/api/ai</code>, which forwards it to the AI service we use (currently Google's Gemini API) and returns the draft. The relay does not store or log the text you send or the draft it returns. To apply a fair daily limit it counts requests per random install ID and per network address; those counters contain no content and expire after two days. The AI service processes the text under its API terms.</li>
+      <li><b>Your own API key.</b> If you add a key for an AI provider you choose (Google Gemini, xAI Grok, OpenAI, or another OpenAI-compatible service you configure), requests go directly from your browser to that provider, on your account, and never pass through us. Your key is stored only in your browser and is never synced, exported or sent to us. That provider processes the text under <b>its own terms and privacy policy</b> — please review them; some free tiers allow the provider to use requests to improve its services.</li>
+    </ul>
+    <p>Either way, text is sent only:</p>
+    <ul>
+      <li>when you click <b>Write with AI</b> — your instructions, your "About you" details, and, if you leave "Reply to this conversation" ticked, the text of the conversation you have open; or</li>
+      <li>for an email that matches an <b>AI auto-reply rule</b> you created — that email's sender, subject and text, plus the rule's instructions.</li>
+    </ul>
+    <p>Converting text you paste from ChatGPT or another AI into a template happens entirely on your device and sends nothing.</p>
 
     <h2>What the extension does not do</h2>
     <ul>
-      <li>It does <b>not</b> read, scan, collect, store, or transmit the content of your emails or messages — ever, regardless of any setting.</li>
-      <li>It does <b>not</b> require an account or sign-in.</li>
-      <li>It does <b>not</b> include advertising or third-party advertising trackers.</li>
-      <li>It does <b>not</b> include advertising or third-party advertising trackers, and it never transmits the content of your templates, emails, or messages.</li>
-      <li>The only data it sends is anonymous, content-free usage statistics (on by default, can be turned off) and feedback you choose to submit — both described below.</li>
+      <li>It does <b>not</b> read your email unless you turn on a feature above that needs it, and then only as described there.</li>
+      <li>It does <b>not</b> send any email you didn't schedule or approve.</li>
+      <li>It does <b>not</b> require an account with us, and we run no server that stores your data.</li>
+      <li>It does <b>not</b> include advertising or third-party advertising trackers, and it never sells your data.</li>
+      <li>It never sends the content of your templates, emails or messages to us.</li>
     </ul>
 
     <h2>Anonymous usage analytics (on by default — you can turn it off)</h2>
@@ -82,14 +106,23 @@
     <ul>
       <li><b>Storage</b> — to save your templates and settings locally on your device.</li>
       <li><b>Context menus</b> — to provide the right-click "Save selection as template" option.</li>
-      <li><b>Site access to mail.google.com and linkedin.com</b> — so the extension can insert a template into the message box you're typing in. It only inserts the text you choose; it does not read or send your messages.</li>
+      <li><b>Site access to mail.google.com and linkedin.com</b> — so the extension can insert a template into the message box you're typing in, and — only when you click <i>Write with AI</i> — read the conversation you have open so the AI can reply to it.</li>
+      <li><b>Alarms</b> — to send a scheduled email at the time you chose and to check for new email while auto-reply drafts are on.</li>
+      <li><b>Identity</b> — to let you sign in with Google when you click <i>Connect Gmail</i>.</li>
+      <li><b>Optional site access</b> (asked for only when you use the feature) — to Google's Gmail API when you connect Gmail, and to your chosen AI provider when you add an API key.</li>
     </ul>
 
     <h2>Your data and your control</h2>
-    <p>You can <b>export</b> your templates to a JSON file at any time as a backup, and <b>import</b> them later. Because the data is stored locally, <b>uninstalling the extension removes it from your device</b> — we recommend exporting a backup before uninstalling. Clearing your browser's extension data will also remove it.</p>
+    <p>You can <b>export</b> your templates to a JSON file at any time as a backup, and <b>import</b> them later. Because the data is stored locally, <b>uninstalling the extension removes it from your device</b> — we recommend exporting a backup before uninstalling. Clearing your browser's extension data will also remove it. Disconnecting Gmail revokes the extension's access; removing your API key stops all AI requests.</p>
 
     <h2>Third parties</h2>
-    <p>The only third party the extension sends data to is our analytics provider, <b>PostHog</b>, and only the anonymous, content-free usage events described above (when analytics is on). It never shares your personal data, your templates, or any email or message content with anyone.</p>
+    <ul>
+      <li><b>PostHog</b> (our analytics provider) — only the anonymous, content-free usage events described above, when analytics is on.</li>
+      <li><b>Google (Gmail API)</b> — only if you connect Gmail, as described above.</li>
+      <li><b>Our AI relay (hosted on Vercel) and the AI service behind it (currently Google Gemini)</b> — only when you use the built-in AI, as described above. Nothing is stored.</li>
+      <li><b>The AI provider you choose</b> — only if you add your own API key, as described above.</li>
+    </ul>
+    <p>We never share your personal data, your templates, or any email or message content with anyone else.</p>
 
     <h2>About this website</h2>
     <p>This marketing website (the pages on this domain) is separate from the extension and uses privacy-friendly, <b>cookieless</b> analytics to count visits and see which pages lead to installs. It does not use advertising cookies and does not track you across other websites. The extension's own anonymous, content-free usage analytics — which you can turn off — are described in the section above.</p>
@@ -105,7 +138,7 @@
   </main>
 
   <footer class="footer">
-    <p class="foot-copy">© 2026 Canned Responses. Local-first · no account · your templates never leave your device.</p>
+    <p class="foot-copy">© 2026 Canned Responses. Local-first · no account · your templates stay on your device.</p>
   </footer>
 </body>
 </html>
