@@ -267,11 +267,44 @@
     shadow.getElementById("close").onclick = closePanel;
     shadow.getElementById("del").onclick = () => delEdit();
     shadow.getElementById("save").onclick = () => saveEdit();
-    shadow.getElementById("full").onclick = () => { if (NS.app) NS.app.openManager(); closePanel(); };
+    shadow.getElementById("full").onclick = () => openFullEditor();
+    editStart = {
+      title: shadow.getElementById("title").value,
+      shortcut: shadow.getElementById("shortcut").value,
+      body: shadow.getElementById("body").value
+    };
     shadow.querySelectorAll(".chip").forEach((c) =>
       c.addEventListener("click", () => insertVar(c.dataset.var)));
     afterRender();
     shadow.getElementById("title").focus();
+  }
+
+  // "Full editor": never lose what was typed here. Save it (a new draft becomes a
+  // template; an existing one is saved only if it changed, so a rich template isn't
+  // flattened to plain text needlessly), then open the options page ON that template.
+  let editStart = null;
+  async function openFullEditor() {
+    const title = shadow.getElementById("title").value;
+    const shortcut = shadow.getElementById("shortcut").value.trim();
+    const text = shadow.getElementById("body").value;
+    let id = editingId;
+    if (id) {
+      const changed = !editStart || title !== editStart.title || shortcut !== editStart.shortcut.trim() || text !== editStart.body;
+      if (changed) await NS.store.update(id, { title: title.trim() || "Untitled", body: textToBody(text), shortcut });
+    } else if (title.trim() || shortcut || text.trim()) {
+      const rec = await NS.store.create({ title: title.trim() || "Untitled", body: textToBody(text), shortcut });
+      if (!rec) {
+        const el = shadow.getElementById("lim");
+        const lim = (NS.store.templateLimit && NS.store.templateLimit()) || 150;
+        if (el) { el.textContent = CR.i18n.t("alert_create_limit_reached", [lim]); el.hidden = false; }
+        return;
+      }
+      id = rec.id;
+    }
+    if (id) { try { await NS.store.updateSettings({ focusTemplateId: id }); } catch (e) {} }
+    draft = null;
+    if (NS.app) NS.app.openManager();
+    closePanel();
   }
 
   function insertVar(name) {

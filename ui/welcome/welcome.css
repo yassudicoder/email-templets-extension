@@ -31,6 +31,8 @@ kbd {
 .card .ci { font-size: 20px; }
 .card h3 { margin: 6px 0 4px; font-size: 15px; }
 .card p { margin: 0; color: #5a6273; font-size: 14px; }
+.card.wide { grid-column: 1 / -1; border-color: #c9d8f7; background: #f6f9ff; }
+.card.wide .btn { margin-top: 10px; padding: 7px 14px; font-size: 13px; }
 code { background: #eef1f6; padding: 1px 6px; border-radius: 5px; font-size: 13px; }
 
 .starters { margin: 8px 0 28px; }

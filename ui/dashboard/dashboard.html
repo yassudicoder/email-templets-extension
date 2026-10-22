@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="dash_page_title">Canned Responses — Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Canned Responses <span class="brandsub" data-i18n="dash_brand_sub">Dashboard</span></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="schedule"><span class="ticon">🗓</span><span data-i18n="dash_tab_schedule">Scheduled</span><span class="tbadge" id="badgeSchedule" hidden></span></button>
+      <button class="tab" role="tab" data-tab="autoreply"><span class="ticon">↩</span><span data-i18n="dash_tab_autoreply">Auto-reply</span><span class="tbadge" id="badgeQueue" hidden></span></button>
+      <button class="tab" role="tab" data-tab="ai"><span class="ticon">✨</span><span data-i18n="dash_tab_ai">AI writer</span></button>
+      <button class="tab" role="tab" data-tab="settings"><span class="ticon">⚙</span><span data-i18n="dash_tab_settings">Settings</span></button>
+    </nav>
+    <div class="meta">
+      <button id="openTemplates" class="btn ghost sm" data-i18n="dash_open_templates">My templates</button>
+    </div>
+  </header>
+
+  <!-- Gmail connection banner (Scheduled + Auto-reply tabs) -->
+  <div id="gmailBanner" class="banner" hidden>
+    <span class="bicon">✉️</span>
+    <span id="gmailBannerMsg" class="bmsg"></span>
+    <span class="grow"></span>
+    <button id="gmailBannerBtn" class="btn primary sm" data-i18n="dash_connect_gmail">Connect Gmail</button>
+  </div>
+
+  <main class="main">
+    <!-- ============ SCHEDULED ============ -->
+    <section id="tab-schedule" class="tabpanel" hidden>
+      <div class="intro"><h1 data-i18n="dash_sec_schedule">Scheduled emails</h1><p data-i18n="dash_sec_schedule_intro">Write an email now and it's sent from your own Gmail at the time you pick. Start from a template or let AI write it.</p></div>
+      <div class="cols">
+        <div class="card composer">
+          <div class="cardhead">
+            <h2 id="composerTitle" data-i18n="dash_composer_title_new">Schedule an email</h2>
+            <span class="grow"></span>
+            <button id="cCancelEdit" class="btn subtle sm" data-i18n="dash_composer_cancel_edit" hidden>Cancel editing</button>
+          </div>
+
+          <label class="flabel" for="cTo" data-i18n="dash_field_to">To</label>
+          <input id="cTo" class="finput" autocomplete="off" data-i18n-ph="dash_field_to_ph" placeholder="name@example.com, another@example.com">
+          <button id="ccToggle" class="linkbtn" type="button" data-i18n="dash_add_cc">+ Cc / Bcc</button>
+          <div id="ccRow" class="row2" hidden>
+            <div><label class="flabel" for="cCc">Cc</label><input id="cCc" class="finput" autocomplete="off"></div>
+            <div><label class="flabel" for="cBcc">Bcc</label><input id="cBcc" class="finput" autocomplete="off"></div>
+          </div>
+
+          <label class="flabel" for="cSubject" data-i18n="dash_field_subject">Subject</label>
+          <input id="cSubject" class="finput" autocomplete="off">
+
+          <div class="labelrow">
+            <label class="flabel" data-i18n="dash_field_message">Message</label>
+            <span class="grow"></span>
+            <select id="cTemplate" class="finput tsel sm" data-i18n-title="dash_insert_template_title" title="Insert one of your templates"></select>
+            <button id="cAiBtn" class="btn ghost sm" type="button" data-i18n="dash_write_with_ai">✨ Write with AI</button>
+          </div>
+          <div id="cAiRow" class="airow" hidden>
+            <input id="cAiPrompt" class="finput" autocomplete="off" data-i18n-ph="dash_ai_compose_ph" placeholder="What should this email say? e.g. Remind Sam about Friday's demo and ask for the agenda">
+            <button id="cAiGo" class="btn primary sm" type="button" data-i18n="dash_generate">Generate</button>
+          </div>
+          <div class="minibar" data-for="cBody">
+            <button data-cmd="bold" type="button" data-i18n-title="toolbar_bold_tooltip" title="Bold"><b>B</b></button>
+            <button data-cmd="italic" type="button" data-i18n-title="toolbar_italic_tooltip" title="Italic"><i>I</i></button>
+            <button data-cmd="underline" type="button" data-i18n-title="toolbar_underline_tooltip" title="Underline"><u>U</u></button>
+            <button data-cmd="insertUnorderedList" type="button" data-i18n-title="toolbar_bullet_list_tooltip" title="Bullet list">&bull;</button>
+            <button data-cmd="createLink" type="button" data-i18n-title="toolbar_insert_link_tooltip" title="Insert link">&#128279;</button>
+            <button data-cmd="removeFormat" type="button" data-i18n-title="toolbar_clear_formatting_tooltip" title="Clear formatting">&#10006;</button>
+          </div>
+          <div id="cBody" class="rich" contenteditable="true" role="textbox" aria-multiline="true"></div>
+          <div id="cVars" class="vars" hidden></div>
+
+          <label class="flabel" for="cWhen" data-i18n="dash_field_send_at">Send at</label>
+          <div class="whenrow">
+            <input id="cWhen" class="finput when" type="datetime-local">
+            <div id="cQuick" class="quick"></div>
+          </div>
+          <p id="tzHint" class="hint"></p>
+
+          <div class="actions">
+            <span id="cStatus" class="status" role="status"></span>
+            <span class="grow"></span>
+            <button id="cReset" class="btn subtle" type="button" data-i18n="dash_clear">Clear</button>
+            <button id="cSendNow" class="btn subtle" type="button" data-i18n="dash_send_now">Send now</button>
+            <button id="cSchedule" class="btn primary" type="button" data-i18n="dash_schedule_btn" data-i18n-title="dash_schedule_btn_title" title="Schedule — Ctrl+Enter">Schedule</button>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="card" id="attnCard" hidden>
+            <h3 class="warnhead" data-i18n="dash_needs_attention">Needs attention</h3>
+            <ul id="schedAttention" class="items"></ul>
+          </div>
+          <div class="card">
+            <h3 data-i18n="dash_upcoming">Upcoming</h3>
+            <ul id="schedUpcoming" class="items"></ul>
+          </div>
+          <div class="card">
+            <div class="cardhead"><h3 data-i18n="dash_sent">Sent</h3><span class="grow"></span><button id="clearSent" class="linkbtn" data-i18n="dash_clear_list" hidden>Clear list</button></div>
+            <ul id="schedSent" class="items"></ul>
+          </div>
+          <p class="footnote" data-i18n="dash_schedule_footnote">Emails are sent from your own Gmail by this browser. Chrome needs to be running at the scheduled time — if it isn't, the email goes out when Chrome starts, or waits for you (see Settings).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AUTO-REPLY ============ -->
+    <section id="tab-autoreply" class="tabpanel" hidden>
+      <div class="intro"><h1 data-i18n="dash_sec_autoreply">Auto-reply</h1><p data-i18n="dash_sec_autoreply_intro">Choose which emails deserve a reply. Canned Responses drafts one for each — with AI or a template — and waits for you to review and send it.</p></div>
+      <div class="card arhead">
+        <label class="switch"><input type="checkbox" id="arToggle"><span class="slider"></span></label>
+        <div class="arhtext">
+          <h2 data-i18n="dash_ar_title">Auto-reply drafts</h2>
+          <p id="arStatus" class="muted"></p>
+        </div>
+        <span class="grow"></span>
+        <button id="arCheck" class="btn subtle sm" data-i18n="dash_ar_check_now">Check now</button>
+      </div>
+      <!-- Guided setup: shown until every step is done (rendered by dashboard.js). -->
+      <div id="arSetup" class="card setup" hidden></div>
+
+      <div class="cols">
+        <div class="stack">
+          <div class="card">
+            <div class="cardhead"><h3 data-i18n="dash_review_queue">Review queue</h3><span id="qCount" class="pill"></span></div>
+            <ul id="queueList" class="items"></ul>
+          </div>
+          <div class="card">
+            <div class="cardhead"><h3 data-i18n="dash_handled">Handled</h3><span class="grow"></span><button id="clearDone" class="linkbtn" data-i18n="dash_clear_list" hidden>Clear list</button></div>
+            <ul id="queueDone" class="items"></ul>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="cardhead"><h3 data-i18n="dash_rules">Rules</h3><span class="grow"></span><button id="ruleNew" class="btn primary sm" data-i18n="dash_rule_new">+ New rule</button></div>
+            <ul id="ruleList" class="items"></ul>
+          </div>
+
+          <div class="card" id="ruleForm" hidden>
+            <h3 id="ruleFormTitle" data-i18n="dash_rule_new_title">New rule</h3>
+            <label class="flabel" for="rName" data-i18n="dash_rule_name">Rule name</label>
+            <input id="rName" class="finput" autocomplete="off" data-i18n-ph="dash_rule_name_ph" placeholder="e.g. Clients">
+
+            <label class="flabel" data-i18n="dash_rule_which">Which emails?</label>
+            <div class="radios">
+              <label><input type="radio" name="rWho" value="senders" checked> <span data-i18n="dash_rule_who_senders">Only from these people or domains</span></label>
+              <label><input type="radio" name="rWho" value="any"> <span data-i18n="dash_rule_who_any">Any normal email — from a person, not newsletters or notifications</span></label>
+            </div>
+            <textarea id="rSenders" class="finput" rows="2" data-i18n-ph="dash_rule_senders_ph" placeholder="jane@client.com, @acme.com, partner.org"></textarea>
+
+            <label class="flabel" for="rKeywords"><span data-i18n="dash_rule_keywords">Only if it mentions</span> <span class="opt" data-i18n="field_optional_marker">(optional)</span></label>
+            <input id="rKeywords" class="finput" autocomplete="off" data-i18n-ph="dash_rule_keywords_ph" placeholder="pricing, invoice, meeting">
+
+            <label class="flabel" data-i18n="dash_rule_reply_with">Draft the reply with</label>
+            <div class="radios">
+              <label><input type="radio" name="rMode" value="ai" checked> <span data-i18n="dash_rule_mode_ai">AI (writes a reply to each email)</span></label>
+              <label><input type="radio" name="rMode" value="template"> <span data-i18n="dash_rule_mode_template">One of my templates</span></label>
+            </div>
+            <textarea id="rInstr" class="finput" rows="3" data-i18n-ph="dash_rule_instr_ph" placeholder="How should the AI reply? e.g. Thank them, say I'll get back within 24 hours, and offer a quick call."></textarea>
+            <select id="rTemplate" class="finput tsel" hidden></select>
+
+            <div class="actions">
+              <span id="rStatus" class="status" role="status"></span>
+              <span class="grow"></span>
+              <button id="rCancel" class="btn subtle" type="button" data-i18n="button_cancel">Cancel</button>
+              <button id="rSave" class="btn primary" type="button" data-i18n="dash_rule_save">Save rule</button>
+            </div>
+          </div>
+
+          <details class="card logcard">
+            <summary><h3 data-i18n="dash_activity">Activity</h3></summary>
+            <ul id="logList" class="loglist"></ul>
+          </details>
+          <p class="footnote" data-i18n="dash_ar_footnote">Nothing is sent without your click. Newsletters, notifications, mailing lists and no-reply senders are always ignored. Checks run while Chrome is open.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI WRITER ============ -->
+    <section id="tab-ai" class="tabpanel" hidden>
+      <div class="intro"><h1 data-i18n="dash_sec_ai">AI writer</h1><p data-i18n="dash_sec_ai_intro">Let AI write emails and templates in your voice. The built-in AI works right away — or connect your own Gemini, Grok or ChatGPT key for unlimited use.</p></div>
+      <div class="cols">
+        <div class="card">
+          <h2 data-i18n="dash_ai_provider">AI provider</h2>
+          <p class="muted" data-i18n="dash_ai_provider_sub">Start with the free built-in AI, or use your own API key:</p>
+          <div id="provGrid" class="provgrid" role="radiogroup"></div>
+
+          <div id="aiBaseRow" hidden>
+            <label class="flabel" for="aiBase" data-i18n="dash_ai_base_url">Base URL</label>
+            <input id="aiBase" class="finput" autocomplete="off" placeholder="https://openrouter.ai/api/v1">
+            <p class="hint" data-i18n="dash_ai_base_hint">Any OpenAI-compatible endpoint — OpenRouter, Groq, DeepSeek, or a local Ollama / LM Studio server (e.g. http://localhost:11434/v1).</p>
+          </div>
+
+          <p id="aiBuiltinNote" class="builtin-note" hidden></p>
+
+          <div id="aiByo">
+          <label class="flabel" for="aiKey" data-i18n="dash_ai_key">API key</label>
+          <div class="inrow">
+            <input id="aiKey" class="finput" type="password" autocomplete="off" spellcheck="false">
+            <button id="aiKeyShow" class="btn subtle sm" type="button" data-i18n="dash_show">Show</button>
+          </div>
+          <a id="aiKeyLink" class="keylink" href="#" target="_blank" rel="noopener"></a>
+
+          <label class="flabel" for="aiModel"><span data-i18n="dash_ai_model">Model</span> <span class="opt" data-i18n="field_optional_marker">(optional)</span></label>
+          <div class="inrow">
+            <input id="aiModel" class="finput" list="aiModels" autocomplete="off" spellcheck="false" data-i18n-ph="dash_ai_model_auto" placeholder="Automatic">
+            <datalist id="aiModels"></datalist>
+            <button id="aiLoadModels" class="btn subtle sm" type="button" data-i18n="dash_ai_load_models">Load models</button>
+          </div>
+          </div>
+
+          <div class="actions">
+            <span id="aiStatus" class="status" role="status"></span>
+            <span class="grow"></span>
+            <button id="aiSave" class="btn primary" type="button" data-i18n="dash_ai_save_test">Save &amp; test</button>
+          </div>
+          <p id="aiKeyNote" class="footnote" data-i18n="dash_ai_key_note">Your key is stored only in this browser — never synced, never exported, never sent to us. Requests go straight to the provider on your own account.</p>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="dash_about_you">About you</h2>
+          <p class="muted" data-i18n="dash_about_you_sub">The AI writes in your voice using these details.</p>
+          <div class="row2">
+            <div><label class="flabel" for="pName" data-i18n="dash_profile_name">Your name</label><input id="pName" class="finput" autocomplete="off"></div>
+            <div><label class="flabel" for="pRole" data-i18n="dash_profile_role">Role / title</label><input id="pRole" class="finput" autocomplete="off"></div>
+          </div>
+          <div class="row2">
+            <div><label class="flabel" for="pCompany" data-i18n="dash_profile_company">Company</label><input id="pCompany" class="finput" autocomplete="off"></div>
+            <div><label class="flabel" for="pTone" data-i18n="dash_profile_tone">Tone</label><select id="pTone" class="finput tsel"></select></div>
+          </div>
+          <label class="flabel" for="pLanguage" data-i18n="dash_profile_language">Language</label>
+          <select id="pLanguage" class="finput tsel"></select>
+          <label class="flabel" for="pSignature" data-i18n="dash_profile_signature">Signature</label>
+          <textarea id="pSignature" class="finput" rows="3" data-i18n-ph="dash_profile_signature_ph" placeholder="Best,&#10;Alex Kim · Head of Sales, Acme"></textarea>
+          <label class="flabel" for="pNotes" data-i18n="dash_profile_notes">Always keep in mind</label>
+          <textarea id="pNotes" class="finput" rows="3" data-i18n-ph="dash_profile_notes_ph" placeholder="e.g. We reply within one business day. Never promise discounts. Our booking link is https://cal.example.com/alex"></textarea>
+          <div class="actions">
+            <span id="pStatus" class="status" role="status"></span>
+            <span class="grow"></span>
+            <button id="pSave" class="btn primary" type="button" data-i18n="button_save">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 data-i18n="dash_tg_title">New template from AI</h2>
+        <div class="seg" role="tablist">
+          <button class="segbtn on" data-mode="gen" type="button" data-i18n="dash_tg_mode_gen">Generate with AI</button>
+          <button class="segbtn" data-mode="import" type="button" data-i18n="dash_tg_mode_import">Paste from ChatGPT / any AI</button>
+        </div>
+        <div id="tgGen">
+          <textarea id="tgPrompt" class="finput" rows="3" data-i18n-ph="dash_tg_prompt_ph" placeholder="Describe the template, e.g. Follow-up after a sales demo that asks for a decision by Friday"></textarea>
+          <div class="actions"><span id="tgGenStatus" class="status" role="status"></span><span class="grow"></span><button id="tgGenerate" class="btn primary" type="button" data-i18n="dash_generate">Generate</button></div>
+        </div>
+        <div id="tgImport" hidden>
+          <textarea id="tgPaste" class="finput mono" rows="7" data-i18n-ph="dash_tg_paste_ph" placeholder="Paste an email written by ChatGPT, Gemini, Claude, Grok… Placeholders like [Name] or {{company}} become fill-in variables."></textarea>
+          <div class="actions"><span class="grow"></span><button id="tgConvert" class="btn primary" type="button" data-i18n="dash_tg_convert">Convert to template</button></div>
+        </div>
+        <div id="tgResult" class="tgresult" hidden>
+          <label class="flabel" for="tgTitle" data-i18n="field_label_title">Title</label>
+          <input id="tgTitle" class="finput" autocomplete="off">
+          <label class="flabel" data-i18n="dash_tg_template">Template</label>
+          <div id="tgBody" class="rich" contenteditable="true" role="textbox" aria-multiline="true"></div>
+          <p id="tgVars" class="hint"></p>
+          <div class="actions">
+            <select id="tgCat" class="finput tsel sm"></select>
+            <span id="tgStatus" class="status" role="status"></span>
+            <span class="grow"></span>
+            <button id="tgSave" class="btn primary" type="button" data-i18n="dash_tg_save">Save to my templates</button>
+          </div>
+        </div>
+      </div>
+      <p class="footnote" data-i18n="dash_ai_everywhere_note">In Gmail and LinkedIn, open the template picker (Alt+A or the in-compose button) and choose ✨ AI to draft a reply to the conversation you're in.</p>
+    </section>
+
+    <!-- ============ SETTINGS ============ -->
+    <section id="tab-settings" class="tabpanel" hidden>
+      <div class="intro"><h1 data-i18n="dash_sec_settings">Gmail &amp; settings</h1><p data-i18n="dash_sec_settings_intro">Connect the Gmail account you send from, and fine-tune how scheduling and auto-reply behave.</p></div>
+      <div class="cols">
+        <div class="card">
+          <h2 data-i18n="dash_gmail_account">Gmail account</h2>
+          <div id="gmailCard"></div>
+          <details class="adv" id="devSetup" hidden>
+            <summary data-i18n="dash_gmail_dev">Developer setup</summary>
+            <p class="hint" data-i18n="dash_gmail_dev_hint">Register this redirect URI on the OAuth "Web application" client in Google Cloud, and put the client ID in core/google-config.js:</p>
+            <div class="inrow"><input id="redirectUri" class="finput mono" readonly><button id="copyRedirect" class="btn subtle sm" type="button" data-i18n="dash_copy">Copy</button></div>
+          </details>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <h2 data-i18n="dash_settings_schedule">Scheduled send</h2>
+            <label class="flabel" for="graceSel" data-i18n="dash_settings_grace">If Chrome was closed at the scheduled time</label>
+            <select id="graceSel" class="finput tsel"></select>
+          </div>
+          <div class="card">
+            <h2 data-i18n="dash_settings_autoreply">Auto-reply drafts</h2>
+            <label class="flabel" for="pollSel" data-i18n="dash_settings_poll">Check for new email every</label>
+            <select id="pollSel" class="finput tsel"></select>
+            <label class="flabel" for="capInput" data-i18n="dash_settings_cap">Max drafts per day</label>
+            <input id="capInput" class="finput narrow" type="number" min="1" max="200">
+            <p class="hint" data-i18n="dash_settings_cap_hint">Each AI draft is one request on your AI key — this cap protects your credits from a flood of email.</p>
+          </div>
+          <div class="card">
+            <h2 data-i18n="dash_settings_privacy">Privacy</h2>
+            <ul class="plist">
+              <li data-i18n="dash_privacy_1">Everything is stored in this browser. There's no account with us, and our servers never store your data.</li>
+              <li data-i18n="dash_privacy_2">Emails are sent through Google's Gmail API directly from this browser.</li>
+              <li data-i18n="dash_privacy_3">Email text goes to the AI only when you click Write with AI or for emails that match an auto-reply rule you created — through our relay (never stored) for the built-in AI, or straight to your own provider.</li>
+              <li data-i18n="dash_privacy_4">Disconnecting Gmail revokes access immediately.</li>
+            </ul>
+            <a id="privacyLink" href="https://email-templets-extension.vercel.app/privacy" target="_blank" rel="noopener" data-i18n="link_learn_more_privacy">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="../../core/sanitize.js"></script>
+  <script src="../../core/model.js"></script>
+  <script src="../../core/sync.js"></script>
+  <script src="../../core/theme.js"></script>
+  <script src="../../core/store.js"></script>
+  <script src="../../core/entitlements.js"></script>
+  <script src="../../core/analytics.js"></script>
+  <script src="../../core/locales.js"></script>
+  <script src="../../core/i18n.js"></script>
+  <script src="../../core/google-config.js"></script>
+  <script src="../../core/ai-config.js"></script>
+  <script src="../../core/ai.js"></script>
+  <script src="../../core/gmail-api.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

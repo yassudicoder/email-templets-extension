@@ -23,8 +23,22 @@
     all: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
     star: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>',
     folder: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
-    trash: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0 1 12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-12"/></svg>'
+    trash: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0 1 12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-12"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
+    reply: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 6 6v4"/></svg>',
+    sparkle: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15v4M17 17h4"/></svg>',
+    gear: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>'
   };
+
+  // "Automation & AI" rail items — each opens that section of the embedded dashboard.
+  const AUTO_TABS = [
+    { tab: "schedule", icon: "calendar", name: "dash_sec_schedule", desc: "dash_sec_schedule_short" },
+    { tab: "autoreply", icon: "reply", name: "dash_sec_autoreply", desc: "dash_sec_autoreply_short" },
+    { tab: "ai", icon: "sparkle", name: "dash_sec_ai", desc: "dash_sec_ai_short" },
+    { tab: "settings", icon: "gear", name: "dash_sec_settings", desc: "dash_sec_settings_short" }
+  ];
+  const isAutoTab = (t) => AUTO_TABS.some((a) => a.tab === t);
+  let autoState = null;   // cr.auto snapshot — only for the rail's counts
 
   async function boot() {
     await store.init();
@@ -71,8 +85,17 @@
         if (e.target.checked && analytics) analytics.capture("sync_enabled");
       });
     }
+    // Gmail top-bar button (on by default). The in-compose button + Alt+A are the
+    // durable entry points; the content script reacts live via storage.onChanged.
+    const hTog = $("#headerBtnToggle");
+    if (hTog) {
+      hTog.checked = store.getSettings().showHeaderButton !== false;
+      hTog.addEventListener("change", async (e) => {
+        await store.updateSettings({ showHeaderButton: e.target.checked });
+      });
+    }
     const pLink = $("#privacyLink");
-    if (pLink) pLink.href = "https://gmail-templates-and-canned.netlify.app/privacy.html";
+    if (pLink) pLink.href = "https://email-templets-extension.vercel.app/privacy";
     $("#pagePrev").addEventListener("click", () => { if (page > 0) { page--; renderList(); } });
     $("#pageNext").addEventListener("click", () => { page++; renderList(); });
     $("#previewClose").addEventListener("click", closePreview);
@@ -80,7 +103,22 @@
 
     // External changes (seeding, other tabs) refresh everything without
     // clobbering the open editor's focus.
-    store.subscribe(() => { renderSidebar(); renderList(); updateCount(); renderHotkey(); applyTheme(); renderNudge(); renderAnalyticsNotice(); });
+    store.subscribe(() => { renderSidebar(); renderList(); updateCount(); renderHotkey(); applyTheme(); renderNudge(); renderAnalyticsNotice(); handleRequests(); });
+
+    // Rail counts for Automation & AI (scheduled needing attention, drafts to review).
+    try {
+      chrome.storage.local.get("cr.auto", (r) => { autoState = r && r["cr.auto"]; renderSidebar(); });
+      chrome.storage.onChanged.addListener((changes, area) => {
+        if (area === "local" && changes["cr.auto"]) { autoState = changes["cr.auto"].newValue; renderSidebar(); }
+      });
+    } catch (e) {}
+    // The embedded dashboard reports its own section changes (e.g. "Set up AI").
+    window.addEventListener("message", (e) => {
+      if (e.origin !== location.origin || !e.data || e.data.type !== "cr-dash-tab" || !isAutoTab(e.data.tab)) return;
+      if (view.type === "auto" && view.tab === e.data.tab) return;
+      view = { type: "auto", tab: e.data.tab };
+      renderSidebar(); applyMode();
+    });
 
     applyTheme();
     $("#themeSel").value = store.getSettings().theme || "system";
@@ -117,9 +155,11 @@
       const rec = await store.create({ title: CR.i18n.t("template_pasted_email_title"), body: "" });
       if (rec) selectedId = rec.id;
     }
-    // Opened from the capture toast's "Edit".
+    // Opened from the capture toast's "Edit" / the in-page panel's "Full editor".
     const focusId = settings.focusTemplateId;
     if (focusId && store.get(focusId)) { selectedId = focusId; store.updateSettings({ focusTemplateId: null }); }
+    // Opened straight into an Automation & AI section (popup, welcome page, picker).
+    if (isAutoTab(settings.openView)) { view = { type: "auto", tab: settings.openView }; store.updateSettings({ openView: null }); }
 
     render();
     if (wasPaste && selectedId) { const b = $("#body"); if (b) b.focus(); }
@@ -128,7 +168,37 @@
   }
 
   function applyTheme() { theme.applyToDocument((store.getSettings() && store.getSettings().theme) || "system"); }
-  function render() { renderSidebar(); renderList(); renderEditor(); updateCount(); renderNudge(); }
+  function render() { renderSidebar(); renderList(); renderEditor(); updateCount(); renderNudge(); applyMode(); }
+
+  // Template panes vs. the embedded Automation & AI dashboard (loaded on first use).
+  function applyMode() {
+    const auto = view.type === "auto";
+    $(".layout").classList.toggle("automode", auto);
+    $("#autoPane").hidden = !auto;
+    if (!auto) return;
+    if (!store.getSettings().seenAutomation) store.updateSettings({ seenAutomation: true });   // retire the "New" pill
+    const frame = $("#autoFrame");
+    const hash = "#" + view.tab;
+    if (!frame.getAttribute("src")) { frame.src = "../dashboard/dashboard.html?embed=1" + hash; return; }
+    try { if (frame.contentWindow.location.hash !== hash) frame.contentWindow.location.hash = hash; }
+    catch (e) { frame.src = "../dashboard/dashboard.html?embed=1" + hash; }
+  }
+
+  // Requests made from other surfaces while this page is already open: "Full editor"
+  // (focus a template) and "open Automation & AI" (popup, welcome page, picker).
+  function handleRequests() {
+    const s = store.getSettings() || {};
+    if (s.focusTemplateId) {
+      const id = s.focusTemplateId;
+      store.updateSettings({ focusTemplateId: null });
+      if (store.get(id)) selectInAnyView(id);
+    }
+    if (s.openView) {
+      const tab = s.openView;
+      store.updateSettings({ openView: null });
+      if (isAutoTab(tab)) { view = { type: "auto", tab }; renderSidebar(); applyMode(); }
+    }
+  }
 
   // ---- Transient confirmation toast (e.g. after changing the shortcut) ---
   let toastTimer = null;
@@ -214,6 +284,32 @@
       count: store.getTrash().length, view: { type: "trash" }
     }));
 
+    // Automation & AI — the dashboard, right here in the rail.
+    nav.appendChild(divider());
+    const head = document.createElement("div");
+    head.className = "navsection";
+    head.innerHTML = '<span class="nvsname"></span><span class="nvnew"></span>';
+    head.querySelector(".nvsname").textContent = CR.i18n.t("sidebar_automation_heading");
+    head.querySelector(".nvnew").textContent = CR.i18n.t("sidebar_new_badge");
+    head.querySelector(".nvnew").hidden = !!store.getSettings().seenAutomation;
+    nav.appendChild(head);
+    const a = autoState || {};
+    const sched = Object.values(a.scheduled || {});
+    const attention = sched.filter((r) => r.status === "missed" || r.status === "failed").length;
+    const upcoming = sched.filter((r) => r.status === "scheduled" || r.status === "sending").length;
+    const pending = Object.values(a.queue || {}).filter((q) => q.status === "pending").length;
+    const counts = {
+      schedule: attention ? { n: attention, cls: "alert" } : upcoming ? { n: upcoming, cls: "" } : null,
+      autoreply: pending ? { n: pending, cls: "blue" } : null
+    };
+    for (const t of AUTO_TABS) {
+      const c = counts[t.tab];
+      nav.appendChild(navItem({
+        key: "auto:" + t.tab, icon: ICONS[t.icon], name: CR.i18n.t(t.name), desc: CR.i18n.t(t.desc),
+        count: c ? c.n : "", countCls: c ? c.cls : "", view: { type: "auto", tab: t.tab }
+      }));
+    }
+
     renderShortcutsPanel();
   }
 
@@ -225,13 +321,14 @@
     el.className = "navitem" + (active ? " active" : "") + (v.cls ? " " + v.cls : "");
     el.innerHTML =
       `<span class="nvicon">${v.icon}</span>
-       <span class="nvname"></span>
+       ${v.desc ? `<span class="nvtext"><span class="nvname"></span><span class="nvdesc"></span></span>` : `<span class="nvname"></span>`}
        ${v.catId ? `<button class="nvedit" title="${CR.i18n.t("button_category_menu_tooltip")}">⋯</button>` : ""}
-       <span class="nvcount">${v.count}</span>`;
+       <span class="nvcount${v.countCls ? " " + v.countCls : ""}">${v.count}</span>`;
     el.querySelector(".nvname").textContent = v.name;
+    if (v.desc) { el.querySelector(".nvdesc").textContent = v.desc; el.title = v.desc; }
     el.addEventListener("click", (e) => {
       if (e.target.closest(".nvedit")) return;
-      view = v.view; page = 0; renderSidebar(); renderList();
+      view = v.view; page = 0; renderSidebar(); renderList(); applyMode();
     });
     if (v.catId) {
       el.querySelector(".nvedit").addEventListener("click", (e) => {
@@ -300,7 +397,9 @@
   }
 
   // ---- View filtering ---------------------------------------------------
-  function sameView(a, b) { return a.type === b.type && (a.type !== "category" || a.id === b.id); }
+  function sameView(a, b) {
+    return a.type === b.type && (a.type !== "category" || a.id === b.id) && (a.type !== "auto" || a.tab === b.tab);
+  }
   function templateInView(t, v) {
     if (v.type === "favorites") return !!t.favorite;
     if (v.type === "category") return t.folderId === v.id;

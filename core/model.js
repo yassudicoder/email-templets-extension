@@ -73,6 +73,9 @@
       lastBackupAt: 0, backupReminderWeekly: false, backupNudgeDismissedAt: 0,
       // Optional cross-device sync via chrome.storage.sync (no account) — OFF until opted in.
       syncEnabled: false,
+      // Show our button in Gmail's top bar (opt-out). The in-compose button and
+      // Alt+A are the durable entry points, so this is safe to switch off.
+      showHeaderButton: true,
       // Anonymous product analytics — ON by default (opt-out). It is strictly
       // content-free: only event names + a random analyticsId (no name/email/account),
       // NEVER template titles/bodies or any message content. Users are shown a

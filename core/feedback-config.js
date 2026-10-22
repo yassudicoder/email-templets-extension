@@ -28,7 +28,7 @@
     // TODO: UNINSTALL_SURVEY_URL — point this at a ONE-question "What made you
     // uninstall?" form/page (e.g. a page on the site or a single-question form).
     // Chrome opens it in a new tab when the user removes the extension.
-    UNINSTALL_SURVEY_URL: "https://gmail-templates-and-canned.netlify.app/uninstall",
+    UNINSTALL_SURVEY_URL: "https://email-templets-extension.vercel.app/uninstall",
 
     // Where the form posts (Web3Forms responds with CORS headers, so a plain
     // fetch from the extension-origin options page works with no host permission).

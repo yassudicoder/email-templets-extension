@@ -59,6 +59,14 @@
     window.close();
   });
 
+  // Opens the options page straight into Automation & AI (no extra tab).
+  $("#dashboard").addEventListener("click", async () => {
+    await store.init();
+    await store.updateSettings({ openView: "schedule" });
+    chrome.runtime.openOptionsPage();
+    window.close();
+  });
+
   $("#export").addEventListener("click", () => {
     const model = globalThis.CR.model;
     const data = {

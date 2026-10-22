@@ -85,6 +85,8 @@
     track("picker_opened", { surface: surfaceName() });
 
     picker.open(templates, {
+      // "Write with AI" reads the open conversation only when the user asks for a draft.
+      aiContext: () => (surface && surface.threadContext ? surface.threadContext() : null),
       onInsert: (html) => {
         if (ctx) {
           const ok = inserter.insert(ctx, html, { preferPlainText });
@@ -101,7 +103,8 @@
 
   // Quiet "it worked" cue — the trust signal for an action fired all day long.
   let cueEl, cueTimer;
-  function cue(msg) {
+  // kind "warn" = amber + longer (e.g. "refresh this tab"); default = green success cue.
+  function cue(msg, kind) {
     if (!cueEl) {
       cueEl = document.createElement("div");
       cueEl.style.cssText = "all:initial;position:fixed;left:50%;bottom:22px;transform:translateX(-50%);"
@@ -111,15 +114,20 @@
       document.documentElement.appendChild(cueEl);
     }
     cueEl.textContent = msg;
+    cueEl.style.background = kind === "warn" ? "rgba(180,83,9,.97)" : "rgba(22,163,74,.96)";
     cueEl.style.opacity = "1";
     clearTimeout(cueTimer);
-    cueTimer = setTimeout(() => { if (cueEl) cueEl.style.opacity = "0"; }, 1100);
+    cueTimer = setTimeout(() => { if (cueEl) cueEl.style.opacity = "0"; }, kind === "warn" ? 4500 : 1100);
   }
 
   // Alt+A / command: always opens the picker. If an editable is focused -> insert
   // mode; otherwise (browsing the inbox) it opens in browse/copy mode.
+  // After an extension reload/update this tab's script is orphaned (chrome.* is gone)
+  // until the page is refreshed — say so instead of silently doing nothing.
+  function stale() { cue(CR.i18n.t("toast_reload_tab"), "warn"); }
+
   function trigger() {
-    if (!alive()) return;   // orphaned after an extension reload — ignore until tab refresh
+    if (!alive()) return stale();
     openPicker(inserter.captureContext());
   }
 
@@ -129,7 +137,10 @@
     openPanel: () => { if (NS.manager) NS.manager.open(); },   // in-page manage panel
     newTemplate: (pos) => { if (NS.manager) NS.manager.openNew(pos); },   // new template
     editTemplate: (id, pos) => { if (NS.manager) NS.manager.openEdit(id, pos); }, // edit a template
-    openManager: () => { if (alive()) try { chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" }, () => void chrome.runtime.lastError); } catch (e) {} }
+    openManager: () => {
+      if (!alive()) return stale();
+      try { chrome.runtime.sendMessage({ type: "OPEN_OPTIONS" }, () => void chrome.runtime.lastError); } catch (e) { stale(); }
+    }
   };
   NS.ui = { cue };   // shared "it worked" cue (used by the expander too)
 

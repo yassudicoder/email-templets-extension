@@ -152,8 +152,8 @@
     "description": "Analytics opt-in checkbox label"
   },
   "settings_analytics_note": {
-    "message": "Standardmäßig aus. Hilft, die Erweiterung zu verbessern – Nachrichten- oder Vorlageninhalte werden nie gesendet. ",
-    "description": "Privacy explanation for the analytics opt-in"
+    "message": "Standardmäßig an. Anonym – es werden nie Nachrichten- oder Vorlageninhalte gesendet, nur welche Funktionen genutzt werden. Du kannst es hier jederzeit ausschalten. ",
+    "description": "Privacy explanation for the analytics setting"
   },
   "link_learn_more_privacy": {
     "message": "Mehr erfahren",
@@ -787,6 +787,38 @@
     "message": "Kopieren",
     "description": "Label of the Gmail Copy-email button"
   },
+  "gmail_word_reply": {
+    "message": "Antworten",
+    "description": "Gmail's own Reply-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_word_forward": {
+    "message": "Weiterleiten",
+    "description": "Gmail's own Forward-button text (for locale-proof matching, not shown in our UI)"
+  },
+  "gmail_aria_support": {
+    "message": "Support",
+    "description": "Gmail's Support icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_help": {
+    "message": "Hilfe",
+    "description": "Gmail's Help icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_settings": {
+    "message": "Einstellungen",
+    "description": "Gmail's Settings icon aria-label (header anchor, not shown in our UI)"
+  },
+  "gmail_aria_google_apps": {
+    "message": "Google-Apps",
+    "description": "Gmail's Google apps icon aria-label (header anchor, not shown in our UI)"
+  },
+  "settings_header_button_toggle": {
+    "message": "Schaltfläche in Gmails oberer Leiste anzeigen",
+    "description": "Label for the Gmail top-bar button toggle"
+  },
+  "settings_header_button_note": {
+    "message": "Standardmäßig an. Ein schneller Weg, deine Vorlagen über Gmails Symbolleiste zu öffnen. Die Schaltfläche im Editor und dein Tastenkürzel bleiben immer verfügbar.",
+    "description": "Explanation for the Gmail top-bar button toggle"
+  },
   "toast_email_copied_success": {
     "message": "E-Mail kopiert – mit Ctrl+V einfügen (Schrift, Farben & Bilder bleiben erhalten)",
     "description": "Success toast after copying an email with formatting"
@@ -982,5 +1014,1513 @@
   "feedback_email_fallback": {
     "message": "oder direkt per E-Mail",
     "description": "Secondary mailto link next to the feedback form"
+  },
+  "popup_dashboard_button": {
+    "message": "🗓 Planen, Auto-Antwort & KI",
+    "description": "Popup button that opens the dashboard"
+  },
+  "dash_page_title": {
+    "message": "Canned Responses — Dashboard",
+    "description": "Dashboard page <title>"
+  },
+  "dash_brand_sub": {
+    "message": "Dashboard",
+    "description": "Small label next to the brand name in the dashboard top bar"
+  },
+  "dash_tab_schedule": {
+    "message": "Geplant",
+    "description": "Dashboard tab: scheduled emails"
+  },
+  "dash_tab_autoreply": {
+    "message": "Auto-Antwort",
+    "description": "Dashboard tab: auto-reply drafts"
+  },
+  "dash_tab_ai": {
+    "message": "KI-Assistent",
+    "description": "Dashboard tab: AI provider + AI templates"
+  },
+  "dash_tab_settings": {
+    "message": "Einstellungen",
+    "description": "Dashboard tab: settings"
+  },
+  "dash_open_templates": {
+    "message": "Meine Vorlagen",
+    "description": "Dashboard top-bar button that opens the template manager"
+  },
+  "dash_connect_gmail": {
+    "message": "Gmail verbinden",
+    "description": "Button that starts Google sign-in to connect Gmail"
+  },
+  "dash_gmail_banner": {
+    "message": "Verbinde dein Gmail-Konto, um geplante E-Mails zu senden und Auto-Antworten zu entwerfen.",
+    "description": "Banner shown when Gmail isn't connected"
+  },
+  "dash_gmail_not_configured": {
+    "message": "Die Gmail-Verbindung ist in diesem Build noch nicht eingerichtet.",
+    "description": "Shown when the developer hasn't configured the Google OAuth client"
+  },
+  "dash_gmail_not_configured_hint": {
+    "message": "Entwickler: Trage eine Google-OAuth-Client-ID in core/google-config.js ein (siehe Entwickler-Setup unten).",
+    "description": "Hint for developers when OAuth isn't configured"
+  },
+  "dash_gmail_intro": {
+    "message": "Verbinde das Gmail-Konto, von dem aus du senden möchtest. Canned Responses fragt nur nach dem, was jede Funktion braucht:",
+    "description": "Intro text in the Gmail account card"
+  },
+  "dash_perm_send": {
+    "message": "E-Mails in deinem Namen senden – geplante E-Mails und von dir bestätigte Antworten",
+    "description": "Permission explanation: send"
+  },
+  "dash_perm_read": {
+    "message": "Neue E-Mails in deinem Posteingang lesen – um Auto-Antworten zu entwerfen",
+    "description": "Permission explanation: read"
+  },
+  "dash_perm_read_optional": {
+    "message": "Neue E-Mails lesen – nur wenn du Auto-Antwort-Entwürfe aktivierst",
+    "description": "Permission explanation: read, before it's requested"
+  },
+  "dash_gmail_connected_since": {
+    "message": "Verbunden seit $DATE$",
+    "description": "Under the connected Gmail address",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_connected_toast": {
+    "message": "Verbunden als $EMAIL$",
+    "description": "Toast after connecting Gmail",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_reconnect": {
+    "message": "Erneut verbinden",
+    "description": "Button: redo Google sign-in"
+  },
+  "dash_gmail_disconnect": {
+    "message": "Trennen",
+    "description": "Button: disconnect Gmail"
+  },
+  "dash_gmail_disconnect_confirm": {
+    "message": "Gmail trennen? Geplante E-Mails werden nicht gesendet und Auto-Antwort-Entwürfe pausieren, bis du dich wieder verbindest.",
+    "description": "Confirm dialog before disconnecting Gmail"
+  },
+  "dash_gmail_disconnected_toast": {
+    "message": "Gmail getrennt",
+    "description": "Toast after disconnecting"
+  },
+  "dash_allow_read": {
+    "message": "Zugriff erlauben",
+    "description": "Button that grants permission to read new emails"
+  },
+  "dash_gmail_account": {
+    "message": "Gmail-Konto",
+    "description": "Settings card heading"
+  },
+  "dash_gmail_dev": {
+    "message": "Entwickler-Setup",
+    "description": "Collapsible section with the OAuth redirect URI"
+  },
+  "dash_gmail_dev_hint": {
+    "message": "Registriere diese Redirect-URI beim OAuth-Client „Webanwendung“ in Google Cloud und trage die Client-ID in core/google-config.js ein:",
+    "description": "Developer setup instructions"
+  },
+  "dash_copy": {
+    "message": "Kopieren",
+    "description": "Copy-to-clipboard button"
+  },
+  "dash_composer_title_new": {
+    "message": "E-Mail planen",
+    "description": "Composer heading (new)"
+  },
+  "dash_composer_title_edit": {
+    "message": "Geplante E-Mail bearbeiten",
+    "description": "Composer heading (editing)"
+  },
+  "dash_composer_cancel_edit": {
+    "message": "Bearbeitung abbrechen",
+    "description": "Button that leaves edit mode"
+  },
+  "dash_field_to": {
+    "message": "An",
+    "description": "Recipient field label"
+  },
+  "dash_field_to_ph": {
+    "message": "name@example.com, weitere@example.com",
+    "description": "Recipient field placeholder"
+  },
+  "dash_add_cc": {
+    "message": "+ Cc / Bcc",
+    "description": "Link that reveals Cc/Bcc fields"
+  },
+  "dash_field_subject": {
+    "message": "Betreff",
+    "description": "Subject field label"
+  },
+  "dash_field_message": {
+    "message": "Nachricht",
+    "description": "Message body label"
+  },
+  "dash_insert_template": {
+    "message": "Vorlage einfügen…",
+    "description": "First option of the insert-template dropdown"
+  },
+  "dash_insert_template_title": {
+    "message": "Eine deiner Vorlagen einfügen",
+    "description": "Tooltip for the insert-template dropdown"
+  },
+  "dash_write_with_ai": {
+    "message": "✨ Mit KI schreiben",
+    "description": "Button that opens the AI prompt in the composer"
+  },
+  "dash_ai_compose_ph": {
+    "message": "Was soll die E-Mail sagen? z. B. Sam an die Demo am Freitag erinnern und nach der Agenda fragen",
+    "description": "AI prompt placeholder in the composer"
+  },
+  "dash_generate": {
+    "message": "Erstellen",
+    "description": "Button that asks the AI to write"
+  },
+  "dash_field_send_at": {
+    "message": "Senden am",
+    "description": "Date/time field label"
+  },
+  "dash_tz_hint": {
+    "message": "Die Zeiten gelten in deiner Zeitzone ($TZ$).",
+    "description": "Hint under the date/time field",
+    "placeholders": {
+      "tz": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_quick_1h": {
+    "message": "In 1 Stunde",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_am": {
+    "message": "Morgen 9 Uhr",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_pm": {
+    "message": "Morgen 13 Uhr",
+    "description": "Quick time chip"
+  },
+  "dash_quick_monday": {
+    "message": "Montag 9 Uhr",
+    "description": "Quick time chip (next Monday)"
+  },
+  "dash_clear": {
+    "message": "Leeren",
+    "description": "Button that clears the composer"
+  },
+  "dash_send_now": {
+    "message": "Jetzt senden",
+    "description": "Button that sends immediately"
+  },
+  "dash_schedule_btn": {
+    "message": "Planen",
+    "description": "Button that schedules the email"
+  },
+  "dash_save_changes": {
+    "message": "Änderungen speichern",
+    "description": "Button label while editing a scheduled email"
+  },
+  "dash_vars_title": {
+    "message": "Fülle die Variablen aus – sie werden vor dem Senden ersetzt",
+    "description": "Heading above the variable inputs"
+  },
+  "dash_vars_missing": {
+    "message": "Bitte ausfüllen: $VARS$",
+    "description": "Error when some variables are empty",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_send_now": {
+    "message": "Diese E-Mail jetzt an $TO$ senden?",
+    "description": "Confirm before sending immediately",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_sending_toast": {
+    "message": "Wird gesendet…",
+    "description": "Toast while sending"
+  },
+  "dash_scheduled_toast": {
+    "message": "Geplant für $WHEN$",
+    "description": "Toast after scheduling",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_writing": {
+    "message": "Schreibt…",
+    "description": "Status while the AI is generating"
+  },
+  "dash_ai_done": {
+    "message": "Entwurf fertig – prüfe ihn vor dem Senden.",
+    "description": "Status after AI generation"
+  },
+  "dash_needs_attention": {
+    "message": "Aktion erforderlich",
+    "description": "List heading: missed/failed emails"
+  },
+  "dash_upcoming": {
+    "message": "Anstehend",
+    "description": "List heading: scheduled emails"
+  },
+  "dash_sent": {
+    "message": "Gesendet",
+    "description": "List heading: sent emails"
+  },
+  "dash_clear_list": {
+    "message": "Liste leeren",
+    "description": "Link that clears a finished list"
+  },
+  "dash_upcoming_empty": {
+    "message": "Noch nichts geplant.",
+    "description": "Empty upcoming list"
+  },
+  "dash_sent_empty": {
+    "message": "Geplante E-Mails erscheinen hier, sobald sie gesendet wurden.",
+    "description": "Empty sent list"
+  },
+  "dash_schedule_footnote": {
+    "message": "E-Mails werden von diesem Browser aus über dein eigenes Gmail gesendet. Chrome muss zur geplanten Zeit laufen – sonst geht die E-Mail beim nächsten Start von Chrome raus oder wartet auf dich (siehe Einstellungen).",
+    "description": "Footnote under the schedule lists"
+  },
+  "dash_status_sending": {
+    "message": "Wird gesendet…",
+    "description": "Status chip"
+  },
+  "dash_status_retrying": {
+    "message": "Neuer Versuch",
+    "description": "Status chip after a temporary failure"
+  },
+  "dash_status_missed": {
+    "message": "Verpasst",
+    "description": "Status chip: send time passed while Chrome was closed"
+  },
+  "dash_status_failed": {
+    "message": "Fehlgeschlagen",
+    "description": "Status chip"
+  },
+  "dash_status_sent": {
+    "message": "Gesendet",
+    "description": "Status chip"
+  },
+  "dash_missed_explain": {
+    "message": "Chrome war zur geplanten Zeit geschlossen. Sende die E-Mail jetzt, plane sie neu oder lösche sie.",
+    "description": "Explanation under a missed email"
+  },
+  "dash_reschedule": {
+    "message": "Neu planen",
+    "description": "Button that loads a missed/failed email into the composer"
+  },
+  "dash_open_in_gmail": {
+    "message": "In Gmail öffnen",
+    "description": "Button that opens a sent email in Gmail"
+  },
+  "dash_remove_from_list": {
+    "message": "Aus Liste entfernen",
+    "description": "Tooltip for the × button"
+  },
+  "dash_no_subject": {
+    "message": "(kein Betreff)",
+    "description": "Shown when an email has no subject"
+  },
+  "dash_to_label": {
+    "message": "An: $TO$",
+    "description": "Recipient line in lists",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_delete_scheduled": {
+    "message": "Diese geplante E-Mail abbrechen?",
+    "description": "Confirm before cancelling a scheduled email"
+  },
+  "dash_ar_title": {
+    "message": "Auto-Antwort-Entwürfe",
+    "description": "Auto-reply tab heading"
+  },
+  "dash_ar_check_now": {
+    "message": "Jetzt prüfen",
+    "description": "Button that checks the inbox immediately"
+  },
+  "dash_ar_checked": {
+    "message": "Posteingang geprüft",
+    "description": "Toast after a manual check"
+  },
+  "dash_ar_status_off": {
+    "message": "Aus. Schalte sie ein, um Antworten auf E-Mails zu entwerfen, die zu deinen Regeln passen – du prüfst jede, bevor sie gesendet wird.",
+    "description": "Auto-reply status (off)"
+  },
+  "dash_ar_status_on": {
+    "message": "An · geprüft $WHEN$ · prüft alle $MIN$ Min., solange Chrome geöffnet ist",
+    "description": "Auto-reply status (on)",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_ar_status_starting": {
+    "message": "An · erste Prüfung innerhalb einer Minute, danach alle $MIN$ Min., solange Chrome geöffnet ist",
+    "description": "Auto-reply status right after enabling",
+    "placeholders": {
+      "min": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_status_error": {
+    "message": "An · letzte Prüfung fehlgeschlagen: $ERROR$",
+    "description": "Auto-reply status after an error",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_need_ai": {
+    "message": "Einige Regeln antworten mit KI – hinterlege zuerst den Schlüssel deines KI-Anbieters.",
+    "description": "Banner when AI rules exist but no AI key"
+  },
+  "dash_set_up_ai": {
+    "message": "KI einrichten",
+    "description": "Button that opens the AI writer tab"
+  },
+  "dash_ar_add_rule_hint": {
+    "message": "Lege jetzt eine Regel an, damit Canned Responses weiß, für welche E-Mails Antworten entworfen werden sollen.",
+    "description": "Toast after enabling auto-reply with no rules"
+  },
+  "dash_ar_on_toast": {
+    "message": "Auto-Antwort-Entwürfe sind aktiv. Es geht mit E-Mails der letzten Stunde los.",
+    "description": "Toast after enabling auto-reply"
+  },
+  "dash_ar_footnote": {
+    "message": "Ohne deinen Klick wird nichts gesendet. Newsletter, Benachrichtigungen, Mailinglisten und No-Reply-Absender werden immer ignoriert. Geprüft wird, solange Chrome geöffnet ist.",
+    "description": "Footnote on the auto-reply tab"
+  },
+  "dash_review_queue": {
+    "message": "Zu prüfen",
+    "description": "Heading: drafts waiting for review"
+  },
+  "dash_handled": {
+    "message": "Erledigt",
+    "description": "Heading: sent/skipped drafts"
+  },
+  "dash_q_original": {
+    "message": "Originalnachricht",
+    "description": "Expandable original email in a draft card"
+  },
+  "dash_q_generating": {
+    "message": "Entwurf wird geschrieben…",
+    "description": "Placeholder while a draft is generated"
+  },
+  "dash_q_draft_label": {
+    "message": "Antwortentwurf",
+    "description": "Aria label for the editable draft"
+  },
+  "dash_q_gaps": {
+    "message": "Dieser Entwurf enthält [placeholders] oder {variables} – fülle sie vor dem Senden aus.",
+    "description": "Hint when a draft contains placeholders"
+  },
+  "dash_q_gaps_confirm": {
+    "message": "Dieser Entwurf enthält noch [placeholders] oder {variables}. Trotzdem senden?",
+    "description": "Confirm sending a draft with placeholders"
+  },
+  "dash_q_skip": {
+    "message": "Überspringen",
+    "description": "Button: discard this draft"
+  },
+  "dash_q_regenerate": {
+    "message": "Neu erstellen",
+    "description": "Button: write the draft again"
+  },
+  "dash_q_refill": {
+    "message": "Vorlage neu ausfüllen",
+    "description": "Button: re-fill a template-based draft"
+  },
+  "dash_q_send": {
+    "message": "Antwort senden",
+    "description": "Button: send the reviewed draft"
+  },
+  "dash_q_sent_toast": {
+    "message": "Antwort gesendet",
+    "description": "Toast after sending a reply"
+  },
+  "dash_q_empty_draft": {
+    "message": "Der Entwurf ist leer.",
+    "description": "Error when trying to send/save an empty draft"
+  },
+  "dash_q_regen_confirm": {
+    "message": "Deine Änderungen verwerfen und einen neuen Entwurf schreiben?",
+    "description": "Confirm regenerating an edited draft"
+  },
+  "dash_q_empty_on": {
+    "message": "Keine Entwürfe vorhanden. Neue E-Mails, die zu einer Regel passen, erscheinen hier.",
+    "description": "Empty review queue (on)"
+  },
+  "dash_q_empty_off": {
+    "message": "Aktiviere Auto-Antwort-Entwürfe und lege eine Regel an, um loszulegen.",
+    "description": "Empty review queue (off)"
+  },
+  "dash_done_empty": {
+    "message": "Antworten, die du sendest oder überspringst, erscheinen hier.",
+    "description": "Empty handled list"
+  },
+  "dash_status_replied": {
+    "message": "Beantwortet",
+    "description": "Status chip"
+  },
+  "dash_status_skipped": {
+    "message": "Übersprungen",
+    "description": "Status chip"
+  },
+  "dash_status_already_replied": {
+    "message": "Du hast in diesem Verlauf bereits geantwortet",
+    "description": "Status when the draft was skipped because the user already replied"
+  },
+  "dash_rules": {
+    "message": "Regeln",
+    "description": "Heading: auto-reply rules"
+  },
+  "dash_rule_new": {
+    "message": "+ Neue Regel",
+    "description": "Button: create a rule"
+  },
+  "dash_rule_new_title": {
+    "message": "Neue Regel",
+    "description": "Rule form heading (new)"
+  },
+  "dash_rule_edit_title": {
+    "message": "Regel bearbeiten",
+    "description": "Rule form heading (edit)"
+  },
+  "dash_rule_name": {
+    "message": "Regelname",
+    "description": "Field label"
+  },
+  "dash_rule_name_ph": {
+    "message": "z. B. Kunden",
+    "description": "Field placeholder"
+  },
+  "dash_rule_which": {
+    "message": "Welche E-Mails?",
+    "description": "Field label"
+  },
+  "dash_rule_who_senders": {
+    "message": "Nur von diesen Personen oder Domains",
+    "description": "Radio option"
+  },
+  "dash_rule_who_any": {
+    "message": "Jede normale E-Mail – von einer Person, keine Newsletter oder Benachrichtigungen",
+    "description": "Radio option"
+  },
+  "dash_rule_senders_ph": {
+    "message": "jane@client.com, @acme.com, partner.org",
+    "description": "Senders field placeholder"
+  },
+  "dash_rule_keywords": {
+    "message": "Nur wenn sie erwähnt",
+    "description": "Keywords field label"
+  },
+  "dash_rule_keywords_ph": {
+    "message": "Preise, Rechnung, Termin",
+    "description": "Keywords field placeholder"
+  },
+  "dash_rule_reply_with": {
+    "message": "Antwort entwerfen mit",
+    "description": "Field label"
+  },
+  "dash_rule_mode_ai": {
+    "message": "KI (schreibt zu jeder E-Mail eine Antwort)",
+    "description": "Radio option"
+  },
+  "dash_rule_mode_template": {
+    "message": "Eine meiner Vorlagen",
+    "description": "Radio option"
+  },
+  "dash_rule_instr_ph": {
+    "message": "Wie soll die KI antworten? z. B. Danke sagen, Rückmeldung innerhalb von 24 Stunden zusichern und ein kurzes Telefonat anbieten.",
+    "description": "AI instructions placeholder"
+  },
+  "dash_rule_choose_template": {
+    "message": "Vorlage auswählen…",
+    "description": "First option of the template dropdown"
+  },
+  "dash_rule_save": {
+    "message": "Regel speichern",
+    "description": "Button"
+  },
+  "dash_rule_saved": {
+    "message": "Regel gespeichert",
+    "description": "Toast"
+  },
+  "dash_rules_empty": {
+    "message": "Noch keine Regeln. Eine Regel legt fest, für welche E-Mails ein Antwortentwurf entsteht und wie er geschrieben wird.",
+    "description": "Empty rules list"
+  },
+  "dash_rule_delete_confirm": {
+    "message": "Regel „$NAME$“ löschen?",
+    "description": "Confirm deleting a rule",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_toggle_title": {
+    "message": "Diese Regel ein- oder ausschalten",
+    "description": "Tooltip for a rule's switch"
+  },
+  "dash_rule_sum_from": {
+    "message": "Von $SENDERS$",
+    "description": "Rule summary: sender filter",
+    "placeholders": {
+      "senders": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_any": {
+    "message": "Jede normale E-Mail",
+    "description": "Rule summary: any sender"
+  },
+  "dash_rule_sum_keywords": {
+    "message": "erwähnt $WORDS$",
+    "description": "Rule summary: keyword filter",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_ai": {
+    "message": "KI-Antwort",
+    "description": "Rule summary: AI mode"
+  },
+  "dash_rule_sum_ai_with": {
+    "message": "KI-Antwort: „$INSTR$“",
+    "description": "Rule summary: AI mode with instructions",
+    "placeholders": {
+      "instr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_template": {
+    "message": "Vorlage: $NAME$",
+    "description": "Rule summary: template mode",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_template_missing": {
+    "message": "(gelöschte Vorlage)",
+    "description": "Shown when a rule's template no longer exists"
+  },
+  "dash_activity": {
+    "message": "Aktivität",
+    "description": "Collapsible activity log heading"
+  },
+  "dash_log_empty": {
+    "message": "Noch keine Aktivität.",
+    "description": "Empty activity log"
+  },
+  "dash_log_sent": {
+    "message": "„$SUBJECT$“ an $TO$ gesendet",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "to": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_send_failed": {
+    "message": "„$SUBJECT$“ konnte nicht gesendet werden: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_missed": {
+    "message": "„$SUBJECT$“ verpasst – Chrome war zur geplanten Zeit geschlossen",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_created": {
+    "message": "Antwort an $FROM$ entworfen",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_failed": {
+    "message": "Antwort an $FROM$ konnte nicht entworfen werden: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_reply_sent": {
+    "message": "Antwort an $TO$ gesendet",
+    "description": "Log entry",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_reply_skipped": {
+    "message": "Antwort an $FROM$ übersprungen – du hattest bereits geantwortet",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_poll_error": {
+    "message": "Prüfung des Posteingangs fehlgeschlagen: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_cap_reached": {
+    "message": "Tageslimit für Entwürfe erreicht – heute keine weiteren Entwürfe (in den Einstellungen änderbar)",
+    "description": "Log entry"
+  },
+  "dash_ai_provider": {
+    "message": "KI-Anbieter",
+    "description": "Card heading"
+  },
+  "dash_ai_provider_sub": {
+    "message": "Starte mit der kostenlosen integrierten KI oder nutze deinen eigenen API-Schlüssel:",
+    "description": "Card subtitle above the provider choices"
+  },
+  "dash_prov_desc_gemini": {
+    "message": "Kostenlose Stufe verfügbar · Google AI Studio",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_xai": {
+    "message": "Grok-Modelle · console.x.ai",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_openai": {
+    "message": "ChatGPT-Modelle · platform.openai.com",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_custom": {
+    "message": "OpenRouter, Groq, DeepSeek, Ollama…",
+    "description": "Provider card description"
+  },
+  "dash_prov_active": {
+    "message": "✓ Aktiv",
+    "description": "Marker on the active provider card"
+  },
+  "dash_prov_key_saved": {
+    "message": "Schlüssel gespeichert",
+    "description": "Marker on a provider card that has a key"
+  },
+  "dash_ai_base_url": {
+    "message": "Basis-URL",
+    "description": "Custom endpoint field label"
+  },
+  "dash_ai_base_hint": {
+    "message": "Jeder OpenAI-kompatible Endpunkt – OpenRouter, Groq, DeepSeek oder ein lokaler Ollama- / LM-Studio-Server (z. B. http://localhost:11434/v1).",
+    "description": "Hint under the base URL field"
+  },
+  "dash_ai_key": {
+    "message": "API-Schlüssel",
+    "description": "Field label"
+  },
+  "dash_ai_key_optional": {
+    "message": "Für lokale Server optional",
+    "description": "API key placeholder for custom endpoints"
+  },
+  "dash_show": {
+    "message": "Anzeigen",
+    "description": "Show the API key"
+  },
+  "dash_hide": {
+    "message": "Ausblenden",
+    "description": "Hide the API key"
+  },
+  "dash_ai_get_key": {
+    "message": "$PROVIDER$-API-Schlüssel holen ↗",
+    "description": "Link to the provider's key page",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_model": {
+    "message": "Modell",
+    "description": "Field label"
+  },
+  "dash_ai_model_auto": {
+    "message": "Automatisch",
+    "description": "Model placeholder when chosen automatically"
+  },
+  "dash_ai_model_default": {
+    "message": "Automatisch ($MODEL$)",
+    "description": "Model placeholder showing the default",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_load_models": {
+    "message": "Modelle laden",
+    "description": "Button that lists the provider's models"
+  },
+  "dash_ai_loading_models": {
+    "message": "Modelle werden geladen…",
+    "description": "Status"
+  },
+  "dash_ai_models_found": {
+    "message": "$COUNT$ Modelle gefunden – wähle eines oder lass es auf Automatisch.",
+    "description": "Status after listing models",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_save_test": {
+    "message": "Speichern & testen",
+    "description": "Button"
+  },
+  "dash_ai_testing": {
+    "message": "Verbindung wird getestet…",
+    "description": "Status"
+  },
+  "dash_ai_test_ok": {
+    "message": "Verbunden – verwendet $MODEL$",
+    "description": "Status after a successful test",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_key_note": {
+    "message": "Dein Schlüssel wird nur in diesem Browser gespeichert – nie synchronisiert, nie exportiert, nie an uns gesendet. Anfragen gehen direkt an den Anbieter, über dein eigenes Konto.",
+    "description": "Privacy note under the AI key"
+  },
+  "dash_about_you": {
+    "message": "Über dich",
+    "description": "Card heading"
+  },
+  "dash_about_you_sub": {
+    "message": "Die KI schreibt mit diesen Angaben in deinem Stil.",
+    "description": "Card subtitle"
+  },
+  "dash_profile_name": {
+    "message": "Dein Name",
+    "description": "Field label"
+  },
+  "dash_profile_role": {
+    "message": "Position / Titel",
+    "description": "Field label"
+  },
+  "dash_profile_company": {
+    "message": "Unternehmen",
+    "description": "Field label"
+  },
+  "dash_profile_tone": {
+    "message": "Tonfall",
+    "description": "Field label"
+  },
+  "dash_profile_language": {
+    "message": "Sprache",
+    "description": "Field label"
+  },
+  "dash_lang_auto": {
+    "message": "Wie die E-Mail",
+    "description": "Language option: match the email"
+  },
+  "dash_profile_signature": {
+    "message": "Signatur",
+    "description": "Field label"
+  },
+  "dash_profile_signature_ph": {
+    "message": "Viele Grüße,\nAlex Kim · Head of Sales, Acme",
+    "description": "Signature placeholder"
+  },
+  "dash_profile_notes": {
+    "message": "Immer beachten",
+    "description": "Field label: standing instructions for the AI"
+  },
+  "dash_profile_notes_ph": {
+    "message": "z. B. Wir antworten innerhalb eines Werktags. Niemals Rabatte versprechen. Unser Buchungslink ist https://cal.example.com/alex",
+    "description": "Placeholder"
+  },
+  "dash_tone_friendly": {
+    "message": "Freundlich",
+    "description": "Tone option"
+  },
+  "dash_tone_professional": {
+    "message": "Professionell",
+    "description": "Tone option"
+  },
+  "dash_tone_concise": {
+    "message": "Kurz & direkt",
+    "description": "Tone option"
+  },
+  "dash_tone_formal": {
+    "message": "Förmlich",
+    "description": "Tone option"
+  },
+  "dash_tone_casual": {
+    "message": "Locker",
+    "description": "Tone option"
+  },
+  "dash_tg_title": {
+    "message": "Neue Vorlage per KI",
+    "description": "Card heading"
+  },
+  "dash_tg_mode_gen": {
+    "message": "Mit KI erstellen",
+    "description": "Segment button"
+  },
+  "dash_tg_mode_import": {
+    "message": "Aus ChatGPT / anderer KI einfügen",
+    "description": "Segment button"
+  },
+  "dash_tg_prompt_ph": {
+    "message": "Beschreibe die Vorlage, z. B. Nachfass-E-Mail nach einer Sales-Demo, die um eine Entscheidung bis Freitag bittet",
+    "description": "Placeholder"
+  },
+  "dash_tg_paste_ph": {
+    "message": "Füge eine E-Mail von ChatGPT, Gemini, Claude, Grok… ein. Platzhalter wie [Name] oder {{company}} werden zu Variablen zum Ausfüllen.",
+    "description": "Placeholder"
+  },
+  "dash_tg_convert": {
+    "message": "In Vorlage umwandeln",
+    "description": "Button"
+  },
+  "dash_tg_template": {
+    "message": "Vorlage",
+    "description": "Field label"
+  },
+  "dash_tg_vars": {
+    "message": "Variablen zum Ausfüllen: $VARS$ – du wirst beim Einfügen der Vorlage danach gefragt.",
+    "description": "Hint listing detected variables",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_tg_no_vars": {
+    "message": "Tipp: Wörter in {curly_braces} werden beim Einfügen der Vorlage zu Variablen zum Ausfüllen.",
+    "description": "Hint when no variables were found"
+  },
+  "dash_tg_save": {
+    "message": "In meinen Vorlagen speichern",
+    "description": "Button"
+  },
+  "dash_tg_saved_toast": {
+    "message": "„$TITLE$“ in deinen Vorlagen gespeichert",
+    "description": "Toast",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_everywhere_note": {
+    "message": "Öffne in Gmail und LinkedIn die Vorlagen-Auswahl (Alt+A oder die Schaltfläche im Editor) und wähle ✨ KI, um eine Antwort auf die aktuelle Unterhaltung zu entwerfen.",
+    "description": "Footnote on the AI tab"
+  },
+  "dash_settings_schedule": {
+    "message": "Geplanter Versand",
+    "description": "Settings card heading"
+  },
+  "dash_settings_grace": {
+    "message": "Wenn Chrome zur geplanten Zeit geschlossen war",
+    "description": "Field label"
+  },
+  "dash_grace_15": {
+    "message": "Senden, wenn bis zu 15 Minuten verspätet, sonst nachfragen",
+    "description": "Grace option"
+  },
+  "dash_grace_60": {
+    "message": "Senden, wenn bis zu 1 Stunde verspätet, sonst nachfragen",
+    "description": "Grace option (default)"
+  },
+  "dash_grace_360": {
+    "message": "Senden, wenn bis zu 6 Stunden verspätet, sonst nachfragen",
+    "description": "Grace option"
+  },
+  "dash_grace_1440": {
+    "message": "Senden, wenn bis zu 24 Stunden verspätet, sonst nachfragen",
+    "description": "Grace option"
+  },
+  "dash_grace_always": {
+    "message": "Immer senden, egal wie spät",
+    "description": "Grace option"
+  },
+  "dash_settings_autoreply": {
+    "message": "Auto-Antwort-Entwürfe",
+    "description": "Settings card heading"
+  },
+  "dash_settings_poll": {
+    "message": "Auf neue E-Mails prüfen alle",
+    "description": "Field label"
+  },
+  "dash_poll_minutes": {
+    "message": "$N$ Min.",
+    "description": "Poll interval option",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_settings_cap": {
+    "message": "Max. Entwürfe pro Tag",
+    "description": "Field label"
+  },
+  "dash_settings_cap_hint": {
+    "message": "Jeder KI-Entwurf ist eine Anfrage mit deinem KI-Schlüssel – dieses Limit schützt dein Guthaben vor einer E-Mail-Flut.",
+    "description": "Hint"
+  },
+  "dash_settings_privacy": {
+    "message": "Datenschutz",
+    "description": "Settings card heading"
+  },
+  "dash_privacy_1": {
+    "message": "Alles wird in diesem Browser gespeichert. Es gibt kein Konto bei uns, und unsere Server speichern deine Daten nie.",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_2": {
+    "message": "E-Mails werden über die Gmail API von Google direkt aus diesem Browser gesendet.",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_3": {
+    "message": "E-Mail-Text geht nur an die KI, wenn du auf „Mit KI schreiben“ klickst oder eine E-Mail zu einer deiner Auto-Antwort-Regeln passt – bei der integrierten KI über unser Relay (nie gespeichert), sonst direkt an deinen eigenen Anbieter.",
+    "description": "Privacy bullet about where email text goes"
+  },
+  "dash_privacy_4": {
+    "message": "Wenn du Gmail trennst, wird der Zugriff sofort widerrufen.",
+    "description": "Privacy bullet"
+  },
+  "dash_err_error": {
+    "message": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "description": "Generic error"
+  },
+  "dash_err_network": {
+    "message": "Netzwerkfehler – prüfe deine Verbindung.",
+    "description": "Error"
+  },
+  "dash_err_plan": {
+    "message": "Diese Funktion ist in deinem Tarif nicht enthalten.",
+    "description": "Error"
+  },
+  "dash_err_permission_denied": {
+    "message": "Die Berechtigung wurde nicht erteilt.",
+    "description": "Error: browser permission prompt declined"
+  },
+  "dash_err_gmail_not_configured": {
+    "message": "Die Gmail-Verbindung ist in diesem Build noch nicht eingerichtet.",
+    "description": "Error"
+  },
+  "dash_err_gmail_disconnected": {
+    "message": "Verbinde zuerst Gmail.",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope": {
+    "message": "Die Berechtigung zum Lesen neuer E-Mails fehlt – erlaube den Zugriff, um Auto-Antwort-Entwürfe zu nutzen.",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope_denied": {
+    "message": "Die Berechtigung zum Senden von E-Mails wurde nicht erteilt.",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth": {
+    "message": "Deine Gmail-Anmeldung ist abgelaufen – verbinde dich in den Einstellungen erneut.",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth_canceled": {
+    "message": "Die Anmeldung wurde abgebrochen.",
+    "description": "Error"
+  },
+  "dash_err_gmail_forbidden": {
+    "message": "Gmail hat die Anfrage abgelehnt.",
+    "description": "Error"
+  },
+  "dash_err_gmail_rate": {
+    "message": "Gmail begrenzt Anfragen – es wird gleich erneut versucht.",
+    "description": "Error"
+  },
+  "dash_err_gmail_server": {
+    "message": "Bei Gmail ist ein vorübergehendes Problem aufgetreten.",
+    "description": "Error"
+  },
+  "dash_err_gmail_error": {
+    "message": "Gmail hat einen Fehler zurückgegeben.",
+    "description": "Error"
+  },
+  "dash_err_interrupted": {
+    "message": "Das Senden wurde unterbrochen – prüfe deinen Ordner „Gesendet“, bevor du es erneut sendest.",
+    "description": "Error"
+  },
+  "dash_err_send_failed": {
+    "message": "Senden fehlgeschlagen.",
+    "description": "Error"
+  },
+  "dash_err_no_recipient": {
+    "message": "Füge mindestens einen Empfänger hinzu.",
+    "description": "Error"
+  },
+  "dash_err_bad_address": {
+    "message": "Eine der E-Mail-Adressen sieht nicht richtig aus.",
+    "description": "Error"
+  },
+  "dash_err_empty_email": {
+    "message": "Schreibe einen Betreff oder eine Nachricht.",
+    "description": "Error"
+  },
+  "dash_err_no_time": {
+    "message": "Wähle Datum und Uhrzeit.",
+    "description": "Error"
+  },
+  "dash_err_past_time": {
+    "message": "Dieser Zeitpunkt liegt in der Vergangenheit.",
+    "description": "Error"
+  },
+  "dash_err_locked": {
+    "message": "Dieser Eintrag ist gerade in Bearbeitung – versuche es gleich noch einmal.",
+    "description": "Error"
+  },
+  "dash_err_not_found": {
+    "message": "Dieser Eintrag existiert nicht mehr.",
+    "description": "Error"
+  },
+  "dash_err_no_senders": {
+    "message": "Füge mindestens einen Absender oder eine Domain hinzu.",
+    "description": "Error"
+  },
+  "dash_err_no_template": {
+    "message": "Wähle eine Vorlage aus.",
+    "description": "Error"
+  },
+  "dash_err_template_missing": {
+    "message": "Die Vorlage der Regel wurde gelöscht.",
+    "description": "Error"
+  },
+  "dash_err_template_limit": {
+    "message": "Du hast dein Vorlagenlimit erreicht.",
+    "description": "Error"
+  },
+  "dash_err_draft_failed": {
+    "message": "Der Entwurf konnte nicht geschrieben werden.",
+    "description": "Error"
+  },
+  "dash_err_already_replied": {
+    "message": "Du hast in diesem Verlauf bereits geantwortet.",
+    "description": "Error"
+  },
+  "dash_err_bad_op": {
+    "message": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "description": "Error"
+  },
+  "dash_err_ai_not_configured": {
+    "message": "Richte zuerst deinen KI-Anbieter unter Dashboard → KI-Assistent ein.",
+    "description": "Error"
+  },
+  "dash_err_ai_auth": {
+    "message": "Der KI-Anbieter hat deinen API-Schlüssel abgelehnt.",
+    "description": "Error"
+  },
+  "dash_err_ai_model": {
+    "message": "Dieses Modell wurde nicht gefunden – klicke auf „Modelle laden“ und wähle ein anderes.",
+    "description": "Error"
+  },
+  "dash_err_ai_quota": {
+    "message": "KI-Kontingent oder Ratenlimit erreicht – versuche es später erneut oder prüfe deinen Tarif beim Anbieter.",
+    "description": "Error"
+  },
+  "dash_err_ai_timeout": {
+    "message": "Die KI hat zu lange für die Antwort gebraucht.",
+    "description": "Error"
+  },
+  "dash_err_ai_network": {
+    "message": "Der KI-Anbieter ist nicht erreichbar.",
+    "description": "Error"
+  },
+  "dash_err_ai_blocked": {
+    "message": "Der KI-Anbieter hat es abgelehnt, dies zu schreiben.",
+    "description": "Error"
+  },
+  "dash_err_ai_empty": {
+    "message": "Die KI hat eine leere Antwort geliefert – versuche es erneut.",
+    "description": "Error"
+  },
+  "dash_err_ai_error": {
+    "message": "Der KI-Anbieter hat einen Fehler zurückgegeben.",
+    "description": "Error"
+  },
+  "dash_err_no_key": {
+    "message": "Füge zuerst deinen API-Schlüssel ein.",
+    "description": "Error"
+  },
+  "dash_err_bad_url": {
+    "message": "Gib eine gültige Basis-URL ein, z. B. https://openrouter.ai/api/v1",
+    "description": "Error"
+  },
+  "picker_ai_btn": {
+    "message": "✨ KI",
+    "description": "Picker footer button that opens Write with AI"
+  },
+  "picker_ai_btn_title": {
+    "message": "Mit KI schreiben",
+    "description": "Tooltip for the picker AI button"
+  },
+  "picker_ai_heading": {
+    "message": "✨ Mit KI schreiben",
+    "description": "Picker AI view heading"
+  },
+  "picker_ai_use_thread": {
+    "message": "Auf diese Unterhaltung antworten",
+    "description": "Checkbox: use the open thread as context"
+  },
+  "picker_ai_reply_ph": {
+    "message": "Was möchtest du sagen? z. B. Ja zu Donnerstag, nach der Agenda fragen – oder leer lassen für eine sinnvolle Antwort",
+    "description": "Instruction placeholder (reply)"
+  },
+  "picker_ai_compose_ph": {
+    "message": "Was soll die E-Mail sagen? z. B. Mich bei Priya vorstellen und um ein 15-Minuten-Gespräch bitten",
+    "description": "Instruction placeholder (new email)"
+  },
+  "picker_ai_tone_default": {
+    "message": "Tonfall: mein Standard",
+    "description": "Tone dropdown first option"
+  },
+  "picker_ai_draft_label": {
+    "message": "Entwurf – vor dem Einfügen bearbeiten",
+    "description": "Label above the editable draft"
+  },
+  "picker_ai_save_template": {
+    "message": "Als Vorlage speichern",
+    "description": "Button"
+  },
+  "picker_ai_saved_template": {
+    "message": "✓ Als Vorlage gespeichert",
+    "description": "Cue after saving"
+  },
+  "picker_ai_footnote": {
+    "message": "Strg+Enter zum Erstellen · Strg+Enter im Entwurf zum Einfügen",
+    "description": "Keyboard hint at the bottom of the picker's AI view"
+  },
+  "sidebar_automation_heading": {
+    "message": "Automatisierung & KI",
+    "description": "Options sidebar section heading for scheduled send / auto-reply / AI"
+  },
+  "sidebar_new_badge": {
+    "message": "Neu",
+    "description": "Small 'New' pill next to a sidebar section heading"
+  },
+  "dash_sec_schedule": {
+    "message": "Geplante E-Mails",
+    "description": "Sidebar item + section title: scheduled emails"
+  },
+  "dash_sec_schedule_short": {
+    "message": "Später aus deinem Gmail senden",
+    "description": "One-line sidebar description of scheduled emails"
+  },
+  "dash_sec_schedule_intro": {
+    "message": "Schreib jetzt eine E-Mail – sie wird zur gewählten Zeit aus deinem eigenen Gmail gesendet. Starte mit einer Vorlage oder lass die KI schreiben.",
+    "description": "Intro paragraph at the top of the scheduled emails section"
+  },
+  "dash_sec_autoreply": {
+    "message": "Auto-Antwort",
+    "description": "Sidebar item + section title: auto-reply drafts"
+  },
+  "dash_sec_autoreply_short": {
+    "message": "KI-Entwürfe, die du freigibst",
+    "description": "One-line sidebar description of auto-reply"
+  },
+  "dash_sec_autoreply_intro": {
+    "message": "Lege fest, welche E-Mails eine Antwort bekommen. Canned Responses entwirft für jede eine – mit KI oder einer Vorlage – und wartet, bis du sie prüfst und sendest.",
+    "description": "Intro paragraph at the top of the auto-reply section"
+  },
+  "dash_sec_ai": {
+    "message": "KI-Assistent",
+    "description": "Sidebar item + section title: AI writer"
+  },
+  "dash_sec_ai_short": {
+    "message": "Kostenlose KI oder eigener Schlüssel",
+    "description": "One-line sidebar description of the AI writer"
+  },
+  "dash_sec_ai_intro": {
+    "message": "Lass die KI E-Mails und Vorlagen in deinem Stil schreiben. Die integrierte KI funktioniert sofort – oder verbinde deinen eigenen Gemini-, Grok- oder ChatGPT-Schlüssel für unbegrenzte Nutzung.",
+    "description": "Intro paragraph at the top of the AI writer section"
+  },
+  "dash_sec_settings": {
+    "message": "Gmail & Einstellungen",
+    "description": "Sidebar item + section title: Gmail connection and settings"
+  },
+  "dash_sec_settings_short": {
+    "message": "Gmail verbinden, Optionen",
+    "description": "One-line sidebar description of the settings section"
+  },
+  "dash_sec_settings_intro": {
+    "message": "Verbinde das Gmail-Konto, von dem du sendest, und stell ein, wie geplanter Versand und Auto-Antwort arbeiten.",
+    "description": "Intro paragraph at the top of the settings section"
+  },
+  "toast_reload_tab": {
+    "message": "Canned Responses wurde aktualisiert – lade diesen Tab neu, um es weiter zu nutzen.",
+    "description": "Notice in Gmail/LinkedIn when the extension was updated and the page must be refreshed"
+  },
+  "welcome_card_auto_title": {
+    "message": "Planen, Auto-Antwort & KI",
+    "description": "Welcome page card title for scheduling / auto-reply / AI"
+  },
+  "welcome_card_auto_desc": {
+    "message": "Sende E-Mails später, erhalte KI-Antwortentwürfe zur Freigabe und schreib Vorlagen mit Gemini, Grok oder ChatGPT. Du findest alles unter Automatisierung & KI bei der Vorlagenverwaltung.",
+    "description": "Welcome page card text; tells users where to find the features"
+  },
+  "welcome_card_auto_btn": {
+    "message": "Automatisierung & KI öffnen",
+    "description": "Welcome page button that opens the Automation & AI section"
+  },
+  "dash_gmail_coming_soon": {
+    "message": "Das Senden über dein Gmail ist in dieser Version noch nicht verfügbar – es kommt mit einem Update. Vorlagen und KI-Schreiben funktionieren wie gewohnt.",
+    "description": "Shown to users when the build has no Gmail sign-in configured yet"
+  },
+  "dash_when_preview": {
+    "message": "Wird gesendet: $WHEN$ ($REL$) · Zeitzone $TZ$",
+    "description": "Live confirmation under the send-time picker",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "rel": {
+        "content": "$2"
+      },
+      "tz": {
+        "content": "$3"
+      }
+    }
+  },
+  "dash_err_bad_address_named": {
+    "message": "„$ADDR$“ sieht nicht wie eine E-Mail-Adresse aus.",
+    "description": "Error naming the email address that looks wrong",
+    "placeholders": {
+      "addr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_schedule_btn_title": {
+    "message": "Planen – Strg+Enter",
+    "description": "Tooltip on the Schedule button (keyboard shortcut)"
+  },
+  "dash_step_title": {
+    "message": "Auto-Antwort einrichten",
+    "description": "Heading of the auto-reply setup checklist"
+  },
+  "dash_step_gmail": {
+    "message": "Gmail verbinden und Lesen neuer E-Mails erlauben",
+    "description": "Setup step 1 title"
+  },
+  "dash_step_gmail_desc": {
+    "message": "E-Mails werden in diesem Browser verarbeitet – nie auf unseren Servern.",
+    "description": "Setup step 1 description"
+  },
+  "dash_step_rule": {
+    "message": "Regel erstellen",
+    "description": "Setup step 2 title"
+  },
+  "dash_step_rule_desc": {
+    "message": "Leg fest, wessen E-Mails einen Antwortentwurf bekommen.",
+    "description": "Setup step 2 description"
+  },
+  "dash_step_ai": {
+    "message": "KI-Schlüssel hinzufügen",
+    "description": "Setup step 3 title"
+  },
+  "dash_step_ai_desc": {
+    "message": "Nötig für KI-Antworten. Nicht nötig, wenn deine Regeln Vorlagen nutzen.",
+    "description": "Setup step 3 description"
+  },
+  "dash_step_on": {
+    "message": "Auto-Antwort-Entwürfe einschalten",
+    "description": "Setup step 4 title"
+  },
+  "dash_step_on_desc": {
+    "message": "Neue passende E-Mails bekommen dann hier einen Entwurf zur Prüfung.",
+    "description": "Setup step 4 description"
+  },
+  "dash_step_turn_on": {
+    "message": "Einschalten",
+    "description": "Button in setup step 4"
+  },
+  "dash_step_done": {
+    "message": "Erledigt",
+    "description": "Label on a completed setup step"
+  },
+  "picker_ai_setup_title": {
+    "message": "Verbinde zuerst einen KI-Anbieter",
+    "description": "Picker AI view when no AI provider is configured — title"
+  },
+  "picker_ai_setup_desc": {
+    "message": "Nutze deinen eigenen API-Schlüssel für Gemini, Grok oder ChatGPT – dauert etwa eine Minute und bleibt in deinem Browser.",
+    "description": "Picker AI view when no AI provider is configured — explanation"
+  },
+  "analytics_notice_msg": {
+    "message": "Anonyme Nutzungsdaten sind aktiviert, um die Erweiterung zu verbessern – wir erfassen nie deine Vorlagen oder Nachrichten, nur welche Funktionen genutzt werden. Du kannst das jederzeit ausschalten.",
+    "description": "One-time disclosure banner that analytics is on by default"
+  },
+  "analytics_notice_turn_off": {
+    "message": "Ausschalten",
+    "description": "Button to opt out of analytics on the disclosure banner"
+  },
+  "analytics_notice_ok": {
+    "message": "Verstanden",
+    "description": "Button to acknowledge the analytics disclosure (keeps it on)"
+  },
+  "welcome_footer_analytics": {
+    "message": "Um die Erweiterung zu verbessern, erfassen wir anonyme Nutzungsdaten (welche Funktionen genutzt werden – nie deine Vorlagen oder Nachrichten). Du kannst das jederzeit in den Einstellungen ausschalten.",
+    "description": "Analytics disclosure line on the welcome page"
+  },
+  "settings_sync_toggle": {
+    "message": "Vorlagen auf meinen Geräten synchronisieren",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "Standardmäßig aus. Nutzt die integrierte Chrome-Synchronisierung – kein Konto nötig. Am besten für Textvorlagen; sehr große Sammlungen oder Vorlagen mit vielen Bildern passen eventuell nicht.",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "dash_q_reply_to": {
+    "message": "Deine Antwort geht an $EMAIL$",
+    "description": "Shown on a draft when the email's Reply-To differs from the sender (same domain)",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_q_reply_to_warn": {
+    "message": "Achtung: Deine Antwort geht an $EMAIL$ – eine andere Adresse als die des Absenders. Prüf, ob das stimmt.",
+    "description": "Warning on a draft when Reply-To points at a different domain than the sender",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_storage": {
+    "message": "Der Browserspeicher ist voll – leere die Listen „Gesendet“ und „Erledigt“ und versuch es erneut.",
+    "description": "Error when the browser's extension storage is full or unavailable"
+  },
+  "dash_prov_builtin": {
+    "message": "Integrierte KI",
+    "description": "Provider card name for the free built-in AI"
+  },
+  "dash_prov_free": {
+    "message": "Kostenlos",
+    "description": "Small 'Free' pill on the built-in AI card"
+  },
+  "dash_prov_desc_builtin": {
+    "message": "Kein API-Schlüssel nötig · $N$ Anfragen pro Tag",
+    "description": "Built-in AI card description; N = free requests per day",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_prov_byo_heading": {
+    "message": "Oder nutze deinen eigenen API-Schlüssel – ohne Tageslimit",
+    "description": "Divider above the own-API-key providers"
+  },
+  "dash_ai_builtin_note": {
+    "message": "Sofort einsatzbereit – nichts einzurichten. Enthält $N$ KI-Anfragen pro Tag. Dein Text wird über unseren Server an die KI geleitet und nie gespeichert.",
+    "description": "Explanation shown when the built-in AI is selected",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_test_ok_builtin": {
+    "message": "Die integrierte KI ist bereit – heute noch $N$ kostenlose Anfragen.",
+    "description": "Status after testing the built-in AI",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_ai_builtin_limit": {
+    "message": "Du hast die kostenlosen KI-Anfragen für heute aufgebraucht. Sie werden morgen zurückgesetzt – oder füge im KI-Assistenten deinen eigenen API-Schlüssel hinzu, ohne Limit.",
+    "description": "Error when the user has used today's free built-in AI requests"
+  },
+  "dash_err_ai_builtin_busy": {
+    "message": "Die integrierte KI ist gerade ausgelastet. Versuch es in einer Minute erneut oder nutze deinen eigenen API-Schlüssel.",
+    "description": "Error when the built-in AI is overloaded"
+  },
+  "dash_err_ai_builtin_unavailable": {
+    "message": "Die integrierte KI ist gerade nicht verfügbar. Du kannst stattdessen im KI-Assistenten deinen eigenen API-Schlüssel hinzufügen.",
+    "description": "Error when the built-in AI relay isn't set up / reachable"
+  },
+  "picker_ai_remaining": {
+    "message": "heute noch $N$ kostenlose Anfragen",
+    "description": "Picker footnote after a built-in AI draft; N = requests left today",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
   }
 }

@@ -27,6 +27,7 @@ body.pop {
 .btn.primary:hover { background: #1d4ed8; }
 .btn.wide { width: 100%; }
 .popfoot { display: flex; gap: 8px; }
+.dashbtn { margin-bottom: 8px; }
 .popfoot .btn { flex: 1; }
 [data-theme="dark"] .btn { background: #2a3140; border-color: #3a4252; color: #e6e8ee; }
 [data-theme="dark"] .btn:hover { background: #333b4d; }
