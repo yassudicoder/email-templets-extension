@@ -10,15 +10,18 @@
   const PLANS = {
     free: {
       limits:   { templates: 150 },
-      features: { unlimited_templates: false, advanced_variables: false, sync: false, team: false, images: false }
+      features: { unlimited_templates: false, advanced_variables: false, sync: false, team: false, images: false,
+                  ai_writer: false, scheduled_send: false, auto_reply: false }
     },
     pro: {
       limits:   { templates: Infinity },
-      features: { unlimited_templates: true, advanced_variables: true, sync: true, team: false, images: true }
+      features: { unlimited_templates: true, advanced_variables: true, sync: true, team: false, images: true,
+                  ai_writer: true, scheduled_send: true, auto_reply: true }
     },
     team: {
       limits:   { templates: Infinity },
-      features: { unlimited_templates: true, advanced_variables: true, sync: true, team: true, images: true }
+      features: { unlimited_templates: true, advanced_variables: true, sync: true, team: true, images: true,
+                  ai_writer: true, scheduled_send: true, auto_reply: true }
     }
   };
 

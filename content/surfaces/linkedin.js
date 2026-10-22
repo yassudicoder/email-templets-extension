@@ -11,8 +11,26 @@
     name: "linkedin",
     matches: () => location.hostname.endsWith("linkedin.com"),
     // LinkedIn composers are largely plain-text — degrade gracefully.
-    preferPlainText: () => true
+    preferPlainText: () => true,
+    threadContext: () => threadContext()
   };
+
+  // The open messaging thread, for "Write with AI" — read ONLY on the user's request.
+  // Sender names appear once per message group, so carry the last one forward in
+  // document order. Best-effort: returns null if LinkedIn's markup doesn't match.
+  function threadContext() {
+    const nodes = document.querySelectorAll(".msg-s-message-group__name, .msg-s-event-listitem__body");
+    const msgs = [];
+    let from = "";
+    for (const n of Array.from(nodes)) {
+      if (n.classList.contains("msg-s-message-group__name")) { from = (n.textContent || "").trim(); continue; }
+      const text = (n.innerText || "").trim();
+      if (text) msgs.push({ from, text: text.slice(0, 3000) });
+    }
+    if (!msgs.length) return null;
+    const t = document.querySelector(".msg-entity-lockup__entity-title, #thread-detail-jump-target");
+    return { subject: t ? t.textContent.trim() : "", messages: msgs.slice(-8) };
+  }
 
   if (g.top !== g || !location.hostname.endsWith("linkedin.com")) return;
 

@@ -46,4 +46,10 @@
   }).catch((e) => console.error("[CR] welcome init failed", e));
 
   $("#manage").addEventListener("click", () => chrome.runtime.openOptionsPage());
+  // Straight into the options page's Automation & AI section.
+  $("#openAuto").addEventListener("click", async () => {
+    await store.init();
+    await store.updateSettings({ openView: "schedule" });
+    chrome.runtime.openOptionsPage();
+  });
 })();

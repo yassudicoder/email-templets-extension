@@ -15,8 +15,30 @@
   NS.surfaces.gmail = {
     name: "gmail",
     matches: () => location.hostname === "mail.google.com",
-    preferPlainText: () => false
+    preferPlainText: () => false,
+    threadContext: () => threadContext()
   };
+
+  // The open conversation, for "Write with AI" — read ONLY when the user asks for an
+  // AI draft (never in the background). Expanded messages are div.adn, each with a
+  // sender (span.gD[email]) and a body (div.a3s). innerText skips Gmail's hidden
+  // quoted history, so each body is just that message. Returns null if no thread.
+  function threadContext() {
+    const msgs = [];
+    for (const m of Array.from(document.querySelectorAll("div.adn"))) {
+      const body = m.querySelector("div.a3s");
+      if (!body || body.closest("[contenteditable='true']")) continue;
+      const text = (body.innerText || "").trim();
+      if (!text) continue;
+      const s = m.querySelector("span.gD");
+      const name = s ? (s.getAttribute("name") || s.textContent || "").trim() : "";
+      const email = s ? (s.getAttribute("email") || "").trim() : "";
+      msgs.push({ from: email ? (name ? name + " <" + email + ">" : email) : name, text: text.slice(0, 4000) });
+    }
+    if (!msgs.length) return null;
+    const h = document.querySelector("h2.hP");
+    return { subject: h ? h.textContent.trim() : "", messages: msgs.slice(-6) };
+  }
 
   // Only the top frame, only Gmail. (Content scripts also run in Gmail's utility
   // iframes; we don't want a button in those.)

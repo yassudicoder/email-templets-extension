@@ -152,8 +152,8 @@
     "description": "Analytics opt-in checkbox label"
   },
   "settings_analytics_note": {
-    "message": "डिफ़ॉल्ट रूप से बंद। एक्सटेंशन को बेहतर बनाने में मदद करता है — कोई संदेश या टेम्पलेट सामग्री कभी नहीं भेजी जाती। ",
-    "description": "Privacy explanation for the analytics opt-in"
+    "message": "डिफ़ॉल्ट रूप से चालू। गुमनाम — कोई संदेश या टेम्पलेट सामग्री कभी नहीं भेजी जाती, सिर्फ़ यह कि कौन-सी सुविधाएँ इस्तेमाल हुईं। इसे यहाँ कभी भी बंद करें। ",
+    "description": "Privacy explanation for the analytics setting"
   },
   "link_learn_more_privacy": {
     "message": "और जानें",
@@ -1014,5 +1014,1513 @@
   "feedback_email_fallback": {
     "message": "या सीधे ईमेल करें",
     "description": "Secondary mailto link next to the feedback form"
+  },
+  "popup_dashboard_button": {
+    "message": "🗓 शेड्यूल, ऑटो-रिप्लाई और AI",
+    "description": "Popup button that opens the dashboard"
+  },
+  "dash_page_title": {
+    "message": "Canned Responses — डैशबोर्ड",
+    "description": "Dashboard page <title>"
+  },
+  "dash_brand_sub": {
+    "message": "डैशबोर्ड",
+    "description": "Small label next to the brand name in the dashboard top bar"
+  },
+  "dash_tab_schedule": {
+    "message": "शेड्यूल किए गए",
+    "description": "Dashboard tab: scheduled emails"
+  },
+  "dash_tab_autoreply": {
+    "message": "ऑटो-रिप्लाई",
+    "description": "Dashboard tab: auto-reply drafts"
+  },
+  "dash_tab_ai": {
+    "message": "AI राइटर",
+    "description": "Dashboard tab: AI provider + AI templates"
+  },
+  "dash_tab_settings": {
+    "message": "सेटिंग",
+    "description": "Dashboard tab: settings"
+  },
+  "dash_open_templates": {
+    "message": "मेरे टेम्पलेट",
+    "description": "Dashboard top-bar button that opens the template manager"
+  },
+  "dash_connect_gmail": {
+    "message": "Gmail कनेक्ट करें",
+    "description": "Button that starts Google sign-in to connect Gmail"
+  },
+  "dash_gmail_banner": {
+    "message": "शेड्यूल किए गए ईमेल भेजने और ऑटो-रिप्लाई ड्राफ़्ट बनाने के लिए अपना Gmail अकाउंट कनेक्ट करें।",
+    "description": "Banner shown when Gmail isn't connected"
+  },
+  "dash_gmail_not_configured": {
+    "message": "इस बिल्ड में Gmail कनेक्शन अभी सेट नहीं है।",
+    "description": "Shown when the developer hasn't configured the Google OAuth client"
+  },
+  "dash_gmail_not_configured_hint": {
+    "message": "डेवलपर: core/google-config.js में Google OAuth क्लाइंट ID जोड़ें (नीचे डेवलपर सेटअप देखें)।",
+    "description": "Hint for developers when OAuth isn't configured"
+  },
+  "dash_gmail_intro": {
+    "message": "वह Gmail अकाउंट कनेक्ट करें जिससे आप ईमेल भेजना चाहते हैं। Canned Responses हर फ़ीचर के लिए सिर्फ़ ज़रूरी अनुमति माँगता है:",
+    "description": "Intro text in the Gmail account card"
+  },
+  "dash_perm_send": {
+    "message": "आपकी ओर से ईमेल भेजना — शेड्यूल किए गए ईमेल और आपके स्वीकृत जवाब",
+    "description": "Permission explanation: send"
+  },
+  "dash_perm_read": {
+    "message": "इनबॉक्स में नए ईमेल पढ़ना — ऑटो-रिप्लाई ड्राफ़्ट बनाने के लिए",
+    "description": "Permission explanation: read"
+  },
+  "dash_perm_read_optional": {
+    "message": "नए ईमेल पढ़ना — सिर्फ़ तब, जब आप ऑटो-रिप्लाई ड्राफ़्ट चालू करें",
+    "description": "Permission explanation: read, before it's requested"
+  },
+  "dash_gmail_connected_since": {
+    "message": "$DATE$ से कनेक्टेड",
+    "description": "Under the connected Gmail address",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_connected_toast": {
+    "message": "$EMAIL$ के रूप में कनेक्ट हुआ",
+    "description": "Toast after connecting Gmail",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_reconnect": {
+    "message": "फिर से कनेक्ट करें",
+    "description": "Button: redo Google sign-in"
+  },
+  "dash_gmail_disconnect": {
+    "message": "डिस्कनेक्ट करें",
+    "description": "Button: disconnect Gmail"
+  },
+  "dash_gmail_disconnect_confirm": {
+    "message": "Gmail डिस्कनेक्ट करें? दोबारा कनेक्ट करने तक शेड्यूल किए गए ईमेल नहीं भेजे जाएँगे और ऑटो-रिप्लाई ड्राफ़्ट बंद रहेंगे।",
+    "description": "Confirm dialog before disconnecting Gmail"
+  },
+  "dash_gmail_disconnected_toast": {
+    "message": "Gmail डिस्कनेक्ट हो गया",
+    "description": "Toast after disconnecting"
+  },
+  "dash_allow_read": {
+    "message": "अनुमति दें",
+    "description": "Button that grants permission to read new emails"
+  },
+  "dash_gmail_account": {
+    "message": "Gmail अकाउंट",
+    "description": "Settings card heading"
+  },
+  "dash_gmail_dev": {
+    "message": "डेवलपर सेटअप",
+    "description": "Collapsible section with the OAuth redirect URI"
+  },
+  "dash_gmail_dev_hint": {
+    "message": "इस रीडायरेक्ट URI को Google Cloud में OAuth \"Web application\" क्लाइंट पर रजिस्टर करें, और क्लाइंट ID को core/google-config.js में डालें:",
+    "description": "Developer setup instructions"
+  },
+  "dash_copy": {
+    "message": "कॉपी करें",
+    "description": "Copy-to-clipboard button"
+  },
+  "dash_composer_title_new": {
+    "message": "ईमेल शेड्यूल करें",
+    "description": "Composer heading (new)"
+  },
+  "dash_composer_title_edit": {
+    "message": "शेड्यूल किया गया ईमेल संपादित करें",
+    "description": "Composer heading (editing)"
+  },
+  "dash_composer_cancel_edit": {
+    "message": "संपादन रद्द करें",
+    "description": "Button that leaves edit mode"
+  },
+  "dash_field_to": {
+    "message": "प्रति",
+    "description": "Recipient field label"
+  },
+  "dash_field_to_ph": {
+    "message": "name@example.com, another@example.com",
+    "description": "Recipient field placeholder"
+  },
+  "dash_add_cc": {
+    "message": "+ Cc / Bcc",
+    "description": "Link that reveals Cc/Bcc fields"
+  },
+  "dash_field_subject": {
+    "message": "विषय",
+    "description": "Subject field label"
+  },
+  "dash_field_message": {
+    "message": "संदेश",
+    "description": "Message body label"
+  },
+  "dash_insert_template": {
+    "message": "टेम्पलेट इंसर्ट करें…",
+    "description": "First option of the insert-template dropdown"
+  },
+  "dash_insert_template_title": {
+    "message": "अपना कोई टेम्पलेट इंसर्ट करें",
+    "description": "Tooltip for the insert-template dropdown"
+  },
+  "dash_write_with_ai": {
+    "message": "✨ AI से लिखें",
+    "description": "Button that opens the AI prompt in the composer"
+  },
+  "dash_ai_compose_ph": {
+    "message": "ईमेल में क्या होना चाहिए? जैसे: Sam को शुक्रवार के डेमो की याद दिलाएँ और एजेंडा माँगें",
+    "description": "AI prompt placeholder in the composer"
+  },
+  "dash_generate": {
+    "message": "बनाएँ",
+    "description": "Button that asks the AI to write"
+  },
+  "dash_field_send_at": {
+    "message": "भेजने का समय",
+    "description": "Date/time field label"
+  },
+  "dash_tz_hint": {
+    "message": "समय आपके टाइम ज़ोन ($TZ$) में हैं।",
+    "description": "Hint under the date/time field",
+    "placeholders": {
+      "tz": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_quick_1h": {
+    "message": "1 घंटे में",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_am": {
+    "message": "कल सुबह 9 बजे",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_pm": {
+    "message": "कल दोपहर 1 बजे",
+    "description": "Quick time chip"
+  },
+  "dash_quick_monday": {
+    "message": "सोमवार सुबह 9 बजे",
+    "description": "Quick time chip (next Monday)"
+  },
+  "dash_clear": {
+    "message": "साफ़ करें",
+    "description": "Button that clears the composer"
+  },
+  "dash_send_now": {
+    "message": "अभी भेजें",
+    "description": "Button that sends immediately"
+  },
+  "dash_schedule_btn": {
+    "message": "शेड्यूल करें",
+    "description": "Button that schedules the email"
+  },
+  "dash_save_changes": {
+    "message": "बदलाव सहेजें",
+    "description": "Button label while editing a scheduled email"
+  },
+  "dash_vars_title": {
+    "message": "वेरिएबल भरें — भेजने से पहले वे बदल दिए जाते हैं",
+    "description": "Heading above the variable inputs"
+  },
+  "dash_vars_missing": {
+    "message": "भरें: $VARS$",
+    "description": "Error when some variables are empty",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_send_now": {
+    "message": "यह ईमेल अभी $TO$ को भेजें?",
+    "description": "Confirm before sending immediately",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_sending_toast": {
+    "message": "भेजा जा रहा है…",
+    "description": "Toast while sending"
+  },
+  "dash_scheduled_toast": {
+    "message": "$WHEN$ के लिए शेड्यूल किया गया",
+    "description": "Toast after scheduling",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_writing": {
+    "message": "लिखा जा रहा है…",
+    "description": "Status while the AI is generating"
+  },
+  "dash_ai_done": {
+    "message": "ड्राफ़्ट तैयार है — भेजने से पहले देख लें।",
+    "description": "Status after AI generation"
+  },
+  "dash_needs_attention": {
+    "message": "ध्यान देने योग्य",
+    "description": "List heading: missed/failed emails"
+  },
+  "dash_upcoming": {
+    "message": "आगामी",
+    "description": "List heading: scheduled emails"
+  },
+  "dash_sent": {
+    "message": "भेजे गए",
+    "description": "List heading: sent emails"
+  },
+  "dash_clear_list": {
+    "message": "सूची साफ़ करें",
+    "description": "Link that clears a finished list"
+  },
+  "dash_upcoming_empty": {
+    "message": "अभी कुछ शेड्यूल नहीं है।",
+    "description": "Empty upcoming list"
+  },
+  "dash_sent_empty": {
+    "message": "शेड्यूल किए गए ईमेल भेजे जाने के बाद यहाँ दिखेंगे।",
+    "description": "Empty sent list"
+  },
+  "dash_schedule_footnote": {
+    "message": "ईमेल इस ब्राउज़र द्वारा आपके अपने Gmail से भेजे जाते हैं। शेड्यूल किए गए समय पर Chrome चालू होना चाहिए — नहीं तो ईमेल Chrome शुरू होने पर जाएगा, या आपकी मंज़ूरी का इंतज़ार करेगा (सेटिंग देखें)।",
+    "description": "Footnote under the schedule lists"
+  },
+  "dash_status_sending": {
+    "message": "भेजा जा रहा है…",
+    "description": "Status chip"
+  },
+  "dash_status_retrying": {
+    "message": "फिर कोशिश हो रही है",
+    "description": "Status chip after a temporary failure"
+  },
+  "dash_status_missed": {
+    "message": "छूट गया",
+    "description": "Status chip: send time passed while Chrome was closed"
+  },
+  "dash_status_failed": {
+    "message": "विफल",
+    "description": "Status chip"
+  },
+  "dash_status_sent": {
+    "message": "भेजा गया",
+    "description": "Status chip"
+  },
+  "dash_missed_explain": {
+    "message": "शेड्यूल किए गए समय पर Chrome बंद था। इसे अभी भेजें, दोबारा शेड्यूल करें या हटा दें।",
+    "description": "Explanation under a missed email"
+  },
+  "dash_reschedule": {
+    "message": "दोबारा शेड्यूल करें",
+    "description": "Button that loads a missed/failed email into the composer"
+  },
+  "dash_open_in_gmail": {
+    "message": "Gmail में खोलें",
+    "description": "Button that opens a sent email in Gmail"
+  },
+  "dash_remove_from_list": {
+    "message": "सूची से हटाएँ",
+    "description": "Tooltip for the × button"
+  },
+  "dash_no_subject": {
+    "message": "(कोई विषय नहीं)",
+    "description": "Shown when an email has no subject"
+  },
+  "dash_to_label": {
+    "message": "प्रति: $TO$",
+    "description": "Recipient line in lists",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_delete_scheduled": {
+    "message": "यह शेड्यूल किया गया ईमेल रद्द करें?",
+    "description": "Confirm before cancelling a scheduled email"
+  },
+  "dash_ar_title": {
+    "message": "ऑटो-रिप्लाई ड्राफ़्ट",
+    "description": "Auto-reply tab heading"
+  },
+  "dash_ar_check_now": {
+    "message": "अभी जाँचें",
+    "description": "Button that checks the inbox immediately"
+  },
+  "dash_ar_checked": {
+    "message": "इनबॉक्स जाँच लिया गया",
+    "description": "Toast after a manual check"
+  },
+  "dash_ar_status_off": {
+    "message": "बंद। अपने नियमों से मेल खाने वाले ईमेल के जवाब का ड्राफ़्ट बनवाने के लिए इसे चालू करें — हर जवाब भेजने से पहले आप खुद देखते हैं।",
+    "description": "Auto-reply status (off)"
+  },
+  "dash_ar_status_on": {
+    "message": "चालू · $WHEN$ जाँचा गया · Chrome खुला रहने पर हर $MIN$ मिनट में जाँच",
+    "description": "Auto-reply status (on)",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_ar_status_starting": {
+    "message": "चालू · पहली जाँच एक मिनट के भीतर, फिर Chrome खुला रहने पर हर $MIN$ मिनट में",
+    "description": "Auto-reply status right after enabling",
+    "placeholders": {
+      "min": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_status_error": {
+    "message": "चालू · पिछली जाँच विफल रही: $ERROR$",
+    "description": "Auto-reply status after an error",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_need_ai": {
+    "message": "कुछ नियम AI से जवाब देते हैं — पहले अपनी AI प्रदाता की कुंजी जोड़ें।",
+    "description": "Banner when AI rules exist but no AI key"
+  },
+  "dash_set_up_ai": {
+    "message": "AI सेट करें",
+    "description": "Button that opens the AI writer tab"
+  },
+  "dash_ar_add_rule_hint": {
+    "message": "अब एक नियम जोड़ें ताकि Canned Responses को पता चले कि किन ईमेल के जवाब का ड्राफ़्ट बनाना है।",
+    "description": "Toast after enabling auto-reply with no rules"
+  },
+  "dash_ar_on_toast": {
+    "message": "ऑटो-रिप्लाई ड्राफ़्ट चालू हैं। पिछले एक घंटे के ईमेल से शुरुआत होगी।",
+    "description": "Toast after enabling auto-reply"
+  },
+  "dash_ar_footnote": {
+    "message": "आपके क्लिक के बिना कुछ नहीं भेजा जाता। न्यूज़लेटर, नोटिफ़िकेशन, मेलिंग लिस्ट और no-reply प्रेषक हमेशा अनदेखे किए जाते हैं। जाँच Chrome खुला रहने पर चलती है।",
+    "description": "Footnote on the auto-reply tab"
+  },
+  "dash_review_queue": {
+    "message": "समीक्षा कतार",
+    "description": "Heading: drafts waiting for review"
+  },
+  "dash_handled": {
+    "message": "निपटाए गए",
+    "description": "Heading: sent/skipped drafts"
+  },
+  "dash_q_original": {
+    "message": "मूल संदेश",
+    "description": "Expandable original email in a draft card"
+  },
+  "dash_q_generating": {
+    "message": "ड्राफ़्ट लिखा जा रहा है…",
+    "description": "Placeholder while a draft is generated"
+  },
+  "dash_q_draft_label": {
+    "message": "जवाब का ड्राफ़्ट",
+    "description": "Aria label for the editable draft"
+  },
+  "dash_q_gaps": {
+    "message": "इस ड्राफ़्ट में [placeholders] या {variables} हैं — भेजने से पहले उन्हें भरें।",
+    "description": "Hint when a draft contains placeholders"
+  },
+  "dash_q_gaps_confirm": {
+    "message": "इस ड्राफ़्ट में अभी भी [placeholders] या {variables} हैं। फिर भी भेजें?",
+    "description": "Confirm sending a draft with placeholders"
+  },
+  "dash_q_skip": {
+    "message": "छोड़ें",
+    "description": "Button: discard this draft"
+  },
+  "dash_q_regenerate": {
+    "message": "दोबारा बनाएँ",
+    "description": "Button: write the draft again"
+  },
+  "dash_q_refill": {
+    "message": "टेम्पलेट फिर भरें",
+    "description": "Button: re-fill a template-based draft"
+  },
+  "dash_q_send": {
+    "message": "जवाब भेजें",
+    "description": "Button: send the reviewed draft"
+  },
+  "dash_q_sent_toast": {
+    "message": "जवाब भेज दिया गया",
+    "description": "Toast after sending a reply"
+  },
+  "dash_q_empty_draft": {
+    "message": "ड्राफ़्ट खाली है।",
+    "description": "Error when trying to send/save an empty draft"
+  },
+  "dash_q_regen_confirm": {
+    "message": "आपके बदलाव हटाकर नया ड्राफ़्ट लिखें?",
+    "description": "Confirm regenerating an edited draft"
+  },
+  "dash_q_empty_on": {
+    "message": "कोई ड्राफ़्ट प्रतीक्षा में नहीं। किसी नियम से मेल खाने वाले नए ईमेल यहाँ दिखेंगे।",
+    "description": "Empty review queue (on)"
+  },
+  "dash_q_empty_off": {
+    "message": "शुरू करने के लिए ऑटो-रिप्लाई ड्राफ़्ट चालू करें और एक नियम जोड़ें।",
+    "description": "Empty review queue (off)"
+  },
+  "dash_done_empty": {
+    "message": "आपके भेजे या छोड़े गए जवाब यहाँ दिखेंगे।",
+    "description": "Empty handled list"
+  },
+  "dash_status_replied": {
+    "message": "जवाब दिया",
+    "description": "Status chip"
+  },
+  "dash_status_skipped": {
+    "message": "छोड़ा गया",
+    "description": "Status chip"
+  },
+  "dash_status_already_replied": {
+    "message": "आप इस थ्रेड में पहले ही जवाब दे चुके हैं",
+    "description": "Status when the draft was skipped because the user already replied"
+  },
+  "dash_rules": {
+    "message": "नियम",
+    "description": "Heading: auto-reply rules"
+  },
+  "dash_rule_new": {
+    "message": "+ नया नियम",
+    "description": "Button: create a rule"
+  },
+  "dash_rule_new_title": {
+    "message": "नया नियम",
+    "description": "Rule form heading (new)"
+  },
+  "dash_rule_edit_title": {
+    "message": "नियम संपादित करें",
+    "description": "Rule form heading (edit)"
+  },
+  "dash_rule_name": {
+    "message": "नियम का नाम",
+    "description": "Field label"
+  },
+  "dash_rule_name_ph": {
+    "message": "जैसे: क्लाइंट",
+    "description": "Field placeholder"
+  },
+  "dash_rule_which": {
+    "message": "कौन से ईमेल?",
+    "description": "Field label"
+  },
+  "dash_rule_who_senders": {
+    "message": "सिर्फ़ इन लोगों या डोमेन से",
+    "description": "Radio option"
+  },
+  "dash_rule_who_any": {
+    "message": "कोई भी सामान्य ईमेल — किसी व्यक्ति से, न्यूज़लेटर या नोटिफ़िकेशन नहीं",
+    "description": "Radio option"
+  },
+  "dash_rule_senders_ph": {
+    "message": "jane@client.com, @acme.com, partner.org",
+    "description": "Senders field placeholder"
+  },
+  "dash_rule_keywords": {
+    "message": "सिर्फ़ तब, जब इसमें ज़िक्र हो",
+    "description": "Keywords field label"
+  },
+  "dash_rule_keywords_ph": {
+    "message": "कीमत, इनवॉइस, मीटिंग",
+    "description": "Keywords field placeholder"
+  },
+  "dash_rule_reply_with": {
+    "message": "जवाब का ड्राफ़्ट बनाएँ",
+    "description": "Field label"
+  },
+  "dash_rule_mode_ai": {
+    "message": "AI से (हर ईमेल का जवाब लिखता है)",
+    "description": "Radio option"
+  },
+  "dash_rule_mode_template": {
+    "message": "मेरे किसी टेम्पलेट से",
+    "description": "Radio option"
+  },
+  "dash_rule_instr_ph": {
+    "message": "AI को कैसे जवाब देना चाहिए? जैसे: धन्यवाद कहें, बताएँ कि मैं 24 घंटे में लौटूँगा, और एक छोटी कॉल का प्रस्ताव दें।",
+    "description": "AI instructions placeholder"
+  },
+  "dash_rule_choose_template": {
+    "message": "टेम्पलेट चुनें…",
+    "description": "First option of the template dropdown"
+  },
+  "dash_rule_save": {
+    "message": "नियम सहेजें",
+    "description": "Button"
+  },
+  "dash_rule_saved": {
+    "message": "नियम सहेजा गया",
+    "description": "Toast"
+  },
+  "dash_rules_empty": {
+    "message": "अभी कोई नियम नहीं। नियम बताता है कि किन ईमेल का ड्राफ़्ट जवाब बने और वह कैसे लिखा जाए।",
+    "description": "Empty rules list"
+  },
+  "dash_rule_delete_confirm": {
+    "message": "नियम \"$NAME$\" हटाएँ?",
+    "description": "Confirm deleting a rule",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_toggle_title": {
+    "message": "इस नियम को चालू या बंद करें",
+    "description": "Tooltip for a rule's switch"
+  },
+  "dash_rule_sum_from": {
+    "message": "$SENDERS$ से",
+    "description": "Rule summary: sender filter",
+    "placeholders": {
+      "senders": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_any": {
+    "message": "कोई भी सामान्य ईमेल",
+    "description": "Rule summary: any sender"
+  },
+  "dash_rule_sum_keywords": {
+    "message": "ज़िक्र: $WORDS$",
+    "description": "Rule summary: keyword filter",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_ai": {
+    "message": "AI जवाब",
+    "description": "Rule summary: AI mode"
+  },
+  "dash_rule_sum_ai_with": {
+    "message": "AI जवाब: \"$INSTR$\"",
+    "description": "Rule summary: AI mode with instructions",
+    "placeholders": {
+      "instr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_template": {
+    "message": "टेम्पलेट: $NAME$",
+    "description": "Rule summary: template mode",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_template_missing": {
+    "message": "(हटाया गया टेम्पलेट)",
+    "description": "Shown when a rule's template no longer exists"
+  },
+  "dash_activity": {
+    "message": "गतिविधि",
+    "description": "Collapsible activity log heading"
+  },
+  "dash_log_empty": {
+    "message": "अभी कोई गतिविधि नहीं।",
+    "description": "Empty activity log"
+  },
+  "dash_log_sent": {
+    "message": "\"$SUBJECT$\" $TO$ को भेजा गया",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "to": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_send_failed": {
+    "message": "\"$SUBJECT$\" नहीं भेजा जा सका: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_missed": {
+    "message": "\"$SUBJECT$\" छूट गया — शेड्यूल किए गए समय पर Chrome बंद था",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_created": {
+    "message": "$FROM$ को जवाब का ड्राफ़्ट बनाया गया",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_failed": {
+    "message": "$FROM$ को जवाब का ड्राफ़्ट नहीं बन सका: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_reply_sent": {
+    "message": "$TO$ को जवाब दिया गया",
+    "description": "Log entry",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_reply_skipped": {
+    "message": "$FROM$ को जवाब छोड़ा गया — आप पहले ही जवाब दे चुके थे",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_poll_error": {
+    "message": "इनबॉक्स की जाँच विफल: $ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_cap_reached": {
+    "message": "रोज़ाना ड्राफ़्ट की सीमा पूरी हो गई — आज और ड्राफ़्ट नहीं बनेंगे (सेटिंग में बदलें)",
+    "description": "Log entry"
+  },
+  "dash_ai_provider": {
+    "message": "AI प्रदाता",
+    "description": "Card heading"
+  },
+  "dash_ai_provider_sub": {
+    "message": "मुफ़्त बिल्ट-इन AI से शुरू करें, या अपनी API कुंजी इस्तेमाल करें:",
+    "description": "Card subtitle above the provider choices"
+  },
+  "dash_prov_desc_gemini": {
+    "message": "फ़्री टियर उपलब्ध · Google AI Studio",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_xai": {
+    "message": "Grok मॉडल · console.x.ai",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_openai": {
+    "message": "ChatGPT मॉडल · platform.openai.com",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_custom": {
+    "message": "OpenRouter, Groq, DeepSeek, Ollama…",
+    "description": "Provider card description"
+  },
+  "dash_prov_active": {
+    "message": "✓ उपयोग में",
+    "description": "Marker on the active provider card"
+  },
+  "dash_prov_key_saved": {
+    "message": "कुंजी सहेजी गई",
+    "description": "Marker on a provider card that has a key"
+  },
+  "dash_ai_base_url": {
+    "message": "बेस URL",
+    "description": "Custom endpoint field label"
+  },
+  "dash_ai_base_hint": {
+    "message": "कोई भी OpenAI-संगत एंडपॉइंट — OpenRouter, Groq, DeepSeek, या लोकल Ollama / LM Studio सर्वर (जैसे http://localhost:11434/v1)।",
+    "description": "Hint under the base URL field"
+  },
+  "dash_ai_key": {
+    "message": "API कुंजी",
+    "description": "Field label"
+  },
+  "dash_ai_key_optional": {
+    "message": "लोकल सर्वर के लिए वैकल्पिक",
+    "description": "API key placeholder for custom endpoints"
+  },
+  "dash_show": {
+    "message": "दिखाएँ",
+    "description": "Show the API key"
+  },
+  "dash_hide": {
+    "message": "छिपाएँ",
+    "description": "Hide the API key"
+  },
+  "dash_ai_get_key": {
+    "message": "$PROVIDER$ API कुंजी पाएँ ↗",
+    "description": "Link to the provider's key page",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_model": {
+    "message": "मॉडल",
+    "description": "Field label"
+  },
+  "dash_ai_model_auto": {
+    "message": "स्वचालित",
+    "description": "Model placeholder when chosen automatically"
+  },
+  "dash_ai_model_default": {
+    "message": "स्वचालित ($MODEL$)",
+    "description": "Model placeholder showing the default",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_load_models": {
+    "message": "मॉडल लोड करें",
+    "description": "Button that lists the provider's models"
+  },
+  "dash_ai_loading_models": {
+    "message": "मॉडल लोड हो रहे हैं…",
+    "description": "Status"
+  },
+  "dash_ai_models_found": {
+    "message": "$COUNT$ मॉडल मिले — एक चुनें या स्वचालित पर रहने दें।",
+    "description": "Status after listing models",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_save_test": {
+    "message": "सहेजें और जाँचें",
+    "description": "Button"
+  },
+  "dash_ai_testing": {
+    "message": "कनेक्शन जाँचा जा रहा है…",
+    "description": "Status"
+  },
+  "dash_ai_test_ok": {
+    "message": "कनेक्ट हुआ — $MODEL$ इस्तेमाल हो रहा है",
+    "description": "Status after a successful test",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_key_note": {
+    "message": "आपकी कुंजी सिर्फ़ इसी ब्राउज़र में रहती है — न सिंक होती है, न एक्सपोर्ट, और न ही हमें भेजी जाती है। अनुरोध आपके अपने अकाउंट से सीधे प्रदाता को जाते हैं।",
+    "description": "Privacy note under the AI key"
+  },
+  "dash_about_you": {
+    "message": "आपके बारे में",
+    "description": "Card heading"
+  },
+  "dash_about_you_sub": {
+    "message": "AI इन जानकारियों से आपके अंदाज़ में लिखता है।",
+    "description": "Card subtitle"
+  },
+  "dash_profile_name": {
+    "message": "आपका नाम",
+    "description": "Field label"
+  },
+  "dash_profile_role": {
+    "message": "भूमिका / पद",
+    "description": "Field label"
+  },
+  "dash_profile_company": {
+    "message": "कंपनी",
+    "description": "Field label"
+  },
+  "dash_profile_tone": {
+    "message": "लहजा",
+    "description": "Field label"
+  },
+  "dash_profile_language": {
+    "message": "भाषा",
+    "description": "Field label"
+  },
+  "dash_lang_auto": {
+    "message": "ईमेल जैसी ही",
+    "description": "Language option: match the email"
+  },
+  "dash_profile_signature": {
+    "message": "हस्ताक्षर",
+    "description": "Field label"
+  },
+  "dash_profile_signature_ph": {
+    "message": "सादर,\nAlex Kim · Head of Sales, Acme",
+    "description": "Signature placeholder"
+  },
+  "dash_profile_notes": {
+    "message": "हमेशा ध्यान रखें",
+    "description": "Field label: standing instructions for the AI"
+  },
+  "dash_profile_notes_ph": {
+    "message": "जैसे: हम एक कार्यदिवस में जवाब देते हैं। छूट का वादा कभी न करें। हमारा बुकिंग लिंक https://cal.example.com/alex है",
+    "description": "Placeholder"
+  },
+  "dash_tone_friendly": {
+    "message": "दोस्ताना",
+    "description": "Tone option"
+  },
+  "dash_tone_professional": {
+    "message": "प्रोफ़ेशनल",
+    "description": "Tone option"
+  },
+  "dash_tone_concise": {
+    "message": "छोटा और सीधा",
+    "description": "Tone option"
+  },
+  "dash_tone_formal": {
+    "message": "औपचारिक",
+    "description": "Tone option"
+  },
+  "dash_tone_casual": {
+    "message": "अनौपचारिक",
+    "description": "Tone option"
+  },
+  "dash_tg_title": {
+    "message": "AI से नया टेम्पलेट",
+    "description": "Card heading"
+  },
+  "dash_tg_mode_gen": {
+    "message": "AI से बनाएँ",
+    "description": "Segment button"
+  },
+  "dash_tg_mode_import": {
+    "message": "ChatGPT / किसी भी AI से पेस्ट करें",
+    "description": "Segment button"
+  },
+  "dash_tg_prompt_ph": {
+    "message": "टेम्पलेट का वर्णन करें, जैसे: सेल्स डेमो के बाद फ़ॉलो-अप, जिसमें शुक्रवार तक निर्णय माँगा जाए",
+    "description": "Placeholder"
+  },
+  "dash_tg_paste_ph": {
+    "message": "ChatGPT, Gemini, Claude, Grok… से लिखा ईमेल पेस्ट करें। [Name] या {{company}} जैसे प्लेसहोल्डर भरने वाले वेरिएबल बन जाते हैं।",
+    "description": "Placeholder"
+  },
+  "dash_tg_convert": {
+    "message": "टेम्पलेट में बदलें",
+    "description": "Button"
+  },
+  "dash_tg_template": {
+    "message": "टेम्पलेट",
+    "description": "Field label"
+  },
+  "dash_tg_vars": {
+    "message": "भरने वाले वेरिएबल: $VARS$ — टेम्पलेट इंसर्ट करते समय आपसे इन्हें पूछा जाएगा।",
+    "description": "Hint listing detected variables",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_tg_no_vars": {
+    "message": "सुझाव: {curly_braces} में लिखे शब्द टेम्पलेट इंसर्ट करते समय भरने वाले वेरिएबल बन जाते हैं।",
+    "description": "Hint when no variables were found"
+  },
+  "dash_tg_save": {
+    "message": "मेरे टेम्पलेट में सहेजें",
+    "description": "Button"
+  },
+  "dash_tg_saved_toast": {
+    "message": "\"$TITLE$\" आपके टेम्पलेट में सहेजा गया",
+    "description": "Toast",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_everywhere_note": {
+    "message": "Gmail और LinkedIn में टेम्पलेट पिकर (Alt+A या कंपोज़ का बटन) खोलें और अपनी चल रही बातचीत का जवाब ड्राफ़्ट करने के लिए ✨ AI चुनें।",
+    "description": "Footnote on the AI tab"
+  },
+  "dash_settings_schedule": {
+    "message": "शेड्यूल्ड सेंड",
+    "description": "Settings card heading"
+  },
+  "dash_settings_grace": {
+    "message": "अगर शेड्यूल किए गए समय पर Chrome बंद था",
+    "description": "Field label"
+  },
+  "dash_grace_15": {
+    "message": "15 मिनट तक की देरी हो तो भेज दें, नहीं तो मुझसे पूछें",
+    "description": "Grace option"
+  },
+  "dash_grace_60": {
+    "message": "1 घंटे तक की देरी हो तो भेज दें, नहीं तो मुझसे पूछें",
+    "description": "Grace option (default)"
+  },
+  "dash_grace_360": {
+    "message": "6 घंटे तक की देरी हो तो भेज दें, नहीं तो मुझसे पूछें",
+    "description": "Grace option"
+  },
+  "dash_grace_1440": {
+    "message": "24 घंटे तक की देरी हो तो भेज दें, नहीं तो मुझसे पूछें",
+    "description": "Grace option"
+  },
+  "dash_grace_always": {
+    "message": "कितनी भी देर हो, हमेशा भेजें",
+    "description": "Grace option"
+  },
+  "dash_settings_autoreply": {
+    "message": "ऑटो-रिप्लाई ड्राफ़्ट",
+    "description": "Settings card heading"
+  },
+  "dash_settings_poll": {
+    "message": "नए ईमेल की जाँच हर",
+    "description": "Field label"
+  },
+  "dash_poll_minutes": {
+    "message": "$N$ मिनट",
+    "description": "Poll interval option",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_settings_cap": {
+    "message": "प्रति दिन अधिकतम ड्राफ़्ट",
+    "description": "Field label"
+  },
+  "dash_settings_cap_hint": {
+    "message": "हर AI ड्राफ़्ट आपकी AI कुंजी पर एक अनुरोध है — यह सीमा ईमेल की बाढ़ से आपके क्रेडिट बचाती है।",
+    "description": "Hint"
+  },
+  "dash_settings_privacy": {
+    "message": "गोपनीयता",
+    "description": "Settings card heading"
+  },
+  "dash_privacy_1": {
+    "message": "सब कुछ इसी ब्राउज़र में सेव होता है। हमारे पास कोई अकाउंट नहीं, और हमारे सर्वर कभी आपका डेटा सेव नहीं करते।",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_2": {
+    "message": "ईमेल इसी ब्राउज़र से सीधे Google के Gmail API के ज़रिए भेजे जाते हैं।",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_3": {
+    "message": "ईमेल का टेक्स्ट AI को तभी जाता है जब आप AI से लिखें पर क्लिक करते हैं या जब कोई ईमेल आपके बनाए ऑटो-रिप्लाई नियम से मेल खाता है — बिल्ट-इन AI के लिए हमारे रिले से (कभी सेव नहीं होता), या सीधे आपके अपने प्रदाता को।",
+    "description": "Privacy bullet about where email text goes"
+  },
+  "dash_privacy_4": {
+    "message": "Gmail डिस्कनेक्ट करने पर एक्सेस तुरंत रद्द हो जाता है।",
+    "description": "Privacy bullet"
+  },
+  "dash_err_error": {
+    "message": "कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।",
+    "description": "Generic error"
+  },
+  "dash_err_network": {
+    "message": "नेटवर्क त्रुटि — अपना कनेक्शन जाँचें।",
+    "description": "Error"
+  },
+  "dash_err_plan": {
+    "message": "यह फ़ीचर आपके प्लान में शामिल नहीं है।",
+    "description": "Error"
+  },
+  "dash_err_permission_denied": {
+    "message": "अनुमति नहीं दी गई।",
+    "description": "Error: browser permission prompt declined"
+  },
+  "dash_err_gmail_not_configured": {
+    "message": "इस बिल्ड में Gmail कनेक्शन अभी सेट नहीं है।",
+    "description": "Error"
+  },
+  "dash_err_gmail_disconnected": {
+    "message": "पहले Gmail कनेक्ट करें।",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope": {
+    "message": "नए ईमेल पढ़ने की अनुमति नहीं है — ऑटो-रिप्लाई ड्राफ़्ट के लिए एक्सेस की अनुमति दें।",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope_denied": {
+    "message": "ईमेल भेजने की अनुमति नहीं दी गई।",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth": {
+    "message": "आपका Gmail साइन-इन समाप्त हो गया — सेटिंग में फिर से कनेक्ट करें।",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth_canceled": {
+    "message": "साइन-इन रद्द कर दिया गया।",
+    "description": "Error"
+  },
+  "dash_err_gmail_forbidden": {
+    "message": "Gmail ने अनुरोध अस्वीकार कर दिया।",
+    "description": "Error"
+  },
+  "dash_err_gmail_rate": {
+    "message": "Gmail अनुरोधों को सीमित कर रहा है — थोड़ी देर में फिर कोशिश होगी।",
+    "description": "Error"
+  },
+  "dash_err_gmail_server": {
+    "message": "Gmail में अस्थायी समस्या आई।",
+    "description": "Error"
+  },
+  "dash_err_gmail_error": {
+    "message": "Gmail ने त्रुटि लौटाई।",
+    "description": "Error"
+  },
+  "dash_err_interrupted": {
+    "message": "भेजना बीच में रुक गया — दोबारा भेजने से पहले अपना भेजे गए फ़ोल्डर देखें।",
+    "description": "Error"
+  },
+  "dash_err_send_failed": {
+    "message": "भेजा नहीं जा सका।",
+    "description": "Error"
+  },
+  "dash_err_no_recipient": {
+    "message": "कम से कम एक प्राप्तकर्ता जोड़ें।",
+    "description": "Error"
+  },
+  "dash_err_bad_address": {
+    "message": "कोई ईमेल पता सही नहीं लग रहा।",
+    "description": "Error"
+  },
+  "dash_err_empty_email": {
+    "message": "विषय या संदेश लिखें।",
+    "description": "Error"
+  },
+  "dash_err_no_time": {
+    "message": "तारीख और समय चुनें।",
+    "description": "Error"
+  },
+  "dash_err_past_time": {
+    "message": "वह समय बीत चुका है।",
+    "description": "Error"
+  },
+  "dash_err_locked": {
+    "message": "यह आइटम व्यस्त है — थोड़ी देर बाद फिर कोशिश करें।",
+    "description": "Error"
+  },
+  "dash_err_not_found": {
+    "message": "वह आइटम अब मौजूद नहीं है।",
+    "description": "Error"
+  },
+  "dash_err_no_senders": {
+    "message": "कम से कम एक प्रेषक या डोमेन जोड़ें।",
+    "description": "Error"
+  },
+  "dash_err_no_template": {
+    "message": "एक टेम्पलेट चुनें।",
+    "description": "Error"
+  },
+  "dash_err_template_missing": {
+    "message": "नियम का टेम्पलेट हटा दिया गया था।",
+    "description": "Error"
+  },
+  "dash_err_template_limit": {
+    "message": "आप अपनी टेम्पलेट सीमा तक पहुँच चुके हैं।",
+    "description": "Error"
+  },
+  "dash_err_draft_failed": {
+    "message": "ड्राफ़्ट नहीं लिखा जा सका।",
+    "description": "Error"
+  },
+  "dash_err_already_replied": {
+    "message": "आप इस थ्रेड में पहले ही जवाब दे चुके हैं।",
+    "description": "Error"
+  },
+  "dash_err_bad_op": {
+    "message": "कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।",
+    "description": "Error"
+  },
+  "dash_err_ai_not_configured": {
+    "message": "पहले डैशबोर्ड → AI राइटर में अपना AI प्रदाता सेट करें।",
+    "description": "Error"
+  },
+  "dash_err_ai_auth": {
+    "message": "AI प्रदाता ने आपकी API कुंजी अस्वीकार कर दी।",
+    "description": "Error"
+  },
+  "dash_err_ai_model": {
+    "message": "वह मॉडल नहीं मिला — मॉडल लोड करें पर क्लिक करके दूसरा चुनें।",
+    "description": "Error"
+  },
+  "dash_err_ai_quota": {
+    "message": "AI कोटा या दर सीमा पूरी हो गई — बाद में फिर कोशिश करें या प्रदाता के पास अपना प्लान जाँचें।",
+    "description": "Error"
+  },
+  "dash_err_ai_timeout": {
+    "message": "AI को जवाब देने में बहुत समय लगा।",
+    "description": "Error"
+  },
+  "dash_err_ai_network": {
+    "message": "AI प्रदाता तक पहुँचा नहीं जा सका।",
+    "description": "Error"
+  },
+  "dash_err_ai_blocked": {
+    "message": "AI प्रदाता ने इसे लिखने से मना कर दिया।",
+    "description": "Error"
+  },
+  "dash_err_ai_empty": {
+    "message": "AI ने खाली जवाब दिया — फिर कोशिश करें।",
+    "description": "Error"
+  },
+  "dash_err_ai_error": {
+    "message": "AI प्रदाता ने त्रुटि लौटाई।",
+    "description": "Error"
+  },
+  "dash_err_no_key": {
+    "message": "पहले अपनी API कुंजी पेस्ट करें।",
+    "description": "Error"
+  },
+  "dash_err_bad_url": {
+    "message": "मान्य बेस URL दर्ज करें, जैसे https://openrouter.ai/api/v1",
+    "description": "Error"
+  },
+  "picker_ai_btn": {
+    "message": "✨ AI",
+    "description": "Picker footer button that opens Write with AI"
+  },
+  "picker_ai_btn_title": {
+    "message": "AI से लिखें",
+    "description": "Tooltip for the picker AI button"
+  },
+  "picker_ai_heading": {
+    "message": "✨ AI से लिखें",
+    "description": "Picker AI view heading"
+  },
+  "picker_ai_use_thread": {
+    "message": "इस बातचीत का जवाब दें",
+    "description": "Checkbox: use the open thread as context"
+  },
+  "picker_ai_reply_ph": {
+    "message": "आप क्या कहना चाहते हैं? जैसे: गुरुवार के लिए हाँ, एजेंडा माँगें — या खाली छोड़ें, सही जवाब बन जाएगा",
+    "description": "Instruction placeholder (reply)"
+  },
+  "picker_ai_compose_ph": {
+    "message": "ईमेल में क्या होना चाहिए? जैसे: Priya को अपना परिचय दें और 15 मिनट की कॉल माँगें",
+    "description": "Instruction placeholder (new email)"
+  },
+  "picker_ai_tone_default": {
+    "message": "लहजा: मेरा डिफ़ॉल्ट",
+    "description": "Tone dropdown first option"
+  },
+  "picker_ai_draft_label": {
+    "message": "ड्राफ़्ट — इंसर्ट करने से पहले संपादित करें",
+    "description": "Label above the editable draft"
+  },
+  "picker_ai_save_template": {
+    "message": "टेम्पलेट के रूप में सहेजें",
+    "description": "Button"
+  },
+  "picker_ai_saved_template": {
+    "message": "✓ टेम्पलेट के रूप में सहेजा गया",
+    "description": "Cue after saving"
+  },
+  "picker_ai_footnote": {
+    "message": "बनाने के लिए Ctrl+Enter · ड्राफ़्ट में इंसर्ट करने के लिए Ctrl+Enter",
+    "description": "Keyboard hint at the bottom of the picker's AI view"
+  },
+  "sidebar_automation_heading": {
+    "message": "ऑटोमेशन और AI",
+    "description": "Options sidebar section heading for scheduled send / auto-reply / AI"
+  },
+  "sidebar_new_badge": {
+    "message": "नया",
+    "description": "Small 'New' pill next to a sidebar section heading"
+  },
+  "dash_sec_schedule": {
+    "message": "शेड्यूल किए गए ईमेल",
+    "description": "Sidebar item + section title: scheduled emails"
+  },
+  "dash_sec_schedule_short": {
+    "message": "अपने Gmail से बाद में भेजें",
+    "description": "One-line sidebar description of scheduled emails"
+  },
+  "dash_sec_schedule_intro": {
+    "message": "अभी ईमेल लिखें — वह आपके चुने हुए समय पर आपके अपने Gmail से भेजा जाएगा। किसी टेम्पलेट से शुरू करें या AI से लिखवाएँ।",
+    "description": "Intro paragraph at the top of the scheduled emails section"
+  },
+  "dash_sec_autoreply": {
+    "message": "ऑटो-रिप्लाई",
+    "description": "Sidebar item + section title: auto-reply drafts"
+  },
+  "dash_sec_autoreply_short": {
+    "message": "AI ड्राफ़्ट, आपकी मंज़ूरी से",
+    "description": "One-line sidebar description of auto-reply"
+  },
+  "dash_sec_autoreply_intro": {
+    "message": "चुनें कि किन ईमेल का जवाब देना है। Canned Responses हर एक के लिए ड्राफ़्ट बनाता है — AI या टेम्पलेट से — और आपके देखने व भेजने का इंतज़ार करता है।",
+    "description": "Intro paragraph at the top of the auto-reply section"
+  },
+  "dash_sec_ai": {
+    "message": "AI राइटर",
+    "description": "Sidebar item + section title: AI writer"
+  },
+  "dash_sec_ai_short": {
+    "message": "मुफ़्त AI या अपनी कुंजी",
+    "description": "One-line sidebar description of the AI writer"
+  },
+  "dash_sec_ai_intro": {
+    "message": "AI को आपके अंदाज़ में ईमेल और टेम्पलेट लिखने दें। बिल्ट-इन AI तुरंत काम करता है — या असीमित इस्तेमाल के लिए अपनी Gemini, Grok या ChatGPT कुंजी जोड़ें।",
+    "description": "Intro paragraph at the top of the AI writer section"
+  },
+  "dash_sec_settings": {
+    "message": "Gmail और सेटिंग",
+    "description": "Sidebar item + section title: Gmail connection and settings"
+  },
+  "dash_sec_settings_short": {
+    "message": "Gmail जोड़ें, पसंद",
+    "description": "One-line sidebar description of the settings section"
+  },
+  "dash_sec_settings_intro": {
+    "message": "जिस Gmail अकाउंट से भेजते हैं उसे जोड़ें, और शेड्यूलिंग व ऑटो-रिप्लाई का तरीका तय करें।",
+    "description": "Intro paragraph at the top of the settings section"
+  },
+  "toast_reload_tab": {
+    "message": "Canned Responses अपडेट हो गया है — इस्तेमाल जारी रखने के लिए यह टैब रीफ़्रेश करें।",
+    "description": "Notice in Gmail/LinkedIn when the extension was updated and the page must be refreshed"
+  },
+  "welcome_card_auto_title": {
+    "message": "शेड्यूल, ऑटो-रिप्लाई और AI",
+    "description": "Welcome page card title for scheduling / auto-reply / AI"
+  },
+  "welcome_card_auto_desc": {
+    "message": "ईमेल बाद में भेजें, मंज़ूरी के लिए AI जवाब-ड्राफ़्ट पाएँ, और Gemini, Grok या ChatGPT से टेम्पलेट लिखें। टेम्पलेट प्रबंधित करते समय यह ऑटोमेशन और AI में मिलेगा।",
+    "description": "Welcome page card text; tells users where to find the features"
+  },
+  "welcome_card_auto_btn": {
+    "message": "ऑटोमेशन और AI खोलें",
+    "description": "Welcome page button that opens the Automation & AI section"
+  },
+  "dash_gmail_coming_soon": {
+    "message": "आपके Gmail से भेजना इस संस्करण में अभी उपलब्ध नहीं है — यह एक अपडेट में आ रहा है। टेम्पलेट और AI लेखन पहले की तरह काम करते हैं।",
+    "description": "Shown to users when the build has no Gmail sign-in configured yet"
+  },
+  "dash_when_preview": {
+    "message": "$WHEN$ को भेजा जाएगा ($REL$) · $TZ$ समय",
+    "description": "Live confirmation under the send-time picker",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "rel": {
+        "content": "$2"
+      },
+      "tz": {
+        "content": "$3"
+      }
+    }
+  },
+  "dash_err_bad_address_named": {
+    "message": "“$ADDR$” ईमेल पता नहीं लगता।",
+    "description": "Error naming the email address that looks wrong",
+    "placeholders": {
+      "addr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_schedule_btn_title": {
+    "message": "शेड्यूल करें — Ctrl+Enter",
+    "description": "Tooltip on the Schedule button (keyboard shortcut)"
+  },
+  "dash_step_title": {
+    "message": "ऑटो-रिप्लाई सेट करें",
+    "description": "Heading of the auto-reply setup checklist"
+  },
+  "dash_step_gmail": {
+    "message": "Gmail जोड़ें और नए ईमेल पढ़ने की अनुमति दें",
+    "description": "Setup step 1 title"
+  },
+  "dash_step_gmail_desc": {
+    "message": "ईमेल इसी ब्राउज़र में प्रोसेस होते हैं — कभी हमारे सर्वर पर नहीं।",
+    "description": "Setup step 1 description"
+  },
+  "dash_step_rule": {
+    "message": "एक नियम बनाएँ",
+    "description": "Setup step 2 title"
+  },
+  "dash_step_rule_desc": {
+    "message": "चुनें कि किनके ईमेल के लिए जवाब का ड्राफ़्ट बने।",
+    "description": "Setup step 2 description"
+  },
+  "dash_step_ai": {
+    "message": "अपनी AI कुंजी जोड़ें",
+    "description": "Setup step 3 title"
+  },
+  "dash_step_ai_desc": {
+    "message": "AI से लिखे जवाबों के लिए ज़रूरी। अगर आपके नियम टेम्पलेट इस्तेमाल करते हैं तो ज़रूरत नहीं।",
+    "description": "Setup step 3 description"
+  },
+  "dash_step_on": {
+    "message": "ऑटो-रिप्लाई ड्राफ़्ट चालू करें",
+    "description": "Setup step 4 title"
+  },
+  "dash_step_on_desc": {
+    "message": "फिर मेल खाने वाले नए ईमेल का ड्राफ़्ट यहाँ आपकी समीक्षा के लिए आएगा।",
+    "description": "Setup step 4 description"
+  },
+  "dash_step_turn_on": {
+    "message": "चालू करें",
+    "description": "Button in setup step 4"
+  },
+  "dash_step_done": {
+    "message": "हो गया",
+    "description": "Label on a completed setup step"
+  },
+  "picker_ai_setup_title": {
+    "message": "पहले कोई AI प्रदाता जोड़ें",
+    "description": "Picker AI view when no AI provider is configured — title"
+  },
+  "picker_ai_setup_desc": {
+    "message": "अपनी Gemini, Grok या ChatGPT API कुंजी इस्तेमाल करें — लगभग एक मिनट लगता है और यह आपके ब्राउज़र में ही रहती है।",
+    "description": "Picker AI view when no AI provider is configured — explanation"
+  },
+  "analytics_notice_msg": {
+    "message": "एक्सटेंशन को बेहतर बनाने के लिए गुमनाम उपयोग आँकड़े चालू हैं — हम कभी आपके टेम्पलेट या संदेश नहीं लेते, सिर्फ़ यह कि कौन-सी सुविधाएँ इस्तेमाल हुईं। आप इसे कभी भी बंद कर सकते हैं।",
+    "description": "One-time disclosure banner that analytics is on by default"
+  },
+  "analytics_notice_turn_off": {
+    "message": "बंद करें",
+    "description": "Button to opt out of analytics on the disclosure banner"
+  },
+  "analytics_notice_ok": {
+    "message": "ठीक है",
+    "description": "Button to acknowledge the analytics disclosure (keeps it on)"
+  },
+  "welcome_footer_analytics": {
+    "message": "एक्सटेंशन को बेहतर बनाने के लिए हम गुमनाम उपयोग आँकड़े इकट्ठा करते हैं (कौन-सी सुविधाएँ इस्तेमाल हुईं — कभी आपके टेम्पलेट या संदेश नहीं)। आप इसे कभी भी सेटिंग में बंद कर सकते हैं।",
+    "description": "Analytics disclosure line on the welcome page"
+  },
+  "settings_sync_toggle": {
+    "message": "मेरे डिवाइसों पर टेम्पलेट सिंक करें",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "डिफ़ॉल्ट रूप से बंद। Chrome के बिल्ट-इन सिंक का इस्तेमाल करता है — किसी अकाउंट की ज़रूरत नहीं। टेक्स्ट टेम्पलेट के लिए सबसे अच्छा; बहुत बड़ी लाइब्रेरी या ज़्यादा इमेज वाले टेम्पलेट शायद फ़िट न हों।",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "dash_q_reply_to": {
+    "message": "आपका जवाब $EMAIL$ को जाएगा",
+    "description": "Shown on a draft when the email's Reply-To differs from the sender (same domain)",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_q_reply_to_warn": {
+    "message": "ध्यान दें: आपका जवाब $EMAIL$ को जाएगा — भेजने वाले से अलग पता। पक्का कर लें कि यह सही है।",
+    "description": "Warning on a draft when Reply-To points at a different domain than the sender",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_storage": {
+    "message": "ब्राउज़र स्टोरेज भर गया है — भेजे गए और निपटाए गए सूचियाँ साफ़ करें, फिर दोबारा कोशिश करें।",
+    "description": "Error when the browser's extension storage is full or unavailable"
+  },
+  "dash_prov_builtin": {
+    "message": "बिल्ट-इन AI",
+    "description": "Provider card name for the free built-in AI"
+  },
+  "dash_prov_free": {
+    "message": "मुफ़्त",
+    "description": "Small 'Free' pill on the built-in AI card"
+  },
+  "dash_prov_desc_builtin": {
+    "message": "API कुंजी की ज़रूरत नहीं · रोज़ $N$ अनुरोध",
+    "description": "Built-in AI card description; N = free requests per day",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_prov_byo_heading": {
+    "message": "या अपनी API कुंजी इस्तेमाल करें — कोई दैनिक सीमा नहीं",
+    "description": "Divider above the own-API-key providers"
+  },
+  "dash_ai_builtin_note": {
+    "message": "तुरंत इस्तेमाल के लिए तैयार — कुछ सेट नहीं करना। रोज़ $N$ AI अनुरोध शामिल हैं। आपका टेक्स्ट हमारे सर्वर से होकर AI तक जाता है और कभी सेव नहीं होता।",
+    "description": "Explanation shown when the built-in AI is selected",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_test_ok_builtin": {
+    "message": "बिल्ट-इन AI तैयार है — आज $N$ मुफ़्त अनुरोध बाकी हैं।",
+    "description": "Status after testing the built-in AI",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_ai_builtin_limit": {
+    "message": "आज के मुफ़्त AI अनुरोध खत्म हो गए। ये कल फिर मिलेंगे — या असीमित इस्तेमाल के लिए AI राइटर में अपनी API कुंजी जोड़ें।",
+    "description": "Error when the user has used today's free built-in AI requests"
+  },
+  "dash_err_ai_builtin_busy": {
+    "message": "बिल्ट-इन AI अभी व्यस्त है। एक मिनट बाद फिर कोशिश करें, या अपनी API कुंजी इस्तेमाल करें।",
+    "description": "Error when the built-in AI is overloaded"
+  },
+  "dash_err_ai_builtin_unavailable": {
+    "message": "बिल्ट-इन AI अभी उपलब्ध नहीं है। इसके बजाय आप AI राइटर में अपनी API कुंजी जोड़ सकते हैं।",
+    "description": "Error when the built-in AI relay isn't set up / reachable"
+  },
+  "picker_ai_remaining": {
+    "message": "आज $N$ मुफ़्त अनुरोध बाकी",
+    "description": "Picker footnote after a built-in AI draft; N = requests left today",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
   }
 }

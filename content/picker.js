@@ -73,6 +73,34 @@
       .varbox .row{margin-top:16px;text-align:right;}
       .varbox button.primary{padding:8px 16px;border:0;border-radius:8px;background:#2563eb;color:#fff;
         font-size:14px;cursor:pointer;}
+      .ft .lbtns{display:flex;gap:6px;}
+      .ft .aibtn{border:0;background:#f3efff;color:#6d28d9;border-radius:7px;padding:5px 10px;
+        font-size:12px;font-weight:600;cursor:pointer;}
+      .ft .aibtn:hover{background:#ebe4ff;}
+      .aibox textarea,.aibox select{width:100%;box-sizing:border-box;padding:9px 11px;font:14px/1.45 system-ui,-apple-system,sans-serif;
+        border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#111;resize:vertical;}
+      .aibox textarea:focus,.aibox select:focus{outline:0;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.14);}
+      .aibox .ctxrow{display:flex;align-items:center;gap:8px;font-weight:500;margin:12px 0 4px;cursor:pointer;}
+      .aibox .ctxrow input{width:auto;margin:0;}
+      .aibox .ctxsub{color:#6b7280;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .aibox .airow{display:flex;gap:8px;align-items:center;margin-top:10px;}
+      .aibox .airow select{width:auto;flex:0 1 auto;padding:7px 9px;font-size:13px;}
+      .aibox .grow{flex:1;}
+      .aibox .aierr{margin-top:10px;padding:9px 11px;border-radius:8px;background:#fdecec;color:#b91c1c;font-size:13px;
+        display:flex;gap:10px;align-items:center;}
+      .aibox .aierr button{margin-left:auto;border:0;background:#fff;color:#b91c1c;border-radius:7px;padding:4px 10px;font-weight:600;cursor:pointer;}
+      .aibox .aiwait{margin-top:10px;color:#6b7280;font-size:13px;}
+      .aibox .spin{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #2563eb;
+        border-right-color:transparent;animation:crspin .7s linear infinite;vertical-align:-1px;margin-right:7px;}
+      @keyframes crspin{to{transform:rotate(360deg);}}
+      .aibox .aisetup{margin-top:12px;padding:14px;border-radius:10px;background:#f3efff;}
+      .aibox .aisetup b{display:block;margin-bottom:4px;font-size:14px;}
+      .aibox .aisetup p{margin:0 0 12px;color:#4b5563;font-size:13px;}
+      .aibox .row{display:flex;gap:8px;justify-content:flex-end;}
+      .aibox button.ghost{padding:8px 12px;border:1px solid #d8dce2;border-radius:8px;background:transparent;color:#374151;font-size:13px;cursor:pointer;}
+      .aibox button.ghost:hover{background:#f1f5f9;}
+      .aibox button.primary:disabled{opacity:.6;cursor:default;}
+      .aibox .aifoot{color:#9aa1a8;font-size:11.5px;margin-top:10px;}
       .cr-dark{background:#1f2430;color:#e6e8ee;border-color:#333b4d;}
       .cr-dark .phead{border-bottom-color:#2c3342;} .cr-dark .phead .ptitle{color:#7e8799;}
       .cr-dark .phead .pclose{color:#9aa3b2;} .cr-dark .phead .pclose:hover{background:#2c3342;color:#e6e8ee;}
@@ -84,6 +112,12 @@
       .cr-dark .ft .newbtn{background:#1e2c45;color:#7eb0ff;} .cr-dark .ft .newbtn:hover{background:#24365a;}
       .cr-dark .varbox input{background:#232838;border-color:#3a4252;color:#e6e8ee;}
       .cr-dark .varbox .backarrow{background:#2a3140;color:#e6e8ee;} .cr-dark .varbox .backarrow:hover{background:#333b4d;}
+      .cr-dark .ft .aibtn{background:#2d2350;color:#c4b5fd;} .cr-dark .ft .aibtn:hover{background:#372b63;}
+      .cr-dark .aibox textarea,.cr-dark .aibox select{background:#232838;border-color:#3a4252;color:#e6e8ee;}
+      .cr-dark .aibox .ctxsub,.cr-dark .aibox .aiwait{color:#9aa3b2;}
+      .cr-dark .aibox .aisetup{background:#2d2350;} .cr-dark .aibox .aisetup p{color:#c9cfdb;}
+      .cr-dark .aibox .aierr{background:#3a1c1f;color:#fca5a5;} .cr-dark .aibox .aierr button{background:#4a2428;color:#fecaca;}
+      .cr-dark .aibox button.ghost{border-color:#3a4252;color:#cdd3df;} .cr-dark .aibox button.ghost:hover{background:#2a3140;}
     `;
   }
 
@@ -127,7 +161,10 @@
           </li>`).join("")}</ul>`
           : `<div class="empty">${esc(CR.i18n.t("picker_no_matches_query", [state.query]))}</div>`}
         <div class="ft">
-          <button class="newbtn" id="cr-new" title="${esc(CR.i18n.t("picker_new_template_title"))}">${esc(CR.i18n.t("picker_new_template_btn"))}</button>
+          <span class="lbtns">
+            <button class="newbtn" id="cr-new" title="${esc(CR.i18n.t("picker_new_template_title"))}">${esc(CR.i18n.t("picker_new_template_btn"))}</button>
+            <button class="aibtn" id="cr-ai" title="${esc(CR.i18n.t("picker_ai_btn_title"))}">${esc(CR.i18n.t("picker_ai_btn"))}</button>
+          </span>
           <span class="hints"><span>${esc(CR.i18n.t("picker_hint_navigate"))}</span><span>${esc(CR.i18n.t("picker_hint_insert"))}</span><span>${esc(CR.i18n.t("picker_hint_close"))}</span></span>
         </div>
       </div>`;
@@ -138,6 +175,7 @@
       if (app && app.newTemplate) app.newTemplate(cascadePos());
       else if (globalThis.CR && globalThis.CR.manager) globalThis.CR.manager.openNew(cascadePos());
     });
+    shadow.getElementById("cr-ai").addEventListener("click", () => { if (state && state.ai) state.ai.configured = undefined; renderAi(); });
     const search = shadow.querySelector(".search");
     search.focus();
     const v = search.value; search.value = ""; search.value = v; // caret to end
@@ -274,6 +312,156 @@
     afterRender();
   }
 
+  // ---- "Write with AI" view -------------------------------------------------
+  // The provider call happens in the service worker (it holds the user's key); this
+  // view only sends the instruction + — if the user leaves the box ticked — the open
+  // conversation, and gets text back. Nothing is read from the page until Generate.
+  const TONES = ["friendly", "professional", "concise", "formal", "casual"];
+  function textToHtml(t) {
+    return esc(String(t || "").trim()).replace(/\*\*([^*\n]+)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
+  }
+  function aiErrText(code) {
+    const key = "dash_err_" + (code || "error");
+    const m = CR.i18n.t(key);
+    return m === key ? CR.i18n.t("dash_err_error") : m;
+  }
+  function renderAi() {
+    if (!state) return;
+    const a = state.ai || (state.ai = { instruction: "", tone: "", useCtx: true, draft: "", html: "", busy: false, error: "" });
+    if (a.ctx === undefined) { try { a.ctx = state.aiContext ? state.aiContext() : null; } catch (e) { a.ctx = null; } }
+    if (a.configured === undefined) checkAiStatus(a);
+    const t = (k, s) => esc(CR.i18n.t(k, s));
+    const ctx = a.ctx;
+    // No AI provider yet: say so up front (with the way to fix it) instead of
+    // letting the user write an instruction that can only fail.
+    if (a.configured === false) {
+      shadow.innerHTML = `
+        <style>${styles()}</style>
+        <div class="panel ${themeCls()}"><div class="varbox aibox">
+          <div class="vhead">
+            <button class="backarrow" id="back" title="${t("picker_back_btn_title")}" aria-label="${t("button_back")}">&larr;</button>
+            <h3>${t("picker_ai_heading")}</h3>
+          </div>
+          <div class="aisetup"><b>${t("picker_ai_setup_title")}</b><p>${t("picker_ai_setup_desc")}</p>
+            <button class="primary" id="aiSetup">${t("dash_set_up_ai")}</button></div>
+        </div></div>`;
+      shadow.getElementById("back").addEventListener("click", (e) => { e.preventDefault(); paintList(); });
+      shadow.getElementById("aiSetup").addEventListener("click", openAiSetup);
+      shadow.getElementById("aiSetup").focus();
+      afterRender();
+      return;
+    }
+    shadow.innerHTML = `
+      <style>${styles()}</style>
+      <div class="panel ${themeCls()}"><div class="varbox aibox">
+        <div class="vhead">
+          <button class="backarrow" id="back" title="${t("picker_back_btn_title")}" aria-label="${t("button_back")}">&larr;</button>
+          <h3>${t("picker_ai_heading")}</h3>
+        </div>
+        ${ctx ? `<label class="ctxrow"><input type="checkbox" id="aiCtx" ${a.useCtx ? "checked" : ""}>
+          <span>${t("picker_ai_use_thread")}</span><span class="ctxsub">${esc(ctx.subject || "")}</span></label>` : ""}
+        <textarea id="aiInstr" rows="3" placeholder="${t(ctx && a.useCtx ? "picker_ai_reply_ph" : "picker_ai_compose_ph")}">${esc(a.instruction)}</textarea>
+        <div class="airow">
+          <select id="aiTone" title="${t("dash_profile_tone")}">
+            <option value="">${t("picker_ai_tone_default")}</option>
+            ${TONES.map((k) => `<option value="${k}" ${a.tone === k ? "selected" : ""}>${t("dash_tone_" + k)}</option>`).join("")}
+          </select>
+          <span class="grow"></span>
+          <button class="primary" id="aiGo" ${a.busy ? "disabled" : ""}>${t(a.draft ? "dash_q_regenerate" : "dash_generate")}</button>
+        </div>
+        ${a.busy ? `<div class="aiwait"><span class="spin"></span>${t("dash_ai_writing")}</div>` : ""}
+        ${a.error ? `<div class="aierr"><span>${esc(aiErrText(a.error))}</span>${["ai_not_configured", "ai_auth", "ai_builtin_limit", "ai_builtin_unavailable"].includes(a.error) ? `<button id="aiSetup">${t("dash_set_up_ai")}</button>` : ""}</div>` : ""}
+        ${a.draft ? `<label for="aiDraft">${t("picker_ai_draft_label")}</label>
+          <textarea id="aiDraft" rows="8">${esc(a.draft)}</textarea>
+          <div class="row">
+            <button class="ghost" id="aiSaveTpl">${t("picker_ai_save_template")}</button>
+            <button class="primary" id="aiInsert">${t("picker_insert_btn")}</button>
+          </div>` : ""}
+        <div class="aifoot">${t("picker_ai_footnote")}${a.remaining != null ? " · " + t("picker_ai_remaining", [String(a.remaining)]) : ""}</div>
+      </div></div>`;
+    const instr = shadow.getElementById("aiInstr");
+    const draft = shadow.getElementById("aiDraft");
+    const sync = () => {
+      a.instruction = instr.value;
+      a.tone = shadow.getElementById("aiTone").value;
+      const c = shadow.getElementById("aiCtx"); if (c) a.useCtx = c.checked;
+      if (draft) a.draft = draft.value;
+    };
+    const goBack = () => { sync(); paintList(); };
+    shadow.getElementById("back").addEventListener("click", (e) => { e.preventDefault(); goBack(); });
+    shadow.getElementById("aiGo").addEventListener("click", () => { sync(); generateAi(); });
+    const c = shadow.getElementById("aiCtx");
+    if (c) c.addEventListener("change", () => { sync(); renderAi(); });
+    const setup = shadow.getElementById("aiSetup");
+    if (setup) setup.addEventListener("click", openAiSetup);
+    if (draft) {
+      shadow.getElementById("aiInsert").addEventListener("click", () => { sync(); insertAi(); });
+      shadow.getElementById("aiSaveTpl").addEventListener("click", () => { sync(); saveAiTemplate(); });
+    }
+    [instr, draft].forEach((el) => el && el.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); goBack(); }
+      else if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault(); sync();
+        if (el === draft) insertAi(); else generateAi();
+      }
+    }));
+    (draft && !a.busy ? draft : instr).focus();
+    afterRender();
+  }
+  function openAiSetup() {
+    try { chrome.runtime.sendMessage({ type: "OPEN_DASHBOARD", tab: "ai" }, () => void chrome.runtime.lastError); } catch (e) {}
+  }
+  // null while asking the service worker; true/false once known (re-renders on answer).
+  function checkAiStatus(a) {
+    a.configured = null;
+    try {
+      chrome.runtime.sendMessage({ type: "AI_STATUS" }, (res) => {
+        void chrome.runtime.lastError;
+        if (!res || !res.ok) return;              // unknown -> keep the normal view
+        a.configured = !!(res.data && res.data.configured);
+        if (state && state.ai === a && !a.configured) renderAi();
+      });
+    } catch (e) {}
+  }
+  function generateAi() {
+    const a = state && state.ai;
+    if (!a || a.busy) return;
+    const useCtx = !!(a.ctx && a.useCtx);
+    a.busy = true; a.error = "";
+    renderAi();
+    const done = (res) => {
+      if (!state || state.ai !== a) return;   // picker closed meanwhile
+      a.busy = false;
+      if (res && res.ok) {
+        a.draft = res.data.text; a.html = res.data.html; a.draftOrig = res.data.text;
+        a.remaining = res.data.remaining == null ? null : res.data.remaining;   // built-in AI only
+      }
+      else a.error = (res && res.error) || "error";
+      renderAi();
+    };
+    try {
+      chrome.runtime.sendMessage({
+        type: "AI_GENERATE", task: useCtx ? "reply" : "compose",
+        instruction: a.instruction, tone: a.tone, context: useCtx ? a.ctx : null
+      }, (res) => { void chrome.runtime.lastError; done(res); });
+    } catch (e) { done(null); }
+  }
+  // The SW's HTML when the draft is untouched, else re-convert the edited text.
+  function aiHtml(a) { return a.draft === a.draftOrig && a.html ? a.html : textToHtml(a.draft); }
+  function insertAi() {
+    const a = state && state.ai;
+    if (!a || !a.draft.trim()) return;
+    finish(aiHtml(a));
+  }
+  async function saveAiTemplate() {
+    const a = state && state.ai;
+    if (!a || !a.draft.trim() || !NS.store) return;
+    const title = (a.instruction.trim() || a.draft.trim()).split("\n")[0].slice(0, 60) || CR.i18n.t("template_untitled");
+    const html = aiHtml(a);
+    const rec = await NS.store.create({ title, body: NS.sanitize ? NS.sanitize.sanitize(html) : html });
+    if (NS.ui && NS.ui.cue) NS.ui.cue(CR.i18n.t(rec ? "picker_ai_saved_template" : "dash_err_template_limit"));
+  }
+
   // ---- Draggable panel + remembered position ----------------------------
   let pickerPos = null;
   function loadPickerPos() {
@@ -296,7 +484,7 @@
     if (!p || !handle) return;
     handle.style.cursor = "move";
     handle.addEventListener("mousedown", (e) => {
-      if (e.target.closest("button, input")) return;
+      if (e.target.closest("button, input, textarea, select")) return;
       e.preventDefault();
       const r = p.getBoundingClientRect();
       const offX = e.clientX - r.left, offY = e.clientY - r.top, w = r.width;
@@ -338,7 +526,8 @@
       templates: templates || [],
       filtered: templates || [],
       index: 0, query: "",
-      onInsert: (opts || {}).onInsert
+      onInsert: (opts || {}).onInsert,
+      aiContext: (opts || {}).aiContext
     };
     loadPickerPos();
     paintList();

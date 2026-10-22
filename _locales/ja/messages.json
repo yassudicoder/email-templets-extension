@@ -152,8 +152,8 @@
     "description": "Analytics opt-in checkbox label"
   },
   "settings_analytics_note": {
-    "message": "デフォルトはオフ。拡張機能の改善に役立ちます — メッセージやテンプレートの内容が送信されることはありません。 ",
-    "description": "Privacy explanation for the analytics opt-in"
+    "message": "デフォルトはオン。匿名で、メッセージやテンプレートの内容は送信されず、使われた機能だけが記録されます。ここでいつでもオフにできます。",
+    "description": "Privacy explanation for the analytics setting"
   },
   "link_learn_more_privacy": {
     "message": "詳細を見る",
@@ -1014,5 +1014,1513 @@
   "feedback_email_fallback": {
     "message": "または直接メールする",
     "description": "Secondary mailto link next to the feedback form"
+  },
+  "popup_dashboard_button": {
+    "message": "🗓 予約送信・自動返信・AI",
+    "description": "Popup button that opens the dashboard"
+  },
+  "dash_page_title": {
+    "message": "Canned Responses — ダッシュボード",
+    "description": "Dashboard page <title>"
+  },
+  "dash_brand_sub": {
+    "message": "ダッシュボード",
+    "description": "Small label next to the brand name in the dashboard top bar"
+  },
+  "dash_tab_schedule": {
+    "message": "送信予約",
+    "description": "Dashboard tab: scheduled emails"
+  },
+  "dash_tab_autoreply": {
+    "message": "自動返信",
+    "description": "Dashboard tab: auto-reply drafts"
+  },
+  "dash_tab_ai": {
+    "message": "AIライター",
+    "description": "Dashboard tab: AI provider + AI templates"
+  },
+  "dash_tab_settings": {
+    "message": "設定",
+    "description": "Dashboard tab: settings"
+  },
+  "dash_open_templates": {
+    "message": "マイテンプレート",
+    "description": "Dashboard top-bar button that opens the template manager"
+  },
+  "dash_connect_gmail": {
+    "message": "Gmailを接続",
+    "description": "Button that starts Google sign-in to connect Gmail"
+  },
+  "dash_gmail_banner": {
+    "message": "Gmailアカウントを接続すると、メールの予約送信や自動返信の下書き作成が使えます。",
+    "description": "Banner shown when Gmail isn't connected"
+  },
+  "dash_gmail_not_configured": {
+    "message": "このビルドではGmail連携がまだ設定されていません。",
+    "description": "Shown when the developer hasn't configured the Google OAuth client"
+  },
+  "dash_gmail_not_configured_hint": {
+    "message": "開発者向け：core/google-config.js にGoogle OAuthクライアントIDを追加してください（下の「開発者向け設定」を参照）。",
+    "description": "Hint for developers when OAuth isn't configured"
+  },
+  "dash_gmail_intro": {
+    "message": "送信元にするGmailアカウントを接続してください。Canned Responsesは、各機能に必要な権限のみを要求します：",
+    "description": "Intro text in the Gmail account card"
+  },
+  "dash_perm_send": {
+    "message": "あなたに代わってメールを送信 — 予約送信と、承認した返信",
+    "description": "Permission explanation: send"
+  },
+  "dash_perm_read": {
+    "message": "受信トレイの新着メールを読み取り — 自動返信の下書き作成用",
+    "description": "Permission explanation: read"
+  },
+  "dash_perm_read_optional": {
+    "message": "新着メールの読み取り — 自動返信の下書きをオンにした場合のみ",
+    "description": "Permission explanation: read, before it's requested"
+  },
+  "dash_gmail_connected_since": {
+    "message": "$DATE$から接続中",
+    "description": "Under the connected Gmail address",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_connected_toast": {
+    "message": "$EMAIL$として接続しました",
+    "description": "Toast after connecting Gmail",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_gmail_reconnect": {
+    "message": "再接続",
+    "description": "Button: redo Google sign-in"
+  },
+  "dash_gmail_disconnect": {
+    "message": "接続を解除",
+    "description": "Button: disconnect Gmail"
+  },
+  "dash_gmail_disconnect_confirm": {
+    "message": "Gmailの接続を解除しますか？再接続するまで、予約メールは送信されず、自動返信の下書きも停止します。",
+    "description": "Confirm dialog before disconnecting Gmail"
+  },
+  "dash_gmail_disconnected_toast": {
+    "message": "Gmailの接続を解除しました",
+    "description": "Toast after disconnecting"
+  },
+  "dash_allow_read": {
+    "message": "アクセスを許可",
+    "description": "Button that grants permission to read new emails"
+  },
+  "dash_gmail_account": {
+    "message": "Gmailアカウント",
+    "description": "Settings card heading"
+  },
+  "dash_gmail_dev": {
+    "message": "開発者向け設定",
+    "description": "Collapsible section with the OAuth redirect URI"
+  },
+  "dash_gmail_dev_hint": {
+    "message": "このリダイレクトURIをGoogle CloudのOAuth「ウェブアプリケーション」クライアントに登録し、クライアントIDを core/google-config.js に設定してください：",
+    "description": "Developer setup instructions"
+  },
+  "dash_copy": {
+    "message": "コピー",
+    "description": "Copy-to-clipboard button"
+  },
+  "dash_composer_title_new": {
+    "message": "メールを予約送信",
+    "description": "Composer heading (new)"
+  },
+  "dash_composer_title_edit": {
+    "message": "予約メールを編集",
+    "description": "Composer heading (editing)"
+  },
+  "dash_composer_cancel_edit": {
+    "message": "編集をキャンセル",
+    "description": "Button that leaves edit mode"
+  },
+  "dash_field_to": {
+    "message": "宛先",
+    "description": "Recipient field label"
+  },
+  "dash_field_to_ph": {
+    "message": "name@example.com, another@example.com",
+    "description": "Recipient field placeholder"
+  },
+  "dash_add_cc": {
+    "message": "+ Cc / Bcc",
+    "description": "Link that reveals Cc/Bcc fields"
+  },
+  "dash_field_subject": {
+    "message": "件名",
+    "description": "Subject field label"
+  },
+  "dash_field_message": {
+    "message": "本文",
+    "description": "Message body label"
+  },
+  "dash_insert_template": {
+    "message": "テンプレートを挿入…",
+    "description": "First option of the insert-template dropdown"
+  },
+  "dash_insert_template_title": {
+    "message": "テンプレートを挿入します",
+    "description": "Tooltip for the insert-template dropdown"
+  },
+  "dash_write_with_ai": {
+    "message": "✨ AIで作成",
+    "description": "Button that opens the AI prompt in the composer"
+  },
+  "dash_ai_compose_ph": {
+    "message": "どんな内容のメールにしますか？例：金曜のデモについてSamにリマインドし、アジェンダを依頼する",
+    "description": "AI prompt placeholder in the composer"
+  },
+  "dash_generate": {
+    "message": "生成",
+    "description": "Button that asks the AI to write"
+  },
+  "dash_field_send_at": {
+    "message": "送信日時",
+    "description": "Date/time field label"
+  },
+  "dash_tz_hint": {
+    "message": "時刻はお使いのタイムゾーン（$TZ$）です。",
+    "description": "Hint under the date/time field",
+    "placeholders": {
+      "tz": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_quick_1h": {
+    "message": "1時間後",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_am": {
+    "message": "明日 午前9時",
+    "description": "Quick time chip"
+  },
+  "dash_quick_tomorrow_pm": {
+    "message": "明日 午後1時",
+    "description": "Quick time chip"
+  },
+  "dash_quick_monday": {
+    "message": "月曜 午前9時",
+    "description": "Quick time chip (next Monday)"
+  },
+  "dash_clear": {
+    "message": "クリア",
+    "description": "Button that clears the composer"
+  },
+  "dash_send_now": {
+    "message": "今すぐ送信",
+    "description": "Button that sends immediately"
+  },
+  "dash_schedule_btn": {
+    "message": "予約する",
+    "description": "Button that schedules the email"
+  },
+  "dash_save_changes": {
+    "message": "変更を保存",
+    "description": "Button label while editing a scheduled email"
+  },
+  "dash_vars_title": {
+    "message": "変数を入力してください — 送信前に置き換えられます",
+    "description": "Heading above the variable inputs"
+  },
+  "dash_vars_missing": {
+    "message": "入力してください：$VARS$",
+    "description": "Error when some variables are empty",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_send_now": {
+    "message": "このメールを今すぐ$TO$に送信しますか？",
+    "description": "Confirm before sending immediately",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_sending_toast": {
+    "message": "送信中…",
+    "description": "Toast while sending"
+  },
+  "dash_scheduled_toast": {
+    "message": "$WHEN$に予約しました",
+    "description": "Toast after scheduling",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_writing": {
+    "message": "作成中…",
+    "description": "Status while the AI is generating"
+  },
+  "dash_ai_done": {
+    "message": "下書きができました。送信前に内容を確認してください。",
+    "description": "Status after AI generation"
+  },
+  "dash_needs_attention": {
+    "message": "要確認",
+    "description": "List heading: missed/failed emails"
+  },
+  "dash_upcoming": {
+    "message": "送信予定",
+    "description": "List heading: scheduled emails"
+  },
+  "dash_sent": {
+    "message": "送信済み",
+    "description": "List heading: sent emails"
+  },
+  "dash_clear_list": {
+    "message": "リストをクリア",
+    "description": "Link that clears a finished list"
+  },
+  "dash_upcoming_empty": {
+    "message": "予約はまだありません。",
+    "description": "Empty upcoming list"
+  },
+  "dash_sent_empty": {
+    "message": "予約メールは送信されるとここに表示されます。",
+    "description": "Empty sent list"
+  },
+  "dash_schedule_footnote": {
+    "message": "メールはこのブラウザからあなた自身のGmailで送信されます。予約時刻にChromeが起動している必要があります。起動していない場合は、Chromeの起動時に送信されるか、確認待ちになります（設定を参照）。",
+    "description": "Footnote under the schedule lists"
+  },
+  "dash_status_sending": {
+    "message": "送信中…",
+    "description": "Status chip"
+  },
+  "dash_status_retrying": {
+    "message": "再試行中",
+    "description": "Status chip after a temporary failure"
+  },
+  "dash_status_missed": {
+    "message": "未送信",
+    "description": "Status chip: send time passed while Chrome was closed"
+  },
+  "dash_status_failed": {
+    "message": "失敗",
+    "description": "Status chip"
+  },
+  "dash_status_sent": {
+    "message": "送信済み",
+    "description": "Status chip"
+  },
+  "dash_missed_explain": {
+    "message": "予約時刻にChromeが閉じていました。今すぐ送信、再予約、または削除してください。",
+    "description": "Explanation under a missed email"
+  },
+  "dash_reschedule": {
+    "message": "再予約",
+    "description": "Button that loads a missed/failed email into the composer"
+  },
+  "dash_open_in_gmail": {
+    "message": "Gmailで開く",
+    "description": "Button that opens a sent email in Gmail"
+  },
+  "dash_remove_from_list": {
+    "message": "リストから削除",
+    "description": "Tooltip for the × button"
+  },
+  "dash_no_subject": {
+    "message": "（件名なし）",
+    "description": "Shown when an email has no subject"
+  },
+  "dash_to_label": {
+    "message": "宛先：$TO$",
+    "description": "Recipient line in lists",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_confirm_delete_scheduled": {
+    "message": "この予約メールをキャンセルしますか？",
+    "description": "Confirm before cancelling a scheduled email"
+  },
+  "dash_ar_title": {
+    "message": "自動返信の下書き",
+    "description": "Auto-reply tab heading"
+  },
+  "dash_ar_check_now": {
+    "message": "今すぐ確認",
+    "description": "Button that checks the inbox immediately"
+  },
+  "dash_ar_checked": {
+    "message": "受信トレイを確認しました",
+    "description": "Toast after a manual check"
+  },
+  "dash_ar_status_off": {
+    "message": "オフ。オンにすると、ルールに一致するメールへの返信を下書きします。送信前に必ず内容を確認できます。",
+    "description": "Auto-reply status (off)"
+  },
+  "dash_ar_status_on": {
+    "message": "オン · $WHEN$に確認済み · Chrome起動中は$MIN$分ごとに確認",
+    "description": "Auto-reply status (on)",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_ar_status_starting": {
+    "message": "オン · 1分以内に初回確認、その後Chrome起動中は$MIN$分ごとに確認",
+    "description": "Auto-reply status right after enabling",
+    "placeholders": {
+      "min": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_status_error": {
+    "message": "オン · 前回の確認に失敗：$ERROR$",
+    "description": "Auto-reply status after an error",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ar_need_ai": {
+    "message": "AIで返信するルールがあります。先にAIプロバイダーのキーを追加してください。",
+    "description": "Banner when AI rules exist but no AI key"
+  },
+  "dash_set_up_ai": {
+    "message": "AIを設定",
+    "description": "Button that opens the AI writer tab"
+  },
+  "dash_ar_add_rule_hint": {
+    "message": "次に、どのメールの返信を下書きするかをCanned Responsesに伝えるルールを追加しましょう。",
+    "description": "Toast after enabling auto-reply with no rules"
+  },
+  "dash_ar_on_toast": {
+    "message": "自動返信の下書きをオンにしました。直近1時間のメールから開始します。",
+    "description": "Toast after enabling auto-reply"
+  },
+  "dash_ar_footnote": {
+    "message": "クリックするまで何も送信されません。ニュースレター、通知、メーリングリスト、送信専用アドレスは常に無視されます。確認はChromeの起動中に実行されます。",
+    "description": "Footnote on the auto-reply tab"
+  },
+  "dash_review_queue": {
+    "message": "確認待ち",
+    "description": "Heading: drafts waiting for review"
+  },
+  "dash_handled": {
+    "message": "処理済み",
+    "description": "Heading: sent/skipped drafts"
+  },
+  "dash_q_original": {
+    "message": "元のメッセージ",
+    "description": "Expandable original email in a draft card"
+  },
+  "dash_q_generating": {
+    "message": "下書きを作成中…",
+    "description": "Placeholder while a draft is generated"
+  },
+  "dash_q_draft_label": {
+    "message": "返信の下書き",
+    "description": "Aria label for the editable draft"
+  },
+  "dash_q_gaps": {
+    "message": "この下書きには[placeholders]や{variables}が含まれています。送信前に入力してください。",
+    "description": "Hint when a draft contains placeholders"
+  },
+  "dash_q_gaps_confirm": {
+    "message": "この下書きにはまだ[placeholders]や{variables}が残っています。このまま送信しますか？",
+    "description": "Confirm sending a draft with placeholders"
+  },
+  "dash_q_skip": {
+    "message": "スキップ",
+    "description": "Button: discard this draft"
+  },
+  "dash_q_regenerate": {
+    "message": "再生成",
+    "description": "Button: write the draft again"
+  },
+  "dash_q_refill": {
+    "message": "テンプレートを再入力",
+    "description": "Button: re-fill a template-based draft"
+  },
+  "dash_q_send": {
+    "message": "返信を送信",
+    "description": "Button: send the reviewed draft"
+  },
+  "dash_q_sent_toast": {
+    "message": "返信を送信しました",
+    "description": "Toast after sending a reply"
+  },
+  "dash_q_empty_draft": {
+    "message": "下書きが空です。",
+    "description": "Error when trying to send/save an empty draft"
+  },
+  "dash_q_regen_confirm": {
+    "message": "編集内容を破棄して、新しい下書きを作成しますか？",
+    "description": "Confirm regenerating an edited draft"
+  },
+  "dash_q_empty_on": {
+    "message": "待機中の下書きはありません。ルールに一致する新着メールがここに表示されます。",
+    "description": "Empty review queue (on)"
+  },
+  "dash_q_empty_off": {
+    "message": "自動返信の下書きをオンにして、ルールを追加しましょう。",
+    "description": "Empty review queue (off)"
+  },
+  "dash_done_empty": {
+    "message": "送信またはスキップした返信がここに表示されます。",
+    "description": "Empty handled list"
+  },
+  "dash_status_replied": {
+    "message": "返信済み",
+    "description": "Status chip"
+  },
+  "dash_status_skipped": {
+    "message": "スキップ済み",
+    "description": "Status chip"
+  },
+  "dash_status_already_replied": {
+    "message": "このスレッドにはすでに返信済みです",
+    "description": "Status when the draft was skipped because the user already replied"
+  },
+  "dash_rules": {
+    "message": "ルール",
+    "description": "Heading: auto-reply rules"
+  },
+  "dash_rule_new": {
+    "message": "+ 新規ルール",
+    "description": "Button: create a rule"
+  },
+  "dash_rule_new_title": {
+    "message": "新規ルール",
+    "description": "Rule form heading (new)"
+  },
+  "dash_rule_edit_title": {
+    "message": "ルールを編集",
+    "description": "Rule form heading (edit)"
+  },
+  "dash_rule_name": {
+    "message": "ルール名",
+    "description": "Field label"
+  },
+  "dash_rule_name_ph": {
+    "message": "例：クライアント",
+    "description": "Field placeholder"
+  },
+  "dash_rule_which": {
+    "message": "対象のメール",
+    "description": "Field label"
+  },
+  "dash_rule_who_senders": {
+    "message": "指定した相手またはドメインからのみ",
+    "description": "Radio option"
+  },
+  "dash_rule_who_any": {
+    "message": "通常のメールすべて — ニュースレターや通知ではなく、個人からのもの",
+    "description": "Radio option"
+  },
+  "dash_rule_senders_ph": {
+    "message": "jane@client.com, @acme.com, partner.org",
+    "description": "Senders field placeholder"
+  },
+  "dash_rule_keywords": {
+    "message": "次の語を含む場合のみ",
+    "description": "Keywords field label"
+  },
+  "dash_rule_keywords_ph": {
+    "message": "料金, 請求書, 打ち合わせ",
+    "description": "Keywords field placeholder"
+  },
+  "dash_rule_reply_with": {
+    "message": "返信の作成方法",
+    "description": "Field label"
+  },
+  "dash_rule_mode_ai": {
+    "message": "AI（各メールに返信を作成）",
+    "description": "Radio option"
+  },
+  "dash_rule_mode_template": {
+    "message": "マイテンプレートから選択",
+    "description": "Radio option"
+  },
+  "dash_rule_instr_ph": {
+    "message": "AIにどう返信させますか？例：お礼を述べ、24時間以内に改めて連絡すると伝え、簡単な通話を提案する。",
+    "description": "AI instructions placeholder"
+  },
+  "dash_rule_choose_template": {
+    "message": "テンプレートを選択…",
+    "description": "First option of the template dropdown"
+  },
+  "dash_rule_save": {
+    "message": "ルールを保存",
+    "description": "Button"
+  },
+  "dash_rule_saved": {
+    "message": "ルールを保存しました",
+    "description": "Toast"
+  },
+  "dash_rules_empty": {
+    "message": "ルールはまだありません。ルールで、どのメールに下書きを作成し、どう書くかを指定します。",
+    "description": "Empty rules list"
+  },
+  "dash_rule_delete_confirm": {
+    "message": "ルール「$NAME$」を削除しますか？",
+    "description": "Confirm deleting a rule",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_toggle_title": {
+    "message": "このルールのオン/オフを切り替え",
+    "description": "Tooltip for a rule's switch"
+  },
+  "dash_rule_sum_from": {
+    "message": "送信元：$SENDERS$",
+    "description": "Rule summary: sender filter",
+    "placeholders": {
+      "senders": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_any": {
+    "message": "通常のメールすべて",
+    "description": "Rule summary: any sender"
+  },
+  "dash_rule_sum_keywords": {
+    "message": "$WORDS$を含む",
+    "description": "Rule summary: keyword filter",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_ai": {
+    "message": "AI返信",
+    "description": "Rule summary: AI mode"
+  },
+  "dash_rule_sum_ai_with": {
+    "message": "AI返信：「$INSTR$」",
+    "description": "Rule summary: AI mode with instructions",
+    "placeholders": {
+      "instr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_sum_template": {
+    "message": "テンプレート：$NAME$",
+    "description": "Rule summary: template mode",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_rule_template_missing": {
+    "message": "（削除されたテンプレート）",
+    "description": "Shown when a rule's template no longer exists"
+  },
+  "dash_activity": {
+    "message": "アクティビティ",
+    "description": "Collapsible activity log heading"
+  },
+  "dash_log_empty": {
+    "message": "アクティビティはまだありません。",
+    "description": "Empty activity log"
+  },
+  "dash_log_sent": {
+    "message": "「$SUBJECT$」を$TO$に送信しました",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "to": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_send_failed": {
+    "message": "「$SUBJECT$」を送信できませんでした：$ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_missed": {
+    "message": "「$SUBJECT$」は未送信です — 予約時刻にChromeが閉じていました",
+    "description": "Log entry",
+    "placeholders": {
+      "subject": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_created": {
+    "message": "$FROM$への返信を下書きしました",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_draft_failed": {
+    "message": "$FROM$への返信を下書きできませんでした：$ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      },
+      "error": {
+        "content": "$2"
+      }
+    }
+  },
+  "dash_log_reply_sent": {
+    "message": "$TO$に返信しました",
+    "description": "Log entry",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_reply_skipped": {
+    "message": "$FROM$への返信をスキップしました — すでに返信済みです",
+    "description": "Log entry",
+    "placeholders": {
+      "from": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_poll_error": {
+    "message": "受信トレイの確認に失敗しました：$ERROR$",
+    "description": "Log entry",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_log_cap_reached": {
+    "message": "1日の下書き上限に達しました — 本日はこれ以上作成されません（設定で変更できます）",
+    "description": "Log entry"
+  },
+  "dash_ai_provider": {
+    "message": "AIプロバイダー",
+    "description": "Card heading"
+  },
+  "dash_ai_provider_sub": {
+    "message": "無料の内蔵AIから始めるか、自分のAPIキーを使います:",
+    "description": "Card subtitle above the provider choices"
+  },
+  "dash_prov_desc_gemini": {
+    "message": "無料枠あり · Google AI Studio",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_xai": {
+    "message": "Grokモデル · console.x.ai",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_openai": {
+    "message": "ChatGPTモデル · platform.openai.com",
+    "description": "Provider card description"
+  },
+  "dash_prov_desc_custom": {
+    "message": "OpenRouter、Groq、DeepSeek、Ollama…",
+    "description": "Provider card description"
+  },
+  "dash_prov_active": {
+    "message": "✓ 使用中",
+    "description": "Marker on the active provider card"
+  },
+  "dash_prov_key_saved": {
+    "message": "キーを保存済み",
+    "description": "Marker on a provider card that has a key"
+  },
+  "dash_ai_base_url": {
+    "message": "ベースURL",
+    "description": "Custom endpoint field label"
+  },
+  "dash_ai_base_hint": {
+    "message": "OpenAI互換のエンドポイントなら何でも使えます — OpenRouter、Groq、DeepSeek、またはローカルのOllama / LM Studioサーバー（例：http://localhost:11434/v1）。",
+    "description": "Hint under the base URL field"
+  },
+  "dash_ai_key": {
+    "message": "APIキー",
+    "description": "Field label"
+  },
+  "dash_ai_key_optional": {
+    "message": "ローカルサーバーでは省略可",
+    "description": "API key placeholder for custom endpoints"
+  },
+  "dash_show": {
+    "message": "表示",
+    "description": "Show the API key"
+  },
+  "dash_hide": {
+    "message": "非表示",
+    "description": "Hide the API key"
+  },
+  "dash_ai_get_key": {
+    "message": "$PROVIDER$のAPIキーを取得 ↗",
+    "description": "Link to the provider's key page",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_model": {
+    "message": "モデル",
+    "description": "Field label"
+  },
+  "dash_ai_model_auto": {
+    "message": "自動",
+    "description": "Model placeholder when chosen automatically"
+  },
+  "dash_ai_model_default": {
+    "message": "自動（$MODEL$）",
+    "description": "Model placeholder showing the default",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_load_models": {
+    "message": "モデルを読み込む",
+    "description": "Button that lists the provider's models"
+  },
+  "dash_ai_loading_models": {
+    "message": "モデルを読み込み中…",
+    "description": "Status"
+  },
+  "dash_ai_models_found": {
+    "message": "$COUNT$件のモデルが見つかりました。選択するか、「自動」のままにしてください。",
+    "description": "Status after listing models",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_save_test": {
+    "message": "保存してテスト",
+    "description": "Button"
+  },
+  "dash_ai_testing": {
+    "message": "接続をテスト中…",
+    "description": "Status"
+  },
+  "dash_ai_test_ok": {
+    "message": "接続しました — $MODEL$を使用中",
+    "description": "Status after a successful test",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_key_note": {
+    "message": "キーはこのブラウザにのみ保存され、同期・書き出し・当社への送信は一切行われません。リクエストはお客様ご自身のアカウントでプロバイダーに直接送信されます。",
+    "description": "Privacy note under the AI key"
+  },
+  "dash_about_you": {
+    "message": "あなたについて",
+    "description": "Card heading"
+  },
+  "dash_about_you_sub": {
+    "message": "AIはこれらの情報をもとに、あなたらしい文章で作成します。",
+    "description": "Card subtitle"
+  },
+  "dash_profile_name": {
+    "message": "お名前",
+    "description": "Field label"
+  },
+  "dash_profile_role": {
+    "message": "役職 / 肩書き",
+    "description": "Field label"
+  },
+  "dash_profile_company": {
+    "message": "会社名",
+    "description": "Field label"
+  },
+  "dash_profile_tone": {
+    "message": "トーン",
+    "description": "Field label"
+  },
+  "dash_profile_language": {
+    "message": "言語",
+    "description": "Field label"
+  },
+  "dash_lang_auto": {
+    "message": "メールと同じ言語",
+    "description": "Language option: match the email"
+  },
+  "dash_profile_signature": {
+    "message": "署名",
+    "description": "Field label"
+  },
+  "dash_profile_signature_ph": {
+    "message": "よろしくお願いいたします。\nAlex Kim · 営業部長、Acme",
+    "description": "Signature placeholder"
+  },
+  "dash_profile_notes": {
+    "message": "常に考慮してほしいこと",
+    "description": "Field label: standing instructions for the AI"
+  },
+  "dash_profile_notes_ph": {
+    "message": "例：1営業日以内に返信する。値引きは約束しない。予約リンクは https://cal.example.com/alex",
+    "description": "Placeholder"
+  },
+  "dash_tone_friendly": {
+    "message": "フレンドリー",
+    "description": "Tone option"
+  },
+  "dash_tone_professional": {
+    "message": "プロフェッショナル",
+    "description": "Tone option"
+  },
+  "dash_tone_concise": {
+    "message": "簡潔・率直",
+    "description": "Tone option"
+  },
+  "dash_tone_formal": {
+    "message": "フォーマル",
+    "description": "Tone option"
+  },
+  "dash_tone_casual": {
+    "message": "カジュアル",
+    "description": "Tone option"
+  },
+  "dash_tg_title": {
+    "message": "AIで新規テンプレート",
+    "description": "Card heading"
+  },
+  "dash_tg_mode_gen": {
+    "message": "AIで生成",
+    "description": "Segment button"
+  },
+  "dash_tg_mode_import": {
+    "message": "ChatGPTなどのAIから貼り付け",
+    "description": "Segment button"
+  },
+  "dash_tg_prompt_ph": {
+    "message": "テンプレートの内容を説明してください。例：営業デモ後のフォローアップで、金曜までの判断をお願いする",
+    "description": "Placeholder"
+  },
+  "dash_tg_paste_ph": {
+    "message": "ChatGPT、Gemini、Claude、Grokなどで作成したメールを貼り付けてください。[Name]や{{company}}のようなプレースホルダーは入力用の変数になります。",
+    "description": "Placeholder"
+  },
+  "dash_tg_convert": {
+    "message": "テンプレートに変換",
+    "description": "Button"
+  },
+  "dash_tg_template": {
+    "message": "テンプレート",
+    "description": "Field label"
+  },
+  "dash_tg_vars": {
+    "message": "入力用の変数：$VARS$ — テンプレートを挿入する際に入力を求められます。",
+    "description": "Hint listing detected variables",
+    "placeholders": {
+      "vars": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_tg_no_vars": {
+    "message": "ヒント：{curly_braces}で囲んだ語は、テンプレート挿入時に入力用の変数になります。",
+    "description": "Hint when no variables were found"
+  },
+  "dash_tg_save": {
+    "message": "マイテンプレートに保存",
+    "description": "Button"
+  },
+  "dash_tg_saved_toast": {
+    "message": "「$TITLE$」をマイテンプレートに保存しました",
+    "description": "Toast",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_everywhere_note": {
+    "message": "GmailとLinkedInでは、テンプレートピッカー（Alt+Aまたは作成画面内のボタン）を開き、✨ AIを選ぶと、表示中の会話への返信を下書きできます。",
+    "description": "Footnote on the AI tab"
+  },
+  "dash_settings_schedule": {
+    "message": "予約送信",
+    "description": "Settings card heading"
+  },
+  "dash_settings_grace": {
+    "message": "予約時刻にChromeが閉じていた場合",
+    "description": "Field label"
+  },
+  "dash_grace_15": {
+    "message": "15分以内の遅れなら送信し、それ以降は確認する",
+    "description": "Grace option"
+  },
+  "dash_grace_60": {
+    "message": "1時間以内の遅れなら送信し、それ以降は確認する",
+    "description": "Grace option (default)"
+  },
+  "dash_grace_360": {
+    "message": "6時間以内の遅れなら送信し、それ以降は確認する",
+    "description": "Grace option"
+  },
+  "dash_grace_1440": {
+    "message": "24時間以内の遅れなら送信し、それ以降は確認する",
+    "description": "Grace option"
+  },
+  "dash_grace_always": {
+    "message": "どれだけ遅れても常に送信する",
+    "description": "Grace option"
+  },
+  "dash_settings_autoreply": {
+    "message": "自動返信の下書き",
+    "description": "Settings card heading"
+  },
+  "dash_settings_poll": {
+    "message": "新着メールの確認間隔",
+    "description": "Field label"
+  },
+  "dash_poll_minutes": {
+    "message": "$N$分",
+    "description": "Poll interval option",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_settings_cap": {
+    "message": "1日の下書き上限",
+    "description": "Field label"
+  },
+  "dash_settings_cap_hint": {
+    "message": "AIの下書き1件ごとに、お使いのAIキーで1回のリクエストが発生します。この上限は、大量のメールからクレジットを守るためのものです。",
+    "description": "Hint"
+  },
+  "dash_settings_privacy": {
+    "message": "プライバシー",
+    "description": "Settings card heading"
+  },
+  "dash_privacy_1": {
+    "message": "すべてこのブラウザに保存されます。アカウント登録は不要で、当社サーバーがデータを保存することはありません。",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_2": {
+    "message": "メールは、このブラウザからGoogleのGmail APIを通じて直接送信されます。",
+    "description": "Privacy bullet"
+  },
+  "dash_privacy_3": {
+    "message": "メール本文がAIに送られるのは「AIで書く」をクリックしたときか、作成した自動返信ルールに一致したメールだけです。内蔵AIでは当社の中継サーバー経由（保存なし）、自分のキーではそのプロバイダーへ直接送られます。",
+    "description": "Privacy bullet about where email text goes"
+  },
+  "dash_privacy_4": {
+    "message": "Gmailの接続を解除すると、アクセス権は直ちに取り消されます。",
+    "description": "Privacy bullet"
+  },
+  "dash_err_error": {
+    "message": "問題が発生しました。もう一度お試しください。",
+    "description": "Generic error"
+  },
+  "dash_err_network": {
+    "message": "ネットワークエラー — 接続を確認してください。",
+    "description": "Error"
+  },
+  "dash_err_plan": {
+    "message": "この機能はご利用のプランに含まれていません。",
+    "description": "Error"
+  },
+  "dash_err_permission_denied": {
+    "message": "権限が許可されませんでした。",
+    "description": "Error: browser permission prompt declined"
+  },
+  "dash_err_gmail_not_configured": {
+    "message": "このビルドではGmail連携がまだ設定されていません。",
+    "description": "Error"
+  },
+  "dash_err_gmail_disconnected": {
+    "message": "先にGmailを接続してください。",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope": {
+    "message": "新着メールの読み取り権限がありません — 自動返信の下書きを使うにはアクセスを許可してください。",
+    "description": "Error"
+  },
+  "dash_err_gmail_scope_denied": {
+    "message": "メール送信の権限が許可されませんでした。",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth": {
+    "message": "Gmailのログインの有効期限が切れました — 設定から再接続してください。",
+    "description": "Error"
+  },
+  "dash_err_gmail_auth_canceled": {
+    "message": "ログインがキャンセルされました。",
+    "description": "Error"
+  },
+  "dash_err_gmail_forbidden": {
+    "message": "Gmailがリクエストを拒否しました。",
+    "description": "Error"
+  },
+  "dash_err_gmail_rate": {
+    "message": "Gmailがリクエストを制限しています — まもなく再試行します。",
+    "description": "Error"
+  },
+  "dash_err_gmail_server": {
+    "message": "Gmailで一時的な問題が発生しました。",
+    "description": "Error"
+  },
+  "dash_err_gmail_error": {
+    "message": "Gmailからエラーが返されました。",
+    "description": "Error"
+  },
+  "dash_err_interrupted": {
+    "message": "送信が中断されました — 再送信する前に「送信済み」フォルダを確認してください。",
+    "description": "Error"
+  },
+  "dash_err_send_failed": {
+    "message": "送信できませんでした。",
+    "description": "Error"
+  },
+  "dash_err_no_recipient": {
+    "message": "宛先を1件以上追加してください。",
+    "description": "Error"
+  },
+  "dash_err_bad_address": {
+    "message": "メールアドレスの形式が正しくないものがあります。",
+    "description": "Error"
+  },
+  "dash_err_empty_email": {
+    "message": "件名または本文を入力してください。",
+    "description": "Error"
+  },
+  "dash_err_no_time": {
+    "message": "日付と時刻を選択してください。",
+    "description": "Error"
+  },
+  "dash_err_past_time": {
+    "message": "その時刻はすでに過ぎています。",
+    "description": "Error"
+  },
+  "dash_err_locked": {
+    "message": "この項目は処理中です — しばらくしてからもう一度お試しください。",
+    "description": "Error"
+  },
+  "dash_err_not_found": {
+    "message": "この項目は存在しなくなりました。",
+    "description": "Error"
+  },
+  "dash_err_no_senders": {
+    "message": "送信者またはドメインを1件以上追加してください。",
+    "description": "Error"
+  },
+  "dash_err_no_template": {
+    "message": "テンプレートを選択してください。",
+    "description": "Error"
+  },
+  "dash_err_template_missing": {
+    "message": "ルールのテンプレートが削除されました。",
+    "description": "Error"
+  },
+  "dash_err_template_limit": {
+    "message": "テンプレートの上限に達しました。",
+    "description": "Error"
+  },
+  "dash_err_draft_failed": {
+    "message": "下書きを作成できませんでした。",
+    "description": "Error"
+  },
+  "dash_err_already_replied": {
+    "message": "このスレッドにはすでに返信済みです。",
+    "description": "Error"
+  },
+  "dash_err_bad_op": {
+    "message": "問題が発生しました。もう一度お試しください。",
+    "description": "Error"
+  },
+  "dash_err_ai_not_configured": {
+    "message": "先にダッシュボード → AIライターでAIプロバイダーを設定してください。",
+    "description": "Error"
+  },
+  "dash_err_ai_auth": {
+    "message": "AIプロバイダーがAPIキーを拒否しました。",
+    "description": "Error"
+  },
+  "dash_err_ai_model": {
+    "message": "そのモデルが見つかりません — 「モデルを読み込む」をクリックして別のモデルを選んでください。",
+    "description": "Error"
+  },
+  "dash_err_ai_quota": {
+    "message": "AIの利用上限またはレート制限に達しました — しばらくしてからお試しいただくか、プロバイダーでご契約のプランを確認してください。",
+    "description": "Error"
+  },
+  "dash_err_ai_timeout": {
+    "message": "AIの応答に時間がかかりすぎました。",
+    "description": "Error"
+  },
+  "dash_err_ai_network": {
+    "message": "AIプロバイダーに接続できませんでした。",
+    "description": "Error"
+  },
+  "dash_err_ai_blocked": {
+    "message": "AIプロバイダーがこの内容の作成を拒否しました。",
+    "description": "Error"
+  },
+  "dash_err_ai_empty": {
+    "message": "AIから空の回答が返されました — もう一度お試しください。",
+    "description": "Error"
+  },
+  "dash_err_ai_error": {
+    "message": "AIプロバイダーからエラーが返されました。",
+    "description": "Error"
+  },
+  "dash_err_no_key": {
+    "message": "先にAPIキーを貼り付けてください。",
+    "description": "Error"
+  },
+  "dash_err_bad_url": {
+    "message": "有効なベースURLを入力してください。例：https://openrouter.ai/api/v1",
+    "description": "Error"
+  },
+  "picker_ai_btn": {
+    "message": "✨ AI",
+    "description": "Picker footer button that opens Write with AI"
+  },
+  "picker_ai_btn_title": {
+    "message": "AIで作成",
+    "description": "Tooltip for the picker AI button"
+  },
+  "picker_ai_heading": {
+    "message": "✨ AIで作成",
+    "description": "Picker AI view heading"
+  },
+  "picker_ai_use_thread": {
+    "message": "この会話に返信",
+    "description": "Checkbox: use the open thread as context"
+  },
+  "picker_ai_reply_ph": {
+    "message": "何を伝えたいですか？例：木曜はOKと伝え、アジェンダを依頼する — 空欄の場合は適切な返信を作成します",
+    "description": "Instruction placeholder (reply)"
+  },
+  "picker_ai_compose_ph": {
+    "message": "どんな内容のメールにしますか？例：Priyaに自己紹介し、15分の通話を依頼する",
+    "description": "Instruction placeholder (new email)"
+  },
+  "picker_ai_tone_default": {
+    "message": "トーン：デフォルト",
+    "description": "Tone dropdown first option"
+  },
+  "picker_ai_draft_label": {
+    "message": "下書き — 挿入前に編集できます",
+    "description": "Label above the editable draft"
+  },
+  "picker_ai_save_template": {
+    "message": "テンプレートとして保存",
+    "description": "Button"
+  },
+  "picker_ai_saved_template": {
+    "message": "✓ テンプレートとして保存しました",
+    "description": "Cue after saving"
+  },
+  "picker_ai_footnote": {
+    "message": "Ctrl+Enterで生成 · 下書きでCtrl+Enterを押すと挿入",
+    "description": "Keyboard hint at the bottom of the picker's AI view"
+  },
+  "sidebar_automation_heading": {
+    "message": "自動化とAI",
+    "description": "Options sidebar section heading for scheduled send / auto-reply / AI"
+  },
+  "sidebar_new_badge": {
+    "message": "新機能",
+    "description": "Small 'New' pill next to a sidebar section heading"
+  },
+  "dash_sec_schedule": {
+    "message": "予約送信",
+    "description": "Sidebar item + section title: scheduled emails"
+  },
+  "dash_sec_schedule_short": {
+    "message": "Gmailからあとで送信",
+    "description": "One-line sidebar description of scheduled emails"
+  },
+  "dash_sec_schedule_intro": {
+    "message": "今メールを書いておくと、指定した時刻にご自身のGmailから送信されます。テンプレートから始めることも、AIに書かせることもできます。",
+    "description": "Intro paragraph at the top of the scheduled emails section"
+  },
+  "dash_sec_autoreply": {
+    "message": "自動返信",
+    "description": "Sidebar item + section title: auto-reply drafts"
+  },
+  "dash_sec_autoreply_short": {
+    "message": "承認制のAI返信下書き",
+    "description": "One-line sidebar description of auto-reply"
+  },
+  "dash_sec_autoreply_intro": {
+    "message": "返信したいメールを選んでください。Canned Responses がAIまたはテンプレートで下書きを作成し、あなたが確認して送信するまで待ちます。",
+    "description": "Intro paragraph at the top of the auto-reply section"
+  },
+  "dash_sec_ai": {
+    "message": "AIライター",
+    "description": "Sidebar item + section title: AI writer"
+  },
+  "dash_sec_ai_short": {
+    "message": "無料の内蔵AIまたは自分のキー",
+    "description": "One-line sidebar description of the AI writer"
+  },
+  "dash_sec_ai_intro": {
+    "message": "AIがあなたらしい文面でメールやテンプレートを書きます。内蔵AIはすぐに使え、Gemini・Grok・ChatGPT の自分のキーを接続すれば無制限に使えます。",
+    "description": "Intro paragraph at the top of the AI writer section"
+  },
+  "dash_sec_settings": {
+    "message": "Gmailと設定",
+    "description": "Sidebar item + section title: Gmail connection and settings"
+  },
+  "dash_sec_settings_short": {
+    "message": "Gmail接続・各種設定",
+    "description": "One-line sidebar description of the settings section"
+  },
+  "dash_sec_settings_intro": {
+    "message": "送信に使うGmailアカウントを接続し、予約送信と自動返信の動作を調整します。",
+    "description": "Intro paragraph at the top of the settings section"
+  },
+  "toast_reload_tab": {
+    "message": "Canned Responses が更新されました。引き続き使うにはこのタブを再読み込みしてください。",
+    "description": "Notice in Gmail/LinkedIn when the extension was updated and the page must be refreshed"
+  },
+  "welcome_card_auto_title": {
+    "message": "予約送信・自動返信・AI",
+    "description": "Welcome page card title for scheduling / auto-reply / AI"
+  },
+  "welcome_card_auto_desc": {
+    "message": "メールの予約送信、承認制のAI返信下書き、Gemini・Grok・ChatGPT によるテンプレート作成。テンプレート管理画面の「自動化とAI」にあります。",
+    "description": "Welcome page card text; tells users where to find the features"
+  },
+  "welcome_card_auto_btn": {
+    "message": "「自動化とAI」を開く",
+    "description": "Welcome page button that opens the Automation & AI section"
+  },
+  "dash_gmail_coming_soon": {
+    "message": "このバージョンではGmailからの送信はまだ利用できません。今後のアップデートで提供予定です。テンプレートとAIライティングは通常どおり使えます。",
+    "description": "Shown to users when the build has no Gmail sign-in configured yet"
+  },
+  "dash_when_preview": {
+    "message": "$WHEN$に送信（$REL$）· $TZ$ 時間",
+    "description": "Live confirmation under the send-time picker",
+    "placeholders": {
+      "when": {
+        "content": "$1"
+      },
+      "rel": {
+        "content": "$2"
+      },
+      "tz": {
+        "content": "$3"
+      }
+    }
+  },
+  "dash_err_bad_address_named": {
+    "message": "「$ADDR$」はメールアドレスの形式ではありません。",
+    "description": "Error naming the email address that looks wrong",
+    "placeholders": {
+      "addr": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_schedule_btn_title": {
+    "message": "予約する — Ctrl+Enter",
+    "description": "Tooltip on the Schedule button (keyboard shortcut)"
+  },
+  "dash_step_title": {
+    "message": "自動返信を設定する",
+    "description": "Heading of the auto-reply setup checklist"
+  },
+  "dash_step_gmail": {
+    "message": "Gmailを接続し、新着メールの読み取りを許可",
+    "description": "Setup step 1 title"
+  },
+  "dash_step_gmail_desc": {
+    "message": "メールはこのブラウザ内で処理され、当社のサーバーには送られません。",
+    "description": "Setup step 1 description"
+  },
+  "dash_step_rule": {
+    "message": "ルールを作成",
+    "description": "Setup step 2 title"
+  },
+  "dash_step_rule_desc": {
+    "message": "どの送信者のメールに返信下書きを作るか選びます。",
+    "description": "Setup step 2 description"
+  },
+  "dash_step_ai": {
+    "message": "AIキーを追加",
+    "description": "Setup step 3 title"
+  },
+  "dash_step_ai_desc": {
+    "message": "AIによる返信に必要です。ルールでテンプレートを使う場合は不要です。",
+    "description": "Setup step 3 description"
+  },
+  "dash_step_on": {
+    "message": "自動返信の下書きをオンにする",
+    "description": "Setup step 4 title"
+  },
+  "dash_step_on_desc": {
+    "message": "以降、条件に合う新着メールの下書きがここに表示されます。",
+    "description": "Setup step 4 description"
+  },
+  "dash_step_turn_on": {
+    "message": "オンにする",
+    "description": "Button in setup step 4"
+  },
+  "dash_step_done": {
+    "message": "完了",
+    "description": "Label on a completed setup step"
+  },
+  "picker_ai_setup_title": {
+    "message": "まずAIプロバイダーを接続してください",
+    "description": "Picker AI view when no AI provider is configured — title"
+  },
+  "picker_ai_setup_desc": {
+    "message": "ご自身の Gemini・Grok・ChatGPT のAPIキーを使います。1分ほどで設定でき、キーはブラウザ内に保存されます。",
+    "description": "Picker AI view when no AI provider is configured — explanation"
+  },
+  "analytics_notice_msg": {
+    "message": "拡張機能の改善のため、匿名の利用統計がオンになっています。テンプレートやメッセージは一切収集せず、使われた機能だけを記録します。いつでもオフにできます。",
+    "description": "One-time disclosure banner that analytics is on by default"
+  },
+  "analytics_notice_turn_off": {
+    "message": "オフにする",
+    "description": "Button to opt out of analytics on the disclosure banner"
+  },
+  "analytics_notice_ok": {
+    "message": "了解",
+    "description": "Button to acknowledge the analytics disclosure (keeps it on)"
+  },
+  "welcome_footer_analytics": {
+    "message": "拡張機能の改善のため、匿名の利用統計（使われた機能のみ。テンプレートやメッセージは含みません）を収集しています。設定からいつでもオフにできます。",
+    "description": "Analytics disclosure line on the welcome page"
+  },
+  "settings_sync_toggle": {
+    "message": "テンプレートをデバイス間で同期",
+    "description": "Label for the cross-device sync toggle"
+  },
+  "settings_sync_note": {
+    "message": "デフォルトはオフ。Chrome の同期機能を使うため、アカウントは不要です。テキストのテンプレート向けで、非常に大きなライブラリや画像の多いテンプレートは収まらない場合があります。",
+    "description": "Explanation for the cross-device sync toggle"
+  },
+  "dash_q_reply_to": {
+    "message": "返信先: $EMAIL$",
+    "description": "Shown on a draft when the email's Reply-To differs from the sender (same domain)",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_q_reply_to_warn": {
+    "message": "注意: 返信は送信者とは別のアドレス（$EMAIL$）に送られます。意図したものか確認してください。",
+    "description": "Warning on a draft when Reply-To points at a different domain than the sender",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_storage": {
+    "message": "ブラウザの保存領域がいっぱいです。「送信済み」と「対応済み」のリストを消去してから、もう一度お試しください。",
+    "description": "Error when the browser's extension storage is full or unavailable"
+  },
+  "dash_prov_builtin": {
+    "message": "内蔵AI",
+    "description": "Provider card name for the free built-in AI"
+  },
+  "dash_prov_free": {
+    "message": "無料",
+    "description": "Small 'Free' pill on the built-in AI card"
+  },
+  "dash_prov_desc_builtin": {
+    "message": "APIキー不要 · 1日$N$回まで",
+    "description": "Built-in AI card description; N = free requests per day",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_prov_byo_heading": {
+    "message": "または自分のAPIキーを使う（1日の上限なし）",
+    "description": "Divider above the own-API-key providers"
+  },
+  "dash_ai_builtin_note": {
+    "message": "設定不要ですぐに使えます。1日$N$回までAIを利用できます。テキストは当社サーバーを経由してAIに送られ、保存されることはありません。",
+    "description": "Explanation shown when the built-in AI is selected",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_ai_test_ok_builtin": {
+    "message": "内蔵AIの準備ができました。本日の無料リクエスト残り: $N$回",
+    "description": "Status after testing the built-in AI",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "dash_err_ai_builtin_limit": {
+    "message": "本日の無料AIリクエストを使い切りました。明日リセットされます。無制限に使うには「AIライター」で自分のAPIキーを追加してください。",
+    "description": "Error when the user has used today's free built-in AI requests"
+  },
+  "dash_err_ai_builtin_busy": {
+    "message": "内蔵AIは現在混み合っています。少し待ってから再度お試しいただくか、自分のAPIキーをご利用ください。",
+    "description": "Error when the built-in AI is overloaded"
+  },
+  "dash_err_ai_builtin_unavailable": {
+    "message": "内蔵AIは現在利用できません。代わりに「AIライター」で自分のAPIキーを追加できます。",
+    "description": "Error when the built-in AI relay isn't set up / reachable"
+  },
+  "picker_ai_remaining": {
+    "message": "本日の無料残り $N$回",
+    "description": "Picker footnote after a built-in AI draft; N = requests left today",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
   }
 }
